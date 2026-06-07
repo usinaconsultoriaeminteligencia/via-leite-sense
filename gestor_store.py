@@ -120,8 +120,19 @@ def _sql_path(path: Path) -> str:
 
 
 def conectar(read_only: bool = False) -> duckdb.DuckDBPyConnection:
+    """
+    Abre conexão DuckDB.
+
+    Em cloud (Streamlit), conexões read_only e read_write ao mesmo arquivo
+    geram ConnectionException. Aqui usamos sempre read_write para evitar
+    o conflito — DuckDB garante isolation por transação.
+    """
     garantir_pasta()
-    con = duckdb.connect(str(db_path()), read_only=read_only)
+    try:
+        con = duckdb.connect(str(db_path()), read_only=read_only)
+    except duckdb.ConnectionException:
+        # Fallback: abre sem read_only para contornar conflito de modo em cloud
+        con = duckdb.connect(str(db_path()), read_only=False)
     return con
 
 
