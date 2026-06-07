@@ -123,12 +123,97 @@ selecionado = st.selectbox(
 det = scores[scores["id_produtor"] == selecionado].iloc[0]
 hist = ctx.prod_f[ctx.prod_f["id_produtor"] == selecionado].sort_values("data").copy()
 
-k1, k2, k3, k4, k5 = st.columns(5)
-k1.metric("Risco", formatar_numero_br(det["score_risco_fornecedor"], 1), det["classe_risco"])
-k2.metric("Litros por dia", formatar_numero_br(det["litros_coletados_media"], 0))
-k3.metric("Tendência", f"{formatar_numero_br(det['tendencia_volume_pct'], 1)}%")
-k4.metric("Descarte", f"{formatar_numero_br(det['taxa_descarte_pct'], 2)}%")
-k5.metric("CCS / CBT", f"{formatar_numero_br(det['ccs_media'], 0)} / {formatar_numero_br(det['cbt_media'], 0)}")
+# ── Score Premium Visual ──────────────────────────────────────────────────────
+_score = float(det["score_risco_fornecedor"])
+_classe = det["classe_risco"]
+_cor_gauge = {"Alto": "#B42318", "Medio": "#B54708", "Baixo": "#027A48"}.get(_classe, "#6B7280")
+_cor_bg = {"Alto": "#FEF3F2", "Medio": "#FFFAEB", "Baixo": "#ECFDF3"}.get(_classe, "#F9FAFB")
+
+col_gauge, col_radar, col_kpis = st.columns([1.1, 1.1, 1.0])
+
+with col_gauge:
+    import plotly.graph_objects as go
+
+    fig_gauge = go.Figure(go.Indicator(
+        mode="gauge+number+delta",
+        value=_score,
+        delta={"reference": 50, "suffix": " vs médio"},
+        number={"font": {"size": 42, "color": _cor_gauge}, "suffix": " pts"},
+        title={"text": f"<b>Score de Risco</b><br><span style='font-size:14px;color:{_cor_gauge}'>{_classe.upper()}</span>",
+               "font": {"size": 14}},
+        gauge={
+            "axis": {"range": [0, 100], "tickwidth": 1, "tickcolor": "#6B7280",
+                     "tickvals": [0, 25, 50, 75, 100]},
+            "bar": {"color": _cor_gauge, "thickness": 0.3},
+            "bgcolor": "#1E2433",
+            "borderwidth": 0,
+            "steps": [
+                {"range": [0, 50], "color": "#132D1F"},
+                {"range": [50, 75], "color": "#2D2010"},
+                {"range": [75, 100], "color": "#2D1010"},
+            ],
+            "threshold": {
+                "line": {"color": "#FFFFFF", "width": 3},
+                "thickness": 0.8,
+                "value": _score,
+            },
+        },
+    ))
+    fig_gauge.update_layout(
+        height=230,
+        margin=dict(l=20, r=20, t=40, b=10),
+        paper_bgcolor="rgba(0,0,0,0)",
+        font_color="#E5E7EB",
+    )
+    st.plotly_chart(fig_gauge, use_container_width=True)
+
+with col_radar:
+    _dims = ["Volume", "Qualidade", "Logística", "Continuidade"]
+    _vals = [
+        float(det.get("score_volume", 0)),
+        float(det.get("score_qualidade", 0)),
+        float(det.get("score_logistica", 0)),
+        float(det.get("score_continuidade", 0)),
+    ]
+    fig_radar = go.Figure(go.Scatterpolar(
+        r=_vals + [_vals[0]],
+        theta=_dims + [_dims[0]],
+        fill="toself",
+        fillcolor={"Alto": "rgba(180,35,24,0.25)", "Medio": "rgba(181,71,8,0.25)", "Baixo": "rgba(2,122,72,0.25)"}.get(_classe, "rgba(107,114,128,0.25)"),
+        line=dict(color=_cor_gauge, width=2),
+        marker=dict(size=6, color=_cor_gauge),
+    ))
+    fig_radar.update_layout(
+        polar=dict(
+            bgcolor="rgba(0,0,0,0)",
+            radialaxis=dict(visible=True, range=[0, 100], tickfont_size=9,
+                            gridcolor="#374151", tickcolor="#9CA3AF"),
+            angularaxis=dict(tickfont_size=11, gridcolor="#374151"),
+        ),
+        showlegend=False,
+        height=230,
+        margin=dict(l=30, r=30, t=30, b=10),
+        paper_bgcolor="rgba(0,0,0,0)",
+        font_color="#E5E7EB",
+        title=dict(text="<b>Dimensões de Risco</b>", font_size=13, x=0.5),
+    )
+    st.plotly_chart(fig_radar, use_container_width=True)
+
+with col_kpis:
+    st.markdown(f"""
+    <div style="background:{_cor_bg};border-left:4px solid {_cor_gauge};border-radius:8px;padding:14px 16px;margin-bottom:8px">
+      <div style="font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:.05em">Produção média/dia</div>
+      <div style="font-size:22px;font-weight:700;color:#111827">{formatar_numero_br(det['litros_coletados_media'], 0)} L</div>
+    </div>
+    <div style="background:{_cor_bg};border-left:4px solid {_cor_gauge};border-radius:8px;padding:14px 16px;margin-bottom:8px">
+      <div style="font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:.05em">Tendência de volume</div>
+      <div style="font-size:22px;font-weight:700;color:#111827">{formatar_numero_br(det['tendencia_volume_pct'], 1)}%</div>
+    </div>
+    <div style="background:{_cor_bg};border-left:4px solid {_cor_gauge};border-radius:8px;padding:14px 16px">
+      <div style="font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:.05em">Descarte · CCS · CBT</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">{formatar_numero_br(det['taxa_descarte_pct'], 2)}% · {formatar_numero_br(det['ccs_media'], 0)} · {formatar_numero_br(det['cbt_media'], 0)}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.info(det["recomendacao"])
 
