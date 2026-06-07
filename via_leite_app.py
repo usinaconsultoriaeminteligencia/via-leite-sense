@@ -138,28 +138,62 @@ st.markdown(
         padding: 1.8rem;
         margin-top: 2rem;
     }
-    div[data-testid="stTextInput"] input {
-        background: rgba(255,255,255,0.07) !important;
-        color: #F8FAFC !important;
-        border: 1px solid rgba(255,255,255,0.18) !important;
-        border-radius: 8px !important;
-    }
-    div[data-testid="stTextInput"] input:focus {
-        border-color: rgba(74,222,128,0.5) !important;
-        box-shadow: 0 0 0 2px rgba(74,222,128,0.1) !important;
-    }
-    div[data-testid="stTextInput"] label { color: #CBD5E1 !important; font-size: 0.875rem !important; }
 
-    /* Botão primário */
+    /* Inputs — legíveis em qualquer tema */
+    div[data-testid="stTextInput"] > div > div > input,
+    div[data-testid="stTextInput"] input {
+        background-color: #1e3a5f !important;
+        color: #F0FFF4 !important;
+        border: 1.5px solid #3b82f6 !important;
+        border-radius: 8px !important;
+        caret-color: #4ADE80 !important;
+        -webkit-text-fill-color: #F0FFF4 !important;
+    }
+    div[data-testid="stTextInput"] > div > div > input:focus,
+    div[data-testid="stTextInput"] input:focus {
+        border-color: #4ADE80 !important;
+        box-shadow: 0 0 0 2px rgba(74,222,128,0.15) !important;
+        outline: none !important;
+    }
+    div[data-testid="stTextInput"] > div > div > input::placeholder {
+        color: #64748b !important;
+        opacity: 1 !important;
+    }
+    /* Label dos inputs */
+    div[data-testid="stTextInput"] label,
+    div[data-testid="stTextInput"] label p {
+        color: #93C5FD !important;
+        font-size: 0.875rem !important;
+        font-weight: 500 !important;
+    }
+    /* Ícone olho (password toggle) */
+    div[data-testid="stTextInput"] button svg {
+        fill: #94A3B8 !important;
+    }
+
+    /* Botão primário do formulário */
     div[data-testid="stForm"] button[kind="primaryFormSubmit"],
-    div[data-testid="stForm"] button[data-testid="stFormSubmitButton"] {
+    div[data-testid="stForm"] button[data-testid="stFormSubmitButton"],
+    div[data-testid="stForm"] button[type="submit"] {
         background: linear-gradient(135deg, #059669, #047857) !important;
         border: none !important;
-        color: white !important;
+        color: #ffffff !important;
         font-weight: 700 !important;
         border-radius: 10px !important;
-        padding: 0.6rem 1rem !important;
         font-size: 0.95rem !important;
+    }
+    div[data-testid="stForm"] button[kind="primaryFormSubmit"]:hover {
+        background: linear-gradient(135deg, #047857, #065f46) !important;
+    }
+
+    /* Alertas de erro (senha incorreta) */
+    div[data-testid="stAlert"] {
+        background: rgba(185,28,28,0.25) !important;
+        border: 1px solid rgba(239,68,68,0.4) !important;
+        border-radius: 8px !important;
+    }
+    div[data-testid="stAlert"] p {
+        color: #FCA5A5 !important;
     }
 
     /* Tabelas de credenciais demo */
@@ -172,9 +206,9 @@ st.markdown(
     }
     th { color: #CBD5E1 !important; font-weight: 600 !important; }
     code {
-        background: rgba(74,222,128,0.12) !important;
+        background: rgba(74,222,128,0.15) !important;
         color: #6EE7B7 !important;
-        padding: 0.1rem 0.35rem !important;
+        padding: 0.15rem 0.4rem !important;
         border-radius: 4px !important;
         font-size: 0.83rem !important;
     }
