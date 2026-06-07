@@ -1,0 +1,44 @@
+# Segurança — NUNCA commitar
+.streamlit/secrets.toml
+config_auth.yaml
+*.env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Dados do usuário (multi-tenant)
+dados_utilizador*/
+dados_piloto_cliente*/
+artefatos_piloto_cliente*/
+onboarding_clientes/
+onboarding_clientes_ui/
+
+# Dados brutos INMET (grandes demais para git)
+dados_inmet_raw/*.csv
+
+# Artefatos de modelo (regenerar localmente)
+artefatos_teste/modelo_mvp.joblib
+artefatos_validacao/modelo_mvp.joblib
+
+# DuckDB
+*.duckdb
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp

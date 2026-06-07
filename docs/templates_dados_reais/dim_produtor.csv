@@ -1,0 +1,2 @@
+id_produtor,nome_ficticio,municipio,polo_climatico,id_laticinio_principal,id_rota_principal,tipo_sistema,nivel_tecnificacao,porte_produtor,vacas_lactacao,producao_media_esperada_litros_dia,capacidade_maxima_litros_dia,distancia_km_laticinio,data_inicio_fornecimento,ativo
+1001,Fazenda Boa Esperanca,Rio Verde,RIO_VERDE,1,12,PASTO,MEDIO,MEDIO,84,780.0,910.0,18.5,2024-01-15,1

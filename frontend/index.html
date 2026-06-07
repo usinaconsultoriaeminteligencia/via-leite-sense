@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIA LEITE SENSE | Monitoramento Inteligente da Produção Leiteira</title>
+    <meta
+      name="description"
+      content="Plataforma inteligente de monitoramento da cadeia leiteira com IA, clima e sensores virtuais para qualidade premium, rastreabilidade e redução de perdas."
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260513-01" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="#comando" aria-label="VIA LEITE SENSE">
+          <span class="brand-mark">SENSE</span>
+          <span>
+            <strong>VIA LEITE SENSE</strong>
+            <small>Fazenda, sensor e cadeia premium</small>
+          </span>
+        </a>
+
+        <nav class="nav-list">
+          <a class="nav-link active" href="#comando" data-route="comando">Painel executivo</a>
+          <a class="nav-link" href="#carteira" data-route="carteira">Fazendas</a>
+          <a class="nav-link" href="#fornecedor-360" data-route="fornecedor-360">Fazenda 360</a>
+          <a class="nav-link" href="#gestao" data-route="gestao">Operação</a>
+          <a class="nav-link" href="#planos" data-route="planos">Planos inteligentes</a>
+          <a class="nav-link" href="#impacto" data-route="impacto">Pitch mode</a>
+        </nav>
+
+        <div class="sidebar-footer" id="apiStatus">
+          <span class="status-dot"></span>
+          <span class="status-copy">
+            Conectando à API...
+            <strong>AgroStartup IoT-ready para leite premium</strong>
+          </span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Fazenda, sensor e chocolate</p>
+            <h1>Monitoramento Inteligente da Produção Leiteira para Produtos Premium</h1>
+            <p class="builder-note">
+              IA preditiva, clima e sensores virtuais para elevar a qualidade do leite destinado a chocolates artesanais, sobremesas especiais e derivados lácteos premium.
+            </p>
+          </div>
+          <div class="topbar-actions">
+            <button class="ghost-button" id="resetFilters">Limpar filtros</button>
+            <button class="primary-button" id="openManagement">Cadastrar fazenda</button>
+          </div>
+        </header>
+
+        <section class="filters" aria-label="Filtros">
+          <label>
+            Risco
+            <select id="riskFilter">
+              <option value="Todos">Todos</option>
+              <option value="Alto">Alto</option>
+              <option value="Médio">Médio</option>
+              <option value="Baixo">Baixo</option>
+            </select>
+          </label>
+          <label>
+            Laticínio
+            <select id="dairyFilter">
+              <option value="Todos">Todos</option>
+            </select>
+          </label>
+          <label>
+            Polo
+            <select id="regionFilter">
+              <option value="Todos">Todos</option>
+            </select>
+          </label>
+          <label class="search-field">
+            Buscar fazenda
+            <input id="searchFilter" type="search" placeholder="Nome, município, polo ou ID" />
+          </label>
+        </section>
+
+        <section class="route active" id="comando" data-view="comando"></section>
+        <section class="route" id="carteira" data-view="carteira"></section>
+        <section class="route" id="fornecedor-360" data-view="fornecedor-360"></section>
+        <section class="route" id="gestao" data-view="gestao"></section>
+        <section class="route" id="planos" data-view="planos"></section>
+        <section class="route" id="impacto" data-view="impacto"></section>
+      </main>
+    </div>
+
+    <script src="./app.js?v=20260513-01"></script>
+  </body>
+</html>

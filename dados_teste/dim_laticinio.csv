@@ -1,0 +1,5 @@
+﻿id_laticinio,municipio_base,capacidade_recebimento_litros_dia,numero_rotas,raio_medio_captacao_km,perfil_operacional
+1,Rio Verde,298563,9,89.31,RESTRITO
+2,Jataí,382487,10,170.67,PADRAO
+3,Mineiros,81523,10,99.67,PADRAO
+4,Itumbiara,242988,13,118.82,PADRAO

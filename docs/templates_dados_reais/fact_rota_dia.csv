@@ -1,0 +1,2 @@
+data,id_rota,id_laticinio,litros_previstos,litros_realizados,num_produtores_planejados,num_produtores_atendidos,custo_total,km_rodados,tempo_total_horas,ocupacao_tanque_pct,indice_atraso,indice_perda_rota
+2026-05-01,12,1,11850.0,11620.0,18,17,684.0,132.4,4.1,64.6,0.08,0.019

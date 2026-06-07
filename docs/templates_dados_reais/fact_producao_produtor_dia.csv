@@ -1,0 +1,2 @@
+data,id_produtor,id_laticinio,id_rota,polo_climatico,litros_previstos,litros_produzidos,litros_coletados,litros_descartados,ccs,cbt,temp_tanque_c,flag_antibiotico,flag_qualidade_reprovada,flag_falha_coleta,flag_mudou_laticinio,custo_logistico_rateado,margem_estimada_fornecedor
+2026-05-01,1001,1,12,RIO_VERDE,790.0,784.0,776.0,8.0,412.0,138.0,4.2,0,0,0,0,0.58,0.49
