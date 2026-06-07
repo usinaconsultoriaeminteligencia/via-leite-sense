@@ -3,13 +3,14 @@ from __future__ import annotations
 import plotly.express as px
 import streamlit as st
 
-from auth import renderizar_sidebar_usuario  # noqa: E402
 from dashboard_common import PAGE_CONFIG, aplicar_layout_plotly, carregar_contexto, formatar_numero_br
 
-st.set_page_config(**PAGE_CONFIG)
-
-# Exibe usuário logado e botão de logout na sidebar
-renderizar_sidebar_usuario()
+# Nota: set_page_config não pode ser chamado novamente quando executado via importlib
+# (via_leite_app.py já configurou a página). O try/except evita o erro silenciosamente.
+try:
+    st.set_page_config(**PAGE_CONFIG)
+except Exception:
+    pass
 
 st.markdown(
     "<h2 style='margin-bottom:0'>🥛 VIA LEITE SENSE</h2>"

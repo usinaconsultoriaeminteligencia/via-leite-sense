@@ -234,7 +234,7 @@ def renderizar_sidebar_usuario() -> None:
         st.markdown("---")
         st.markdown(f"👤 **{get_nome_usuario()}**")
         st.caption(papel_label)
-        if st.button("Sair", use_container_width=True):
+        if st.button("Sair", use_container_width=True, key="vls_logout_btn"):
             logout()
             st.rerun()
 
