@@ -3,6 +3,7 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
+from auth import requer_papel, renderizar_sidebar_usuario
 from dashboard_common import artefatos_dir, carregar_dados, data_dir, formatar_numero_br, render_sidebar_filtros
 from gestor_store import (
     carregar_fornecedores,
@@ -21,6 +22,9 @@ def formatar_df_brasileiro(df: pd.DataFrame) -> pd.DataFrame:
             out[col] = out[col].map(lambda x: formatar_numero_br(x, 2) if pd.notna(x) else "")
     return out
 
+
+requer_papel(["admin", "laticinio"])
+renderizar_sidebar_usuario()
 
 st.title("Gestao, Fazendas e Dados")
 st.caption(

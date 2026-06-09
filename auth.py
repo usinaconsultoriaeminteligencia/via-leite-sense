@@ -251,3 +251,26 @@ def requer_autenticacao() -> bool:
     st.page_link("via_leite_app.py", label="→ Ir para o Login", icon="🏠")
     st.stop()
     return False  # nunca alcançado
+
+
+def requer_papel(papeis: list[str]) -> bool:
+    """
+    Guard de papel (role). Verifica autenticação e se o papel do usuário
+    está na lista de papéis permitidos. Chama st.stop() se não autorizado.
+
+    Uso: requer_papel(["admin", "laticinio"])
+    """
+    requer_autenticacao()
+    papel = get_papel_usuario()
+    if papel in papeis:
+        return True
+    papel_label = {
+        "admin": "Admin",
+        "laticinio": "Laticínio",
+        "demo": "Demo",
+    }.get(papel or "", papel or "desconhecido")
+    st.error(f"⛔ Acesso não permitido para o perfil **{papel_label}**.")
+    st.info("Esta página requer permissão de: " + " ou ".join(f"**{p}**" for p in papeis))
+    st.page_link("via_leite_app.py", label="→ Voltar ao Início", icon="🏠")
+    st.stop()
+    return False  # nunca alcançado

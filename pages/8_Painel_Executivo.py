@@ -4,8 +4,12 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from auth import requer_autenticacao, renderizar_sidebar_usuario
 from dashboard_common import formatar_numero_br
 from via_leite_edge import EDGE_DISCLAIMER, gerar_alertas, obter_provider_iot, resumo_premium
+
+requer_autenticacao()
+renderizar_sidebar_usuario()
 
 st.title("Painel Executivo VIA LEITE SENSE")
 st.caption("Monitoramento inteligente da produção leiteira para produtos premium, com IA preditiva, clima, ESG e telemetria IoT-ready.")

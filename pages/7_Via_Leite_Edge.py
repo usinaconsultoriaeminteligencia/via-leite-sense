@@ -4,8 +4,12 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from auth import requer_autenticacao, renderizar_sidebar_usuario
 from dashboard_common import aplicar_layout_plotly, formatar_numero_br
 from via_leite_edge import EDGE_DISCLAIMER, EdgeSettings, carregar_configuracao_edge, gerar_alertas, obter_provider_iot, resumo_premium
+
+requer_autenticacao()
+renderizar_sidebar_usuario()
 
 st.title("VIA LEITE EDGE - Monitoramento IoT-ready")
 st.caption("Telemetria sintética para monitorar fazendas, sensores virtuais, risco térmico, coleta e qualidade do leite para cadeias premium.")

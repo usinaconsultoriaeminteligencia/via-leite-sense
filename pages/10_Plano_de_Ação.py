@@ -16,12 +16,12 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from auth import requer_autenticacao, renderizar_sidebar_usuario
+from auth import requer_papel, renderizar_sidebar_usuario
 from dashboard_common import aplicar_layout_plotly, artefatos_dir, carregar_dados, data_dir
 from fornecedor_inteligencia import calcular_scores_fornecedores
 from gestor_store import conectar, garantir_pasta, init_db
 
-requer_autenticacao()
+requer_papel(["admin", "laticinio"])
 renderizar_sidebar_usuario()
 
 # ---------------------------------------------------------------------------
