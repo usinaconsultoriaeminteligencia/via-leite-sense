@@ -169,7 +169,7 @@ SLIDES = [
         "chip": "🌡️ VIA LEITE EDGE  ·  2:30 – 3:30",
         "titulo": "IoT-Ready:\nDo Sensor à Decisão",
         "subtitulo": "Telemetria de tanque, THI e score premium com arquitetura preparada para sensores reais.",
-        "pagina_link": "pages/7_VIA_LEITE_EDGE.py",
+        "pagina_link": "pages/7_Via_Leite_Edge.py",
         "pagina_label": "→ Abrir VIA LEITE EDGE",
         "highlight": "THI > 72 = estresse térmico. Score tanque < 60 = risco de perda de qualidade. Alertas automáticos.",
         "roteiro": [
@@ -183,7 +183,7 @@ SLIDES = [
         "chip": "📋 Plano de Ação  ·  3:30 – 4:30",
         "titulo": "Do Diagnóstico\nà Ação em 1 Clique",
         "subtitulo": "15 prompts técnicos inteligentes · Persistência em banco · Acompanhamento de resultados.",
-        "pagina_link": "pages/10_Plano_de_Acao.py",
+        "pagina_link": "pages/10_Plano_de_Ação.py",
         "pagina_label": "→ Abrir Plano de Ação",
         "highlight": "Selecione o produtor → escolha o prompt → clique → formulário preenchido automaticamente.",
         "roteiro": [
