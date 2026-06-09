@@ -6,6 +6,7 @@ import streamlit as st
 from dashboard_common import aplicar_layout_plotly, carregar_contexto, formatar_numero_br
 from fornecedor_inteligencia import calcular_scores_fornecedores
 from gestor_store import carregar_fornecedores
+from relatorio_pdf import gerar_relatorio_produtor
 
 st.title("Fazenda 360")
 st.caption("Risco, qualidade, capacidade, continuidade e leitura premium por fazenda.")
@@ -216,6 +217,41 @@ with col_kpis:
     """, unsafe_allow_html=True)
 
 st.info(det["recomendacao"])
+
+# ── Exportar PDF ──────────────────────────────────────────────────────────────
+with st.expander("📄 Exportar Relatório Executivo em PDF", expanded=False):
+    col_pdf_info, col_pdf_btn = st.columns([2, 1])
+    with col_pdf_info:
+        st.caption(
+            "Gera um relatório A4 com score de risco, dimensões, KPIs operacionais, "
+            "recomendação da IA, histórico de volume e dados cadastrais do produtor."
+        )
+    with col_pdf_btn:
+        try:
+            # Prepara histórico dos últimos 30 registros
+            _hist_pdf = None
+            if not hist.empty:
+                _hist_pdf = (
+                    hist.groupby("data", as_index=False)
+                    .agg(
+                        litros_coletados=("litros_coletados", "sum"),
+                        litros_previstos=("litros_previstos", "sum"),
+                    )
+                    .sort_values("data")
+                    .tail(30)
+                )
+            _nome_lat = str(det.get("id_laticinio", ""))
+            _pdf_bytes = gerar_relatorio_produtor(det, _hist_pdf, _nome_lat)
+            st.download_button(
+                label="⬇️ Baixar PDF",
+                data=_pdf_bytes,
+                file_name=f"relatorio_produtor_{selecionado}.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+                type="primary",
+            )
+        except Exception as _err:
+            st.error(f"Erro ao gerar PDF: {_err}")
 
 if not hist.empty:
     serie = hist.groupby("data", as_index=False).agg(
