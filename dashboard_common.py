@@ -18,6 +18,27 @@ PAGE_CONFIG = {
 
 
 _CSS_SIDEBAR_NAV = """
+<script>
+(function renomearInicio() {
+    function tentar() {
+        var links = document.querySelectorAll('[data-testid="stSidebarNav"] a');
+        if (!links.length) { setTimeout(tentar, 150); return; }
+        var primeiro = links[0];
+        var span = primeiro.querySelector('span') || primeiro;
+        if (span.textContent.toLowerCase().includes('via leite app') ||
+            span.textContent.toLowerCase().includes('via_leite')) {
+            span.textContent = 'Início';
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tentar);
+    } else {
+        tentar();
+    }
+    // Re-aplica após reruns do Streamlit
+    new MutationObserver(tentar).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 <style>
 /* ── Sidebar nav — acabamento premium ───────────────────────────────────── */
 
