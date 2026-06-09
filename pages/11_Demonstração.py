@@ -123,7 +123,7 @@ st.markdown(
 # ── Dados dos slides ──────────────────────────────────────────────────────────
 SLIDES = [
     {
-        "numero": "01 / 06",
+        "numero": "01 / 07",
         "chip": "🎯 Abertura  ·  0:00 – 0:45",
         "titulo": "O Problema\nda Cadeia Leiteira",
         "subtitulo": "Por que o laticínio perde leite antes de saber que está perdendo?",
@@ -137,7 +137,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "02 / 06",
+        "numero": "02 / 07",
         "chip": "📊 Painel Executivo  ·  0:45 – 1:30",
         "titulo": "Inteligência\nem Tempo Real",
         "subtitulo": "KPIs de captação, desvio e previsão numa única visão.",
@@ -151,7 +151,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "03 / 06",
+        "numero": "03 / 07",
         "chip": "🏭 Fazenda 360  ·  1:30 – 2:30",
         "titulo": "Score Premium\nVisual por Produtor",
         "subtitulo": "Gauge de risco · Radar 4D · Recomendação automatizada.",
@@ -165,7 +165,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "04 / 06",
+        "numero": "04 / 07",
         "chip": "🌡️ VIA LEITE EDGE  ·  2:30 – 3:30",
         "titulo": "IoT-Ready:\nDo Sensor à Decisão",
         "subtitulo": "Telemetria de tanque, THI e score premium com arquitetura preparada para sensores reais.",
@@ -179,7 +179,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "05 / 06",
+        "numero": "05 / 07",
         "chip": "📋 Plano de Ação  ·  3:30 – 4:30",
         "titulo": "Do Diagnóstico\nà Ação em 1 Clique",
         "subtitulo": "15 prompts técnicos inteligentes · Persistência em banco · Acompanhamento de resultados.",
@@ -193,8 +193,22 @@ SLIDES = [
         ],
     },
     {
-        "numero": "06 / 06",
-        "chip": "🏁 Encerramento  ·  4:30 – 5:00",
+        "numero": "06 / 07",
+        "chip": "🔐 Acesso por Perfil  ·  4:30 – 4:45",
+        "titulo": "Acesso Seguro\npor Perfil",
+        "subtitulo": "Você avalia sem restrições. Só o operador contratado cadastra, planeja e exporta.",
+        "pagina_link": None,
+        "pagina_label": None,
+        "highlight": "Perfil demo: você está usando agora — visualização completa, sem escrita. Perfil laticínio: acesso operacional total após contratação.",
+        "roteiro": [
+            ("O que o demo acessa", "Todos os dashboards, scores, clima, IoT e tour — sem nenhuma restrição de leitura."),
+            ("O que só o contratado faz", "Cadastrar fazendas, criar planos de ação, exportar relatórios PDF — protegido por perfil."),
+            ("Segurança", "Autenticação com hash bcrypt, bloqueio por tentativas e credenciais configuráveis por laticínio."),
+        ],
+    },
+    {
+        "numero": "07 / 07",
+        "chip": "🏁 Encerramento  ·  4:45 – 5:15",
         "titulo": "Pronto para\no Mercado Premium",
         "subtitulo": "ESG · Rastreabilidade · Escalabilidade para a cadeia leiteira do Centro-Oeste.",
         "pagina_link": None,
@@ -280,7 +294,7 @@ with col_timer:
     )
 
     # Tempo alvo por slide (segundos)
-    tempos_alvo = [45, 90, 150, 210, 270, 300]
+    tempos_alvo = [45, 90, 150, 210, 270, 285, 315]
     alvo = tempos_alvo[slide_idx]
     mm, ss = divmod(alvo, 60)
     st.markdown(
