@@ -424,7 +424,7 @@ with col_dir:
     # Botão WhatsApp via link externo
     components.html(
         """
-        <a href="https://wa.me/5562999999999?text=Ol%C3%A1%2C%20vi%20o%20VIA%20LEITE%20SENSE%20e%20quero%20saber%20mais%20sobre%20o%20piloto%20gratuito."
+        <a href="https://wa.me/5562988880016?text=Ol%C3%A1%2C%20vi%20o%20VIA%20LEITE%20SENSE%20e%20quero%20saber%20mais%20sobre%20o%20piloto%20gratuito."
            target="_blank"
            style="
                display: block;
