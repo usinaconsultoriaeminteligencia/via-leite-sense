@@ -18,27 +18,6 @@ PAGE_CONFIG = {
 
 
 _CSS_SIDEBAR_NAV = """
-<script>
-(function renomearInicio() {
-    function tentar() {
-        var links = document.querySelectorAll('[data-testid="stSidebarNav"] a');
-        if (!links.length) { setTimeout(tentar, 150); return; }
-        var primeiro = links[0];
-        var span = primeiro.querySelector('span') || primeiro;
-        if (span.textContent.toLowerCase().includes('via leite app') ||
-            span.textContent.toLowerCase().includes('via_leite')) {
-            span.textContent = 'Início';
-        }
-    }
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', tentar);
-    } else {
-        tentar();
-    }
-    // Re-aplica após reruns do Streamlit
-    new MutationObserver(tentar).observe(document.body, { childList: true, subtree: true });
-})();
-</script>
 <style>
 /* ── Sidebar nav — acabamento premium ───────────────────────────────────── */
 
@@ -131,9 +110,34 @@ _CSS_SIDEBAR_NAV = """
 """
 
 
+_JS_RENOMEAR_INICIO = """
+<script>
+(function() {
+    function renomear() {
+        var doc = window.parent.document;
+        var links = doc.querySelectorAll('[data-testid="stSidebarNav"] a');
+        if (!links.length) { setTimeout(renomear, 200); return; }
+        var span = links[0].querySelector('span') || links[0];
+        if (span.textContent.trim().toLowerCase() !== 'início') {
+            span.textContent = 'Início';
+        }
+    }
+    renomear();
+    new MutationObserver(renomear).observe(
+        window.parent.document.body,
+        { childList: true, subtree: true }
+    );
+})();
+</script>
+"""
+
+
 def aplicar_css_nav() -> None:
-    """Injeta CSS premium do menu lateral. Chamar em todas as páginas."""
+    """Injeta CSS premium + JS de renomeação do menu lateral."""
+    import streamlit.components.v1 as _components
     st.markdown(_CSS_SIDEBAR_NAV, unsafe_allow_html=True)
+    # JS via components.html usa window.parent para acessar o DOM do Streamlit
+    _components.html(_JS_RENOMEAR_INICIO, height=0)
 
 
 def configurar_pagina() -> None:
