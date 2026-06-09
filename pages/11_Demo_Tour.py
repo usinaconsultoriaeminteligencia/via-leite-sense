@@ -290,11 +290,13 @@ with col_timer:
         st.session_state.demo_timer_inicio = time.time()
         st.rerun()
 
+    _timer_placeholder = st.empty()
+
     if st.session_state.demo_timer_inicio:
         elapsed = int(time.time() - st.session_state.demo_timer_inicio)
         em, es = divmod(elapsed, 60)
         cor_timer = "#4ADE80" if elapsed <= alvo else "#F87171"
-        st.markdown(
+        _timer_placeholder.markdown(
             f'<div class="demo-timer-box" style="color:{cor_timer}">'
             f"{em}:{es:02d}"
             "</div>",
@@ -302,8 +304,11 @@ with col_timer:
         )
         if elapsed > alvo:
             st.warning("⚠️ Tempo do slide ultrapassado!")
+        # Auto-tick: atualiza a cada 1 segundo
+        time.sleep(1)
+        st.rerun()
     else:
-        st.markdown(
+        _timer_placeholder.markdown(
             '<div class="demo-timer-box" style="color:#334155">0:00</div>',
             unsafe_allow_html=True,
         )
