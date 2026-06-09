@@ -10,6 +10,9 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from auth import esta_autenticado
+from dashboard_common import aplicar_css_nav
+
+aplicar_css_nav()
 
 # Guard: redireciona para login se não autenticado
 if not esta_autenticado():

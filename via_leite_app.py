@@ -28,6 +28,9 @@ from auth import (  # noqa: E402
     renderizar_formulario_login,
     renderizar_sidebar_usuario,
 )
+from dashboard_common import aplicar_css_nav  # noqa: E402
+
+aplicar_css_nav()
 
 # ---------------------------------------------------------------------------
 # CSS global — branding Via Leite

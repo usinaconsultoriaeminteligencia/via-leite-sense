@@ -17,6 +17,104 @@ PAGE_CONFIG = {
 }
 
 
+_CSS_SIDEBAR_NAV = """
+<style>
+/* ── Sidebar nav — acabamento premium ───────────────────────────────────── */
+
+/* Container geral */
+[data-testid="stSidebarNav"] {
+    padding: 0.4rem 0 0.8rem 0;
+}
+
+/* Remove marcadores padrão */
+[data-testid="stSidebarNav"] ul {
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 1px !important;
+}
+[data-testid="stSidebarNav"] li {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Links — estado normal */
+[data-testid="stSidebarNav"] a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.42rem 1.1rem !important;
+    color: #94A3B8 !important;
+    font-family: 'Segoe UI', system-ui, sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.012em !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    margin: 0 6px !important;
+    border-left: 2px solid transparent !important;
+    transition: background 0.15s, color 0.15s, border-color 0.15s !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Hover */
+[data-testid="stSidebarNav"] a:hover {
+    background: rgba(74, 222, 128, 0.07) !important;
+    color: #D1FAE5 !important;
+    border-left-color: rgba(74, 222, 128, 0.4) !important;
+}
+
+/* Página ativa */
+[data-testid="stSidebarNav"] a[aria-current="page"] {
+    background: rgba(74, 222, 128, 0.13) !important;
+    color: #4ADE80 !important;
+    font-weight: 700 !important;
+    border-left-color: #4ADE80 !important;
+    letter-spacing: 0.018em !important;
+}
+
+/* Span interno do texto */
+[data-testid="stSidebarNav"] a span,
+[data-testid="stSidebarNav"] a p {
+    color: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    letter-spacing: inherit !important;
+}
+
+/* Ícone SVG interno */
+[data-testid="stSidebarNav"] a svg {
+    opacity: 0.55;
+    margin-right: 6px !important;
+    flex-shrink: 0 !important;
+}
+[data-testid="stSidebarNav"] a:hover svg,
+[data-testid="stSidebarNav"] a[aria-current="page"] svg {
+    opacity: 1;
+}
+
+/* Separador visual sutil acima do primeiro item */
+[data-testid="stSidebarNav"]::before {
+    content: "NAVEGAÇÃO";
+    display: block;
+    padding: 0 1.1rem 0.4rem 1.1rem;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #334155;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+</style>
+"""
+
+
+def aplicar_css_nav() -> None:
+    """Injeta CSS premium do menu lateral. Chamar em todas as páginas."""
+    st.markdown(_CSS_SIDEBAR_NAV, unsafe_allow_html=True)
+
+
 def configurar_pagina() -> None:
     st.set_page_config(**PAGE_CONFIG)
 
@@ -145,6 +243,7 @@ def filtrar_conjuntos(
 
 def carregar_contexto() -> DashboardContext:
     _guard_autenticacao()
+    aplicar_css_nav()
     art, dat = artefatos_dir(), data_dir()
     pred, metricas, feat, prod, dim_prod, rota, clima = carregar_dados(art, dat)
     lats, pols, ini, fim = render_sidebar_filtros(pred)
