@@ -7,6 +7,7 @@ from __future__ import annotations
 import time
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from auth import esta_autenticado
 
@@ -290,25 +291,63 @@ with col_timer:
         st.session_state.demo_timer_inicio = time.time()
         st.rerun()
 
-    _timer_placeholder = st.empty()
-
     if st.session_state.demo_timer_inicio:
-        elapsed = int(time.time() - st.session_state.demo_timer_inicio)
-        em, es = divmod(elapsed, 60)
-        cor_timer = "#4ADE80" if elapsed <= alvo else "#F87171"
-        _timer_placeholder.markdown(
-            f'<div class="demo-timer-box" style="color:{cor_timer}">'
-            f"{em}:{es:02d}"
-            "</div>",
-            unsafe_allow_html=True,
+        # Calcula segundos já decorridos no momento do render
+        _elapsed_base = int(time.time() - st.session_state.demo_timer_inicio)
+        # Timer JS: tica no browser sem nenhum rerun do servidor
+        components.html(
+            f"""
+            <style>
+            #vls-timer {{
+                background: rgba(74,222,128,.08);
+                border: 1px solid rgba(74,222,128,.25);
+                border-radius: 10px;
+                padding: 10px 14px;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 800;
+                font-family: monospace;
+                letter-spacing: .02em;
+                color: #4ADE80;
+            }}
+            #vls-over {{
+                margin-top: 6px;
+                text-align: center;
+                font-size: .78rem;
+                color: #F87171;
+                font-weight: 600;
+                display: none;
+            }}
+            </style>
+            <div id="vls-timer">0:00</div>
+            <div id="vls-over">⚠️ Tempo do slide ultrapassado!</div>
+            <script>
+            var elapsed = {_elapsed_base};
+            var alvo   = {alvo};
+            function tick() {{
+                var m = Math.floor(elapsed / 60);
+                var s = elapsed % 60;
+                var txt = m + ':' + (s < 10 ? '0' : '') + s;
+                var el = document.getElementById('vls-timer');
+                var ov = document.getElementById('vls-over');
+                if (!el) return;
+                el.textContent = txt;
+                if (elapsed > alvo) {{
+                    el.style.color = '#F87171';
+                    if (ov) ov.style.display = 'block';
+                }} else {{
+                    el.style.color = '#4ADE80';
+                }}
+                elapsed++;
+            }}
+            tick();
+            setInterval(tick, 1000);
+            </script>
+            """,
+            height=90,
         )
-        if elapsed > alvo:
-            st.warning("⚠️ Tempo do slide ultrapassado!")
-        # Auto-tick: atualiza a cada 1 segundo
-        time.sleep(1)
-        st.rerun()
     else:
-        _timer_placeholder.markdown(
+        st.markdown(
             '<div class="demo-timer-box" style="color:#334155">0:00</div>',
             unsafe_allow_html=True,
         )
