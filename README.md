@@ -224,6 +224,72 @@ Pasta `artefatos_teste/` (padrão; sobrescreva com `python treino_mvp_avancado.p
 
 3. A arquitetura suporta extensões como dados operacionais reais do laticínio, ingestão automática de clima e publicação do dashboard em ambiente corporativo.
 
+## Controle de Acesso e Perfis de Usuário
+
+A plataforma possui autenticação própria com bcrypt e três perfis de acesso.
+
+### Perfis
+
+| Perfil | Credencial padrão | Destinado a |
+|--------|-------------------|-------------|
+| `admin` | `admin` / `usina2025` | Administrador da plataforma (USINA I.A.) |
+| `laticinio` | `laticinio` / `leite2025` | Cliente operador — cooperativa ou laticínio contratante |
+| `demo` | `demo` / `demo2025` | Avaliador externo, investidor ou cliente em fase de avaliação |
+
+> Em produção, substituir as credenciais padrão via `st.secrets` (Streamlit Cloud) ou `config_auth.yaml` (local).
+
+### Matriz de permissões por página
+
+| Página | demo 👁️ | laticinio 🏭 | admin 🔑 |
+|--------|:-------:|:-----------:|:-------:|
+| Início (login) | ✅ | ✅ | ✅ |
+| Executivo | ✅ | ✅ | ✅ |
+| Operacional | ✅ | ✅ | ✅ |
+| Produtores | ✅ | ✅ | ✅ |
+| Clima | ✅ | ✅ | ✅ |
+| Gestão e dados | ❌ | ✅ | ✅ |
+| Fornecedores 360 | ✅ | ✅ | ✅ |
+| Via Leite Edge | ✅ | ✅ | ✅ |
+| Painel Executivo | ✅ | ✅ | ✅ |
+| Onboarding | ✅ | ✅ | ✅ |
+| Plano de Ação | ❌ | ✅ | ✅ |
+| Demonstração | ✅ | ✅ | ✅ |
+
+**Páginas bloqueadas para `demo`:** Gestão e dados e Plano de Ação — ambas permitem escrita no banco de dados.
+
+### Guards implementados em `auth.py`
+
+| Função | Comportamento |
+|--------|--------------|
+| `requer_autenticacao()` | Bloqueia se não estiver logado |
+| `requer_papel(["admin", "laticinio"])` | Bloqueia se não estiver logado ou se o perfil não estiver na lista |
+| `esta_autenticado()` | Retorna `True`/`False` sem bloquear (uso condicional) |
+
+### Configurar credenciais em produção
+
+**Streamlit Cloud** — adicionar em `st.secrets`:
+```toml
+[auth.credentials.usernames.admin]
+name = "Nome Admin"
+email = "admin@empresa.com.br"
+role = "admin"
+password = "$2b$12$..."  # hash bcrypt
+
+[auth.credentials.usernames.operador]
+name = "Nome Operador"
+email = "operador@empresa.com.br"
+role = "laticinio"
+password = "$2b$12$..."
+```
+
+**Local** — criar `config_auth.yaml` na raiz do projeto com a mesma estrutura.
+
+Para gerar hashes bcrypt:
+```python
+import bcrypt
+print(bcrypt.hashpw(b"senha_aqui", bcrypt.gensalt(rounds=12)).decode())
+```
+
 ## Roadmap sugerido
 
 - parametrizar polos e códigos de estações via arquivo YAML/JSON;
