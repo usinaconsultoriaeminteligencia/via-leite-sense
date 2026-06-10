@@ -360,8 +360,10 @@ with col_esq:
     # Rodapé
     st.markdown(
         '<div class="lp-footer">'
-        'Desenvolvido por <strong>USINA I.A. Tecnologia e Inovação</strong> · Goiânia-GO<br>'
-        'IA aplicada para o agronegócio brasileiro · '
+        'Desenvolvido por <strong>Fagner Vieira</strong> · '
+        'Graduando em Inteligência Artificial — SENAI FATESG · 4º Período · Goiânia-GO<br>'
+        '<strong>USINA I.A. Tecnologia e Inovação</strong> · '
+        'Projeto em seleção no Desafio AgroStartup 2026 — SENAR / SEBRAE Goiás<br>'
         '<a href="mailto:fagnerpro80@gmail.com" style="color:#4ADE80;text-decoration:none">'
         'fagnerpro80@gmail.com</a>'
         '</div>',
