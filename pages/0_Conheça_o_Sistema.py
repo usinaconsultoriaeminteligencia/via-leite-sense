@@ -242,6 +242,34 @@ col_esq, col_dir = st.columns([1.5, 1], gap="large")
 # ════════════════════════════════════════════════════════
 with col_esq:
 
+    # Selo do evento — credibilidade institucional
+    st.markdown(
+        '<div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.9rem">'
+
+        '<div style="display:inline-flex;align-items:center;gap:.45rem;'
+        'background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);'
+        'border-radius:20px;padding:.22rem .9rem">'
+        '<span style="font-size:.85rem">🏆</span>'
+        '<span style="font-size:.75rem;font-weight:700;color:#86EFAC;'
+        'letter-spacing:.04em;text-transform:uppercase">'
+        'Desafio AgroStartup 2026 · SENAR / SEBRAE Goiás'
+        '</span>'
+        '</div>'
+
+        '<div style="display:inline-flex;align-items:center;gap:.45rem;'
+        'background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);'
+        'border-radius:20px;padding:.22rem .9rem">'
+        '<span style="font-size:.85rem">📅</span>'
+        '<span style="font-size:.75rem;font-weight:700;color:#FDE68A;'
+        'letter-spacing:.04em;text-transform:uppercase">'
+        'Apresentação final — 27 de junho'
+        '</span>'
+        '</div>'
+
+        '</div>',
+        unsafe_allow_html=True,
+    )
+
     # Eyebrow
     st.markdown(
         '<div class="lp-eyebrow">🥛 Para laticínios e cooperativas leiteiras</div>',
@@ -401,20 +429,20 @@ with col_dir:
         '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);'
         'border-radius:16px;padding:1.4rem 1.4rem 1rem 1.4rem;margin-bottom:.7rem">'
 
-        '<div style="font-size:.7rem;color:#93C5FD;font-weight:700;'
+        '<div style="font-size:.7rem;color:#FDE68A;font-weight:700;'
         'text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem">'
-        '💬 Quero ver com meus dados reais'
+        '📅 Apresentação final dia 27 — preciso da sua opinião antes'
         '</div>'
 
         '<div style="font-size:1.05rem;font-weight:700;color:#F0FFF4;'
         'margin-bottom:.4rem;line-height:1.35">'
-        'Piloto gratuito com dados<br>da sua operação'
+        'Me ajude a validar se isso<br>resolve uma dor real do campo'
         '</div>'
 
         '<div style="font-size:.83rem;color:#94A3B8;margin-bottom:.9rem;line-height:1.55">'
-        'Importamos os dados da sua captação e mostramos '
-        'o sistema funcionando com os seus produtores — '
-        'sem custo, sem compromisso de contratação.'
+        'O projeto está em seleção no Desafio AgroStartup 2026 (SENAR/SEBRAE Goiás). '
+        'Os organizadores pediram validação com profissionais do setor antes da apresentação. '
+        'Não é venda — é uma conversa de 15 minutos sobre o que você viu no sistema.'
         '</div>'
 
         '</div>',
@@ -424,7 +452,7 @@ with col_dir:
     # Botão WhatsApp via link externo
     components.html(
         """
-        <a href="https://wa.me/5562988880016?text=Ol%C3%A1%2C%20vi%20o%20VIA%20LEITE%20SENSE%20e%20quero%20saber%20mais%20sobre%20o%20piloto%20gratuito."
+        <a href="https://wa.me/5562988880016?text=Ol%C3%A1%2C%20Fagner%21%20Vi%20o%20VIA%20LEITE%20SENSE%20e%20gostaria%20de%20conversar%20sobre%20o%20projeto%20antes%20da%20apresenta%C3%A7%C3%A3o%20do%20AgroStartup%20no%20dia%2027."
            target="_blank"
            style="
                display: block;
