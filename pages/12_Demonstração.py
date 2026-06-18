@@ -123,7 +123,7 @@ st.markdown(
 # ── Dados dos slides ──────────────────────────────────────────────────────────
 SLIDES = [
     {
-        "numero": "01 / 07",
+        "numero": "01 / 08",
         "chip": "🎯 Abertura  ·  0:00 – 0:45",
         "titulo": "O Problema\nda Cadeia Leiteira",
         "subtitulo": "Por que o laticínio perde leite antes de saber que está perdendo?",
@@ -137,7 +137,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "02 / 07",
+        "numero": "02 / 08",
         "chip": "📊 Painel Executivo  ·  0:45 – 1:30",
         "titulo": "Inteligência\nem Tempo Real",
         "subtitulo": "KPIs de captação, desvio e previsão numa única visão.",
@@ -151,7 +151,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "03 / 07",
+        "numero": "03 / 08",
         "chip": "🏭 Fazenda 360  ·  1:30 – 2:30",
         "titulo": "Score Premium\nVisual por Produtor",
         "subtitulo": "Gauge de risco · Radar 4D · Recomendação automatizada.",
@@ -165,7 +165,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "04 / 07",
+        "numero": "04 / 08",
         "chip": "🌡️ VIA LEITE EDGE  ·  2:30 – 3:30",
         "titulo": "IoT-Ready:\nDo Sensor à Decisão",
         "subtitulo": "Telemetria de tanque, THI e score premium com arquitetura preparada para sensores reais.",
@@ -179,7 +179,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "05 / 07",
+        "numero": "05 / 08",
         "chip": "📋 Plano de Ação  ·  3:30 – 4:30",
         "titulo": "Do Diagnóstico\nà Ação em 1 Clique",
         "subtitulo": "15 prompts técnicos inteligentes · Persistência em banco · Acompanhamento de resultados.",
@@ -193,7 +193,7 @@ SLIDES = [
         ],
     },
     {
-        "numero": "06 / 07",
+        "numero": "06 / 08",
         "chip": "🔐 Acesso por Perfil  ·  4:30 – 4:45",
         "titulo": "Acesso Seguro\npor Perfil",
         "subtitulo": "Você avalia sem restrições. Só o operador contratado cadastra, planeja e exporta.",
@@ -207,8 +207,22 @@ SLIDES = [
         ],
     },
     {
-        "numero": "07 / 07",
-        "chip": "🏁 Encerramento  ·  4:45 – 5:15",
+        "numero": "07 / 08",
+        "chip": "📐 Tamanho de Mercado  ·  4:45 – 5:15",
+        "titulo": "TAM, SAM e SOM:\nUm Mercado Grande",
+        "subtitulo": "Dimensionamento do potencial financeiro — do mercado total ao alvo realista.",
+        "pagina_link": "pages/13_Mercado.py",
+        "pagina_label": "→ Abrir Tamanho de Mercado",
+        "highlight": "TAM R$ 108 mi/ano (150 mil produtores formais BR) · SAM R$ 10,8 mi/ano (Centro-Oeste) · SOM R$ 3,2 mi/ano (Sul Goiano, 3 anos).",
+        "roteiro": [
+            ("O que mostrar", "O funil TAM → SAM → SOM com os números-âncora (IBGE 2023: 35,4 bi L no BR, 2,2 bi L em GO)."),
+            ("Premissas ao vivo", "Ajustar o slider de preço/produtor e a penetração — o funil e a receita recalculam na hora."),
+            ("Frase de efeito", "'Começamos pelo Sul Goiano, mas o mesmo modelo escala para todo o Centro-Oeste e o Brasil.'"),
+        ],
+    },
+    {
+        "numero": "08 / 08",
+        "chip": "🏁 Encerramento  ·  5:15 – 5:45",
         "titulo": "Pronto para\no Mercado Premium",
         "subtitulo": "ESG · Rastreabilidade · Escalabilidade para a cadeia leiteira do Centro-Oeste.",
         "pagina_link": None,
