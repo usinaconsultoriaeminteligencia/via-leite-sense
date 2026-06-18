@@ -57,6 +57,14 @@ st.caption(
     "mais amplo (teórico) até a parcela realista que conseguimos atender e conquistar."
 )
 
+ctx1, ctx2, ctx3, ctx4 = st.columns(4)
+ctx1.metric("Produção de leite — Brasil (2023)", "35,4 bi L", delta="IBGE", delta_color="off")
+ctx2.metric("Produtores formais — Brasil", "~150 mil", delta="MilkPoint Ventures 2023", delta_color="off")
+ctx3.metric("Produção de leite — Goiás (2023)", "2,2 bi L", delta="IBGE · 6º maior estado", delta_color="off")
+ctx4.metric("Universo total (incl. informais)", "1,18 mi", delta="Censo Agro 2017", delta_color="off")
+
+st.write("")
+
 with st.expander("ℹ️ O que significam TAM, SAM e SOM"):
     st.markdown(
         "- **TAM — Total Addressable Market:** mercado total teórico. Toda a demanda "
@@ -85,26 +93,29 @@ with st.sidebar:
     )
 
     tam_produtores = st.number_input(
-        "TAM — produtores comerciais no Brasil",
-        min_value=10_000, max_value=1_200_000, value=300_000, step=10_000,
-        help="Produtores que entregam a laticínios sob inspeção (estimativa IBGE/Embrapa).",
+        "TAM — produtores formais no Brasil",
+        min_value=10_000, max_value=1_200_000, value=150_000, step=10_000,
+        help="Produtores que entregam a laticínios sob inspeção. ~150 mil em 2023 "
+             "(MilkPoint Ventures); universo total incl. informais ~1,18 mi (Censo Agro 2017).",
     )
 
     sam_pct = st.slider(
         "SAM — % do TAM atendível (Centro-Oeste / cadeias premium)",
-        min_value=1, max_value=60, value=20, step=1,
+        min_value=1, max_value=60, value=10, step=1,
+        help="Goiás concentra ~6% da produção nacional; Centro-Oeste e cadeias premium ~10%.",
     )
 
     som_pct = st.slider(
         "SOM — % do SAM capturável em 3 anos (Sul Goiano)",
-        min_value=1, max_value=40, value=8, step=1,
+        min_value=1, max_value=60, value=30, step=1,
+        help="Entrada via 10–15 cooperativas/laticínios médios do Sul/Sudoeste Goiano.",
     )
 
     st.divider()
     st.caption(
         "Receita = produtores × preço × 12 meses (ARR). "
-        "Estimativas de base: IBGE (Censo Agro 2017 / PPM), "
-        "Embrapa Gado de Leite e IMB-GO."
+        "Fontes: IBGE/PPM 2023 (produção), MilkPoint Ventures 2023 (~150 mil produtores "
+        "formais), Censo Agropecuário 2017 (1,18 mi total)."
     )
 
 # ------------------------------------------------------------------ #
@@ -226,6 +237,8 @@ focada e expansão geográfica natural a partir de Goiás.
 )
 
 st.caption(
-    "VIA LEITE SENSE — Tamanho de Mercado | Estimativas: IBGE (Censo Agropecuário 2017 / PPM), "
-    "Embrapa Gado de Leite, IMB-GO | Ajuste as premissas conforme dados de validação | USINA I.A. © 2026"
+    "VIA LEITE SENSE — Tamanho de Mercado | Fontes: IBGE/PPM 2023 (produção: BR 35,4 bi L, "
+    "GO 2,2 bi L), MilkPoint Ventures 2023 (~150 mil produtores formais), IBGE Censo Agropecuário "
+    "2017 (1,18 mi produtores). Contagem de produtores por camada é estimada a partir da participação "
+    "na produção — ajuste conforme dados de validação. | USINA I.A. © 2026"
 )
