@@ -14,13 +14,13 @@ git init
 git add .
 git commit -m "feat: via leite sense sprint1 - login + landing + deploy"
 git remote add origin https://github.com/SEU_USUARIO/via-leite-sense.git
-git push -u origin main
+git push -u origin master
 ```
 
 **2. Criar o app no Streamlit Cloud**
 - Acesse share.streamlit.io → "New app"
 - Repositório: `SEU_USUARIO/via-leite-sense`
-- Branch: `main`
+- Branch: `master`
 - Main file path: `via_leite_app.py`  ← **IMPORTANTE: não usar dashboard_mvp_avancado.py**
 
 **3. Configurar Secrets**
@@ -103,6 +103,6 @@ streamlit run dashboard_mvp_avancado.py
 - [ ] Deploy funcionando em URL pública
 - [ ] Login com usuário `demo` funcionando
 - [ ] Dashboard carregando dados de demonstração
-- [ ] Mapa de fazendas visível (página 8)
+- [ ] Mapa de fazendas visível (página 9 — Painel Executivo)
 - [ ] VIA LEITE EDGE com alertas ativos
 - [ ] `.streamlit/secrets.toml` **NÃO** está no repositório
