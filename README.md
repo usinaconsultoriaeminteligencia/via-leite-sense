@@ -1,298 +1,199 @@
 # VIA LEITE SENSE
 
-Monitoramento Inteligente da Producao Leiteira para Produtos Premium
+**Radar de Risco Produtivo, Qualidade e Rentabilidade para a Cadeia Leiteira**
 
-Plataforma de apoio a decisao para a cadeia leiteira premium: base operacional, IA preditiva, clima, dashboards inteligentes e arquitetura IoT-ready para fazendas monitoradas por sensores virtuais.
+Plataforma de IA preditiva que integra dados climáticos, operacionais e indicadores
+de qualidade para **antecipar queda de produção, perda de qualidade, risco de
+penalização/bônus e necessidade de ação preventiva** — antes que a perda ocorra.
 
-O VIA LEITE SENSE transforma dados da fazenda em inteligencia operacional para elevar a qualidade do leite destinado a producao de derivados premium.
+Desenvolvido por **USINA I.A.** para o **Desafio AgroStartup SENAR/SEBRAE Goiás 2026**.
 
-O pacote inclui:
-- geracao de base sintetica operacional de captacao;
-- substituicao do clima sintetico por clima real processado do INMET;
-- treino e exportacao de artefatos do modelo preditivo;
-- dashboards executivos, operacionais e de pitch;
-- camada VIA LEITE EDGE para monitoramento IoT-ready em modo simulado.
+🔗 **Demo ao vivo:** https://via-leite-sense.streamlit.app
+🔗 **GitHub:** https://github.com/usinaconsultoriaeminteligencia/via-leite-sense
 
-## VIA LEITE EDGE
+---
 
-O VIA LEITE EDGE e uma camada experimental IoT-ready da plataforma VIA LEITE.
+## O que o VIA LEITE SENSE resolve
 
-Nesta fase, utiliza dados sinteticos para validar arquitetura, dashboards, regras de alerta e modelos preditivos.
+A cadeia leiteira premium opera com uma assimetria crítica de informação: produtores,
+cooperativas e laticínios identificam problemas de qualidade e queda de produção
+**após a coleta** — quando a perda já é irreversível.
 
-A solucao esta preparada para integracao futura com sensores reais de tanque, sensores climaticos locais, GPS de caminhoes e sensores de qualidade do leite.
+O VIA LEITE SENSE transforma esse modelo reativo em gestão preditiva. Ao cruzar
+dados climáticos (INMET), indicadores operacionais (CCS, CBT, temperatura do tanque,
+litros coletados) e variáveis logísticas, a plataforma antecipa com até 30 dias
+os riscos que causam perda de produtividade e rentabilidade.
 
-Variaveis de ambiente principais:
+> **Descarte de leite é monitorado pela plataforma, mas é uma consequência —
+> não a dor central. A dor central é a falta de antecipação.**
 
-```powershell
-$env:IOT_SIMULATION_MODE='true'
-$env:IOT_PROVIDER='simulated'
-```
+---
 
-Endpoints principais:
+## Score VIA LEITE de Risco Produtivo
 
-- `GET /api/iot/simulated-readings`
-- `GET /api/iot/farms/{farm_id}/latest`
-- `GET /api/iot/alerts`
+Cada produtor, rota e laticínio recebe um score consolidado de 0 a 100:
 
-No Streamlit, a pagina `VIA LEITE EDGE` exibe:
+| Faixa | Classe | Ação recomendada |
+|-------|--------|-----------------|
+| 0–25  | 🟢 Baixo risco | Monitoramento padrão |
+| 26–50 | 🟡 Atenção | Revisão preventiva |
+| 51–75 | 🔴 Alto risco | Ação corretiva imediata |
+| 76–100 | 🟣 Crítico | Intervenção urgente |
 
-- temperatura do tanque;
-- volume do leite;
-- THI;
-- risco termico;
-- risco de qualidade;
-- prioridade de coleta;
-- ranking de fazendas;
-- alertas preventivos ativos.
+O score combina 7 dimensões de risco ponderadas, com contribuição contínua
+de THI (estresse térmico) e tendência de queda de produção.
 
-## Estrutura
+---
 
-- `dados_teste/`  
-  pasta padrão com os CSVs dimensionais e de fatos consumidos por `treino_mvp_avancado.py` e `dashboard_mvp_avancado.py` (preenchida ao rodar o gerador sem outro `--output-dir`).
-- `ingestao_clima_inmet.py`  
-  processa arquivos CSV do INMET e gera `dados_inmet_processado/fact_clima_diario_inmet.csv`.
-- `gerador_leite_sintetico.py`  
-  gera a base sintética operacional; pode usar clima sintético ou clima real já processado.
-- `treino_mvp_avancado.py`  
-  faz engenharia de atributos, split temporal, treino do modelo e exportação de artefatos.
-- `dashboard_mvp_avancado.py`  
-  entrada do dashboard (visão geral); secções em `pages/` (Executivo, Operacional, Produtores, Clima), com filtros partilhados na barra lateral.
-- `dashboard_common.py`  
-  carregamento em cache dos CSVs/JSON e filtros reutilizáveis pelas páginas.
-- `.streamlit/config.toml`  
-  tema visual (cores e fundo).
-- `gestor_store.py`  
-  persistência dos lançamentos introduzidos pelos gestores (CSV em `dados_utilizador/`, configurável com `MVP_USER_DATA_DIR`).
-- `pages/5_Gestão_e_dados.py`  
-  formulário diário por laticínio, importação em lote e comparativo com a base `fact_producao`.
-- `run_all.sh`  
-  esteira original com clima sintético.
-- `run_all_real_climate.sh`  
-  esteira completa com clima real processado do INMET.
+## Módulos da plataforma
 
-## Dependências
+| Módulo | Descrição |
+|--------|-----------|
+| 🎯 **Radar de Risco** | Página executiva — score, ranking e horizonte 7/15/30 dias |
+| 📊 **Executivo** | KPIs estratégicos da cooperativa |
+| ⚙️ **Operacional** | Rotas, coletas, logística |
+| 👨‍🌾 **Produtores** | Performance individual |
+| 🌤️ **Clima** | THI, precipitação, estresse térmico |
+| 🏭 **Fornecedores 360** | Score premium com gauge + radar 4D |
+| 🌱 **Antes & Depois — ESG** | ROI da plataforma + narrativa de sustentabilidade |
+| 📋 **Gestão e Dados** | Lançamentos manuais por laticínio |
+| 🔌 **Via Leite Edge** | Monitoramento IoT em modo simulado |
+| 🎭 **Demo Tour** | Pitch guiado de 5 minutos |
+
+---
+
+## Documentação estratégica
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [docs/visao_produto.md](docs/visao_produto.md) | Missão, proposta de valor, posicionamento, público-alvo |
+| [docs/arquitetura_dados.md](docs/arquitetura_dados.md) | Fontes de dados, indicadores, métodos de entrada, schema CSV |
+| [docs/roadmap.md](docs/roadmap.md) | Fases 1–4 com status, entregas e critérios de conclusão |
+| [docs/validacao_mercado.md](docs/validacao_mercado.md) | Hipóteses, perguntas de entrevista, critérios de validação do MVP |
+
+---
+
+## Stack tecnológica
+
+- **Python 3.11+** — linguagem principal
+- **Streamlit** — dashboard interativo
+- **Scikit-learn** — modelo preditivo de regressão + scoring de risco
+- **Pandas / NumPy** — processamento de dados
+- **Plotly** — visualizações interativas
+- **FastAPI** — API backend (opcional)
+- **FPDF2** — exportação de relatórios PDF
+
+---
+
+## Instalação
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Fluxo 1 — execução rápida com clima sintético
+---
+
+## Execução
+
+### Fluxo 1 — Clima sintético (demonstração imediata)
 
 ```bash
 python gerador_leite_sintetico.py --output-dir dados_teste
 python treino_mvp_avancado.py
-streamlit run dashboard_mvp_avancado.py
+streamlit run via_leite_app.py
 ```
 
-## Fluxo 2 — execução com clima real do INMET
-
-### 1. Baixe os CSVs do INMET
-Coloque em `dados_inmet_raw/` os arquivos CSV das estações do Sul de Goiás.
-
-Sugestão de nomenclatura dos arquivos:
-- `A025_RIO_VERDE.csv`
-- `A016_JATAI.csv`
-- `MINEIROS.csv`
-- `SUDESTE_SUL_GOIANO.csv`
-
-> Observação: o script identifica o polo por nome de arquivo. Para Rio Verde e Jataí, reconhecer `A025`, `RIO_VERDE`, `A016` ou `JATAI` já é suficiente.
-
-### 2. Processar os dados climáticos
+### Fluxo 2 — Clima real INMET
 
 ```bash
+# 1. Colocar CSVs do INMET em dados_inmet_raw/
 python ingestao_clima_inmet.py --raw-dir dados_inmet_raw --out-dir dados_inmet_processado
-```
-
-Saídas esperadas:
-- `dados_inmet_processado/fact_clima_diario_inmet.csv`
-- `dados_inmet_processado/manifesto_inmet.json`
-
-### 3. Gerar a base operacional com clima real
-
-```bash
-python gerador_leite_sintetico.py \
-  --use-real-climate \
+python gerador_leite_sintetico.py --use-real-climate \
   --real-climate-path dados_inmet_processado/fact_clima_diario_inmet.csv \
   --output-dir dados_teste
-```
-
-### 4. Treinar o modelo
-
-```bash
 python treino_mvp_avancado.py
+streamlit run via_leite_app.py
 ```
 
-### 5. Subir o dashboard
+### Fluxo 3 — Gerar artefatos de ranking de risco
 
 ```bash
-streamlit run dashboard_mvp_avancado.py
+python score_risco.py
+# Saída: artefatos_teste/ranking_risco_produtor.csv
+#         artefatos_teste/ranking_risco_rota.csv
+#         artefatos_teste/ranking_risco_laticinio.csv
 ```
 
-## Execução one-shot com clima real
-
-```bash
-bash run_all_real_climate.sh
-```
-
-## Fluxo 3 - piloto com dados reais importados
-
-### 1. Validar o pacote do cliente
+### Fluxo 4 — Piloto com dados reais importados
 
 ```bash
 python validar_pacote_dados_reais.py --data-dir CAMINHO_DO_PACOTE
-```
-
-### 2. Importar, normalizar e treinar
-
-```bash
 python executar_piloto_real.py \
   --input-dir CAMINHO_DO_PACOTE \
   --base-dir dados_piloto_cliente \
   --artefatos-dir artefatos_piloto_cliente
 ```
 
-### 2b. Fluxo interno de onboarding por cliente
+---
 
-```bash
-python onboarding_cliente.py \
-  --cliente "Nome do Cliente" \
-  --input-dir CAMINHO_DO_PACOTE
-```
+## Credenciais de acesso
 
-Esse fluxo organiza uma pasta por cliente com:
+| Perfil | Usuário | Senha | Acesso |
+|--------|---------|-------|--------|
+| Demonstração | `demo` | `demo2025` | Todas as páginas de leitura |
+| Laticínio | `laticinio` | `leite2025` | Inclui gestão e plano de ação |
+| Admin | `admin` | `usina2025` | Acesso completo |
 
-- base operacional importada;
-- artefatos do modelo;
-- parecer em Markdown;
-- resumo JSON;
-- scripts prontos para subir API, frontend e dashboard.
+> Em produção, substituir via `st.secrets` ou `config_auth.yaml`.
 
-### 3. Subir API e dashboard sobre a base importada
+---
 
-API:
-
-```powershell
-$env:MVP_DATA_DIR='C:\CAMINHO\PARA\dados_piloto_cliente'
-$env:MVP_ARTEFATOS_DIR='C:\CAMINHO\PARA\artefatos_piloto_cliente'
-python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000
-```
-
-Dashboard:
-
-```powershell
-$env:MVP_DATA_DIR='C:\CAMINHO\PARA\dados_piloto_cliente'
-$env:MVP_ARTEFATOS_DIR='C:\CAMINHO\PARA\artefatos_piloto_cliente'
-streamlit run dashboard_mvp_avancado.py
-```
-
-## Saídas do treino
-
-Pasta `artefatos_teste/` (padrão; sobrescreva com `python treino_mvp_avancado.py --artefatos-dir ...`):
-- `metricas_modelo.json`
-- `modelo_mvp.joblib`
-- `predicoes_teste.csv`
-- `resumo_teste_por_laticinio.csv`
-- `resumo_teste_por_polo.csv`
-- `feature_importances.csv`
-- `amostra_base_modelagem.csv`
-
-## Indicadores do dashboard
-
-### Executivo
-- RMSE, MAE, R² e sMAPE do teste;
-- realizado x previsto ao longo do tempo;
-- erro médio por laticínio;
-- top variáveis do modelo.
-
-### Operacional
-- rotas com maior perda;
-- ocupação de tanque x perda operacional;
-- custo logístico por litro;
-- produtores críticos de qualidade;
-- clima por polo, com foco em precipitação e THI.
-
-## Observações de implementação
-
-1. O clima real é processado para série diária contínua, com:
-   - precipitação diária;
-   - temperatura mínima, média e máxima;
-   - umidade relativa média;
-   - vento e radiação, quando presentes;
-   - THI e acumulados de chuva.
-
-2. A operação leiteira permanece sintética, mas causalmente ligada ao clima.
-
-3. A arquitetura suporta extensões como dados operacionais reais do laticínio, ingestão automática de clima e publicação do dashboard em ambiente corporativo.
-
-## Controle de Acesso e Perfis de Usuário
-
-A plataforma possui autenticação própria com bcrypt e três perfis de acesso.
-
-### Perfis
-
-| Perfil | Credencial padrão | Destinado a |
-|--------|-------------------|-------------|
-| `admin` | `admin` / `usina2025` | Administrador da plataforma (USINA I.A.) |
-| `laticinio` | `laticinio` / `leite2025` | Cliente operador — cooperativa ou laticínio contratante |
-| `demo` | `demo` / `demo2025` | Avaliador externo, investidor ou cliente em fase de avaliação |
-
-> Em produção, substituir as credenciais padrão via `st.secrets` (Streamlit Cloud) ou `config_auth.yaml` (local).
-
-### Matriz de permissões por página
+## Controle de acesso por página
 
 | Página | demo 👁️ | laticinio 🏭 | admin 🔑 |
-|--------|:-------:|:-----------:|:-------:|
-| Início (login) | ✅ | ✅ | ✅ |
+|--------|---------|-------------|---------|
+| Radar de Risco | ✅ | ✅ | ✅ |
 | Executivo | ✅ | ✅ | ✅ |
 | Operacional | ✅ | ✅ | ✅ |
 | Produtores | ✅ | ✅ | ✅ |
 | Clima | ✅ | ✅ | ✅ |
-| Gestão e dados | ❌ | ✅ | ✅ |
 | Fornecedores 360 | ✅ | ✅ | ✅ |
+| Antes & Depois ESG | ✅ | ✅ | ✅ |
 | Via Leite Edge | ✅ | ✅ | ✅ |
-| Painel Executivo | ✅ | ✅ | ✅ |
-| Onboarding | ✅ | ✅ | ✅ |
+| Demo Tour | ✅ | ✅ | ✅ |
+| Gestão e dados | ❌ | ✅ | ✅ |
 | Plano de Ação | ❌ | ✅ | ✅ |
-| Demonstração | ✅ | ✅ | ✅ |
 
-**Páginas bloqueadas para `demo`:** Gestão e dados e Plano de Ação — ambas permitem escrita no banco de dados.
+---
 
-### Guards implementados em `auth.py`
+## Impacto esperado com a plataforma
 
-| Função | Comportamento |
-|--------|--------------|
-| `requer_autenticacao()` | Bloqueia se não estiver logado |
-| `requer_papel(["admin", "laticinio"])` | Bloqueia se não estiver logado ou se o perfil não estiver na lista |
-| `esta_autenticado()` | Retorna `True`/`False` sem bloquear (uso condicional) |
+| Indicador | Melhora média esperada |
+|-----------|----------------------|
+| Redução de descarte | 50–60% |
+| Melhora de CCS | 25–35% |
+| Melhora de CBT | 35–45% |
+| Ganho de receita mensal (médio produtor) | R$ 800–1.500/mês |
+| CO₂ equivalente evitado (cooperativa 50 prod.) | 180+ toneladas/ano |
 
-### Configurar credenciais em produção
+*Benchmarks: Embrapa Gado de Leite, MAPA IN 77/2018, FAO (2010).*
 
-**Streamlit Cloud** — adicionar em `st.secrets`:
-```toml
-[auth.credentials.usernames.admin]
-name = "Nome Admin"
-email = "admin@empresa.com.br"
-role = "admin"
-password = "$2b$12$..."  # hash bcrypt
+---
 
-[auth.credentials.usernames.operador]
-name = "Nome Operador"
-email = "operador@empresa.com.br"
-role = "laticinio"
-password = "$2b$12$..."
-```
+## Roadmap
 
-**Local** — criar `config_auth.yaml` na raiz do projeto com a mesma estrutura.
+- [x] Fase 1 — MVP com entrada simplificada e clima INMET integrado
+- [x] Fase 3 — Score VIA LEITE de Risco Produtivo (antecipado para Sprint 4)
+- [ ] Fase 2 — Piloto com laticínios/cooperativas e importação CSV/API
+- [ ] Fase 4 — Via Leite Edge com sensores IoT e telemetria em tempo real
 
-Para gerar hashes bcrypt:
-```python
-import bcrypt
-print(bcrypt.hashpw(b"senha_aqui", bcrypt.gensalt(rounds=12)).decode())
-```
+Detalhes: [docs/roadmap.md](docs/roadmap.md)
 
-## Roadmap sugerido
+---
 
-- parametrizar polos e códigos de estações via arquivo YAML/JSON;
-- incorporar calendário oficial de feriados;
-- pipeline de classificação de risco de queda e churn;
-- publicar o dashboard com autenticação.
+## Sobre
+
+**VIA LEITE SENSE** é desenvolvido pela [USINA I.A.](https://www.usinaia.com.br),
+estúdio de tecnologia e IA para PMEs, setor público e agronegócio — Goiânia, GO.
+
+Submetido ao **Desafio AgroStartup 2026** — SENAR / SEBRAE Goiás.

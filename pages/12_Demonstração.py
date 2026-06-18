@@ -141,7 +141,7 @@ SLIDES = [
         "chip": "📊 Painel Executivo  ·  0:45 – 1:30",
         "titulo": "Inteligência\nem Tempo Real",
         "subtitulo": "KPIs de captação, desvio e previsão numa única visão.",
-        "pagina_link": "pages/1_Executivo.py",
+        "pagina_link": "pages/2_Executivo.py",
         "pagina_label": "→ Abrir Painel Executivo",
         "highlight": "Modelo XGBoost treinado com 107 variáveis · R² 99,4% · sMAPE 3,7%",
         "roteiro": [
@@ -155,7 +155,7 @@ SLIDES = [
         "chip": "🏭 Fazenda 360  ·  1:30 – 2:30",
         "titulo": "Score Premium\nVisual por Produtor",
         "subtitulo": "Gauge de risco · Radar 4D · Recomendação automatizada.",
-        "pagina_link": "pages/6_Fornecedores_360.py",
+        "pagina_link": "pages/7_Fornecedores_360.py",
         "pagina_label": "→ Abrir Fazenda 360",
         "highlight": "Score composto: Volume 35% · Qualidade 30% · Logística 20% · Continuidade 15%",
         "roteiro": [
@@ -169,7 +169,7 @@ SLIDES = [
         "chip": "🌡️ VIA LEITE EDGE  ·  2:30 – 3:30",
         "titulo": "IoT-Ready:\nDo Sensor à Decisão",
         "subtitulo": "Telemetria de tanque, THI e score premium com arquitetura preparada para sensores reais.",
-        "pagina_link": "pages/7_Via_Leite_Edge.py",
+        "pagina_link": "pages/8_Via_Leite_Edge.py",
         "pagina_label": "→ Abrir VIA LEITE EDGE",
         "highlight": "THI > 72 = estresse térmico. Score tanque < 60 = risco de perda de qualidade. Alertas automáticos.",
         "roteiro": [
@@ -183,7 +183,7 @@ SLIDES = [
         "chip": "📋 Plano de Ação  ·  3:30 – 4:30",
         "titulo": "Do Diagnóstico\nà Ação em 1 Clique",
         "subtitulo": "15 prompts técnicos inteligentes · Persistência em banco · Acompanhamento de resultados.",
-        "pagina_link": "pages/10_Plano_de_Ação.py",
+        "pagina_link": "pages/11_Plano_de_Ação.py",
         "pagina_label": "→ Abrir Plano de Ação",
         "highlight": "Selecione o produtor → escolha o prompt → clique → formulário preenchido automaticamente.",
         "roteiro": [
