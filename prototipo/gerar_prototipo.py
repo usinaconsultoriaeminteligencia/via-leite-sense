@@ -153,8 +153,8 @@ def logo(c, x, y, size=46, stacked=False, mono=None):
         text(c, tx + wlt, y + size * 0.16, "SENSE", FT_DISP, size * 0.52, mono or CYAN)
 
 def footer(c, page_label):
-    text(c, 40, 24, "Tecnologia desenvolvida por USINA I.A.  ·  IA aplicada ao agronegócio — Goiânia/GO",
-         FT_REG, 7.5, MUTED)
+    text(c, 40, 24, "VIA LEITE SENSE  ·  Inteligência preditiva para a cadeia leiteira — Goiânia/GO",
+         FT_SEMI, 7.5, MUTED)
     text(c, W - 40, 24, page_label, FT_SEMI, 7.5, MUTED, align="r")
     c.setStrokeColor(LINE); c.setLineWidth(0.6); c.line(40, 36, W - 40, 36)
 
@@ -200,6 +200,12 @@ def page_cover(c):
     text(c, 64, 86, "PROTÓTIPO DE PRODUTO", FT_SEMI, 10, CYAN, tracking=2)
     text(c, 64, 66, "Documento de prototipagem · v2.0", FT_REG, 10, MUTED)
 
+    # equipe (inferior direito)
+    text(c, W - 60, 104, "EQUIPE", FT_SEMI, 9, CYAN, align="r", tracking=2)
+    text(c, W - 60, 84, "Fagner Pinho", FT_SEMI, 12, INK, align="r")
+    text(c, W - 60, 67, "Matheus Iverson", FT_SEMI, 12, INK, align="r")
+    text(c, W - 60, 50, "Daianne Valéria", FT_SEMI, 12, INK, align="r")
+
     # gota decorativa grande à direita
     c.saveState()
     p = c.beginPath()
@@ -213,7 +219,7 @@ def page_cover(c):
     c.restoreState()
     pulse(c, cx, cy + 14, BG_DEEP, scale=2.4)
 
-    footer(c, "USINA I.A. © 2026  ·  01 / 10")
+    footer(c, "VIA LEITE SENSE © 2026  ·  01 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -807,7 +813,7 @@ def main():
     gerar_qr()
     c = canvas.Canvas(OUT, pagesize=landscape(A4))
     c.setTitle("VIA LEITE SENSE — Protótipo")
-    c.setAuthor("USINA I.A.")
+    c.setAuthor("Equipe VIA LEITE SENSE — Fagner Pinho, Matheus Iverson, Daianne Valéria")
     page_cover(c)
     page_identity(c)
     page_problem(c)
