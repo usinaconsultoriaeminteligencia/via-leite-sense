@@ -291,8 +291,9 @@ def page_problem(c):
     card(c, 40, 110, 360, H - 230, fill=BG_DEEP, border=RED)
     chip(c, 60, H - 150, "HOJE · GESTÃO REATIVA", WHITE, RED)
     dores = [
-        ("Descoberta tardia", ["A qualidade (CCS/CBT) é medida no laboratório",
-                               "~1x por mês: o problema aparece 30 dias depois."]),
+        ("Descoberta tardia", ["Quando o resultado chega, já é tarde: o leite",
+                               "foi coletado, a qualidade caiu e o produtor",
+                               "pode receber menos por isso."]),
         ("Penalidade no pagamento", ["Leite fora do padrão IN 77 vira desconto no preço."]),
         ("Bônus de qualidade perdido", ["Sem antecipar, não dá tempo de proteger o bônus."]),
         ("Estresse térmico ignorado", ["Queda de produção em 7–15 dias não prevista."]),
