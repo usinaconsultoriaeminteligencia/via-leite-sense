@@ -176,6 +176,33 @@ def section_title(c, x, y, kicker, title, accent=CYAN):
     text(c, x + 34, y, kicker.upper(), FT_SEMI, 9, accent, tracking=1.5)
     text(c, x, y - 26, title, FT_DISP, 26, INK)
 
+def radar_motif(c, cx, cy, R):
+    """Radar decorativo (anéis + varredura + pontos de risco)."""
+    import math
+    cy_cyan = Color(0.098, 0.827, 0.902, 0.30)
+    # anéis concêntricos
+    c.setLineWidth(1.4)
+    for fr in (0.40, 0.70, 1.0):
+        c.setStrokeColor(Color(0.098, 0.827, 0.902, 0.30))
+        c.circle(cx, cy, R * fr, fill=0, stroke=1)
+    # crosshair
+    c.setStrokeColor(Color(0.098, 0.827, 0.902, 0.14)); c.setLineWidth(1)
+    c.line(cx - R, cy, cx + R, cy); c.line(cx, cy - R, cx, cy + R)
+    # varredura (wedge translúcido)
+    c.setFillColor(Color(0.204, 0.83, 0.60, 0.16))
+    c.wedge(cx - R, cy - R, cx + R, cy + R, 58, 64, fill=1, stroke=0)
+    ang = math.radians(58)
+    c.setStrokeColor(Color(0.204, 0.83, 0.60, 0.65)); c.setLineWidth(1.6); c.setLineCap(1)
+    c.line(cx, cy, cx + R * math.cos(ang), cy + R * math.sin(ang))
+    # pontos de risco
+    for fr, deg, col in [(0.58, 33, GREEN), (0.85, 120, AMBER),
+                         (0.50, 205, RED), (0.74, 300, CYAN)]:
+        a = math.radians(deg)
+        c.setFillColor(col)
+        c.circle(cx + R * fr * math.cos(a), cy + R * fr * math.sin(a), 4.5, fill=1, stroke=0)
+    c.setFillColor(CYAN); c.circle(cx, cy, 3.5, fill=1, stroke=0)
+
+
 # ================================================================== #
 # PÁGINA 1 — CAPA                                                     #
 # ================================================================== #
@@ -210,18 +237,8 @@ def page_cover(c):
     text(c, W - 60, 67, "Matheus Iverson", FT_SEMI, 12, INK, align="r")
     text(c, W - 60, 50, "Daianne Valéria", FT_SEMI, 12, INK, align="r")
 
-    # gota decorativa grande à direita
-    c.saveState()
-    p = c.beginPath()
-    cx, cy, r = W - 150, 300, 90
-    p.moveTo(cx, cy + 2.0 * r)
-    p.curveTo(cx - 0.25 * r, cy + 1.25 * r, cx - r, cy + 0.65 * r, cx - r, cy)
-    p.curveTo(cx - r, cy - 0.95 * r, cx + r, cy - 0.95 * r, cx + r, cy)
-    p.curveTo(cx + r, cy + 0.65 * r, cx + 0.25 * r, cy + 1.25 * r, cx, cy + 2.0 * r)
-    p.close(); c.clipPath(p, stroke=0, fill=0)
-    c.linearGradient(cx - r, cy - r, cx + r, cy + 2 * r, (GREEN, CYAN), (0, 1), extend=True)
-    c.restoreState()
-    pulse(c, cx, cy + 14, BG_DEEP, scale=2.4)
+    # radar decorativo à direita (tema "Radar de Risco", não é o logo)
+    radar_motif(c, W - 175, 300, 135)
 
     footer(c, "Apresentação do protótipo")
     c.showPage()
