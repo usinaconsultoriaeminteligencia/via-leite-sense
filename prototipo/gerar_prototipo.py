@@ -213,7 +213,7 @@ def page_cover(c):
     c.restoreState()
     pulse(c, cx, cy + 14, BG_DEEP, scale=2.4)
 
-    footer(c, "USINA I.A. © 2026  ·  01 / 08")
+    footer(c, "USINA I.A. © 2026  ·  01 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -267,7 +267,7 @@ def page_identity(c):
     text(c, 145, 66, "Técnica na resolução, simples no manuseio. Do dado à decisão, antes da perda.",
          FT_REG, 10, INK)
 
-    footer(c, "Identidade Visual  ·  02 / 08")
+    footer(c, "Identidade Visual  ·  02 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -322,7 +322,7 @@ def page_problem(c):
         text(c, nx, 62, d, FT_REG, 8, MUTED)
         nx += 190
 
-    footer(c, "Problema & Solução  ·  03 / 08")
+    footer(c, "Problema & Solução  ·  03 / 10")
     c.showPage()
 
 # ------------------ widgets de mockup ------------------------------ #
@@ -445,7 +445,7 @@ def page_radar(c):
         text(c, rx + rw - 90, ry, imp, FT_SEMI, 9, INK)
         ry -= 26
 
-    footer(c, "Tela · Radar de Risco  ·  04 / 08")
+    footer(c, "Tela · Radar de Risco  ·  04 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -488,7 +488,7 @@ def page_score(c):
     for line in recs:
         text(c, rx + 16, yy, line, FT_REG, 9, INK); yy -= 17
 
-    footer(c, "Tela · Score Premium  ·  05 / 08")
+    footer(c, "Tela · Score Premium  ·  05 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -567,7 +567,7 @@ def page_whatsapp(c):
     tp.moveTo(tcx - 4, tcy - 4); tp.lineTo(tcx + 5, tcy); tp.lineTo(tcx - 4, tcy + 4); tp.close()
     c.setFillColor(WHITE); c.drawPath(tp, fill=1, stroke=0)
 
-    footer(c, "Conceito · Bot WhatsApp  ·  06 / 08")
+    footer(c, "Conceito · Bot WhatsApp  ·  06 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -616,7 +616,7 @@ def page_market(c):
     text(c, 40, 50, "Fontes: IBGE/PPM 2023 · MilkPoint Ventures 2023 · IBGE Censo Agropecuário 2017. "
                     "Receita = produtores × R$ 60/mês × 12. Premissas ajustáveis ao vivo no app.",
          FT_REG, 7.5, MUTED)
-    footer(c, "Mercado · TAM/SAM/SOM  ·  07 / 08")
+    footer(c, "Mercado · TAM/SAM/SOM  ·  07 / 10")
     c.showPage()
 
 # ================================================================== #
@@ -662,12 +662,138 @@ def page_qr(c):
         text(c, tx + 16, yy, it, FT_REG, 10, INK); yy -= 20
 
     logo(c, tx, 70, size=34)
-    footer(c, "Demonstração · QR  ·  08 / 08")
+    footer(c, "Demonstração · QR  ·  10 / 10")
     c.showPage()
 
 
 def NAVY_OR_BLUE():
     return HexColor("#2563EB")
+
+
+# ================================================================== #
+# PÁGINA 8 — CENÁRIO COMPETITIVO                                      #
+# ================================================================== #
+def page_competitors(c):
+    page_bg(c)
+    section_title(c, 40, H - 64, "Cenário competitivo", "Quem já existe no mundo", accent=CYAN)
+    text(c, 40, H - 110, "A categoria é real e está crescendo — isso valida o problema. O diferencial está no foco.",
+         FT_REG, 11, MUTED)
+
+    # faixa de validação de mercado
+    vals = [("US$ 1,5 bi", ["mercado global de software", "leiteiro (2024)"]),
+            ("~10% a.a.", ["crescimento projetado", "(CAGR até 2030)"]),
+            ("Stellapps · Índia", ["2 bi L/ano · aporte", "Gates Foundation"]),
+            ("Cowmed · Brasil", ["200 mil animais", "monitorados"])]
+    vw = (W - 80 - 3 * 12) / 4
+    vx = 40
+    for v, d in vals:
+        card(c, vx, H - 178, vw, 56, fill=CARD)
+        text(c, vx + 14, H - 146, v, FT_DISP, 15, CYAN)
+        for k, ln in enumerate(d):
+            text(c, vx + 14, H - 160 - k * 11, ln, FT_REG, 7.5, MUTED)
+        vx += vw + 12
+
+    # tabela comparativa
+    cols = [("Plataforma", 55), ("Origem", 220), ("Foco principal", 300), ("Abordagem", 545), ("Radar preditivo*", 695)]
+    rows = [
+        ("Cowmed", "Brasil", "Saúde e reprodução do animal", "Coleira IoT (hardware)", "Não", RED),
+        ("DeLaval · Afimilk", "Global", "Gestão de ordenha e rebanho", "Software + equipamento", "Não", RED),
+        ("Connecterra (Ida)", "Holanda", "IA de comportamento do animal", "Sensor + IA", "Não", RED),
+        ("Stellapps", "Índia", "Procurement e cold chain da coop.", "Software + IoT de cadeia", "Parcial", AMBER),
+        ("Ever.Ag", "EUA", "Risco de preço da commodity", "Software de mercado", "Parcial", AMBER),
+        ("VIA LEITE SENSE", "Brasil / GO", "Risco produtivo, qualidade e renda da cadeia", "Software-first, baixa fricção", "Sim", GREEN),
+    ]
+    ty = H - 208
+    for t, x in cols:
+        text(c, x, ty, t.upper(), FT_SEMI, 8, MUTED, tracking=0.4)
+    c.setStrokeColor(LINE); c.setLineWidth(0.6); c.line(55, ty - 9, W - 45, ty - 9)
+    ry = ty - 26
+    rh = 34
+    for nome, orig, foco, abor, radar, col in rows:
+        hl = nome == "VIA LEITE SENSE"
+        if hl:
+            c.setFillColor(HexColor("#0e3a44")); c.roundRect(48, ry - 9, W - 96, rh, 8, fill=1, stroke=0)
+            c.setFillColor(CYAN); c.roundRect(48, ry - 9, 4, rh, 2, fill=1, stroke=0)
+        text(c, cols[0][1], ry, nome, FT_SEMI, 10 if hl else 9.5, CYAN if hl else INK)
+        text(c, cols[1][1], ry, orig, FT_REG, 8.5, MUTED)
+        text(c, cols[2][1], ry, foco, FT_REG, 8.5, INK if hl else MUTED)
+        text(c, cols[3][1], ry, abor, FT_REG, 8.5, INK if hl else MUTED)
+        chip(c, cols[4][1], ry - 4, radar, BG_DEEP, col, size=8, ph=15, padx=8)
+        ry -= rh
+    text(c, 55, ry + 2,
+         "* Radar preditivo = cruza clima (THI/INMET) + qualidade (CCS/CBT) + risco econômico, no nível da cadeia.",
+         FT_REG, 7.5, MUTED)
+    text(c, 55, ry - 12, "Fontes: Grand View / Market.us (mercado), sites das empresas. Posicionamento ilustrativo.",
+         FT_REG, 7, HexColor("#5d7986"))
+    footer(c, "Cenário competitivo  ·  08 / 10")
+    c.showPage()
+
+
+# ================================================================== #
+# PÁGINA 9 — POSICIONAMENTO (MATRIZ 2x2)                              #
+# ================================================================== #
+def page_positioning(c):
+    page_bg(c)
+    section_title(c, 40, H - 64, "Posicionamento", "Onde nos posicionamos", accent=GREEN)
+
+    qx, qy, qw, qh = 55, 78, 455, 400
+    card(c, qx, qy, qw, qh, fill=BG_DEEP, border=LINE)
+    axcx = qx + qw / 2; axcy = qy + qh / 2
+    c.setStrokeColor(LINE); c.setLineWidth(1)
+    c.line(qx + 20, axcy, qx + qw - 20, axcy)
+    c.line(axcx, qy + 24, axcx, qy + qh - 18)
+    text(c, qx + qw - 24, axcy - 12, "Cadeia (produtor→laticínio)", FT_SEMI, 8, MUTED, align="r")
+    text(c, qx + 24, axcy - 12, "Animal", FT_SEMI, 8, MUTED)
+    text(c, axcx + 8, qy + qh - 30, "Software preditivo · baixa fricção", FT_SEMI, 8, MUTED)
+    text(c, axcx + 8, qy + 30, "Hardware · CapEx alto", FT_SEMI, 8, MUTED)
+
+    def plot(fx, fy, label, col, big=False, dx=0, dy=0):
+        px = qx + fx * qw; py = qy + fy * qh
+        r = 9 if big else 5
+        if big:
+            c.setFillColor(Color(0.20, 0.83, 0.60, 0.25)); c.circle(px, py, r + 9, fill=1, stroke=0)
+        c.setFillColor(col); c.circle(px, py, r, fill=1, stroke=0)
+        if big:
+            c.setStrokeColor(WHITE); c.setLineWidth(1.5); c.circle(px, py, r, fill=0, stroke=1)
+        text(c, px + dx, py + r + 5 + dy, label, FT_SEMI if big else FT_REG,
+             9.5 if big else 8, INK if big else MUTED, align="c")
+
+    plot(0.17, 0.22, "Cowmed", MUTED)
+    plot(0.32, 0.36, "DeLaval / Afimilk", MUTED)
+    plot(0.28, 0.66, "Connecterra", MUTED)
+    plot(0.68, 0.40, "Stellapps", MUTED)
+    plot(0.74, 0.66, "Ever.Ag", MUTED)
+    plot(0.81, 0.85, "VIA LEITE SENSE", GREEN, big=True)
+
+    # painel direito
+    rx = 540; rw = W - 40 - rx
+    text(c, rx, H - 100, "O ESPAÇO EM BRANCO", FT_SEMI, 10, CYAN, tracking=1)
+    para = ["Ninguém entrega, no nível da cadeia",
+            "brasileira, um radar preditivo que cruza",
+            "clima, qualidade e risco econômico —",
+            "com baixa fricção e sem hardware caro."]
+    yy = H - 124
+    for ln in para:
+        text(c, rx, yy, ln, FT_REG, 10, INK); yy -= 16
+    yy -= 12
+    diffs = [("Software-first", "Adesão sem CapEx de sensores."),
+             ("Score 360°", "Clima + qualidade + economia num índice."),
+             ("Calibrado ao Brasil", "Norma IN 77 e cadeia premium de Goiás.")]
+    for t, d in diffs:
+        c.setFillColor(GREEN); c.circle(rx + 4, yy + 3, 2.5, fill=1, stroke=0)
+        text(c, rx + 16, yy, t, FT_SEMI, 10.5, INK)
+        text(c, rx + 16, yy - 13, d, FT_REG, 8.5, MUTED)
+        yy -= 40
+
+    card(c, rx, 78, rw, 74, fill=HexColor("#0c2c39"))
+    text(c, rx + 14, 130, "POR QUE AGORA", FT_SEMI, 9, AMBER, tracking=1)
+    for k, ln in enumerate(["Clima extremo eleva o estresse térmico (THI).",
+                            "Mercado premium exige qualidade (IN 77).",
+                            "ESG e rastreabilidade viram exigência."]):
+        text(c, rx + 14, 112 - k * 15, ln, FT_REG, 8.5, INK)
+
+    footer(c, "Posicionamento  ·  09 / 10")
+    c.showPage()
 
 
 def gerar_qr():
@@ -689,6 +815,8 @@ def main():
     page_score(c)
     page_whatsapp(c)
     page_market(c)
+    page_competitors(c)
+    page_positioning(c)
     page_qr(c)
     c.save()
     print("PDF gerado:", OUT)
