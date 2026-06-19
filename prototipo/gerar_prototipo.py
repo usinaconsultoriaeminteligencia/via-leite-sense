@@ -152,10 +152,14 @@ def logo(c, x, y, size=46, stacked=False, mono=None):
         wlt = c.stringWidth("VIA LEITE ", FT_DISP, size * 0.52)
         text(c, tx + wlt, y + size * 0.16, "SENSE", FT_DISP, size * 0.52, mono or CYAN)
 
-def footer(c, page_label):
+_PG = {"n": 0, "total": 0}
+
+def footer(c, section):
+    _PG["n"] += 1
     text(c, 40, 24, "VIA LEITE SENSE  ·  Inteligência preditiva para a cadeia leiteira — Goiânia/GO",
-         FT_SEMI, 7.5, MUTED)
-    text(c, W - 40, 24, page_label, FT_SEMI, 7.5, MUTED, align="r")
+         FT_SEMI, 8, MUTED)
+    text(c, W - 40, 24, f"{section}  ·  {_PG['n']:02d} / {_PG['total']:02d}",
+         FT_SEMI, 8, MUTED, align="r")
     c.setStrokeColor(LINE); c.setLineWidth(0.6); c.line(40, 36, W - 40, 36)
 
 def page_bg(c, panel=False):
@@ -219,7 +223,7 @@ def page_cover(c):
     c.restoreState()
     pulse(c, cx, cy + 14, BG_DEEP, scale=2.4)
 
-    footer(c, "VIA LEITE SENSE © 2026  ·  01 / 10")
+    footer(c, "Apresentação do protótipo")
     c.showPage()
 
 # ================================================================== #
@@ -273,7 +277,7 @@ def page_identity(c):
     text(c, 145, 66, "Técnica na resolução, simples no manuseio. Do dado à decisão, antes da perda.",
          FT_REG, 10, INK)
 
-    footer(c, "Identidade Visual  ·  02 / 10")
+    footer(c, "Identidade Visual")
     c.showPage()
 
 # ================================================================== #
@@ -295,8 +299,8 @@ def page_problem(c):
     yy = H - 192
     for t, d in dores:
         c.setFillColor(RED); c.circle(72, yy + 4, 3, fill=1, stroke=0)
-        text(c, 86, yy, t, FT_SEMI, 12, INK)
-        text(c, 86, yy - 15, d, FT_REG, 9, MUTED)
+        text(c, 86, yy, t, FT_SEMI, 13, INK)
+        text(c, 86, yy - 16, d, FT_REG, 10.5, MUTED)
         yy -= 56
 
     # seta
@@ -314,8 +318,8 @@ def page_problem(c):
     yy = H - 192
     for t, d in ganhos:
         c.setFillColor(GREEN); c.circle(474, yy + 4, 3, fill=1, stroke=0)
-        text(c, 488, yy, t, FT_SEMI, 12, INK)
-        text(c, 488, yy - 15, d, FT_REG, 9, MUTED)
+        text(c, 488, yy, t, FT_SEMI, 13, INK)
+        text(c, 488, yy - 16, d, FT_REG, 10.5, MUTED)
         yy -= 56
 
     # faixa de números
@@ -328,7 +332,7 @@ def page_problem(c):
         text(c, nx, 62, d, FT_REG, 8, MUTED)
         nx += 190
 
-    footer(c, "Problema & Solução  ·  03 / 10")
+    footer(c, "Problema & Solução")
     c.showPage()
 
 # ------------------ widgets de mockup ------------------------------ #
@@ -451,7 +455,7 @@ def page_radar(c):
         text(c, rx + rw - 90, ry, imp, FT_SEMI, 9, INK)
         ry -= 26
 
-    footer(c, "Tela · Radar de Risco  ·  04 / 10")
+    footer(c, "Tela · Radar de Risco")
     c.showPage()
 
 # ================================================================== #
@@ -494,7 +498,7 @@ def page_score(c):
     for line in recs:
         text(c, rx + 16, yy, line, FT_REG, 9, INK); yy -= 17
 
-    footer(c, "Tela · Score Premium  ·  05 / 10")
+    footer(c, "Tela · Score Premium")
     c.showPage()
 
 # ================================================================== #
@@ -503,28 +507,28 @@ def page_score(c):
 def page_whatsapp(c):
     page_bg(c)
     section_title(c, 40, H - 70, "Próxima fase", "Comunicação simples na ponta", accent=GREEN)
-    text(c, 40, H - 114, "O produtor já vive no WhatsApp. O bot leva o alerta do Radar de Risco",
-         FT_REG, 11, MUTED)
-    text(c, 40, H - 132, "até ele em linguagem simples — e devolve os dados para a cooperativa.",
-         FT_REG, 11, MUTED)
+    text(c, 40, H - 116, "Muitos produtores têm pouca familiaridade com termos técnicos. Por isso o",
+         FT_REG, 12.5, MUTED)
+    text(c, 40, H - 135, "sistema TRADUZ os indicadores (CCS, CBT) em mensagens simples no WhatsApp.",
+         FT_REG, 12.5, MUTED)
 
     # benefícios (coluna esquerda)
     bens = [
-        ("Linguagem do produtor", "Alerta de risco simples, sem jargão técnico."),
-        ("Lançamento por mensagem", "Litros e ocorrências reportados em segundos."),
-        ("Ponte com a cooperativa", "Ranking aciona visita preventiva automática."),
-        ("Zero fricção", "Sem app para instalar — adoção imediata na ponta."),
+        ("Linguagem traduzida", "Converte termos técnicos (CCS/CBT) em mensagens fáceis de entender."),
+        ("Avisos com antecedência", "O produtor sabe do problema antes de perder dinheiro."),
+        ("Responder é simples", "Basta mandar uma mensagem com os litros do dia."),
+        ("Sem instalar nada", "Funciona no WhatsApp que ele já usa todo dia."),
     ]
-    yy = H - 170
+    yy = H - 172
     for t, d in bens:
-        card(c, 40, yy - 44, 430, 56, fill=CARD)
-        c.setFillColor(GREEN); c.roundRect(40, yy - 44, 4, 56, 2, fill=1, stroke=0)
-        text(c, 60, yy - 8, t, FT_SEMI, 12, INK)
-        text(c, 60, yy - 26, d, FT_REG, 9.5, MUTED)
-        yy -= 68
-    card(c, 40, 60, 430, 34, fill=HexColor("#0c2c39"))
-    text(c, 56, 78, "ARQUITETURA:", FT_SEMI, 8.5, CYAN)
-    text(c, 145, 78, "WhatsApp Cloud API → webhook → motor score_risco.py", FT_REG, 9, INK)
+        card(c, 40, yy - 46, 470, 58, fill=CARD)
+        c.setFillColor(GREEN); c.roundRect(40, yy - 46, 4, 58, 2, fill=1, stroke=0)
+        text(c, 60, yy - 8, t, FT_SEMI, 13.5, INK)
+        text(c, 60, yy - 28, d, FT_REG, 11, MUTED)
+        yy -= 70
+    card(c, 40, 58, 470, 34, fill=HexColor("#0c2c39"))
+    text(c, 56, 76, "COMO FUNCIONA:", FT_SEMI, 9.5, CYAN)
+    text(c, 165, 76, "WhatsApp Cloud API → motor de risco VIA LEITE", FT_REG, 10, INK)
 
     # ----- mockup de celular -----
     px, py, pw, ph = 560, 70, 220, H - 150
@@ -543,24 +547,24 @@ def page_whatsapp(c):
     def bubble(cx_left, yb, lines, incoming, time):
         maxw = 0
         for ln in lines:
-            maxw = max(maxw, c.stringWidth(ln, FT_REG, 8.3))
-        bw = maxw + 22; bh = 14 * len(lines) + 16
+            maxw = max(maxw, c.stringWidth(ln, FT_REG, 9.8))
+        bw = maxw + 22; bh = 15 * len(lines) + 18
         bxp = px + 12 if incoming else px + pw - 12 - bw
         col = WHITE if incoming else WA_BUBBLE
         c.setFillColor(col); c.roundRect(bxp, yb - bh, bw, bh, 8, fill=1, stroke=0)
-        ty = yb - 14
+        ty = yb - 15
         for ln in lines:
-            text(c, bxp + 11, ty, ln, FT_REG, 8.3, HexColor("#0b2230")); ty -= 14
-        text(c, bxp + bw - 28, yb - bh + 4, time, FT_REG, 6, HexColor("#5a7a86"))
+            text(c, bxp + 11, ty, ln, FT_REG, 9.8, HexColor("#0b2230")); ty -= 15
+        text(c, bxp + bw - 26, yb - bh + 5, time, FT_REG, 6.5, HexColor("#5a7a86"))
         return bh
 
-    yb = py + ph - 86
+    yb = py + ph - 84
     chat = [
-        (["Bom dia, Sr. João!", "Alerta VIA LEITE para sua", "entrega:"], True, "07:12"),
-        (["Risco de CCS subir nos", "próximos 10 dias.", "Score: 58 — Alto risco."], True, "07:12"),
-        (["Ação: reforçar pré e", "pós-dipping nesta semana."], True, "07:13"),
-        (["Ok! Coletei 380 L hoje"], False, "07:40"),
-        (["Registrado. Tudo certo!", "Volume dentro do previsto.", "Cooperativa avisada para", "visita preventiva."], True, "07:40"),
+        (["Bom dia, Sr. João!"], True, "07:12"),
+        (["Atenção: seu leite pode", "perder qualidade em 10 dias.", "Isso diminui o pagamento."], True, "07:12"),
+        (["Dica: lave e seque bem", "o úbere antes e depois", "de tirar o leite."], True, "07:13"),
+        (["Certo! Hoje tirei", "380 litros"], False, "07:40"),
+        (["Anotado! Produção boa.", "Avisei a cooperativa", "para te ajudar antes."], True, "07:41"),
     ]
     for lines, inc, t in chat:
         bh = bubble(px, yb, lines, inc, t)
@@ -573,7 +577,7 @@ def page_whatsapp(c):
     tp.moveTo(tcx - 4, tcy - 4); tp.lineTo(tcx + 5, tcy); tp.lineTo(tcx - 4, tcy + 4); tp.close()
     c.setFillColor(WHITE); c.drawPath(tp, fill=1, stroke=0)
 
-    footer(c, "Conceito · Bot WhatsApp  ·  06 / 10")
+    footer(c, "Conceito · Assistente no WhatsApp")
     c.showPage()
 
 # ================================================================== #
@@ -601,28 +605,27 @@ def page_market(c):
         lx = cx + wt / 2 + 24
         c.setStrokeColor(col); c.setLineWidth(1.2); c.line(cx + wb / 2 + 4, ymid, lx - 6, ymid)
         c.setFillColor(col); c.circle(lx - 6, ymid, 2.4, fill=1, stroke=0)
-        text(c, lx, ymid + 3, val, FT_DISP, 14, INK)
-        text(c, lx, ymid - 11, desc, FT_REG, 8.5, MUTED)
+        text(c, lx, ymid + 4, val, FT_DISP, 15, INK)
+        text(c, lx, ymid - 12, desc, FT_REG, 9.5, MUTED)
 
     # painel de contexto (direita inferior)
     cardx = 560
     text(c, cardx, 150, "CONTEXTO DE MERCADO (2023)", FT_SEMI, 9, CYAN, tracking=1)
     ctx = [("35,4 bi L", "produção Brasil · IBGE"),
-           ("2,2 bi L", "produção Goiás · 6º maior"),
-           ("~150 mil", "produtores formais · MilkPoint"),
-           ("1,18 mi", "total c/ informais · Censo Agro")]
-    cxx = cardx
+           ("2,2 bi L", "produção Goiás · 6º"),
+           ("~150 mil", "produtores formais"),
+           ("1,18 mi", "total c/ informais")]
     for i, (v, d) in enumerate(ctx):
-        col = cardx + (i % 2) * 130
+        col = cardx + (i % 2) * 132
         row = 110 if i < 2 else 70
-        card(c, col, row, 122, 34, fill=CARD)
-        text(c, col + 10, row + 18, v, FT_DISP, 14, INK)
-        text(c, col + 10, row + 7, d, FT_REG, 6.8, MUTED)
+        card(c, col, row, 126, 34, fill=CARD)
+        text(c, col + 10, row + 18, v, FT_DISP, 15, INK)
+        text(c, col + 10, row + 6, d, FT_REG, 8, MUTED)
 
     text(c, 40, 50, "Fontes: IBGE/PPM 2023 · MilkPoint Ventures 2023 · IBGE Censo Agropecuário 2017. "
                     "Receita = produtores × R$ 60/mês × 12. Premissas ajustáveis ao vivo no app.",
          FT_REG, 7.5, MUTED)
-    footer(c, "Mercado · TAM/SAM/SOM  ·  07 / 10")
+    footer(c, "Mercado · TAM/SAM/SOM")
     c.showPage()
 
 # ================================================================== #
@@ -668,7 +671,7 @@ def page_qr(c):
         text(c, tx + 16, yy, it, FT_REG, 10, INK); yy -= 20
 
     logo(c, tx, 70, size=34)
-    footer(c, "Demonstração · QR  ·  10 / 10")
+    footer(c, "Demonstração · QR")
     c.showPage()
 
 
@@ -693,10 +696,10 @@ def page_competitors(c):
     vw = (W - 80 - 3 * 12) / 4
     vx = 40
     for v, d in vals:
-        card(c, vx, H - 178, vw, 56, fill=CARD)
-        text(c, vx + 14, H - 146, v, FT_DISP, 15, CYAN)
+        card(c, vx, H - 180, vw, 60, fill=CARD)
+        text(c, vx + 14, H - 147, v, FT_DISP, 16, CYAN)
         for k, ln in enumerate(d):
-            text(c, vx + 14, H - 160 - k * 11, ln, FT_REG, 7.5, MUTED)
+            text(c, vx + 14, H - 162 - k * 12, ln, FT_REG, 8.5, MUTED)
         vx += vw + 12
 
     # tabela comparativa
@@ -711,7 +714,7 @@ def page_competitors(c):
     ]
     ty = H - 208
     for t, x in cols:
-        text(c, x, ty, t.upper(), FT_SEMI, 8, MUTED, tracking=0.4)
+        text(c, x, ty, t.upper(), FT_SEMI, 8.5, MUTED, tracking=0.4)
     c.setStrokeColor(LINE); c.setLineWidth(0.6); c.line(55, ty - 9, W - 45, ty - 9)
     ry = ty - 26
     rh = 34
@@ -720,18 +723,18 @@ def page_competitors(c):
         if hl:
             c.setFillColor(HexColor("#0e3a44")); c.roundRect(48, ry - 9, W - 96, rh, 8, fill=1, stroke=0)
             c.setFillColor(CYAN); c.roundRect(48, ry - 9, 4, rh, 2, fill=1, stroke=0)
-        text(c, cols[0][1], ry, nome, FT_SEMI, 10 if hl else 9.5, CYAN if hl else INK)
-        text(c, cols[1][1], ry, orig, FT_REG, 8.5, MUTED)
-        text(c, cols[2][1], ry, foco, FT_REG, 8.5, INK if hl else MUTED)
-        text(c, cols[3][1], ry, abor, FT_REG, 8.5, INK if hl else MUTED)
-        chip(c, cols[4][1], ry - 4, radar, BG_DEEP, col, size=8, ph=15, padx=8)
+        text(c, cols[0][1], ry, nome, FT_SEMI, 11 if hl else 10, CYAN if hl else INK)
+        text(c, cols[1][1], ry, orig, FT_REG, 9.5, MUTED)
+        text(c, cols[2][1], ry, foco, FT_REG, 9.5, INK if hl else MUTED)
+        text(c, cols[3][1], ry, abor, FT_REG, 9.5, INK if hl else MUTED)
+        chip(c, cols[4][1], ry - 4, radar, BG_DEEP, col, size=9, ph=16, padx=9)
         ry -= rh
     text(c, 55, ry + 2,
          "* Radar preditivo = cruza clima (THI/INMET) + qualidade (CCS/CBT) + risco econômico, no nível da cadeia.",
          FT_REG, 7.5, MUTED)
     text(c, 55, ry - 12, "Fontes: Grand View / Market.us (mercado), sites das empresas. Posicionamento ilustrativo.",
          FT_REG, 7, HexColor("#5d7986"))
-    footer(c, "Cenário competitivo  ·  08 / 10")
+    footer(c, "Cenário competitivo")
     c.showPage()
 
 
@@ -787,18 +790,51 @@ def page_positioning(c):
              ("Calibrado ao Brasil", "Norma IN 77 e cadeia premium de Goiás.")]
     for t, d in diffs:
         c.setFillColor(GREEN); c.circle(rx + 4, yy + 3, 2.5, fill=1, stroke=0)
-        text(c, rx + 16, yy, t, FT_SEMI, 10.5, INK)
-        text(c, rx + 16, yy - 13, d, FT_REG, 8.5, MUTED)
-        yy -= 40
+        text(c, rx + 16, yy, t, FT_SEMI, 11.5, INK)
+        text(c, rx + 16, yy - 14, d, FT_REG, 9.5, MUTED)
+        yy -= 42
 
     card(c, rx, 78, rw, 74, fill=HexColor("#0c2c39"))
     text(c, rx + 14, 130, "POR QUE AGORA", FT_SEMI, 9, AMBER, tracking=1)
     for k, ln in enumerate(["Clima extremo eleva o estresse térmico (THI).",
                             "Mercado premium exige qualidade (IN 77).",
                             "ESG e rastreabilidade viram exigência."]):
-        text(c, rx + 14, 112 - k * 15, ln, FT_REG, 8.5, INK)
+        text(c, rx + 14, 113 - k * 16, ln, FT_REG, 9.5, INK)
 
-    footer(c, "Posicionamento  ·  09 / 10")
+    footer(c, "Posicionamento")
+    c.showPage()
+
+
+# ================================================================== #
+# CAPA DO MANUAL DE IDENTIDADE VISUAL                                 #
+# ================================================================== #
+def page_identity_cover(c):
+    grad_rect(c, 0, 0, W, H, BG_PANEL, BG_DEEP)
+    c.saveState()
+    pth = c.beginPath(); pth.rect(0, 0, W, H); c.clipPath(pth, stroke=0, fill=0)
+    c.radialGradient(W * 0.5, H * 0.58, 380, (HexColor("#10455A"), BG_DEEP), (0, 1), extend=True)
+    c.restoreState()
+
+    # gota grande centrada (gradiente)
+    cx, cy, r = W / 2, H * 0.60, 70
+    c.saveState()
+    p = c.beginPath()
+    p.moveTo(cx, cy + 2.0 * r)
+    p.curveTo(cx - 0.25 * r, cy + 1.25 * r, cx - r, cy + 0.65 * r, cx - r, cy)
+    p.curveTo(cx - r, cy - 0.95 * r, cx + r, cy - 0.95 * r, cx + r, cy)
+    p.curveTo(cx + r, cy + 0.65 * r, cx + 0.25 * r, cy + 1.25 * r, cx, cy + 2.0 * r)
+    p.close(); c.clipPath(p, stroke=0, fill=0)
+    c.linearGradient(cx - r, cy - r, cx + r, cy + 2 * r, (GREEN, CYAN), (0, 1), extend=True)
+    c.restoreState()
+    pulse(c, cx, cy + 10, BG_DEEP, scale=1.9)
+
+    # wordmark centrado
+    text(c, W / 2, H * 0.40, "VIA LEITE", FT_DISP, 56, INK, align="c")
+    text(c, W / 2, H * 0.40 - 44, "SENSE", FT_DISP, 56, CYAN, align="c", tracking=4)
+    text(c, W / 2, H * 0.40 - 92, "MANUAL DE IDENTIDADE VISUAL", FT_SEMI, 13, CYAN, align="c", tracking=3)
+    text(c, W / 2, H * 0.40 - 116, "Sistema de marca · cores · tipografia", FT_REG, 12, MUTED, align="c")
+
+    footer(c, "Identidade Visual · Capa")
     c.showPage()
 
 
@@ -809,23 +845,33 @@ def gerar_qr():
     img.save(QR_PNG)
 
 
+AUTOR = "Equipe VIA LEITE SENSE — Fagner Pinho, Matheus Iverson, Daianne Valéria"
+OUT_ID = os.path.join(HERE, "VIA_LEITE_SENSE_Identidade_Visual.pdf")
+OUT_PROTO = os.path.join(HERE, "VIA_LEITE_SENSE_Prototipo.pdf")
+
+
+def build(path, pages, title):
+    _PG["n"] = 0
+    _PG["total"] = len(pages)
+    c = canvas.Canvas(path, pagesize=landscape(A4))
+    c.setTitle(title)
+    c.setAuthor(AUTOR)
+    for fn in pages:
+        fn(c)
+    c.save()
+    print("PDF gerado:", path)
+
+
 def main():
     gerar_qr()
-    c = canvas.Canvas(OUT, pagesize=landscape(A4))
-    c.setTitle("VIA LEITE SENSE — Protótipo")
-    c.setAuthor("Equipe VIA LEITE SENSE — Fagner Pinho, Matheus Iverson, Daianne Valéria")
-    page_cover(c)
-    page_identity(c)
-    page_problem(c)
-    page_radar(c)
-    page_score(c)
-    page_whatsapp(c)
-    page_market(c)
-    page_competitors(c)
-    page_positioning(c)
-    page_qr(c)
-    c.save()
-    print("PDF gerado:", OUT)
+    # Arquivo 1 — somente identidade visual
+    build(OUT_ID, [page_identity_cover, page_identity],
+          "VIA LEITE SENSE — Identidade Visual")
+    # Arquivo 2 — somente apresentação do protótipo
+    build(OUT_PROTO, [page_cover, page_problem, page_radar, page_score,
+                      page_whatsapp, page_market, page_competitors,
+                      page_positioning, page_qr],
+          "VIA LEITE SENSE — Protótipo")
 
 
 if __name__ == "__main__":
