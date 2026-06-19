@@ -120,14 +120,16 @@ def pulse(c, cx, cy, color, scale=1.0):
         rr *= scale
         c.arc(cx - rr, cy - rr, cx + rr, cy + rr, 35, 110)
 
-def logo(c, x, y, size=46, stacked=False, mono=None):
-    """Marca VIA LEITE SENSE. x,y = base-left do texto."""
+def logo(c, x, y, size=46, stacked=False, mono=None, knockout=None):
+    """Marca VIA LEITE SENSE. x,y = base-left do texto.
+    Em mono, o pulso é desenhado em `knockout` (cor do fundo) para aparecer
+    como recorte — mantendo a marca idêntica à versão colorida."""
     r = size * 0.30
     cx = x + r
     cy = y + size * 0.18
     if mono:
         droplet(c, cx, cy, r, mono)
-        pulse(c, cx, cy + r * 0.15, BG_DEEP, scale=size / 46)
+        pulse(c, cx, cy + r * 0.15, knockout or WHITE, scale=size / 46)
     else:
         # gota com gradiente ciano->verde (clip na própria gota)
         c.saveState()
@@ -256,11 +258,11 @@ def page_identity(c):
     text(c, 70, H - 232, "Marca principal — gota (leite) + pulso (sensoriamento/risco)", FT_REG, 8.5, MUTED)
 
     card(c, 420, H - 250, 175, 150, fill=INK)
-    logo(c, 445, H - 190, size=44, stacked=True, mono=BG_DEEP)
+    logo(c, 445, H - 190, size=44, stacked=True, mono=BG_DEEP, knockout=INK)
     text(c, 445, H - 232, "Versão sobre claro", FT_REG, 8, HexColor("#41566a"))
 
     card(c, 615, H - 250, 187, 150, fill=GREEN)
-    logo(c, 640, H - 190, size=44, stacked=True, mono=BG_DEEP)
+    logo(c, 640, H - 190, size=44, stacked=True, mono=BG_DEEP, knockout=GREEN)
     text(c, 640, H - 232, "Versão monocromática", FT_REG, 8, HexColor("#0c3a2b"))
 
     # Paleta
