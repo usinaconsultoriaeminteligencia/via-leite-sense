@@ -291,36 +291,56 @@ def page_problem(c):
     card(c, 40, 110, 360, H - 230, fill=BG_DEEP, border=RED)
     chip(c, 60, H - 150, "HOJE · GESTÃO REATIVA", WHITE, RED)
     dores = [
-        ("Descoberta tardia", "O problema só aparece quando o caminhão volta com leite rejeitado."),
-        ("Penalidade no pagamento", "CCS/CBT fora do padrão IN 77 viram desconto — depois da coleta."),
-        ("Bônus de qualidade perdido", "Sem antecipação, não há tempo de ação preventiva."),
-        ("Estresse térmico ignorado", "Queda de produção em 7–15 dias que ninguém viu chegar."),
+        ("Descoberta tardia", ["A qualidade (CCS/CBT) é medida no laboratório",
+                               "~1x por mês: o problema aparece 30 dias depois."]),
+        ("Penalidade no pagamento", ["Leite fora do padrão IN 77 vira desconto no preço."]),
+        ("Bônus de qualidade perdido", ["Sem antecipar, não dá tempo de proteger o bônus."]),
+        ("Estresse térmico ignorado", ["Queda de produção em 7–15 dias não prevista."]),
     ]
-    yy = H - 192
-    for t, d in dores:
+    yy = H - 188
+    for t, lines in dores:
         c.setFillColor(RED); c.circle(72, yy + 4, 3, fill=1, stroke=0)
         text(c, 86, yy, t, FT_SEMI, 13, INK)
-        text(c, 86, yy - 16, d, FT_REG, 10.5, MUTED)
-        yy -= 56
+        ly = yy - 17
+        for ln in lines:
+            text(c, 86, ly, ln, FT_REG, 10, MUTED); ly -= 14
+        yy -= 60
+    # nota de realidade (dado verificável)
+    card(c, 52, 118, 336, 60, fill=HexColor("#2a1015"))
+    text(c, 64, 162, "REALIDADE DO SETOR", FT_SEMI, 8, RED, tracking=1)
+    for k, ln in enumerate(["A CCS média do leite no país já beira o limite",
+                            "(perto de 500 mil) e cerca de metade dos produtores",
+                            "já operou fora do padrão. (Embrapa · MilkPoint)"]):
+        text(c, 64, 147 - k * 13, ln, FT_REG, 9, INK)
 
     # seta
-    text(c, 418, 296, "→", FT_BOLD, 34, CYAN, align="c")
+    text(c, 418, 300, "→", FT_BOLD, 34, CYAN, align="c")
 
     # coluna DEPOIS
     card(c, 442, 110, 360, H - 230, fill=BG_DEEP, border=GREEN)
     chip(c, 462, H - 150, "VIA LEITE SENSE · GESTÃO PREDITIVA", BG_DEEP, GREEN)
     ganhos = [
-        ("Antecipação de 7–30 dias", "Score de risco por produtor, rota e laticínio."),
-        ("Impacto traduzido em R$", "A dor técnica vira linguagem do gestor financeiro."),
-        ("Ranking de ação preventiva", "Quem visitar primeiro para proteger receita e bônus."),
-        ("Clima + qualidade + volume", "107 variáveis, IA preditiva e dados INMET integrados."),
+        ("Antecipação de 7–30 dias", ["Score de risco por produtor, rota e laticínio,",
+                                      "antes da coleta."]),
+        ("Impacto traduzido em R$", ["A dor técnica vira linguagem do gestor."]),
+        ("Ranking de ação preventiva", ["Quem visitar primeiro para proteger a receita."]),
+        ("Clima + qualidade + volume", ["107 variáveis e dados de clima (INMET)."]),
     ]
-    yy = H - 192
-    for t, d in ganhos:
+    yy = H - 188
+    for t, lines in ganhos:
         c.setFillColor(GREEN); c.circle(474, yy + 4, 3, fill=1, stroke=0)
         text(c, 488, yy, t, FT_SEMI, 13, INK)
-        text(c, 488, yy - 16, d, FT_REG, 10.5, MUTED)
-        yy -= 56
+        ly = yy - 17
+        for ln in lines:
+            text(c, 488, ly, ln, FT_REG, 10, MUTED); ly -= 14
+        yy -= 60
+    # nota de ganho
+    card(c, 454, 118, 336, 60, fill=HexColor("#0c2c2a"))
+    text(c, 466, 162, "O QUE MUDA", FT_SEMI, 8, GREEN, tracking=1)
+    for k, ln in enumerate(["Com o radar, o produtor age ANTES de o laboratório",
+                            "apontar o problema — protegendo o preço e o bônus",
+                            "de qualidade do seu leite."]):
+        text(c, 466, 147 - k * 13, ln, FT_REG, 9, INK)
 
     # faixa de números
     card(c, 40, 56, W - 80, 36, fill=HexColor("#0c2c39"))
@@ -507,9 +527,9 @@ def page_score(c):
 def page_whatsapp(c):
     page_bg(c)
     section_title(c, 40, H - 70, "Próxima fase", "Comunicação simples na ponta", accent=GREEN)
-    text(c, 40, H - 116, "Muitos produtores têm pouca familiaridade com termos técnicos. Por isso o",
+    text(c, 40, H - 116, "No campo, o dia a dia é corrido e prático. Por isso o assistente fala a língua",
          FT_REG, 12.5, MUTED)
-    text(c, 40, H - 135, "sistema TRADUZ os indicadores (CCS, CBT) em mensagens simples no WhatsApp.",
+    text(c, 40, H - 135, "do produtor: transforma os indicadores técnicos (CCS, CBT) em recados simples.",
          FT_REG, 12.5, MUTED)
 
     # benefícios (coluna esquerda)
