@@ -1012,6 +1012,43 @@ def page_negocio(c):
     c.showPage()
 
 
+# ================================================================== #
+# SLIDE — ROADMAP                                                     #
+# ================================================================== #
+def page_roadmap(c):
+    page_bg(c)
+    section_title(c, 40, H - 64, "Visão", "Roadmap", accent=CYAN)
+    text(c, 40, H - 108, "De análise histórica a inteligência preditiva em tempo real na cadeia leiteira.",
+         FT_REG, 12, MUTED)
+
+    fases = [
+        ("FASE 1", "MVP", "Concluído", "Dez 25 – Abr 26", ["Produto demonstrável", "ao vivo"], GREEN),
+        ("FASE 3", "Score de Risco", "Concluído", "Jun 2026", ["Score VIA LEITE", "+ Radar de Risco"], GREEN),
+        ("FASE 3.5", "Perfil do Produtor", "Protótipo", "Jun 2026", ["Consistente / Oscilante", "/ Desafiador"], CYAN),
+        ("FASE 2", "Piloto real", "Planejado", "Jul – Set 26", ["Validação com", "dados reais"], AMBER),
+        ("FASE 4", "IoT / Edge", "Futuro", "2027", ["Telemetria em", "tempo real"], MUTED),
+    ]
+    n = len(fases)
+    x0, x1, yb = 100, W - 100, 300
+    c.setStrokeColor(LINE); c.setLineWidth(2); c.line(x0, yb, x1, yb)
+    step = (x1 - x0) / (n - 1)
+    for i, (fase, nome, status, per, entrega, col) in enumerate(fases):
+        x = x0 + i * step
+        c.setFillColor(col); c.circle(x, yb, 9, fill=1, stroke=0)
+        c.setFillColor(BG_DEEP); c.circle(x, yb, 3.5, fill=1, stroke=0)
+        text(c, x, yb + 86, fase, FT_SEMI, 9, col, align="c", tracking=0.5)
+        text(c, x, yb + 64, nome, FT_DISP, 14, INK, align="c")
+        text(c, x, yb + 44, status, FT_SEMI, 9, col, align="c")
+        text(c, x, yb - 26, per, FT_SEMI, 9, MUTED, align="c")
+        for k, ln in enumerate(entrega):
+            text(c, x, yb - 42 - k * 12, ln, FT_REG, 8.5, MUTED, align="c")
+
+    text(c, W / 2, 90, "A Fase 3 (Score) foi antecipada para o AgroStartup; a Fase 3.5 (Perfil) está validada em protótipo.",
+         FT_REG, 9, MUTED, align="c")
+    footer(c, "Visão · Roadmap")
+    c.showPage()
+
+
 def gerar_qr():
     qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=10, border=1)
     qr.add_data(DEMO_URL); qr.make(fit=True)
@@ -1044,7 +1081,7 @@ def main():
     # Arquivo 2 — somente apresentação do protótipo
     build(OUT_PROTO, [page_cover, page_problem, page_radar, page_score, page_perfil,
                       page_whatsapp, page_roi, page_market, page_negocio,
-                      page_competitors, page_positioning, page_qr],
+                      page_competitors, page_positioning, page_roadmap, page_qr],
           "VIA LEITE SENSE — Protótipo")
 
 
