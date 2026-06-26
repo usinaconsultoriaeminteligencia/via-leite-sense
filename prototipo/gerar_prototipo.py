@@ -878,6 +878,140 @@ def page_identity_cover(c):
     c.showPage()
 
 
+# ================================================================== #
+# SLIDE — PERFIL DO PRODUTOR                                          #
+# ================================================================== #
+def page_perfil(c):
+    page_bg(c)
+    section_title(c, 40, H - 64, "Diferencial", "Perfil do Produtor", accent=GREEN)
+    text(c, 40, H - 108, "O Score diz QUANDO agir. O Perfil diz COMO agir — recomendação cirúrgica, não genérica.",
+         FT_REG, 12, MUTED)
+
+    perfis = [
+        ("Consistente", GREEN, ["Qualidade no padrão e", "produção estável."],
+         ["Manutenção e captura", "de bonificação."], "Investimento baixo"),
+        ("Oscilante", AMBER, ["Bons resultados, porém", "com oscilações."],
+         ["Padronização de rotina", "e consistência."], "Investimento baixo-médio"),
+        ("Desafiador", RED, ["CCS/CBT elevados e", "maior variabilidade."],
+         ["O básico: ordenha,", "mastite e nutrição."], "Investimento médio"),
+    ]
+    cw = (W - 80 - 2 * 16) / 3
+    cx = 40
+    ctop, ch = 150, H - 320
+    for nome, col, leitura, acao, inv in perfis:
+        card(c, cx, ctop, cw, ch, fill=BG_DEEP, border=col)
+        chip(c, cx + 16, ctop + ch - 36, nome.upper(), BG_DEEP, col, size=9)
+        yy = ctop + ch - 62
+        for ln in leitura:
+            text(c, cx + 16, yy, ln, FT_REG, 11, INK); yy -= 15
+        yy -= 10
+        text(c, cx + 16, yy, "AÇÃO", FT_SEMI, 8, col, tracking=1); yy -= 17
+        for ln in acao:
+            text(c, cx + 16, yy, ln, FT_REG, 10.5, MUTED); yy -= 15
+        text(c, cx + 16, ctop + 18, inv, FT_SEMI, 9.5, col)
+        cx += cw + 16
+
+    # resultado real na base
+    card(c, 40, 62, W - 80, 42, fill=HexColor("#0c2c39"))
+    text(c, 56, 87, "NA CARTEIRA DE DEMONSTRAÇÃO:", FT_SEMI, 9, CYAN, tracking=0.5)
+    text(c, 290, 86, "16 Consistentes · 11 Oscilantes · 3 Desafiadores", FT_DISP, 14, INK)
+    text(c, 56, 72, "Regra ancorada na IN 77 + variação de produção. Fonte: Gonçalves (2025) / MilkPoint "
+                    "(2.002 produtores, 16.362 análises).", FT_REG, 8, MUTED)
+    footer(c, "Diferencial · Perfil do Produtor")
+    c.showPage()
+
+
+# ================================================================== #
+# SLIDE — IMPACTO / ANTES & DEPOIS                                    #
+# ================================================================== #
+def page_roi(c):
+    page_bg(c)
+    section_title(c, 40, H - 64, "Valor", "Impacto — Antes & Depois", accent=GREEN)
+    text(c, 40, H - 108, "Exemplo de produtor médio (cerca de 380 L/dia) após adoção — benchmarks Embrapa / MAPA / FAO.",
+         FT_REG, 12, MUTED)
+
+    pares = [
+        ("Descarte", "9%", "4%", "-55%"),
+        ("CCS (mil)", "420", "294", "-30%"),
+        ("CBT (mil)", "180", "108", "-40%"),
+        ("Bônus qualidade", "R$ 0,05/L", "R$ 0,15/L", "3x"),
+    ]
+    cw = (W - 80 - 3 * 16) / 4
+    cx = 40
+    for nome, antes, depois, delta in pares:
+        card(c, cx, 210, cw, 165, fill=CARD)
+        text(c, cx + 16, 210 + 140, nome.upper(), FT_SEMI, 9, MUTED, tracking=0.5)
+        text(c, cx + 16, 210 + 112, "Antes", FT_REG, 8.5, MUTED)
+        text(c, cx + 16, 210 + 96, antes, FT_SEMI, 13, HexColor("#94a3b8"))
+        text(c, cx + 16, 210 + 66, "Depois", FT_REG, 8.5, GREEN)
+        text(c, cx + 16, 210 + 46, depois, FT_DISP, 22, INK)
+        chip(c, cx + 16, 210 + 14, delta, BG_DEEP, GREEN, size=9)
+        cx += cw + 16
+
+    # ganho + ESG
+    card(c, 40, 118, 440, 74, fill=BG_DEEP, border=GREEN)
+    text(c, 58, 170, "GANHO ESTIMADO", FT_SEMI, 9, GREEN, tracking=1)
+    text(c, 58, 140, "+ R$ 1.200", FT_DISP, 30, INK)
+    text(c, 230, 148, "por produtor / mês", FT_REG, 11, MUTED)
+    text(c, 230, 130, "cerca de R$ 14,4 mil / ano", FT_REG, 10, MUTED)
+
+    card(c, 496, 118, W - 40 - 496, 74, fill=BG_DEEP, border=CYAN)
+    text(c, 514, 170, "IMPACTO ESG", FT_SEMI, 9, CYAN, tracking=1)
+    text(c, 514, 140, "180+ ton CO2eq/ano", FT_DISP, 20, INK)
+    text(c, 514, 126, "evitadas (cooperativa 50 produtores · FAO 2010)", FT_REG, 8.5, MUTED)
+
+    text(c, 40, 92, "Benchmarks: Embrapa Gado de Leite, MAPA IN 77/2018, FAO (2010). Valores ilustrativos, "
+                    "ajustáveis por perfil de produtor.", FT_REG, 8, MUTED)
+    footer(c, "Valor · Impacto Antes & Depois")
+    c.showPage()
+
+
+# ================================================================== #
+# SLIDE — MODELO DE NEGÓCIO                                           #
+# ================================================================== #
+def page_negocio(c):
+    page_bg(c)
+    section_title(c, 40, H - 64, "Modelo de negócio", "Como geramos receita", accent=AMBER)
+    text(c, 40, H - 108, "B2B: o laticínio/cooperativa assina por produtor monitorado — e protege a qualidade da carteira.",
+         FT_REG, 12, MUTED)
+
+    tiers = [
+        ("BÁSICO", "R$ 39", CYAN, False,
+         ["Radar de Risco", "Score VIA LEITE", "Ranking de prioridade", "Alertas de clima (INMET)"]),
+        ("PRO", "R$ 69", GREEN, True,
+         ["Tudo do Básico", "Perfil do Produtor", "Plano de Ação", "Relatórios PDF", "Assistente WhatsApp"]),
+        ("ENTERPRISE", "sob consulta", PURPLE, False,
+         ["Tudo do Pro", "IoT / sensores reais", "API e integrações", "Multi-laticínio", "Suporte dedicado"]),
+    ]
+    cw = (W - 80 - 2 * 16) / 3
+    cx = 40
+    ctop, ch = 150, H - 300
+    for nome, preco, col, destaque, feats in tiers:
+        card(c, cx, ctop, cw, ch, fill=BG_DEEP, border=col if destaque else LINE)
+        if destaque:
+            chip(c, cx + cw - 116, ctop + ch - 22, "RECOMENDADO", BG_DEEP, GREEN, size=8)
+        text(c, cx + 18, ctop + ch - 40, nome, FT_SEMI, 11, col, tracking=1)
+        text(c, cx + 18, ctop + ch - 76, preco, FT_DISP, 30 if preco.startswith("R$") else 18, INK)
+        if preco.startswith("R$"):
+            text(c, cx + 18, ctop + ch - 92, "/ produtor · mês", FT_REG, 9, MUTED)
+        c.setStrokeColor(LINE); c.setLineWidth(0.6)
+        c.line(cx + 18, ctop + ch - 104, cx + cw - 18, ctop + ch - 104)
+        yy = ctop + ch - 126
+        for f in feats:
+            c.setFillColor(col); c.circle(cx + 22, yy + 3, 2.5, fill=1, stroke=0)
+            text(c, cx + 32, yy, f, FT_REG, 10.5, INK); yy -= 22
+        cx += cw + 16
+
+    card(c, 40, 62, W - 80, 42, fill=HexColor("#2a2410"))
+    text(c, 56, 87, "POR QUE O LATICÍNIO PAGA:", FT_SEMI, 9, AMBER, tracking=0.5)
+    text(c, 250, 87, "Reduz descarte e penalidades, protege o bônus de qualidade e fideliza o produtor.",
+         FT_REG, 10.5, INK)
+    text(c, 56, 72, "Média ponderada cerca de R$ 60/produtor/mês — coerente com a base do TAM/SAM/SOM.",
+         FT_REG, 8, MUTED)
+    footer(c, "Modelo de negócio")
+    c.showPage()
+
+
 def gerar_qr():
     qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=10, border=1)
     qr.add_data(DEMO_URL); qr.make(fit=True)
@@ -908,9 +1042,9 @@ def main():
     build(OUT_ID, [page_identity_cover, page_identity],
           "VIA LEITE SENSE — Identidade Visual")
     # Arquivo 2 — somente apresentação do protótipo
-    build(OUT_PROTO, [page_cover, page_problem, page_radar, page_score,
-                      page_whatsapp, page_market, page_competitors,
-                      page_positioning, page_qr],
+    build(OUT_PROTO, [page_cover, page_problem, page_radar, page_score, page_perfil,
+                      page_whatsapp, page_roi, page_market, page_negocio,
+                      page_competitors, page_positioning, page_qr],
           "VIA LEITE SENSE — Protótipo")
 
 
