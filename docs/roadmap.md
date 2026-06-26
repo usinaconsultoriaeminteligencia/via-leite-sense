@@ -108,6 +108,43 @@ da proposta de valor e do pitch da plataforma.
 
 ---
 
+## Fase 3.5 — Camada de Perfil do Produtor (planejado)
+
+**Status:** 🔬 Mini-protótipo isolado validado (Junho 2026) — integração planejada
+
+**Objetivo:** Complementar o Score de Risco (preditivo — *quando* agir) com um
+**perfil estrutural** do produtor (descritivo — *como* agir), transformando
+recomendação genérica em cirúrgica. Fundamentado em Gonçalves (2025) / MilkPoint
+(estudo real: 2.002 produtores, 16.362 análises, noroeste do RS).
+
+### Conceito (dois eixos)
+
+| | Score de Risco (existe) | Perfil (a integrar) |
+|---|---|---|
+| Pergunta | "Quem está em risco agora?" | "Que TIPO de produtor é este?" |
+| Natureza | Dinâmica / preditiva | Estrutural / descritiva |
+
+Três perfis por **regra de negócio** (não clustering sobre dados sintéticos):
+**Consistente · Oscilante · Desafiador**, ancorados na IN 77 (CCS/CBT) +
+coeficiente de variação da produção.
+
+### Validado no mini-protótipo (`perfil/perfil_demo.py`, isolado do app)
+
+- [x] Classificador por regra (`perfil/classificador_perfil.py`)
+- [x] CV de produção calculável na base atual; corte 0,15 separa ~37% como oscilante
+- [x] Reaproveita `score_risco_fornecedor` e o cruza com o perfil (recomendação combinada)
+- [x] Régua de "Desafiador" calibrada (CCS severo ≥ 600 mil = `ccs_alto` do score_risco)
+- [ ] Sólidos totais (gordura/proteína) — **indisponível na base atual**; ativa com dados reais
+- [ ] Clustering real (K-Means) — só faz sentido sobre dados de piloto reais
+- [ ] Integração visual (página Produtores / Fornecedores 360) — pós-maratona
+
+### Decisão de escopo
+
+Para o AgroStartup (27/06) a camada entra como **roadmap + mini-protótipo testável
+à parte** — o app em produção não é alterado a poucos dias do prazo.
+
+---
+
 ## Fase 4 — VIA LEITE EDGE com sensores IoT e telemetria
 
 **Status:** ⬜ Planejado — 2026/2027
@@ -165,6 +202,7 @@ dados em tempo real para o dashboard sem intervenção manual.
 | Fase 1 — MVP | ✅ Concluído | Dez 2025 – Abr 2026 | Produto demonstrável ao vivo |
 | Fase 2 — Piloto real | 🔄 Planejado | Jul – Set 2026 | Validação com dados reais |
 | Fase 3 — Score de Risco | ✅ Concluído | Jun 2026 | Score VIA LEITE + Radar de Risco |
+| Fase 3.5 — Perfil do Produtor | 🔬 Protótipo isolado | Jun 2026 | Perfil estrutural (Consistente/Oscilante/Desafiador) |
 | Fase 4 — IoT/Edge | ⬜ Futuro | 2027 | Telemetria em tempo real |
 
 ---
