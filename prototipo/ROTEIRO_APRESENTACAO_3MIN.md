@@ -1,25 +1,26 @@
 # Roteiro de Apresentação — VIA LEITE SENSE
-### Pitch solo · 3 min de apresentação + 3 min de perguntas · base: protótipo (13 páginas)
+### Pitch solo · 3 min de apresentação + 3 min de perguntas · base: protótipo (14 páginas)
 
 > **Como estudar:** decore a **abertura** e o **fechamento** (são os que mais pegam).
 > No meio, fale com naturalidade seguindo os marcos. Tenha o protótipo aberto e
 > vá passando os slides nos tempos indicados. Fale ~130 palavras/min, com pausas.
 
+**Ordem do protótipo:** 1 Capa · 2 Problema · 3 Radar · 4 Score · 5 Perfil · 6 WhatsApp ·
+7 Impacto · 8 Mercado · 9 Modelo · 10 Concorrência · 11 Posicionamento · 12 Roadmap ·
+**13 Equipe** · 14 QR.
+
 ---
 
 ## ⏱️ Mapa de tempo (180 s)
 
-> O protótipo tem a **página 2 = Equipe**. Mostre-a ~3 s no início (ou deixe aberta
-> enquanto fala a abertura) e siga — não gaste tempo narrando a equipe no pitch de 3 min.
-
 | Tempo | Bloco | Slide | Ideia-chave |
 |---|---|---|---|
-| 0:00–0:20 | Gancho (+ Equipe pág. 2) | 1 Capa → 2 Equipe | Um número que choca |
-| 0:20–0:45 | Problema | 3 Problema | Descoberta tardia = perda de dinheiro |
-| 0:45–1:25 | Solução | 4-5-6 Radar / Score / Perfil | QUANDO agir + COMO agir |
-| 1:25–1:55 | Mercado + Modelo | 9-10 (11-12 de relance) | Mercado grande, espaço livre, como cobramos |
-| 1:55–2:30 | Impacto + Adoção | 8 Impacto / 7 WhatsApp | R$ e ESG + simples na ponta |
-| 2:30–3:00 | Roadmap + Fechamento | 13 / 14 QR | Onde chegamos e o pedido |
+| 0:00–0:20 | Gancho | 1 Capa | Um número que choca |
+| 0:20–0:45 | Problema | 2 Problema | Descoberta tardia = perda de dinheiro |
+| 0:45–1:25 | Solução | 3-4-5 Radar / Score / Perfil | QUANDO agir + COMO agir |
+| 1:25–1:55 | Mercado + Modelo | 8-9 (10-11 de relance) | Mercado grande, espaço livre, como cobramos |
+| 1:55–2:25 | Impacto + Adoção | 7 Impacto / 6 WhatsApp | R$ e ESG + simples na ponta |
+| 2:25–3:00 | Roadmap + Equipe + Fechamento | 12 → 13 Equipe → 14 QR | Onde chegamos, quem somos e o pedido |
 
 ---
 
@@ -32,37 +33,37 @@
 > "Eu sou [seu nome], do VIA LEITE SENSE: o **radar de risco da cadeia leiteira**."
 
 *(Pausa de 1 segundo depois do número. Deixa o impacto bater.)*
-*(Opcional, ao virar para a pág. 2 — Equipe: "somos três — negócio, dados e produto" — e siga.)*
 
-### [0:20–0:45] Problema — slide 3
+### [0:20–0:45] Problema — slide 2
 > "Hoje a gestão é **reativa**: a qualidade vem de um exame de laboratório mensal.
 > Quando o resultado chega, já é tarde — caiu a qualidade, caiu o pagamento, perdeu o bônus.
 > **A dor não é o descarte. É a falta de antecipação.**"
 
-### [0:45–1:25] Solução — slides 4, 5 e 6
+### [0:45–1:25] Solução — slides 3, 4 e 5
 > "A gente vira isso de reativo para **preditivo**. Cruzamos clima, qualidade e produção
 > num **Score de Risco de 0 a 100** que antecipa, com 7 a 30 dias, **quem** vai ter problema —
-> esse é o **QUANDO agir**." *(passa slide 5)*
+> esse é o **QUANDO agir**." *(passa slide 4)*
 >
 > "E vamos além: cada produtor recebe um **Perfil** — Consistente, Oscilante ou Desafiador —
 > que diz **COMO agir**. Assistência genérica destrói resultado; o perfil torna a recomendação
-> **cirúrgica**." *(slide 6)*
+> **cirúrgica**." *(slide 5)*
 
-### [1:25–1:55] Mercado e Modelo — slides 9 e 10 (cite 11-12 de relance)
+### [1:25–1:55] Mercado e Modelo — slides 8 e 9 (cite 10-11 de relance)
 > "O mercado existe e está quente: software leiteiro é **US$ 1,5 bilhão**, crescendo 10% ao ano —
-> mas ninguém faz esse radar **preditivo da cadeia brasileira**. *(aponta slide 11/12 rápido)*
+> mas ninguém faz esse radar **preditivo da cadeia brasileira**. *(aponta slide 10/11 rápido)*
 > Começando por Goiás, nosso alvo realista de 3 anos é **R$ 3,2 milhões por ano**.
 > O modelo é **B2B**: o laticínio assina por produtor — e protege a qualidade da carteira."
 
-### [1:55–2:30] Impacto e Adoção — slides 8 e 7
-> "O retorno é direto: **mais de R$ 1.200 por produtor por mês** e menos emissão de CO₂. *(slide 8)*
+### [1:55–2:25] Impacto e Adoção — slides 7 e 6
+> "O retorno é direto: **mais de R$ 1.200 por produtor por mês** e menos emissão de CO₂. *(slide 7)*
 > E a adoção é simples: o produtor recebe tudo **traduzido no WhatsApp** que ele já usa —
-> sem instalar nada, sem termo técnico." *(slide 7)*
+> sem instalar nada, sem termo técnico." *(slide 6)*
 
-### [2:30–3:00] Fechamento — slides 13 e 14 (QR)
-> "Score e Radar já estão **no ar**; o Perfil está validado em protótipo. *(slide 13)*
+### [2:25–3:00] Roadmap, Equipe e Fechamento — slides 12, 13 e 14
+> "Score e Radar já estão **no ar**; o Perfil está validado em protótipo. *(slide 12 — Roadmap)*
+> Por trás disso, um time de negócio, dados e produto. *(slide 13 — Equipe, ~3 s)*
 > **O VIA LEITE SENSE faz a cadeia leiteira parar de descobrir o problema tarde demais.**
-> A demonstração está no ar — é só apontar a câmera nesse QR. *(slide 14)*
+> A demonstração está no ar — é só apontar a câmera nesse QR. *(slide 14 — QR)*
 > **Estamos buscando o primeiro laticínio parceiro para o piloto no Sul Goiano.** Obrigado."
 
 *(Fechar com o ask claro. Sorrir. Parar de falar — não enrole.)*

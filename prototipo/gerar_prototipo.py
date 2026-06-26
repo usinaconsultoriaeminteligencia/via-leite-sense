@@ -1094,9 +1094,10 @@ def main():
     build(OUT_ID, [page_identity_cover, page_identity],
           "VIA LEITE SENSE — Identidade Visual")
     # Arquivo 2 — somente apresentação do protótipo
-    build(OUT_PROTO, [page_cover, page_equipe, page_problem, page_radar, page_score, page_perfil,
+    build(OUT_PROTO, [page_cover, page_problem, page_radar, page_score, page_perfil,
                       page_whatsapp, page_roi, page_market, page_negocio,
-                      page_competitors, page_positioning, page_roadmap, page_qr],
+                      page_competitors, page_positioning, page_roadmap,
+                      page_equipe, page_qr],
           "VIA LEITE SENSE — Protótipo")
 
 
