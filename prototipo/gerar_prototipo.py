@@ -246,6 +246,21 @@ def page_cover(c):
     c.showPage()
 
 # ================================================================== #
+# SLIDE — EQUIPE (apresentação formal, solicitada na mentoria)        #
+# ================================================================== #
+def page_equipe(c):
+    page_bg(c)
+    img = os.path.join(HERE, "assets", "equipe.png")
+    iw = W
+    ih = W * 768 / 1376
+    iy = (H - ih) / 2 + 6
+    if os.path.exists(img):
+        c.drawImage(img, 0, iy, iw, ih, mask="auto")
+    footer(c, "Equipe")
+    c.showPage()
+
+
+# ================================================================== #
 # PÁGINA 2 — IDENTIDADE VISUAL                                        #
 # ================================================================== #
 def page_identity(c):
@@ -1079,7 +1094,7 @@ def main():
     build(OUT_ID, [page_identity_cover, page_identity],
           "VIA LEITE SENSE — Identidade Visual")
     # Arquivo 2 — somente apresentação do protótipo
-    build(OUT_PROTO, [page_cover, page_problem, page_radar, page_score, page_perfil,
+    build(OUT_PROTO, [page_cover, page_equipe, page_problem, page_radar, page_score, page_perfil,
                       page_whatsapp, page_roi, page_market, page_negocio,
                       page_competitors, page_positioning, page_roadmap, page_qr],
           "VIA LEITE SENSE — Protótipo")
