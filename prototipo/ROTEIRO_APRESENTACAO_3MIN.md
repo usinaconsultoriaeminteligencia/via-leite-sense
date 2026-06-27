@@ -123,4 +123,4 @@
 
 ---
 
-*Roteiro — VIA LEITE SENSE | Equipe: Fagner Pinho · Matheus Iverson · Daianne Valéria*
+*Roteiro — VIA LEITE SENSE | Equipe: Fagner Pinho · Matheus Iverson · Daianne Valéria · Maria Vitória (veterinária) · Diego Santana (eng. de software)*

@@ -234,10 +234,12 @@ def page_cover(c):
     text(c, 64, 66, "Documento de prototipagem · v2.0", FT_REG, 10, MUTED)
 
     # equipe (inferior direito)
-    text(c, W - 60, 104, "EQUIPE", FT_SEMI, 9, CYAN, align="r", tracking=2)
-    text(c, W - 60, 84, "Fagner Pinho", FT_SEMI, 12, INK, align="r")
-    text(c, W - 60, 67, "Matheus Iverson", FT_SEMI, 12, INK, align="r")
-    text(c, W - 60, 50, "Daianne Valéria", FT_SEMI, 12, INK, align="r")
+    text(c, W - 60, 116, "EQUIPE", FT_SEMI, 9, CYAN, align="r", tracking=2)
+    text(c, W - 60, 98, "Fagner Pinho", FT_SEMI, 11, INK, align="r")
+    text(c, W - 60, 82, "Matheus Iverson", FT_SEMI, 11, INK, align="r")
+    text(c, W - 60, 66, "Daianne Valéria", FT_SEMI, 11, INK, align="r")
+    text(c, W - 60, 50, "Maria Vitória", FT_SEMI, 11, INK, align="r")
+    text(c, W - 60, 34, "Diego Santana", FT_SEMI, 11, INK, align="r")
 
     # radar decorativo à direita (tema "Radar de Risco", não é o logo)
     radar_motif(c, W - 175, 300, 135)
@@ -253,9 +255,14 @@ def page_equipe(c):
     img = os.path.join(HERE, "assets", "equipe.png")
     iw = W
     ih = W * 768 / 1376
-    iy = (H - ih) / 2 + 6
+    iy = (H - ih) / 2 + 18
     if os.path.exists(img):
         c.drawImage(img, 0, iy, iw, ih, mask="auto")
+    # Reforço da equipe (entraram em 27/06/2026) — faixa de texto até as fotos chegarem
+    text(c, W / 2, 50, "REFORÇO DA EQUIPE · 27/06/2026", FT_SEMI, 8.5, CYAN, align="c", tracking=2)
+    text(c, W / 2, 34, "Maria Vitória — Veterinária (validação sanitária e compliance)   ·   "
+                       "Diego Santana — Engenheiro de Software (arquitetura, API e IoT)",
+         FT_SEMI, 9.5, INK, align="c")
     footer(c, "Equipe")
     c.showPage()
 
@@ -665,11 +672,11 @@ def page_market(c):
 
     # painel de contexto (direita inferior)
     cardx = 560
-    text(c, cardx, 150, "CONTEXTO DE MERCADO (2023)", FT_SEMI, 9, CYAN, tracking=1)
-    ctx = [("35,4 bi L", "produção Brasil · IBGE"),
-           ("2,2 bi L", "produção Goiás · 6º"),
-           ("~150 mil", "produtores formais"),
-           ("1,18 mi", "total c/ informais")]
+    text(c, cardx, 150, "CONTEXTO DE MERCADO (2024)", FT_SEMI, 9, CYAN, tracking=1)
+    ctx = [("35,7 bi L", "produção Brasil · IBGE 2024"),
+           ("2,92 bi L", "produção Goiás · 5º maior"),
+           ("R$ 87,5 bi", "valor da produção · BR"),
+           ("~150 mil", "produtores formais")]
     for i, (v, d) in enumerate(ctx):
         col = cardx + (i % 2) * 132
         row = 110 if i < 2 else 70
@@ -677,7 +684,7 @@ def page_market(c):
         text(c, col + 10, row + 18, v, FT_DISP, 15, INK)
         text(c, col + 10, row + 6, d, FT_REG, 8, MUTED)
 
-    text(c, 40, 50, "Fontes: IBGE/PPM 2023 · MilkPoint Ventures 2023 · IBGE Censo Agropecuário 2017. "
+    text(c, 40, 50, "Fontes: IBGE/SIDRA 2024 (Produção da Pecuária Municipal) · MilkPoint Ventures · Censo Agropecuário 2017. "
                     "Receita = produtores × R$ 60/mês × 12. Premissas ajustáveis ao vivo no app.",
          FT_REG, 7.5, MUTED)
     footer(c, "Mercado · TAM/SAM/SOM")
@@ -1071,7 +1078,7 @@ def gerar_qr():
     img.save(QR_PNG)
 
 
-AUTOR = "Equipe VIA LEITE SENSE — Fagner Pinho, Matheus Iverson, Daianne Valéria"
+AUTOR = "Equipe VIA LEITE SENSE — Fagner Pinho, Matheus Iverson, Daianne Valéria, Maria Vitória, Diego Santana"
 OUT_ID = os.path.join(HERE, "VIA_LEITE_SENSE_Identidade_Visual.pdf")
 OUT_PROTO = os.path.join(HERE, "VIA_LEITE_SENSE_Prototipo.pdf")
 
