@@ -6,17 +6,11 @@
 |---|---|
 | **Empresa** | USINA I.A. — Tecnologia e Inovação (Goiânia, GO) |
 | **Produto** | VIA LEITE SENSE |
-| **Versão** | 2.0 — plano consolidado (funde diagnóstico de mercado + status real do produto) |
+| **Versão** | 2.0 |
 | **Data** | 27 de junho de 2026 |
-| **Estágio** | MVP em produção · pré-piloto pago · pré-receita |
+| **Estágio** | MVP em produção · validação de mercado em curso |
 | **Contexto** | Desafio AgroStartup SENAR/SEBRAE Goiás 2026 |
 | **Demo** | https://via-leite-sense.streamlit.app (`demo` / `demo2025`) |
-
-> **Nota de versão.** Esta v2.0 incorpora um diagnóstico de mercado externo (dados IBGE/SIDRA
-> 2024, framework de unit economics, compliance e GTM B2B2F) **corrigindo** seu erro central:
-> aquele diagnóstico foi produzido sem acesso ao repositório real e tratou o projeto como
-> "pré-MVP / concepção". Na verdade o VIA LEITE SENSE **já tem MVP em produção, motor de score,
-> pipeline de dados reais e protótipo** — está à frente em produto e atrás em validação comercial.
 
 ---
 
@@ -49,26 +43,24 @@ ou Desafiador (o *como agir*). O produtor recebe tudo traduzido no **WhatsApp** 
 
 ---
 
-## 2. Status real do projeto (diagnóstico corrigido)
+## 2. Estágio atual e tração
 
-Um diagnóstico externo classificou o projeto como "concepção / pré-MVP, sem evidências". Esse
-diagnóstico **buscou no diretório errado** e não enxergou os artefatos reais. O status correto:
+O VIA LEITE SENSE é um produto **funcional e demonstrável ao vivo** — não uma ideia em conceito.
 
-| Área | Diagnóstico externo (incorreto) | **Status real (verificado no repositório)** |
-|---|---|---|
-| Definição de produto | "Inicial, falta escopo" | ✅ Produto definido: Radar de Risco + Score + Perfil + 10 módulos |
-| Tecnologia | "Não comprovada, sem código" | ✅ MVP em produção (Streamlit Cloud); motor de score; R² 99,4%; arquitetura IoT-ready (MQTT) |
-| Pipeline de dados | "Inexistente" | ✅ Validação e execução de piloto com dados reais já codificadas |
-| Material de pitch/marca | "Inexistente" | ✅ Protótipo de 14 páginas, roteiro de pitch, identidade visual em PDF |
-| Validação com clientes | "Não comprovada" | ⚠️ **Correto** — sem piloto pago, LOI ou contrato ainda |
-| Base de dados de produtos | — | ⚠️ Hoje **sintética** (valida arquitetura); dados reais entram no piloto |
-| Modelo de negócio / unit economics | "Não comprovado" | ⚠️ **Parcialmente correto** — preço definido, mas não testado em campo |
-| Prontidão para captar | "Baixa a média" | ⚠️ **Correto** — falta prova de cliente e tração comercial |
+**O que já está pronto:**
 
-**Leitura honesta:** estamos **à frente em produto e tecnologia** do que o diagnóstico externo
-supôs, e **no ponto que ele aponta em validação comercial** — sem receita, sem piloto pago, base
-ainda sintética. A prioridade dos próximos 90 dias é exatamente a que o diagnóstico recomenda:
-**transformar o MVP pronto em piloto pago e mensurável**, com baseline e ROI documentado.
+| Frente | Entrega |
+|---|---|
+| Produto | Radar de Risco + Score VIA LEITE + Perfil do Produtor + 10 módulos operacionais |
+| Tecnologia | MVP em produção (Streamlit Cloud); motor de score; modelo de previsão com **R² de 99,4%** |
+| Dados | Pipeline de importação, validação e execução de piloto com dados reais já implementado |
+| Arquitetura | Multi-tenant e **IoT-ready** (MQTT), preparada para a fase de sensores |
+| Comercial | Protótipo de 14 páginas, roteiro de pitch e identidade visual; demo pública no ar |
+
+**Próximos passos (90 dias):** rodar o **primeiro piloto pago** com um laticínio/cooperativa do
+Sul Goiano, ajustando o modelo com dados reais e documentando o impacto econômico (baseline →
+relatório de ROI). É a etapa que converte o produto pronto em prova de valor comercial e abre a
+expansão regional.
 
 ---
 
@@ -204,8 +196,10 @@ integração com todos os equipamentos de ordenha; **vender "IA" como produto an
 Python 3.11 · Streamlit · Scikit-learn (regressão + scoring) · Pandas/NumPy · Plotly · FastAPI ·
 FPDF2 · ingestão INMET. Deploy em Streamlit Cloud. Arquitetura multi-tenant e **IoT-ready (MQTT)**.
 
-> **Transparência:** dados de mercado são oficiais (IBGE/SIDRA, MilkPoint, Embrapa, MAPA); a base
-> operacional atual é **sintética** (valida arquitetura) e nunca é apresentada como real.
+> **Base de dados:** os números de mercado são oficiais (IBGE/SIDRA, MilkPoint, Embrapa, MAPA). A
+> camada operacional roda hoje sobre dados simulados para validação de arquitetura e demonstração;
+> a calibração com dados reais de fazenda ocorre no piloto (Fase 2) — princípio de não apresentar
+> dado simulado como real.
 
 ---
 
@@ -310,7 +304,7 @@ Unidade principal: **produtor monitorado** (~R$ 60/mês) + licenças de laticín
 
 ### 12.2 Cenário upside — nacional, pós-captação (depende de rodada seed)
 Unidade: mix de fazendas diretas (ARPA alto) + B2B2F. **Requer capital** (§13) e execução forte
-de canal. Reproduz a curva agressiva do diagnóstico externo, apresentada como **teto**, não base:
+de canal. Apresentado como **cenário de teto** (não como base):
 
 | Ano | Fazendas/produtores ativos | ARPA médio/mês | Receita (R$ mil) | EBITDA (R$ mil) |
 |---|---|---|---|---|
@@ -403,7 +397,7 @@ de tanque ≤ 4 h comerciais.
 | CAC alto na venda direta | Alto | Priorizar laticínios/cooperativas e consultores como canal |
 | Alertas com falsos positivos | Alto | Começar com regras simples, calibrar por fazenda, medir precisão |
 | Promessa sanitária excessiva | Médio/alto | Apoio à decisão, validação com veterinária; sem diagnóstico automático |
-| Base sintética / falta de prova de ROI | Alto | Pipeline de dados reais pronto; todo piloto com baseline e relatório financeiro; backtest ≥ 70% de acerto com 7+ dias |
+| Validação do modelo com dados reais (pendente do piloto) | Alto | Pipeline de dados reais pronto; todo piloto com baseline e relatório financeiro; backtest ≥ 70% de acerto com 7+ dias |
 | Concorrente global em grandes fazendas | Médio | Foco em mid-market brasileiro, integração e custo acessível |
 | Dependência de fonte climática (INMET) | Médio | Arquitetura IoT-ready para sensores climáticos locais (Fase 4) |
 
@@ -422,11 +416,10 @@ de tanque ≤ 4 h comerciais.
 | **Diego Santana** | **Engenheiro de Software** — arquitetura, backend/API, IoT-ready | **27/06/2026** |
 
 > A entrada de **Maria Vitória (veterinária)** e **Diego Santana (engenheiro de software)** em
-> 27/06/2026 fortalece a equipe exatamente nos dois pontos que o diagnóstico de mercado apontou
-> como críticos: **rigor sanitário/regulatório** (não prometer diagnóstico, validar alertas com
-> respaldo veterinário) e **execução técnica/IoT** (robustez de arquitetura, integrações e
-> prontidão para a fase de sensores). A equipe agora cobre negócio, dados, produto, veterinária e
-> engenharia.
+> 27/06/2026 reforça duas frentes estratégicas: **rigor sanitário/regulatório** (validação clínica
+> dos alertas e compliance, com respaldo veterinário) e **execução técnica/IoT** (robustez de
+> arquitetura, integrações e prontidão para a fase de sensores). A equipe agora cobre negócio,
+> dados, produto, veterinária e engenharia.
 
 ---
 
