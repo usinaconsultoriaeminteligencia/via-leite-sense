@@ -169,7 +169,9 @@ const storageKeys = {
   plans: "via_leite_action_plans"
 };
 
-const API_BASE = window.VIA_LEITE_API_BASE || "http://127.0.0.1:8000";
+const API_BASE = window.VIA_LEITE_API_BASE
+  || document.querySelector('meta[name="via-leite-api-base"]')?.content
+  || "http://127.0.0.1:8000";
 
 const state = {
   route: window.location.hash.replace("#", "") || "comando",
@@ -179,6 +181,7 @@ const state = {
   editingPlanId: null,
   onboardingResult: null,
   apiOnline: false,
+  radarDim: "produtor",
   apiData: {
     portfolio: null,
     riskDistribution: null,
@@ -186,7 +189,10 @@ const state = {
     actionPlans: null,
     actionPlanEffectiveness: null,
     impact: null,
-    trainingSummary: null
+    trainingSummary: null,
+    riskRadar: null,
+    modelMetrics: null,
+    modelPredictions: null
   },
   scenario: {
     qualidade: 18,
@@ -214,6 +220,23 @@ async function init() {
   setRoute(state.route);
   render();
   await hydrateFromApi();
+  await hydrateRadarData();
+}
+
+async function hydrateRadarData() {
+  try {
+    const [riskRadar, modelMetrics, modelPredictions] = await Promise.all([
+      apiFetch(`/risk-radar?agruparPor=${state.radarDim}`),
+      apiFetch("/model/metrics"),
+      apiFetch("/model/predictions")
+    ]);
+    state.apiData.riskRadar = riskRadar;
+    state.apiData.modelMetrics = modelMetrics;
+    state.apiData.modelPredictions = modelPredictions;
+  } catch (error) {
+    console.info("Radar de risco/modelo indisponível.", error);
+  }
+  renderRadar();
 }
 
 async function hydrateFromApi() {
@@ -468,10 +491,197 @@ function render() {
   const data = getFilteredSuppliers();
   renderCommand(data);
   renderPortfolio(data);
+  renderRadar();
   renderSupplier360(data);
   renderManagement(data);
   renderPlans(data);
   renderImpact(data);
+}
+
+const RADAR_DIM_LABELS = { produtor: "Produtor", rota: "Rota", laticinio: "Laticínio" };
+
+function renderRadar() {
+  const target = $("#radar");
+  if (!target) return;
+  const radar = state.apiData.riskRadar;
+  const metrics = state.apiData.modelMetrics;
+  const predictions = state.apiData.modelPredictions;
+
+  if (!radar) {
+    target.innerHTML = `
+      <section class="panel">
+        <h2>Radar de Risco</h2>
+        <p class="muted">Radar de risco indisponível. Verifique se a base operacional (MVP_DATA_DIR) e os artefatos do modelo (MVP_ARTEFATOS_DIR) estão configurados na API.</p>
+      </section>
+    `;
+    return;
+  }
+
+  const maxClasse = Math.max(1, ...radar.distribuicaoClasse.map((item) => item.registros));
+
+  target.innerHTML = `
+    <div class="kpi-grid">
+      ${kpi("Risco de queda de produção", `${decimal.format(radar.kpis.pctRiscoQuedaProducao)}%`, "dos registros no período")}
+      ${kpi("Risco de perda de qualidade", `${decimal.format(radar.kpis.pctRiscoQualidade)}%`, "dos registros no período")}
+      ${kpi("Risco de perda de bônus", `${decimal.format(radar.kpis.pctRiscoPerdaBonus)}%`, "dos registros no período")}
+      ${kpi("Situações críticas", radar.kpis.situacoesCriticas, radar.kpis.situacoesCriticas > 0 ? "Ação imediata recomendada" : "Nenhuma crítica")}
+      ${kpi("Impacto econômico estimado", money.format(radar.kpis.impactoEconomicoTotal), "Perda potencial mensal")}
+    </div>
+
+    <div class="grid-2">
+      <section class="panel">
+        <h2>Score médio de risco</h2>
+        <div class="score-grid" style="grid-template-columns: minmax(0, 1fr);">
+          ${scoreCard("Score VIA LEITE (carteira)", radar.scoreMedio)}
+        </div>
+        <h3 style="margin-top: 18px;">Distribuição por classe</h3>
+        <div class="chart-bars">
+          ${radar.distribuicaoClasse.map((item) => barRow(item.classe, item.registros, maxClasse)).join("")}
+        </div>
+      </section>
+      <section class="panel">
+        <h2>Modelo preditivo</h2>
+        ${metrics ? `
+          <div class="score-grid">
+            ${scoreCard("RMSE", metrics.teste.rmse)}
+            ${scoreCard("MAE", metrics.teste.mae)}
+            ${scoreCard("R²", metrics.teste.r2 * 100)}
+            ${scoreCard("sMAPE", metrics.teste.smapePct)}
+          </div>
+          <p class="muted" style="margin-top: 12px;">${metrics.modelo || "-"} · alvo ${metrics.target || "-"} · horizonte ${metrics.horizonteDias || "-"} dias · ${number.format(metrics.testeLinhas || 0)} registros de teste</p>
+        ` : `<p class="muted">Métricas do modelo indisponíveis.</p>`}
+        ${predictions?.serie?.length ? sparkline(predictions.serie) : ""}
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top: 18px;">
+      <h2>Mapa de calor de risco por ${radar.heatmap.dimensao === "rota" ? "rota" : "laticínio"}</h2>
+      ${heatmapTable(radar.heatmap)}
+    </section>
+
+    <section class="panel" style="margin-top: 18px;">
+      <div class="tabs">
+        <span class="mini-label" style="align-self: center;">Agrupar ranking por</span>
+        ${Object.entries(RADAR_DIM_LABELS).map(([key, label]) => `
+          <button class="tab-button ${state.radarDim === key ? "active" : ""}" type="button" data-radar-dim="${key}">${label}</button>
+        `).join("")}
+      </div>
+      <h2>Ranking de prioridade de ação preventiva</h2>
+      ${radarRankingTable(radar.ranking, state.radarDim)}
+    </section>
+
+    <section class="panel" style="margin-top: 18px;">
+      <h2>Horizonte de risco</h2>
+      <div class="kpi-grid">
+        ${radar.horizonte.map((item) => kpi(`Próximos ${item.label}`, `Score ${decimal.format(item.scoreMedio)}`, `${item.criticos} críticos · ${money.format(item.impacto)} em risco`)).join("")}
+      </div>
+    </section>
+  `;
+
+  $$("[data-radar-dim]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.radarDim = button.dataset.radarDim;
+      hydrateRadarData();
+    });
+  });
+}
+
+function heatmapTable(heatmap) {
+  if (!heatmap.linhas.length) return `<p class="muted">Dados insuficientes para o mapa de calor.</p>`;
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>${heatmap.dimensao === "rota" ? "Rota" : "Laticínio"}</th>
+            ${heatmap.indicadores.map((label) => `<th>${label}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${heatmap.linhas.map((linha) => `
+            <tr>
+              <td><strong>${linha.chave}</strong></td>
+              ${heatmap.indicadores.map((label) => heatmapCell(linha.valores[label])).join("")}
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function heatmapCell(value) {
+  const v = Number(value) || 0;
+  const level = v >= 75 ? "danger" : v >= 40 ? "warn" : "";
+  return `<td><span class="heat-pill ${level}">${decimal.format(v)}%</span></td>`;
+}
+
+function riskPillClass(classe) {
+  if (classe === "Crítico") return "Critico";
+  if (classe === "Alto risco") return "Alto";
+  if (classe === "Atenção") return "Médio";
+  return "Baixo";
+}
+
+function radarRankingTable(ranking, dim) {
+  if (!ranking.length) return `<p class="muted">Nenhum registro no ranking.</p>`;
+  const dimLabel = RADAR_DIM_LABELS[dim] || "Chave";
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>${dimLabel}</th>
+            <th>Score</th>
+            <th>Classe</th>
+            <th>Impacto estimado</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ranking.map((item) => `
+            <tr>
+              <td>${item.prioridadeAcao}</td>
+              <td><strong>${item.chave}</strong></td>
+              <td>${scoreBar(item.scoreViaLeite)}</td>
+              <td><span class="risk-pill risk-${riskPillClass(item.classeRisco)}">${item.classeRisco}</span></td>
+              <td>${money.format(item.impactoEconomicoEstimado)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function sparkline(serie) {
+  const width = 560;
+  const height = 120;
+  const pad = 8;
+  const values = serie.flatMap((point) => [point.yReal, point.yPred]).filter((value) => Number.isFinite(value));
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  const step = (width - pad * 2) / Math.max(1, serie.length - 1);
+  const points = (key) => serie.map((point, index) => {
+    const x = pad + index * step;
+    const y = height - pad - ((point[key] - min) / range) * (height - pad * 2);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+
+  return `
+    <h3 style="margin-top: 18px;">Realizado × previsto (série diária)</h3>
+    <div class="sparkline-wrap">
+      <svg viewBox="0 0 ${width} ${height}" class="sparkline" preserveAspectRatio="none">
+        <polyline points="${points("yReal")}" class="spark-real" fill="none" />
+        <polyline points="${points("yPred")}" class="spark-pred" fill="none" />
+      </svg>
+      <div class="sparkline-legend">
+        <span><span class="legend-dot real"></span>Realizado</span>
+        <span><span class="legend-dot pred"></span>Previsto</span>
+      </div>
+    </div>
+  `;
 }
 
 function renderCommand(data) {

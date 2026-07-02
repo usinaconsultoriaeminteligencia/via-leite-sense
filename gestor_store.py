@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import io
 import os
+import threading
 import uuid
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 import duckdb
 import pandas as pd
@@ -119,21 +121,36 @@ def _sql_path(path: Path) -> str:
     return str(path.resolve()).replace("\\", "/").replace("'", "''")
 
 
-def conectar(read_only: bool = False) -> duckdb.DuckDBPyConnection:
+_db_lock = threading.Lock()
+
+
+@contextmanager
+def conectar(read_only: bool = False) -> Iterator[duckdb.DuckDBPyConnection]:
     """
     Abre conexão DuckDB.
 
     Em cloud (Streamlit), conexões read_only e read_write ao mesmo arquivo
     geram ConnectionException. Aqui usamos sempre read_write para evitar
     o conflito — DuckDB garante isolation por transação.
+
+    Cada chamador abre e fecha sua própria conexão (via `with conectar() as con:`).
+    Sob concorrência (ex.: threadpool do FastAPI atendendo vários endpoints ao
+    mesmo tempo), conexões simultâneas ao mesmo arquivo executando DDL
+    (CREATE OR REPLACE VIEW, ALTER TABLE) geram "write-write conflict" no
+    catálogo do DuckDB. O lock de processo abaixo serializa todo acesso ao
+    arquivo para eliminar essa corrida.
     """
     garantir_pasta()
-    try:
-        con = duckdb.connect(str(db_path()), read_only=read_only)
-    except duckdb.ConnectionException:
-        # Fallback: abre sem read_only para contornar conflito de modo em cloud
-        con = duckdb.connect(str(db_path()), read_only=False)
-    return con
+    with _db_lock:
+        try:
+            con = duckdb.connect(str(db_path()), read_only=read_only)
+        except duckdb.ConnectionException:
+            # Fallback: abre sem read_only para contornar conflito de modo em cloud
+            con = duckdb.connect(str(db_path()), read_only=False)
+        try:
+            yield con
+        finally:
+            con.close()
 
 
 def _csv_view_sql(view_name: str, csv_path: Path) -> str:

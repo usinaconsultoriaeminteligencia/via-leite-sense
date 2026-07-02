@@ -1,0 +1,2 @@
+id_laticinio,score_via_leite,impacto_economico_estimado,target_risco_queda_producao,target_risco_qualidade,target_risco_ccs,target_risco_cbt,target_risco_temp_tanque,target_risco_perda_bonus,target_risco_descarte,litros_coletados,classe_risco,prioridade_acao
+LAT_DEMO,30.4,371039.91,0.255,0.37,0.255,0.085,0.35,0.09,0.09,457.7450816175044,Atenção,1

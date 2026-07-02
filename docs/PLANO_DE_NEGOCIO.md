@@ -234,6 +234,17 @@ a fazendas médias/grandes como segunda via. Arquitetura de planos que reconcili
 | **Sense Farm** (direto) | Fazenda média com rotina técnica | R$ 699–1.499/mês + implantação R$ 2.500–5.000 |
 | **Hardware (opcional)** | Sensor de tanque/gateway | Locação/parceria — **nunca margem negativa** |
 
+**Diferença entre Básico e Pro** — o preço acompanha a profundidade da entrega, não é variação arbitrária:
+
+| | **Básico — R$ 39** | **Pro — R$ 69** |
+|---|---|---|
+| Foco | *Quem* e *quando* agir | + *Como* agir e integração |
+| Inclui | Score de Risco 0–100, ranking de prioridade, alertas no WhatsApp, relatórios | **Tudo do Básico +** Perfil do Produtor, impacto econômico em R$, plano de ação, API de integração, suporte prioritário |
+
+Os R$ 30 de diferença pagam a camada de **ação** (Perfil + plano + tradução do risco em R$) e a
+**integração** (API com o sistema do laticínio). Mantemos preços redondos (R$ 39 / R$ 69) por ser
+venda B2B — passa mais seriedade que o preço psicológico de varejo.
+
 **Por que o laticínio paga:** protege a margem — reduz descarte e penalidades, garante o bônus de
 qualidade e fideliza o produtor. Um problema de qualidade não-antecipado custa caro, e hoje ele
 paga sempre.
@@ -364,7 +375,18 @@ explicabilidade obrigatória ("por quê" e "o que fazer"); modelos universais s�
 | Melhora de CCS | 25–35% |
 | Melhora de CBT | 35–45% |
 | Ganho de receita (médio produtor) | R$ 800–1.500/mês |
-| CO₂ evitado (cooperativa 50 prod.) | 180+ t/ano |
+| CO₂ evitado (cooperativa 50 prod.) | ~180 t/ano |
+
+**Memória de cálculo** (produtor médio ~400 L/dia ≈ 12.000 L/mês; premissas a calibrar no piloto):
+
+- **Ganho de ~R$ 1.200/produtor/mês** = bônus de qualidade protegido + descarte evitado:
+  - *Bônus protegido:* R$ 0,08/L × 12.000 L = **~R$ 960/mês** (CCS/CBT mantidos no padrão premium da
+    IN 77; o bônus *em risco* chega a R$ 1.800/mês a R$ 0,15/L — atribuímos ~metade, conservador).
+  - *Descarte evitado:* ~4 L/dia × 30 × R$ 2,45/L (preço médio IBGE 2024) = **~R$ 294/mês**.
+  - Total **≈ R$ 1.254/mês**, dentro da faixa R$ 800–1.500.
+- **~180 t CO₂-eq/ano evitadas** (cooperativa de 50 produtores) = desperdício evitado × carbono
+  embarcado: 50 prod. × ~4 L/dia × 365 = **~73.000 L/ano** que deixam de ser descartados × **2,5 kg
+  CO₂-eq/L** (FAO 2010, faixa América Latina) ≈ **~182 t/ano**. Mesmos ~4 L/dia do ganho financeiro.
 
 **Implantação:** diagnóstico → cadastro/importação → instalação do sensor de tanque/gateway →
 treinamento → configuração de alertas → revisão em 15 dias → **relatório de ROI em 60–90 dias**.

@@ -8,7 +8,13 @@
       name="description"
       content="Plataforma inteligente de monitoramento da cadeia leiteira com IA, clima e sensores virtuais para qualidade premium, rastreabilidade e redução de perdas."
     />
-    <link rel="stylesheet" href="./styles.css?v=20260513-01" />
+    <!--
+      URL base da API VIA LEITE SENSE. Em desenvolvimento local aponta para o
+      uvicorn na 8000. Ao publicar (ex.: Vercel), troque o "content" para a
+      URL pública do backend antes do deploy.
+    -->
+    <meta name="via-leite-api-base" content="http://127.0.0.1:8000" />
+    <link rel="stylesheet" href="./styles.css?v=20260701-01" />
   </head>
   <body>
     <div class="app-shell">
@@ -24,6 +30,7 @@
         <nav class="nav-list">
           <a class="nav-link active" href="#comando" data-route="comando">Painel executivo</a>
           <a class="nav-link" href="#carteira" data-route="carteira">Fazendas</a>
+          <a class="nav-link" href="#radar" data-route="radar">Radar de Risco</a>
           <a class="nav-link" href="#fornecedor-360" data-route="fornecedor-360">Fazenda 360</a>
           <a class="nav-link" href="#gestao" data-route="gestao">Operação</a>
           <a class="nav-link" href="#planos" data-route="planos">Planos inteligentes</a>
@@ -84,6 +91,7 @@
 
         <section class="route active" id="comando" data-view="comando"></section>
         <section class="route" id="carteira" data-view="carteira"></section>
+        <section class="route" id="radar" data-view="radar"></section>
         <section class="route" id="fornecedor-360" data-view="fornecedor-360"></section>
         <section class="route" id="gestao" data-view="gestao"></section>
         <section class="route" id="planos" data-view="planos"></section>
@@ -91,6 +99,6 @@
       </main>
     </div>
 
-    <script src="./app.js?v=20260513-01"></script>
+    <script src="./app.js?v=20260701-02"></script>
   </body>
 </html>

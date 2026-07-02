@@ -254,15 +254,10 @@ def page_equipe(c):
     page_bg(c)
     img = os.path.join(HERE, "assets", "equipe.png")
     iw = W
-    ih = W * 768 / 1376
-    iy = (H - ih) / 2 + 18
+    ih = W * 1536 / 2754
+    iy = (H - ih) / 2
     if os.path.exists(img):
         c.drawImage(img, 0, iy, iw, ih, mask="auto")
-    # Reforço da equipe (entraram em 27/06/2026) — faixa de texto até as fotos chegarem
-    text(c, W / 2, 50, "REFORÇO DA EQUIPE · 27/06/2026", FT_SEMI, 8.5, CYAN, align="c", tracking=2)
-    text(c, W / 2, 34, "Maria Vitória — Veterinária (validação sanitária e compliance)   ·   "
-                       "Diego Santana — Engenheiro de Software (arquitetura, API e IoT)",
-         FT_SEMI, 9.5, INK, align="c")
     footer(c, "Equipe")
     c.showPage()
 

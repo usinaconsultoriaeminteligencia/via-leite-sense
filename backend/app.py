@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import math
 from datetime import date
 import os
@@ -12,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from fornecedor_inteligencia import calcular_scores_fornecedores
+from score_risco import calcular_scores, gerar_ranking_risco
 from gestor_store import (
     carregar_planos_acao,
     conectar,
@@ -50,14 +52,20 @@ app = FastAPI(
     version="0.2.0",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
+def _cors_origins() -> list[str]:
+    default = [
         "http://localhost:8600",
         "http://127.0.0.1:8600",
         "http://localhost:8601",
         "http://127.0.0.1:8601",
-    ],
+    ]
+    extra = os.environ.get("MVP_CORS_ORIGINS", "")
+    return default + [origin.strip() for origin in extra.split(",") if origin.strip()]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=_cors_origins(),
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -183,6 +191,55 @@ def _scores_base() -> pd.DataFrame:
     scores = calcular_scores_fornecedores(prod, dim_prod, pred)
     scores["id_produtor"] = scores["id_produtor"].astype(str)
     return scores
+
+
+def _metricas_modelo() -> dict[str, Any]:
+    path = artefatos_dir() / "metricas_modelo.json"
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _predicoes_teste() -> pd.DataFrame:
+    path = artefatos_dir() / "predicoes_teste.csv"
+    if not path.exists():
+        return pd.DataFrame()
+    return pd.read_csv(path, parse_dates=["data"])
+
+
+def _feature_importances() -> pd.DataFrame:
+    path = artefatos_dir() / "feature_importances.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=["feature", "importance"])
+    return pd.read_csv(path)
+
+
+def _risk_radar_base() -> pd.DataFrame:
+    prod_path = data_dir() / "fact_producao_produtor_dia.csv"
+    if not prod_path.exists():
+        return pd.DataFrame()
+    df = pd.read_csv(prod_path, parse_dates=["data"], low_memory=False)
+
+    clima_path = data_dir() / "fact_clima_diario.csv"
+    if clima_path.exists() and "polo_climatico" in df.columns:
+        clima = pd.read_csv(clima_path, parse_dates=["data"])
+        cols_clima = [c for c in ["data", "polo_climatico", "thi", "temp_med_c"] if c in clima.columns]
+        df = df.merge(clima[cols_clima], on=["data", "polo_climatico"], how="left")
+
+    return calcular_scores(df)
+
+
+RISK_RADAR_TARGETS = {
+    "target_risco_queda_producao": "Queda de produção",
+    "target_risco_qualidade": "Perda de qualidade",
+    "target_risco_ccs": "CCS elevado",
+    "target_risco_cbt": "CBT elevado",
+    "target_risco_temp_tanque": "Temperatura tanque",
+    "target_risco_perda_bonus": "Perda de bônus",
+    "target_risco_descarte": "Descarte",
+}
+
+DIM_RADAR_MAP = {"produtor": "id_produtor", "rota": "id_rota", "laticinio": "id_laticinio"}
 
 
 def _dim_fornecedores_map() -> dict[str, dict[str, Any]]:
@@ -882,6 +939,152 @@ def impact() -> dict[str, Any]:
         "descarteAtacavel": avoidable_discard,
         "valorMensalMonitorado": protected_revenue,
         "eventosGerenciais": len(events),
+    }
+
+
+@app.get("/model/metrics")
+def model_metrics() -> dict[str, Any]:
+    metricas = _metricas_modelo()
+    if not metricas:
+        raise HTTPException(status_code=404, detail="Métricas do modelo não encontradas.")
+    teste = metricas.get("metricas_teste_modelo", {})
+    validacao = metricas.get("metricas_validacao_modelo", {})
+    return {
+        "modelo": metricas.get("modelo"),
+        "target": metricas.get("target"),
+        "horizonteDias": metricas.get("horizonte_dias"),
+        "treinoLinhas": metricas.get("treino_linhas"),
+        "validacaoLinhas": metricas.get("validacao_linhas"),
+        "testeLinhas": metricas.get("teste_linhas"),
+        "teste": {
+            "rmse": teste.get("rmse"),
+            "mae": teste.get("mae"),
+            "r2": teste.get("r2"),
+            "mapePct": teste.get("mape_pct"),
+            "smapePct": teste.get("smape_pct"),
+        },
+        "validacao": {
+            "rmse": validacao.get("rmse"),
+            "mae": validacao.get("mae"),
+            "r2": validacao.get("r2"),
+            "mapePct": validacao.get("mape_pct"),
+            "smapePct": validacao.get("smape_pct"),
+        },
+    }
+
+
+@app.get("/model/predictions")
+def model_predictions() -> dict[str, Any]:
+    pred = _predicoes_teste()
+    if pred.empty:
+        return {"serie": [], "porLaticinio": []}
+
+    serie = pred.groupby("data", as_index=False).agg(yReal=("y_real", "mean"), yPred=("y_pred_modelo", "mean"))
+    serie["data"] = serie["data"].apply(_json_safe)
+
+    por_laticinio = pred.groupby("id_laticinio", as_index=False).agg(
+        erroAbsMedio=("erro_abs_modelo", "mean"), yReal=("y_real", "mean")
+    )
+
+    return {
+        "serie": serie.to_dict(orient="records"),
+        "porLaticinio": por_laticinio.to_dict(orient="records"),
+    }
+
+
+@app.get("/model/feature-importance")
+def model_feature_importance() -> list[dict[str, Any]]:
+    feat = _feature_importances()
+    return feat.head(25).to_dict(orient="records")
+
+
+@app.get("/risk-radar")
+def risk_radar(agruparPor: str = "produtor") -> dict[str, Any]:
+    df = _risk_radar_base()
+    if df.empty:
+        raise HTTPException(status_code=404, detail="Base operacional não encontrada para o radar de risco.")
+
+    dim_col = DIM_RADAR_MAP.get(agruparPor)
+    if dim_col is None:
+        raise HTTPException(status_code=400, detail="agruparPor deve ser 'produtor', 'rota' ou 'laticinio'.")
+
+    def pct(col: str) -> float:
+        return round(float(df[col].mean()) * 100, 1) if col in df.columns else 0.0
+
+    kpis = {
+        "pctRiscoQuedaProducao": pct("target_risco_queda_producao"),
+        "pctRiscoQualidade": pct("target_risco_qualidade"),
+        "pctRiscoPerdaBonus": pct("target_risco_perda_bonus"),
+        "situacoesCriticas": int((df["classe_risco"] == "Crítico").sum()) if "classe_risco" in df.columns else 0,
+        "impactoEconomicoTotal": float(df["impacto_economico_estimado"].sum())
+        if "impacto_economico_estimado" in df.columns
+        else 0.0,
+    }
+
+    score_medio = float(df["score_via_leite"].mean()) if "score_via_leite" in df.columns else 0.0
+
+    distribuicao_classe = []
+    if "classe_risco" in df.columns:
+        contagem = (
+            df["classe_risco"]
+            .value_counts()
+            .reindex(["Crítico", "Alto risco", "Atenção", "Baixo risco"], fill_value=0)
+        )
+        distribuicao_classe = [{"classe": str(classe), "registros": int(n)} for classe, n in contagem.items()]
+
+    heatmap: dict[str, Any] = {"dimensao": agruparPor, "indicadores": [], "linhas": []}
+    heat_dim_col = next((c for c in ["id_rota", "id_laticinio"] if c in df.columns), None)
+    if heat_dim_col:
+        cols_presentes = {k: v for k, v in RISK_RADAR_TARGETS.items() if k in df.columns}
+        if cols_presentes:
+            agregado = df.groupby(heat_dim_col)[list(cols_presentes.keys())].mean().mul(100).round(1)
+            heatmap["dimensao"] = heat_dim_col.replace("id_", "")
+            heatmap["indicadores"] = list(cols_presentes.values())
+            heatmap["linhas"] = [
+                {"chave": str(chave), "valores": {cols_presentes[col]: float(valor) for col, valor in linha.items()}}
+                for chave, linha in agregado.iterrows()
+            ]
+
+    ranking_records: list[dict[str, Any]] = []
+    if dim_col in df.columns:
+        ranking = gerar_ranking_risco(df, agrupar_por=dim_col)
+        cols_targets = [c for c in ranking.columns if c.startswith("target_risco_")]
+        for _, row in ranking.head(20).iterrows():
+            ranking_records.append(
+                {
+                    "chave": str(row[dim_col]),
+                    "scoreViaLeite": float(row["score_via_leite"]),
+                    "classeRisco": str(row["classe_risco"]),
+                    "impactoEconomicoEstimado": float(row["impacto_economico_estimado"]),
+                    "prioridadeAcao": int(row["prioridade_acao"]),
+                    "targets": {c.replace("target_", ""): round(float(row[c]) * 100, 1) for c in cols_targets},
+                }
+            )
+
+    horizonte = []
+    if "data" in df.columns and "score_via_leite" in df.columns:
+        hoje = df["data"].max()
+        for label, dias in (("7 dias", 7), ("15 dias", 15), ("30 dias", 30)):
+            subset = df[df["data"] >= hoje - pd.Timedelta(days=dias)]
+            if subset.empty:
+                continue
+            horizonte.append(
+                {
+                    "label": label,
+                    "dias": dias,
+                    "scoreMedio": round(float(subset["score_via_leite"].mean()), 1),
+                    "criticos": int((subset.get("classe_risco", pd.Series(dtype=object)) == "Crítico").sum()),
+                    "impacto": float(subset.get("impacto_economico_estimado", pd.Series(dtype=float)).sum()),
+                }
+            )
+
+    return {
+        "kpis": kpis,
+        "scoreMedio": round(score_medio, 1),
+        "distribuicaoClasse": distribuicao_classe,
+        "heatmap": heatmap,
+        "ranking": ranking_records,
+        "horizonte": horizonte,
     }
 
 

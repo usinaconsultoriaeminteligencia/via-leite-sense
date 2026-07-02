@@ -6,9 +6,9 @@
   --surface: #fffdf9;
   --wash: linear-gradient(180deg, #f9f3ea 0%, #f1f6f0 100%);
   --soft: #f6efe5;
-  --teal: #215c4d;
+  --teal: #027a48;
   --teal-soft: #e2f0ea;
-  --cobalt: #426d8f;
+  --cobalt: #4a90e2;
   --cobalt-soft: #e7eef5;
   --red: #a63f2f;
   --red-soft: #f9e5e1;
@@ -75,7 +75,7 @@ textarea {
   display: grid;
   place-items: center;
   border-radius: 8px;
-  background: linear-gradient(135deg, #215c4d 0%, #8f5a1d 100%);
+  background: linear-gradient(135deg, #027a48 0%, #4a90e2 100%);
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
@@ -457,6 +457,80 @@ td {
 .risk-Baixo {
   color: var(--green);
   background: var(--green-soft);
+}
+
+.risk-Critico {
+  color: #6d28d9;
+  background: #ede9fe;
+}
+
+.heat-pill {
+  display: inline-flex;
+  min-width: 44px;
+  justify-content: center;
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-weight: 750;
+  font-size: 12px;
+}
+
+.heat-pill.warn {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.heat-pill.danger {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.sparkline-wrap {
+  margin-top: 4px;
+}
+
+.sparkline {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+.spark-real {
+  stroke: var(--cobalt);
+  stroke-width: 2;
+}
+
+.spark-pred {
+  stroke: var(--teal);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.sparkline-legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.legend-dot.real {
+  background: var(--cobalt);
+}
+
+.legend-dot.pred {
+  background: var(--teal);
 }
 
 .tag {
