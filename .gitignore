@@ -23,6 +23,11 @@ artefatos_piloto_cliente*/
 onboarding_clientes/
 onboarding_clientes_ui/
 
+# Saídas locais de teste do pipeline de piloto (regeneráveis)
+dados_importados_teste*/
+dados_piloto_*_teste/
+artefatos_piloto_*_teste/
+
 # Dados brutos INMET (grandes demais para git)
 dados_inmet_raw/*.csv
 
