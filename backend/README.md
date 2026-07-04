@@ -40,9 +40,18 @@ Todos os endpoints EDGE devem sinalizar:
 ## Deploy (Railway)
 
 Este backend mantem estado em DuckDB (`dados_utilizador/*.duckdb`, multi-tenant
-por cliente) e usa pandas/scikit-learn/xgboost, entao precisa de um processo
-persistente com disco — nao roda como funcao serverless. `railway.json` na raiz
-do repo ja define o build (Nixpacks) e o start command.
+por cliente), entao precisa de um processo persistente com disco — nao roda
+como funcao serverless. `railway.json` na raiz do repo ja define o build
+(Nixpacks) e o start command.
+
+A cadeia de imports de `backend/app.py` só usa pandas, numpy, duckdb, fastapi
+e uvicorn — nada de scikit-learn/xgboost/streamlit/plotly/fpdf2/bcrypt, que só
+o app Streamlit e os scripts de treino/scoring precisam. Por isso o Railway
+instala a partir de `requirements-api.txt` (via `nixpacks.toml`), não do
+`requirements.txt` da raiz — evita puxar ~300MB de `nvidia-nccl-cu12` (dependência
+transitiva do xgboost, sem uso em CPU) e o restante das libs pesadas do
+Streamlit. Se `backend/app.py` passar a importar algo novo, adicione a
+dependência em `requirements-api.txt` também.
 
 1. **Criar o projeto:** importar o repositorio no dashboard da Railway
    (New Project > Deploy from GitHub repo), ou via CLI: `railway login` seguido

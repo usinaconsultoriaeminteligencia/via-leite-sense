@@ -1,0 +1,9 @@
+# Dependencias minimas do backend/app.py (API FastAPI) para deploy na Railway.
+# O requirements.txt da raiz cobre tambem o app Streamlit e os scripts de
+# treino/scoring (scikit-learn, xgboost, streamlit, plotly, fpdf2, bcrypt) -
+# nenhum desses e importado pela cadeia de imports do backend em runtime.
+pandas>=2.0,<3.0
+numpy>=1.26,<2.0
+duckdb>=0.10,<2.0
+fastapi>=0.111,<1.0
+uvicorn[standard]>=0.29,<1.0
