@@ -1,0 +1,19 @@
+# Ativos pesados usados só no pitch/validação, não lidos pelo backend em runtime
+prototipo/
+docs/*.pdf
+docs/*.docx
+dados_inmet_processado/
+dados_inmet_raw/
+artefatos_validacao/
+
+# Streamlit (roda em serviço separado, não faz parte da API)
+pages/
+.streamlit/
+
+# Frontend (deploy separado na Vercel)
+frontend/
+
+# Dev / testes locais
+tests/
+__pycache__/
+*.pyc
