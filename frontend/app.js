@@ -192,7 +192,9 @@ const state = {
     trainingSummary: null,
     riskRadar: null,
     modelMetrics: null,
-    modelPredictions: null
+    modelPredictions: null,
+    edgeSummary: null,
+    edgeAlerts: null
   },
   scenario: {
     qualidade: 18,
@@ -221,6 +223,21 @@ async function init() {
   render();
   await hydrateFromApi();
   await hydrateRadarData();
+  await hydrateEdgeData();
+}
+
+async function hydrateEdgeData() {
+  try {
+    const [summary, alerts] = await Promise.all([
+      apiFetch("/api/iot/executive-summary"),
+      apiFetch("/api/iot/alerts")
+    ]);
+    state.apiData.edgeSummary = summary;
+    state.apiData.edgeAlerts = Array.isArray(alerts?.alerts) ? alerts.alerts : [];
+  } catch (error) {
+    console.info("Leituras EDGE indisponíveis.", error);
+  }
+  renderEdge();
 }
 
 async function hydrateRadarData() {
@@ -495,6 +512,7 @@ function render() {
   renderSupplier360(data);
   renderManagement(data);
   renderPlans(data);
+  renderEdge();
   renderImpact(data);
 }
 
@@ -1458,6 +1476,103 @@ function renderImpact(data) {
       renderImpact(getFilteredSuppliers());
     });
   });
+}
+
+function edgePill(level) {
+  const v = String(level || "").toUpperCase();
+  if (v.startsWith("CRIT")) return "Critico";
+  if (v.startsWith("ALT")) return "Alto";
+  if (v.startsWith("MED") || v.startsWith("MÉD")) return "Médio";
+  return "Baixo";
+}
+
+function renderEdge() {
+  const target = $("#edge");
+  if (!target) return;
+  const payload = state.apiData.edgeSummary;
+  const alertList = Array.isArray(state.apiData.edgeAlerts) ? state.apiData.edgeAlerts : [];
+
+  if (!payload || !payload.summary) {
+    target.innerHTML = `
+      <section class="panel">
+        <h2>Via Leite Edge</h2>
+        <p class="muted">Leituras EDGE indisponíveis no momento. Verifique se a API está online e reabra esta página.</p>
+      </section>
+    `;
+    return;
+  }
+
+  const s = payload.summary;
+  const readings = Array.isArray(payload.readings) ? payload.readings : [];
+  const disclaimer = payload.disclaimer
+    || "Dados simulados para demonstração de conceito e validação de arquitetura IoT.";
+
+  target.innerHTML = `
+    <section class="panel" style="border-left: 3px solid #f0a500;">
+      <p class="eyebrow">VIA LEITE EDGE · IoT-ready</p>
+      <p class="muted"><strong>Aviso:</strong> ${escapeHtml(disclaimer)}</p>
+    </section>
+
+    <div class="kpi-grid" style="margin-top: 18px;">
+      ${kpi("Fazendas monitoradas", number.format(s.farms || 0), `${number.format(s.sensor_status_ok || 0)} sensores OK`)}
+      ${kpi("Risco térmico crítico", number.format(s.critical_thermal_risk || 0), "fazendas em estresse térmico")}
+      ${kpi("Prioridade logística alta", number.format(s.high_logistics_priority || 0), "coletas a reprogramar")}
+      ${kpi("Score premium médio", decimal.format(s.premium_score_avg || 0), "aptidão para leite premium")}
+      ${kpi("Índice ESG", decimal.format(s.esg_score || 0), `estabilidade térmica ${decimal.format(s.thermal_stability_avg || 0)}`)}
+      ${kpi("Oportunidade de redução", `${number.format(s.loss_reduction_opportunity_liters || 0)} L`, "perda evitável estimada")}
+    </div>
+
+    <section class="panel" style="margin-top: 18px;">
+      <h2>Alertas EDGE (simulado)</h2>
+      ${alertList.length ? `
+        <div class="signal-list" style="flex-direction: column; align-items: stretch; gap: 10px;">
+          ${alertList.slice(0, 12).map((a) => `
+            <article class="detail-item">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:center;">
+                <strong>${escapeHtml(a.farm_id || "-")} · ${escapeHtml(a.message || "")}</strong>
+                <span class="risk-pill risk-${edgePill(a.severity)}">${escapeHtml(a.severity || "-")}</span>
+              </div>
+              <p class="muted" style="margin-top:6px;">${escapeHtml(a.recommended_action || "")}</p>
+            </article>
+          `).join("")}
+        </div>
+      ` : `<p class="muted">Nenhum alerta ativo nas leituras atuais.</p>`}
+    </section>
+
+    <section class="panel" style="margin-top: 18px;">
+      <h2>Leituras dos sensores</h2>
+      ${readings.length ? `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sensor / Fazenda</th>
+                <th>THI</th>
+                <th>Temp. tanque</th>
+                <th>Volume</th>
+                <th>Qualidade premium</th>
+                <th>Risco térmico</th>
+                <th>Prioridade coleta</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${readings.map((r) => `
+                <tr>
+                  <td><strong>${escapeHtml(r.sensor_id || "-")}</strong><br><span class="muted">${escapeHtml(r.farm_name || r.farm_id || "")}</span></td>
+                  <td>${decimal.format(r.thi || 0)}</td>
+                  <td>${decimal.format(r.tank_temperature_c || 0)} °C</td>
+                  <td>${number.format(r.milk_volume_liters || 0)} L<br><span class="muted">${decimal.format(r.volume_pct || 0)}%</span></td>
+                  <td>${scoreBar(r.premium_quality_score || 0)}</td>
+                  <td><span class="risk-pill risk-${edgePill(r.thermal_stress_risk)}">${escapeHtml(r.thermal_stress_risk || "-")}</span></td>
+                  <td><span class="risk-pill risk-${edgePill(r.collection_priority)}">${escapeHtml(r.collection_priority || "-")}</span></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      ` : `<p class="muted">Sem leituras disponíveis.</p>`}
+    </section>
+  `;
 }
 
 function supplierTable(data, extended, manageable = false) {
