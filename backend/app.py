@@ -250,28 +250,96 @@ def _dim_fornecedores_map() -> dict[str, dict[str, Any]]:
     return dim.set_index("id_fornecedor").to_dict(orient="index")
 
 
-def _normalizar_supplier(row: pd.Series, cadastro: dict[str, Any] | None = None) -> dict[str, Any]:
+def _dim_produtor_map() -> dict[str, dict[str, Any]]:
+    """Atributos cadastrais sintéticos do produtor (dim_produtor.csv).
+
+    Fonte para enriquecer o /suppliers quando não há cadastro manual
+    (dim_fornecedores) — histórico de fornecimento e perfil operacional.
+    """
+    path = data_dir() / "dim_produtor.csv"
+    if not path.exists():
+        return {}
+    dim = pd.read_csv(path, parse_dates=["data_inicio_fornecimento"])
+    dim["id_produtor"] = dim["id_produtor"].astype(str)
+    return dim.set_index("id_produtor").to_dict(orient="index")
+
+
+def _titulo(value: Any) -> str:
+    return str(value or "").replace("_", " ").strip().title()
+
+
+def _meses_fornecimento(atributos: dict[str, Any]) -> float:
+    inicio = atributos.get("data_inicio_fornecimento")
+    if inicio is None or pd.isna(inicio):
+        return 0.0
+    dias = (pd.Timestamp.today() - pd.Timestamp(inicio)).days
+    return float(round(max(0, dias) / 30.44))
+
+
+def _perfil_derivado(row: pd.Series, atributos: dict[str, Any], base: dict[str, Any]) -> dict[str, str]:
+    """Textos gerenciais derivados de indicadores reais (dim_produtor + scores)."""
+    sistema = _titulo(atributos.get("tipo_sistema") or row.get("tipo_sistema"))
+    tecnificacao = _titulo(atributos.get("nivel_tecnificacao"))
+    raca = _titulo(atributos.get("raca_predominante"))
+    porte = _titulo(atributos.get("porte_produtor"))
+    vacas = int(atributos.get("vacas_lactacao") or 0)
+    distancia = float(atributos.get("distancia_km_laticinio") or 0)
+
+    operacional = ", ".join(
+        p for p in [
+            f"sistema {sistema}" if sistema else "",
+            f"tecnificação {tecnificacao}" if tecnificacao else "",
+            f"{vacas} vacas em lactação" if vacas else "",
+            f"raça {raca}" if raca else "",
+        ] if p
+    )
+    return {
+        "qualidade": (
+            f"CCS média {base['ccs']:.0f} e CBT média {base['cbt']:.0f}; "
+            f"score de risco de qualidade {base['scoreQualidade']:.0f}/100."
+        ),
+        "operacionais": (operacional[:1].upper() + operacional[1:] + ".") if operacional else "",
+        "logisticos": (
+            f"Distância de {distancia:.1f} km ao laticínio; "
+            f"score logístico {base['scoreLogistica']:.0f}/100."
+        ) if distancia else f"Score logístico {base['scoreLogistica']:.0f}/100.",
+        "financeiros": (
+            f"Porte {porte}; tendência de volume {base['tendenciaPct']:+.1f}%; "
+            f"descarte médio {base['descartePct']:.1f}%."
+        ) if porte else (
+            f"Tendência de volume {base['tendenciaPct']:+.1f}%; "
+            f"descarte médio {base['descartePct']:.1f}%."
+        ),
+    }
+
+
+def _normalizar_supplier(
+    row: pd.Series,
+    cadastro: dict[str, Any] | None = None,
+    atributos: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     cadastro = cadastro or {}
+    atributos = atributos or {}
     id_fornecedor = str(row.get("id_produtor") or cadastro.get("id_fornecedor") or "")
     nome = cadastro.get("nome_razao_social") or row.get("nome_ficticio") or f"Produtor {id_fornecedor}"
     laticinio = row.get("id_laticinio") or cadastro.get("id_laticinio") or ""
     polo = cadastro.get("polo_localizacao") or row.get("polo_climatico") or ""
     score = float(row.get("score_risco_fornecedor") or cadastro.get("score_qualidade_inicial") or 0)
 
-    return {
+    supplier = {
         "id": id_fornecedor,
         "nome": _json_safe(nome),
         "documento": _json_safe(cadastro.get("cpf_cnpj") or ""),
-        "municipio": _json_safe(row.get("municipio") or polo),
+        "municipio": _json_safe(row.get("municipio") or atributos.get("municipio") or polo),
         "polo": _json_safe(str(polo).replace("_", " ").title()),
         "laticinio": f"Laticínio {int(laticinio)}" if str(laticinio).replace(".0", "").isdigit() else _json_safe(laticinio),
-        "sistema": _json_safe(str(row.get("tipo_sistema") or "").replace("_", " ").title()),
-        "capacidadeLitros": float(cadastro.get("capacidade_tanque_litros") or row.get("litros_coletados_media") or 0),
-        "historicoMeses": float(cadastro.get("historico_fornecimento_meses") or 0),
-        "qualidade": _json_safe(cadastro.get("indicadores_qualidade") or ""),
-        "operacionais": _json_safe(cadastro.get("variaveis_operacionais") or ""),
-        "logisticos": _json_safe(cadastro.get("variaveis_logisticas") or ""),
-        "financeiros": _json_safe(cadastro.get("variaveis_financeiras") or ""),
+        "sistema": _json_safe(_titulo(row.get("tipo_sistema") or atributos.get("tipo_sistema"))),
+        "capacidadeLitros": float(
+            cadastro.get("capacidade_tanque_litros")
+            or atributos.get("capacidade_maxima_litros_dia")
+            or row.get("litros_coletados_media")
+            or 0
+        ),
         "litrosDia": float(row.get("litros_coletados_media") or 0),
         "risco": score,
         "classeRisco": _classe_risco(score),
@@ -286,23 +354,38 @@ def _normalizar_supplier(row: pd.Series, cadastro: dict[str, Any] | None = None)
         "recomendacao": _json_safe(row.get("recomendacao") or "Manter acompanhamento regular."),
     }
 
+    # Perfil gerencial: cadastro manual tem precedência; senão, deriva do
+    # dim_produtor + indicadores reais para evitar campos vazios no Fazenda 360.
+    derivado = _perfil_derivado(row, atributos, supplier)
+    supplier["historicoMeses"] = float(
+        cadastro.get("historico_fornecimento_meses") or _meses_fornecimento(atributos)
+    )
+    supplier["qualidade"] = _json_safe(cadastro.get("indicadores_qualidade") or derivado["qualidade"])
+    supplier["operacionais"] = _json_safe(cadastro.get("variaveis_operacionais") or derivado["operacionais"])
+    supplier["logisticos"] = _json_safe(cadastro.get("variaveis_logisticas") or derivado["logisticos"])
+    supplier["financeiros"] = _json_safe(cadastro.get("variaveis_financeiras") or derivado["financeiros"])
+    return supplier
+
 
 def _suppliers() -> list[dict[str, Any]]:
     init_db(data_dir())
     scores = _scores_base()
     cadastros = _dim_fornecedores_map()
+    atributos = _dim_produtor_map()
     suppliers: list[dict[str, Any]] = []
 
     for _, row in scores.iterrows():
         id_produtor = str(row["id_produtor"])
-        suppliers.append(_normalizar_supplier(row, cadastros.get(id_produtor)))
+        suppliers.append(
+            _normalizar_supplier(row, cadastros.get(id_produtor), atributos.get(id_produtor))
+        )
 
     ids_existentes = {item["id"] for item in suppliers}
     for id_fornecedor, cadastro in cadastros.items():
         if id_fornecedor in ids_existentes:
             continue
         vazio = pd.Series({"id_produtor": id_fornecedor, "score_risco_fornecedor": cadastro.get("score_qualidade_inicial") or 0})
-        suppliers.append(_normalizar_supplier(vazio, cadastro))
+        suppliers.append(_normalizar_supplier(vazio, cadastro, atributos.get(id_fornecedor)))
 
     return sorted(suppliers, key=lambda item: item["risco"], reverse=True)
 
