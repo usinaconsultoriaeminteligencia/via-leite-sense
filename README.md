@@ -8,8 +8,14 @@ penalização/bônus e necessidade de ação preventiva** — antes que a perda 
 
 Desenvolvido por **USINA I.A.** para o **Desafio AgroStartup SENAR/SEBRAE Goiás 2026**.
 
-🔗 **Demo ao vivo:** https://via-leite-sense.streamlit.app
+🔗 **Demo ao vivo:** https://via-leite-sense.vercel.app
+🔗 **API (backend):** https://via-leite-sense-api-production.up.railway.app
 🔗 **GitHub:** https://github.com/usinaconsultoriaeminteligencia/via-leite-sense
+
+> **Arquitetura de produção:** frontend SPA na **Vercel** consumindo a **API FastAPI
+> na Railway** (DuckDB em volume persistente). O app **Streamlit** foi descomissionado —
+> `via-leite-sense.streamlit.app` agora redireciona para a Vercel. O código Streamlit
+> segue disponível em `via_leite_app_legacy.py` para desenvolvimento local.
 
 ---
 

@@ -1,6 +1,20 @@
 # Deploy — VIA LEITE SENSE
 
-## Opção 1 — Streamlit Community Cloud (recomendado para demo/maratona)
+> ⚠️ **Produção atual: Vercel (frontend) + Railway (backend).** O deploy Streamlit
+> abaixo é **legado** — o app `via-leite-sense.streamlit.app` foi descomissionado e
+> hoje redireciona para a Vercel (ver `via_leite_app.py`).
+>
+> **Publicar produção (via CLI, enquanto o auto-deploy GitHub não estiver conectado):**
+> - **Frontend (Vercel):** `vercel --cwd frontend --prod --yes`
+> - **Backend (Railway):** `railway up --ci` (a partir da raiz do repo; projeto já linkado)
+>
+> URLs: frontend `https://via-leite-sense.vercel.app` ·
+> API `https://via-leite-sense-api-production.up.railway.app`
+> Detalhes do backend em `backend/README.md`; do frontend em `frontend/README.md`.
+
+---
+
+## Opção 1 — Streamlit Community Cloud (LEGADO — não é mais a produção)
 
 ### Pré-requisitos
 - Conta GitHub com o repositório `via-leite-sense` criado
