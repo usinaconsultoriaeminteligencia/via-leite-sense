@@ -16,8 +16,6 @@ Papéis:
 """
 from __future__ import annotations
 
-import hashlib
-import hmac
 import time
 from pathlib import Path
 from typing import Optional
@@ -28,9 +26,12 @@ import yaml
 from yaml.loader import SafeLoader
 
 # ---------------------------------------------------------------------------
-# Credenciais padrão (SOMENTE para demonstração)
-# Senhas em texto puro — são hasheadas em runtime na primeira execução
-# NUNCA usar senhas de produção aqui
+# Credenciais padrão (SOMENTE para demonstração pública)
+# Senhas em texto puro — são hasheadas em runtime na primeira execução.
+# NUNCA colocar o admin nem senhas de produção aqui: este dicionário é o
+# fallback público (precedência #3) e vai versionado no repositório.
+# O admin é provisionado por st.secrets (produção) ou config_auth.yaml (local),
+# ambos fora do controle de versão. Ver docstring do módulo.
 # ---------------------------------------------------------------------------
 _DEFAULT_USERS: dict[str, dict] = {
     "demo": {
@@ -44,12 +45,6 @@ _DEFAULT_USERS: dict[str, dict] = {
         "email": "operacao@vialeite.com.br",
         "role": "laticinio",
         "password_plain": "leite2025",
-    },
-    "admin": {
-        "name": "Fagner Vieira",
-        "email": "fagnerpro80@gmail.com",
-        "role": "admin",
-        "password_plain": "usina2025",
     },
 }
 

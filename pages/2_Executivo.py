@@ -3,7 +3,11 @@ from __future__ import annotations
 import plotly.express as px
 import streamlit as st
 
+from auth import renderizar_sidebar_usuario, requer_autenticacao
 from dashboard_common import aplicar_layout_plotly, carregar_contexto, formatar_numero_br
+
+requer_autenticacao()
+renderizar_sidebar_usuario()
 
 st.title("Visão Executiva VIA LEITE SENSE")
 st.caption("Desempenho do modelo, leitura de risco e inteligência para leite destinado a produtos premium.")

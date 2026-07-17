@@ -377,10 +377,10 @@ def _renderizar_landing() -> None:
                 "| Usuário | Senha | Perfil |\n"
                 "|---------|-------|--------|\n"
                 "| `demo` | `demo2025` | Avaliador |\n"
-                "| `laticinio` | `leite2025` | Operação |\n"
-                "| `admin` | `usina2025` | Admin |"
+                "| `laticinio` | `leite2025` | Operação |"
             )
-            st.caption("Credenciais apenas para demonstração do protótipo.")
+            st.caption("Credenciais apenas para demonstração do protótipo. "
+                       "O acesso admin é privado e provisionado fora da aplicação.")
 
 
 # ---------------------------------------------------------------------------

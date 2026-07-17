@@ -4,7 +4,11 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from auth import renderizar_sidebar_usuario, requer_autenticacao
 from dashboard_common import aplicar_layout_plotly, carregar_contexto
+
+requer_autenticacao()
+renderizar_sidebar_usuario()
 
 st.title("Clima, THI e Estresse Termico")
 st.caption("Leitura climatica para prevenir perdas, proteger a producao leiteira e sustentar derivados premium.")

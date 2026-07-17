@@ -3,8 +3,12 @@ from __future__ import annotations
 import plotly.express as px
 import streamlit as st
 
+from auth import renderizar_sidebar_usuario, requer_autenticacao
 from dashboard_common import aplicar_layout_plotly, carregar_contexto
 from fornecedor_inteligencia import calcular_scores_fornecedores
+
+requer_autenticacao()
+renderizar_sidebar_usuario()
 
 st.title("Fazendas e Qualidade Premium")
 st.caption("Priorizacao de fazendas por risco de volume, qualidade, logistica, continuidade e potencial para produtos premium.")

@@ -142,9 +142,11 @@ python executar_piloto_real.py \
 |--------|---------|-------|--------|
 | Demonstração | `demo` | `demo2025` | Todas as páginas de leitura |
 | Laticínio | `laticinio` | `leite2025` | Inclui gestão e plano de ação |
-| Admin | `admin` | `usina2025` | Acesso completo |
+| Admin | `admin` | _privada_ | Acesso completo |
 
-> Em produção, substituir via `st.secrets` ou `config_auth.yaml`.
+> As credenciais `demo` e `laticinio` são públicas apenas para avaliação do protótipo.
+> O acesso **admin** é provisionado fora do repositório, via `st.secrets` (produção)
+> ou `config_auth.yaml` (local, no `.gitignore`) — nunca versionado.
 
 ---
 

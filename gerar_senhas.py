@@ -16,7 +16,7 @@ def gerar_hash(senha: str) -> str:
 
 
 def main() -> None:
-    senhas = sys.argv[1:] if len(sys.argv) > 1 else ["demo2025", "leite2025", "usina2025"]
+    senhas = sys.argv[1:] if len(sys.argv) > 1 else ["demo2025", "leite2025"]
 
     print("\n=== VIA LEITE SENSE — Gerador de Hashes Bcrypt ===\n")
     for senha in senhas:

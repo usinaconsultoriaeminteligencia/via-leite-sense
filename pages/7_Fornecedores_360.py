@@ -3,10 +3,14 @@ from __future__ import annotations
 import plotly.express as px
 import streamlit as st
 
+from auth import renderizar_sidebar_usuario, requer_autenticacao
 from dashboard_common import aplicar_layout_plotly, carregar_contexto, formatar_numero_br
 from fornecedor_inteligencia import calcular_scores_fornecedores
 from gestor_store import carregar_fornecedores
 from relatorio_pdf import gerar_relatorio_produtor
+
+requer_autenticacao()
+renderizar_sidebar_usuario()
 
 st.title("Fazenda 360")
 st.caption("Risco, qualidade, capacidade, continuidade e leitura premium por fazenda.")

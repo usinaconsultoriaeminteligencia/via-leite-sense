@@ -44,7 +44,7 @@ password    = "$2b$12$..."   # gerar com: python gerar_senhas.py leite2025
 name        = "Admin USINA I.A."
 email       = "fagnerpro80@gmail.com"
 role        = "admin"
-password    = "$2b$12$..."   # gerar com: python gerar_senhas.py usina2025
+password    = "$2b$12$..."   # gerar com: python gerar_senhas.py "SUA_SENHA_ADMIN"
 
 [auth.cookie]
 name        = "via_leite_session"
