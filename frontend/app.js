@@ -1687,18 +1687,18 @@ function barRow(label, value, max) {
   `;
 }
 
-function scoreBar(score) {
+function scoreBar(score, showValue = true) {
   const level = score >= 75 ? "danger" : score >= 50 ? "warn" : "";
   return `
     <div class="score-bar">
-      <strong>${decimal.format(score)}</strong>
+      ${showValue ? `<strong>${decimal.format(score)}</strong>` : ""}
       <div class="score-track"><div class="score-fill ${level}" style="width:${Math.min(100, score)}%"></div></div>
     </div>
   `;
 }
 
 function scoreCard(label, value) {
-  return `<article class="score-card"><span>${label}</span><strong>${decimal.format(value)}</strong>${scoreBar(value)}</article>`;
+  return `<article class="score-card"><span>${label}</span><strong>${decimal.format(value)}</strong>${scoreBar(value, false)}</article>`;
 }
 
 function impactCard(value, label) {
