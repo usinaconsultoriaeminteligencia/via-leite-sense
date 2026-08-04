@@ -16,6 +16,10 @@ build/
 venv/
 env/
 
+# Dados reais de fazendas/clientes — contêm PII (nome de produtor etc.).
+# NUNCA versionar/publicar sem consentimento.
+dados_reais/
+
 # Dados do usuário (multi-tenant)
 dados_utilizador*/
 dados_piloto_cliente*/
@@ -47,3 +51,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# Claude Code (config local, nao versionar)
+.claude/

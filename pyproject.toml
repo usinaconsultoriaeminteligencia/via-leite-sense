@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "via-leite-sense"
+version = "0.1.0"
+description = "VIA LEITE SENSE — pacote edge (via_leite_edge) para monitoramento leiteiro"
+requires-python = ">=3.10"
+# via_leite_edge só depende de pandas (demais imports são stdlib).
+dependencies = [
+  "pandas>=2.0,<3.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+# Layout plano: empacotar SOMENTE o pacote via_leite_edge, ignorando os
+# muitos módulos soltos na raiz (dashboards, scripts, etc.).
+[tool.setuptools]
+packages = ["via_leite_edge"]
