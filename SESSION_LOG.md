@@ -1,7 +1,83 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 07/08/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
+**Branch:** `master` — **publicado em produção**
+
+---
+
+### O que esta sessão fez
+
+Publicou o trabalho de 06/08. A `security/fecha-api` foi empurrada, fundida em
+`master` por fast-forward (44 testes a passar) e deployada. A branch foi apagada
+depois de a produção estar validada.
+
+**Antes → depois, medido no ar:**
+
+| Verificação | Antes | Depois |
+|---|---:|---:|
+| `GET /suppliers` sem chave | 200 | **401** |
+| `POST /action-plans` sem chave | aberto | **401** |
+| `/docs`, `/redoc`, `/openapi.json` | 200 | **404** |
+| `/health` | 200 | 200 (público por desenho) |
+| MAE do modelo servido | 24,4523 | **24,1726** (sem identificadores) |
+
+Chave nova gerada com `secrets.token_urlsafe(32)`, definida em
+`VIA_LEITE_API_KEYS` (Railway) e `VIA_LEITE_API_KEY` (Vercel). A chave de 06/08
+nunca chegou a ser usada e está obsoleta. Nenhuma chave em disco, no repositório
+ou no cliente — confirmado por varredura do `app.js` e do `index.html` servidos.
+
+---
+
+### Dois defeitos que só o runtime da Vercel revelou
+
+O proxy passava nos testes locais e falhou em produção por duas razões distintas.
+Nenhuma delas é detectável sem deployar — é o argumento mais forte a favor do
+ALERTA-008 (auto-deploy + ambiente de preview).
+
+**1. `req.query.path` chegava vazio** (`de9f4e3`)
+
+Todo `/api/*` era encaminhado para a raiz da Railway. O diagnóstico veio do corpo
+da resposta: `{"detail":"Not Found"}` é formato do FastAPI, não da Vercel — logo o
+pedido chegou à Railway **e passou na chave**; só o caminho se perdia. Passou a
+derivar do `req.url`.
+
+**2. `api/[...path].js` foi registado como segmento único** (`afb75fc`)
+
+`/api/health` entrava na função; `/api/model/metrics` devolvia o 404 da própria
+Vercel **sem sequer a chamar** — metade das rotas inalcançável pelo SPA. Aqui o
+corpo do 404 era o `NOT_FOUND` da Vercel, o que separou este caso do anterior.
+
+Correcção: o ficheiro passou a `api/proxy.js` e o `vercel.json` encaminha
+`/api/(.*)` para ele com o caminho em `__path`, que a função remove antes de falar
+com a Railway. **Deixa de depender da convenção de nomes do ficheiro** — foi
+justamente a convenção implícita que falhou em silêncio.
+
+Verificado: 13 rotas a 200, incluindo as de dois segmentos, com query string
+preservada.
+
+---
+
+### Ficou por fazer
+
+| Item | Estado |
+|------|--------|
+| **C1** | diagnosticado; calibração continua a aguardar decisão — é o próximo assunto real |
+| C2, C4, C5, C6 | abertos — declaração/proveniência, não código |
+| G1, G2, G3 | abertos — produto |
+| A1, A3 | **manter abertos** — protocolo pré-registado da sprint 4 |
+| ALERTA-008 | auto-deploy ainda não ligado; esta sessão mostrou o custo |
+| Senha `usina2025` | ainda recuperável do histórico Git |
+| `docs/projeto_integrador/` | continua sem o achado de C1; vive em `academico/2026-2` |
+
+> Contagem de achados corrigida no `PROJECT_REGISTRY.json`: dizia 9, a própria
+> lista enumera 10.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 06/08/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
-**Branch:** `security/fecha-api` (a partir de `master`) — **não commitada em master, não empurrada, não publicada**
+**Branch:** `security/fecha-api` (a partir de `master`) — **publicada em 07/08; ver a sessão acima**
 
 ---
 
@@ -143,6 +219,10 @@ dados sintéticos produz um número que vai mudar de qualquer forma.
 | Senha `usina2025` | ainda recuperável do histórico Git |
 
 ### Ao retomar
+
+> ⚠️ **Superado em 07/08/2026** — o que se segue descreve o estado no fim da
+> sessão de 06/08. O trabalho foi publicado no dia seguinte; a `security/fecha-api`
+> já não existe. Ver a sessão de 07/08 no topo deste ficheiro.
 
 O trabalho está em `security/fecha-api`, **não fundido em `master` e não
 empurrado**. Nada foi publicado: produção continua com a API aberta e o modelo
