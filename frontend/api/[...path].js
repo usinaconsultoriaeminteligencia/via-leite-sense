@@ -54,9 +54,16 @@ export default async function handler(req, res) {
   }
 
   // `/api/suppliers/19?x=1` → `/suppliers/19?x=1`
-  const partes = req.query?.path;
-  const caminho = Array.isArray(partes) ? partes.join("/") : partes || "";
-  const consulta = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
+  //
+  // O caminho sai do `req.url` e não de `req.query.path`: o parâmetro do
+  // catch-all chegou vazio em produção e todo o pedido foi parar à raiz da
+  // Railway, que respondeu 404 a tudo. O `req.url` é o que o runtime entrega
+  // sempre, sem depender da convenção de nomes do ficheiro.
+  const url = req.url || "";
+  const posicaoConsulta = url.indexOf("?");
+  const semConsulta = posicaoConsulta === -1 ? url : url.slice(0, posicaoConsulta);
+  const consulta = posicaoConsulta === -1 ? "" : url.slice(posicaoConsulta);
+  const caminho = semConsulta.replace(/^\/api\/?/, "").replace(/^\/+/, "");
   const destino = `${base.replace(/\/+$/, "")}/${caminho}${consulta}`;
 
   const cabecalhos = {};
