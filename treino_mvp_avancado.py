@@ -138,11 +138,57 @@ def split_temporal(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Dat
     return train, valid, test
 
 
+# --------------------------------------------------------------------------
+# Achado A2 — identificadores não podem ser features
+# --------------------------------------------------------------------------
+# `fornecedor_cpf_cnpj` e `fornecedor_nome_razao_social` chegaram a ser features
+# one-hot do modelo em produção. Três problemas de uma vez:
+#
+#   1. LGPD — CPF a ser usado como variável preditiva.
+#   2. Memorização por indivíduo — o modelo decora o produtor em vez de aprender
+#      o comportamento; a métrica fica boa por motivo errado.
+#   3. Cold start — produtor novo cai numa categoria nunca vista e o modelo
+#      degrada em silêncio, exactamente no cliente que se acabou de assinar.
+#
+# A causa não foram os dois nomes: era `selecionar_colunas` funcionar por lista
+# de EXCLUSÃO. Qualquer coluna de texto nova entrava como feature sozinha, e as
+# colunas `fornecedor_*` entram por junção com a dimensão de produtor. Por isso
+# a correcção é estrutural, não uma linha a mais na lista.
+IDENTIFICADORES_PROIBIDOS = {
+    "fornecedor_cpf_cnpj",
+    "fornecedor_nome_razao_social",
+    "nome_ficticio",
+    "municipio",
+    "id_produtor",
+    "id_fornecedor",
+}
+
+#: Fragmentos que denunciam identificador ou dado pessoal num nome de coluna.
+#: Serve de rede de segurança para colunas que ainda não existem.
+PADROES_DE_IDENTIFICADOR = (
+    "cpf",
+    "cnpj",
+    "documento",
+    "razao_social",
+    "nome",
+    "email",
+    "telefone",
+    "endereco",
+    "inscricao",
+)
+
+
+def e_identificador(coluna: str) -> bool:
+    """Diz se uma coluna é identificador/dado pessoal e não pode virar feature."""
+    if coluna in IDENTIFICADORES_PROIBIDOS:
+        return True
+    nome = coluna.lower()
+    return any(padrao in nome for padrao in PADROES_DE_IDENTIFICADOR)
+
+
 def selecionar_colunas(df: pd.DataFrame) -> Tuple[List[str], List[str]]:
     excluir = {
         "data",
-        "nome_ficticio",
-        "municipio",
         "data_inicio_fornecimento",
         "fornecedor_data_inicio_parceria",
         TARGET,
@@ -153,13 +199,36 @@ def selecionar_colunas(df: pd.DataFrame) -> Tuple[List[str], List[str]]:
         "target_queda_15d",
         "target_queda_30d",
     }
+    excluir |= {c for c in df.columns if e_identificador(c)}
+
     cat_cols = [c for c in df.columns if df[c].dtype == "object" and c not in excluir]
     num_cols = [
         c
         for c in df.columns
         if c not in excluir and c not in cat_cols and not pd.api.types.is_datetime64_any_dtype(df[c])
     ]
+
+    garantir_sem_identificadores(cat_cols + num_cols)
     return cat_cols, num_cols
+
+
+def garantir_sem_identificadores(features: List[str]) -> None:
+    """
+    Pós-condição de `selecionar_colunas`: nenhuma feature é identificador.
+
+    Hoje esta verificação não dispara, porque a exclusão acima usa o mesmo
+    predicado — e é essa a intenção. Ela existe para o dia em que alguém mexer
+    na montagem das features e desfizer a exclusão sem reparar: falhar alto no
+    treino é muito mais barato do que descobrir meses depois que o modelo em
+    produção aprendeu CPF, que foi exactamente o que aconteceu em A2.
+    """
+    escapou = [c for c in features if e_identificador(c)]
+    if escapou:
+        raise ValueError(
+            "Identificadores chegaram à lista de features (achado A2): "
+            f"{escapou}. Se alguma destas colunas for mesmo um preditor "
+            "legítimo, renomeie-a para deixar claro que não é identificador."
+        )
 
 
 def montar_pipeline(cat_cols: List[str], num_cols: List[str]) -> Pipeline:

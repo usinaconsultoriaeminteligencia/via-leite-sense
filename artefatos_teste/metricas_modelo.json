@@ -6,11 +6,11 @@
   "validacao_linhas": 10980,
   "teste_linhas": 10920,
   "metricas_validacao_modelo": {
-    "rmse": 35.01210543851959,
-    "mae": 23.116066095956192,
-    "r2": 0.9948548532903447,
-    "mape_pct": 3.364598092847182,
-    "smape_pct": 3.343527446832594
+    "rmse": 35.081138688790645,
+    "mae": 23.1299473678307,
+    "r2": 0.9948345439512888,
+    "mape_pct": 3.3612142078530867,
+    "smape_pct": 3.3418735628674305
   },
   "metricas_validacao_baseline": {
     "rmse": 47.88022006895079,
@@ -20,11 +20,11 @@
     "smape_pct": 4.4918640213313905
   },
   "metricas_teste_modelo": {
-    "rmse": 36.864507928714175,
-    "mae": 24.452285239063997,
-    "r2": 0.9943093546829537,
-    "mape_pct": 3.631473165877673,
-    "smape_pct": 3.598578771907483
+    "rmse": 36.67966458526698,
+    "mae": 24.172594858938947,
+    "r2": 0.9943662788542367,
+    "mape_pct": 3.5823734047630666,
+    "smape_pct": 3.5536749191090795
   },
   "metricas_teste_baseline": {
     "rmse": 48.57237403521666,
@@ -34,7 +34,6 @@
     "smape_pct": 4.550963114624598
   },
   "features_numericas": [
-    "id_produtor",
     "id_laticinio",
     "id_rota",
     "litros_descartados",
@@ -72,6 +71,7 @@
     "anomalia_temp",
     "indice_favorabilidade_pastagem",
     "impacto_gerencial_litros",
+    "impacto_gerencial_financeiro",
     "qtd_eventos_gerenciais",
     "id_laticinio_principal",
     "id_rota_principal",
@@ -156,8 +156,6 @@
   ],
   "features_categoricas": [
     "polo_climatico",
-    "fornecedor_nome_razao_social",
-    "fornecedor_cpf_cnpj",
     "fornecedor_polo_localizacao",
     "fornecedor_indicadores_qualidade",
     "fornecedor_variaveis_operacionais",
