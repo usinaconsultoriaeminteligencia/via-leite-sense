@@ -24,6 +24,10 @@
 // Cabeçalhos que não devem ser reenviados para a Railway: dizem respeito à
 // ligação browser→Vercel e não à ligação Vercel→Railway. Reenviar `host`
 // quebra o roteamento; reenviar `cookie` vazaria sessão para outro domínio.
+// Parâmetro interno onde o rewrite do `vercel.json` deposita o caminho pedido.
+// Tem prefixo `__` para não colidir com nenhum parâmetro real da API.
+const PARAM_CAMINHO = "__path";
+
 const HEADERS_A_REMOVER = new Set([
   "host",
   "connection",
@@ -55,15 +59,28 @@ export default async function handler(req, res) {
 
   // `/api/suppliers/19?x=1` → `/suppliers/19?x=1`
   //
-  // O caminho sai do `req.url` e não de `req.query.path`: o parâmetro do
-  // catch-all chegou vazio em produção e todo o pedido foi parar à raiz da
-  // Railway, que respondeu 404 a tudo. O `req.url` é o que o runtime entrega
-  // sempre, sem depender da convenção de nomes do ficheiro.
+  // O caminho chega no parâmetro `__path`, posto pelo rewrite do `vercel.json`.
+  // Não usar o ficheiro `api/[...path].js`: em produção ele foi registado como
+  // segmento único — `/api/health` entrava na função, `/api/model/metrics`
+  // devolvia o 404 da própria Vercel sem sequer a chamar. O rewrite explícito
+  // não depende dessa convenção de nomes.
   const url = req.url || "";
   const posicaoConsulta = url.indexOf("?");
   const semConsulta = posicaoConsulta === -1 ? url : url.slice(0, posicaoConsulta);
-  const consulta = posicaoConsulta === -1 ? "" : url.slice(posicaoConsulta);
-  const caminho = semConsulta.replace(/^\/api\/?/, "").replace(/^\/+/, "");
+  const parametros = new URLSearchParams(
+    posicaoConsulta === -1 ? "" : url.slice(posicaoConsulta + 1)
+  );
+
+  let caminho = parametros.get(PARAM_CAMINHO) || "";
+  parametros.delete(PARAM_CAMINHO); // interno: não segue para a Railway
+  if (!caminho) {
+    // Sem o rewrite (ex.: `vercel dev`), o caminho vem no próprio URL.
+    caminho = semConsulta.replace(/^\/api\/?/, "");
+  }
+  caminho = caminho.replace(/^\/+/, "");
+
+  const restante = parametros.toString();
+  const consulta = restante ? `?${restante}` : "";
   const destino = `${base.replace(/\/+$/, "")}/${caminho}${consulta}`;
 
   const cabecalhos = {};
