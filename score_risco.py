@@ -199,10 +199,32 @@ def _calcular_score_bruto(df: pd.DataFrame) -> pd.Series:
     return score.clip(lower=0, upper=100).round(1)
 
 
+CLASSE_INDETERMINADA = "Indeterminado"
+CLASSES_RISCO = ["Baixo risco", "Atenção", "Alto risco", "Crítico"]
+
+
 def _classificar_risco(score: pd.Series) -> pd.Series:
-    bins = [-1, 25, 50, 75, 101]
-    labels = ["Baixo risco", "Atenção", "Alto risco", "Crítico"]
-    return pd.cut(score, bins=bins, labels=labels)
+    """
+    Converte o score em classe de risco.
+
+    Achado C3 — o corte superior era 101, mas o score pode ultrapassá-lo se o
+    tecto de `_calcular_score_bruto` mudar; `pd.cut` devolveria NaN, e o
+    produtor de MAIOR risco — exactamente aquele que o sistema existe para
+    sinalizar — sairia sem classificação nenhuma, em silêncio.
+
+    Duas defesas:
+
+    1. O corte superior passa a `inf`. Qualquer score alto cai em "Crítico",
+       que é a leitura segura: nunca subestima o risco.
+    2. Score ausente (NaN) vira "Indeterminado" em vez de NaN. Um NaN circula
+       como se fosse categoria e desaparece das contagens; "Indeterminado" é
+       visível e obriga a olhar. Isto passa a importar quando entrarem dados
+       reais com falhas de medição — hoje a base sintética não tem nenhum.
+    """
+    bins = [-1, 25, 50, 75, float("inf")]
+    classes = pd.cut(score, bins=bins, labels=CLASSES_RISCO)
+    classes = classes.cat.add_categories([CLASSE_INDETERMINADA])
+    return classes.fillna(CLASSE_INDETERMINADA)
 
 
 # ------------------------------------------------------------------ #
