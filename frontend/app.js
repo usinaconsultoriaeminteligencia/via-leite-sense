@@ -169,9 +169,14 @@ const storageKeys = {
   plans: "via_leite_action_plans"
 };
 
+// Em produção o SPA fala com o proxy da própria Vercel (`/api`), que guarda a
+// chave e reencaminha para a Railway — ver frontend/api/[...path].js. Apontar
+// aqui directamente para a Railway obrigaria a expor a chave no browser.
+// A sobreposição por `window.VIA_LEITE_API_BASE` ou pela meta tag continua a
+// servir o desenvolvimento local contra o uvicorn.
 const API_BASE = window.VIA_LEITE_API_BASE
   || document.querySelector('meta[name="via-leite-api-base"]')?.content
-  || "http://127.0.0.1:8000";
+  || "/api";
 
 const state = {
   route: window.location.hash.replace("#", "") || "comando",

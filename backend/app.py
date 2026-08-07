@@ -8,9 +8,11 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import Depends, FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+from backend.security import docs_are_public, require_api_key
 
 from fornecedor_inteligencia import calcular_scores_fornecedores
 from score_risco import calcular_scores, gerar_ranking_risco
@@ -46,19 +48,38 @@ def data_dir() -> Path:
 def artefatos_dir() -> Path:
     return Path(os.environ.get("MVP_ARTEFATOS_DIR", "artefatos_teste"))
 
+# `dependencies` aplica a verificação a TODAS as rotas de uma vez — incluindo as
+# que forem adicionadas no futuro. Proteger endpoint a endpoint deixaria o
+# próximo a ser escrito desprotegido por omissão, que é como se chega a 30
+# endpoints abertos.
 app = FastAPI(
     title="VIA LEITE SENSE API",
     description="API de inteligencia operacional para monitoramento leiteiro, cadeia premium e arquitetura IoT-ready.",
-    version="0.2.0",
+    version="0.3.0",
+    dependencies=[Depends(require_api_key)],
+    # O esquema descreve os endpoints de escrita e os campos de dados pessoais;
+    # fica fechado salvo indicação explícita em contrário.
+    docs_url="/docs" if docs_are_public() else None,
+    redoc_url="/redoc" if docs_are_public() else None,
+    openapi_url="/openapi.json" if docs_are_public() else None,
 )
 
 def _cors_origins() -> list[str]:
-    default = [
+    """
+    Origens permitidas no browser.
+
+    As origens de localhost são conveniência de desenvolvimento e saem da lista
+    quando VIA_LEITE_ENV=production: em produção o SPA fala com o proxy da
+    Vercel (mesma origem), não com a Railway directamente, portanto nenhuma
+    origem de browser precisa de estar aqui por omissão.
+    """
+    local = [
         "http://localhost:8600",
         "http://127.0.0.1:8600",
         "http://localhost:8601",
         "http://127.0.0.1:8601",
     ]
+    default = [] if os.environ.get("VIA_LEITE_ENV", "") == "production" else local
     extra = os.environ.get("MVP_CORS_ORIGINS", "")
     return default + [origin.strip() for origin in extra.split(",") if origin.strip()]
 

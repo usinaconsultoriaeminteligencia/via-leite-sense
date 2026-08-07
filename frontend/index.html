@@ -9,11 +9,17 @@
       content="Plataforma inteligente de monitoramento da cadeia leiteira com IA, clima e sensores virtuais para qualidade premium, rastreabilidade e redução de perdas."
     />
     <!--
-      URL base da API VIA LEITE SENSE. Em desenvolvimento local aponta para o
-      uvicorn na 8000. Ao publicar (ex.: Vercel), troque o "content" para a
-      URL pública do backend antes do deploy.
+      URL base da API VIA LEITE SENSE.
+
+      "/api" é o proxy servido pela própria Vercel (frontend/api/[...path].js):
+      é ele que guarda a chave da API e fala com a Railway. NÃO voltar a pôr
+      aqui a URL da Railway — o browser passaria a chamar a API directamente e
+      não há como lhe entregar a chave sem a expor no código-fonte da página.
+
+      Para desenvolvimento local contra o uvicorn, troque para
+      "http://127.0.0.1:8000" e exporte VIA_LEITE_API_KEYS no servidor.
     -->
-    <meta name="via-leite-api-base" content="https://via-leite-sense-api-production.up.railway.app" />
+    <meta name="via-leite-api-base" content="/api" />
     <link rel="stylesheet" href="./styles.css?v=20260717-02" />
   </head>
   <body>
