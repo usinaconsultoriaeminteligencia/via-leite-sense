@@ -1,4 +1,167 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 06/08/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
+**Branch:** `security/fecha-api` (a partir de `master`) — **não commitada em master, não empurrada, não publicada**
+
+---
+
+### Contexto da sessão
+
+A Piracanjuba entrou em negociação para ceder dados reais ao projeto. Isso
+converte três achados de "pendência documentada" em bloqueadores de
+pré-lançamento, porque passariam a incidir sobre dados pessoais de produtores
+reais. O trabalho da sessão foi fechar esses bloqueadores.
+
+Estado da negociação em 06/08/2026: **sem data definida**. Há tempo para fazer
+em sequência, sem atalhos.
+
+---
+
+### 1. ALERTA-005 — API de produção sem autenticação — RESOLVIDO em código
+
+Os 30 endpoints estavam abertos ao público, 11 deles de escrita. Confirmado por
+varredura: nenhum `Depends`, `APIKey` ou `HTTPBearer` em `backend/app.py`.
+
+- **`backend/security.py`** (novo) — dependência global `require_api_key`.
+  Registada em `FastAPI(dependencies=[...])`, e não endpoint a endpoint: um
+  endpoint novo fica protegido por omissão. Foi a protecção endpoint a endpoint
+  que permitiu chegar a 30 rotas abertas.
+- **`frontend/api/[...path].js`** (novo) — proxy serverless na Vercel. O SPA é
+  estático e não pode guardar segredo: qualquer chave que carregasse ficaria
+  visível no código-fonte da página. O proxy guarda a chave e é o único a falar
+  com a Railway. `index.html` passou a apontar para `/api`.
+- **Falha fechada** — sem `VIA_LEITE_API_KEYS` o servidor responde 503 a tudo
+  o que não seja `/health`. Não há chave por omissão no código.
+- `/docs`, `/redoc` e `/openapi.json` fechados por omissão.
+- Localhost sai do CORS quando `VIA_LEITE_ENV=production`.
+
+Verificado: **30 rotas exigem chave, 11 de escrita, só `/health` público.**
+O teste percorre as rotas registadas na aplicação, não uma lista escrita à mão.
+
+### 2. Achado A2 — identificadores como features — RESOLVIDO
+
+`fornecedor_cpf_cnpj` e `fornecedor_nome_razao_social` eram features one-hot do
+modelo em produção. Confirmado no artefacto servido
+(`artefatos_teste/metricas_modelo.json`).
+
+Causa raiz: `selecionar_colunas` funcionava por lista de **exclusão** — qualquer
+coluna de texto nova virava feature sozinha, e as colunas `fornecedor_*` entram
+por junção com a dimensão de produtor. Correcção estrutural: predicado
+`e_identificador` (lista explícita + padrões) e pós-condição que faz o treino
+parar.
+
+**Ablação (a que a sprint 4 previa para A2):**
+
+| métrica | COM ident. | SEM ident. | delta |
+|---------|-----------:|-----------:|------:|
+| MAE | 24,4523 | 24,1726 | −0,2797 (−1,1 %) |
+| RMSE | 36,8645 | 36,6797 | −0,1848 (−0,5 %) |
+| MAPE % | 3,6315 | 3,5824 | −0,0491 (−1,4 %) |
+| R² | 0,99431 | 0,99441 | +0,0001 |
+
+Remover os identificadores **melhorou** o modelo. Eram risco LGPD e fragilidade
+de cold start por benefício preditivo negativo. Artefactos versionados
+regenerados (é o que a API serve; o `.joblib` é gitignored e não vai à Railway).
+
+### 3. Achado C3 — NaN silencioso na classificação — RESOLVIDO
+
+Corte superior passa a `inf` (score alto cai em "Crítico", leitura segura) e
+score ausente vira `"Indeterminado"` em vez de NaN.
+
+**Caminho novo, fora do enunciado do achado:** NaN em qualquer coluna `target_`
+propaga para o score e daí para a classe. Zero ocorrências na base sintética,
+mas dados reais têm falha de medição. Feito antes de C1, como a auditoria pedia.
+
+---
+
+### 4. Achado C1 — diagnóstico RESOLVIDO, calibração EM ABERTO
+
+A auditoria deixava a pergunta: *"calibração dos pesos ou gerador sintético
+saudável demais?"* **Nenhuma das duas — é erro de unidade.**
+
+```
+LIMIAR["ccs_atencao"] = 400_000        # células/mL
+dados["ccs"]          = 93,4 … 769,4   # MIL células/mL
+```
+
+Fator 1000. `df["ccs"] >= 400_000` nunca é verdade. Idem CBT. Como
+`risco_qualidade` e `risco_perda_bonus` também dependem só de CCS/CBT,
+**quatro das sete dimensões estão mortas — 60 dos 100 pontos ponderados**, todas
+pela mesma causa.
+
+O gerador não é "saudável demais": produz CCS até **769 mil/mL**, bem acima do
+limite de 500 mil da IN 77. Há produtores em risco na base; o sistema é que não
+os vê.
+
+**Divergência de números explicada:** os 49,40 da auditoria reproduzem no CSV
+bruto (`fact_producao_produtor_dia.csv`). Na base enriquecida com clima o score
+chega a 61,5 e há **1067 linhas em "Alto risco"** — "zero Alto risco" vale para
+um caminho de dados, não para os dois. O `thi` (0–15 pontos) é a diferença.
+
+**Corrigir a unidade sozinho troca sub-alerta por sobre-alerta:**
+
+| classe | hoje | com unidade corrigida |
+|--------|-----:|----------------------:|
+| Baixo risco | 40.470 | 6.855 |
+| Atenção | 13.243 | 8.840 |
+| Alto risco | 1.067 | 26.894 |
+| Crítico | **0** | **12.191** |
+
+71 % da carteira em Alto/Crítico. Aí a questão de calibração dos pesos (C4)
+torna-se legítima. **Os limiares NÃO foram alterados** — é decisão de produto
+com julgamento de domínio.
+
+> Peso académico: isto fecha um diagnóstico que `artigo.md` e `REGISTRO.md`
+> declaram em aberto. "Erro de unidade" é achado mais forte para a banca do que
+> "calibração indefinida". `docs/projeto_integrador/` ainda **não** foi
+> actualizado — vive na branch `academico/2026-2`.
+
+---
+
+### DECISÃO PENDENTE — como resolver C1
+
+1. Corrigir unidade + recalibrar pesos (análise de sensibilidade F2/F3).
+2. Corrigir unidade + subir os cortes das faixas (25/50/75 foram desenhados para
+   um score que nunca passava de 49).
+3. Só instrumentar agora: detectar e rejeitar unidade errada na ingestão, para
+   os dados da Piracanjuba não serem mal lidos em silêncio; adiar a recalibração.
+
+**Recomendação:** 3 agora + 1 quando os dados reais chegarem. Recalibrar contra
+dados sintéticos produz um número que vai mudar de qualquer forma.
+
+---
+
+### Ficou por fazer
+
+| Item | Estado |
+|------|--------|
+| C1 | diagnosticado; calibração aguarda decisão |
+| C2, C4, C5, C6 | abertos — declaração/proveniência, não código |
+| G1, G2, G3 | abertos — produto (corte em 12, `RECEITAS` desligada, dois motores) |
+| A1, A3 | **manter abertos** — protocolo pré-registado da sprint 4 |
+| ALERTA-008 | auto-deploy GitHub → Vercel/Railway ainda não ligado |
+| Senha `usina2025` | ainda recuperável do histórico Git |
+
+### Ao retomar
+
+O trabalho está em `security/fecha-api`, **não fundido em `master` e não
+empurrado**. Nada foi publicado: produção continua com a API aberta e o modelo
+antigo até haver deploy.
+
+**Sequência obrigatória ao publicar** (fora de ordem, o site cai):
+
+1. Railway: definir `VIA_LEITE_API_KEYS` e `VIA_LEITE_ENV=production`
+2. Railway: deploy do backend
+3. Vercel: definir `VIA_LEITE_API_URL` e `VIA_LEITE_API_KEY`
+4. Vercel: deploy do frontend
+5. Confirmar o site e depois `/health`
+
+Detalhe completo em `DEPLOY.md`. Chave gerada nesta sessão está no gestor de
+senhas do Fagner — não ficou no repositório.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 18/06/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A.
 
