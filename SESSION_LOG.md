@@ -57,11 +57,92 @@ preservada.
 
 ---
 
+---
+
+### C1 é maior do que o diagnóstico de 06/08 dizia — e há um segundo defeito
+
+Medido na base que a aplicação carrega (54.780 linhas):
+
+| Dimensão | Peso | Dispara em | |
+|---|---:|---:|---|
+| `risco_temp_tanque` | 10 | **94,4 %** | **saturada** |
+| `risco_queda_producao` | 25 | 23,6 % | ok |
+| `risco_descarte` | 5 | 0,4 % | evento raro |
+| `risco_qualidade` | 20 | 0 % | morta |
+| `risco_ccs` | 15 | 0 % | morta |
+| `risco_cbt` | 15 | 0 % | morta |
+| `risco_perda_bonus` | 10 | 0 % | morta |
+
+06/08 registou "4 dimensões mortas, 60 dos 100 pontos". Faltava metade da
+história: **`risco_temp_tanque` dispara em 94,4 %**, e uma dimensão que marca
+quase toda a gente é tão inútil como uma que nunca marca — distribui os seus 10
+pontos a todos e não separa ninguém.
+
+```
+LIMIAR["temp_tanque_max"] = 4.0    # °C
+temp_tanque_c na base      = p25 4,53 · mediana 4,93 · média 4,95
+```
+
+O limiar está **abaixo do primeiro quartil**. Não é erro de unidade — é a mesma
+causa raiz de C1, **limiar escolhido sem olhar a distribuição**, uma vez travando
+em 0 % e outra em 100 %.
+
+**Somando: 70 dos 100 pontos não carregam informação.** Só
+`risco_queda_producao` discrimina de facto. O score é, na prática, uma dimensão
+com etapas decorativas em volta — e é por isso que não há um único "Crítico".
+
+#### Corrigir só a unidade troca um sistema mudo por um sistema barulhento
+
+| Dimensão | Só com a unidade corrigida |
+|---|---:|
+| `risco_qualidade` | 83,0 % |
+| `risco_cbt` | 80,6 % |
+| `risco_temp_tanque` | 94,4 % (não muda) |
+
+`cbt_atencao = 100 mil UFC/mL` é um terço do limite da IN 77 — sinaliza 4 em cada
+5 produtores saudáveis. Quatro dimensões mudas viram três saturadas. Reforça a
+recomendação de 06/08 de não recalibrar às pressas, por um motivo mais forte do
+que "o número vai mudar".
+
+#### Existe calibração sã (mas não é esta)
+
+Com os limiares ancorados na IN 77 (CCS 400/500, CBT 200/300) e temperatura em
+5 °C: `ccs 48,0 % · qualidade 51,7 % · temp 45,4 % · queda 23,6 % ·
+perda_bonus 20,2 % · cbt 17,7 %` — nenhuma saturada, classes com forma
+(20.993 / 18.881 / 11.185 / 3.721).
+
+**Medido contra dados sintéticos.** Vale como prova de que o espaço de solução
+existe, não como resposta. Confirmar os valores vigentes da IN 77 antes de adoptar.
+
+---
+
+### Guarda de saturação — `tests/test_saturacao_dimensoes.py`
+
+Não escolhe limiares: faz o defeito **falhar em voz alta** em vez de mentir em
+silêncio.
+
+- `test_nenhuma_dimensao_morta_ou_saturada` — a guarda na forma desejada,
+  `xfail(strict=True)`. **Quando C1 for calibrado, vira XPASS e reprova a suíte:
+  é o sinal para remover o marcador, não uma regressão.** Verificado a correr com
+  a calibração do cenário B aplicada.
+- `test_o_defeito_conhecido_nao_mudou` — trava o retrato actual; verificado que
+  apanha uma dimensão nova a nascer morta.
+- `taxa_de_disparo` — função sem dependência do pytest, para reaproveitar na
+  instrumentação da ingestão (opção 3 da decisão de C1): um lote da Piracanjuba
+  que chegue com as dimensões saturadas é rejeitado à entrada, que é por onde o
+  erro de unidade voltaria a entrar.
+
+O relatório de falha imprime a tabela e soma quantos dos 100 pontos ficaram sem
+informação.
+
+---
+
 ### Ficou por fazer
 
 | Item | Estado |
 |------|--------|
-| **C1** | diagnosticado; calibração continua a aguardar decisão — é o próximo assunto real |
+| **C1** | diagnosticado e instrumentado; **escolher os limiares continua a ser decisão de produto** — é o próximo assunto real |
+| `risco_temp_tanque` | achado novo, sem número de auditoria; entra na mesma decisão de calibração |
 | C2, C4, C5, C6 | abertos — declaração/proveniência, não código |
 | G1, G2, G3 | abertos — produto |
 | A1, A3 | **manter abertos** — protocolo pré-registado da sprint 4 |
