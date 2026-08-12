@@ -19,7 +19,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "VIA_LEITE_SENSE_Prototipo.pdf")
 QR_PNG = os.path.join(HERE, "qr_demo.png")
-DEMO_URL = "https://via-leite-sense.streamlit.app"
+DEMO_URL = "https://via-leite-sense.vercel.app"
 
 W, H = landscape(A4)  # 842 x 595 pt
 
@@ -463,7 +463,7 @@ def page_radar(c):
     text(c, W - 40, H - 64, "Página inicial pós-login", FT_REG, 9, MUTED, align="r")
 
     bx, by, bw, bh = 40, 62, W - 80, H - 176
-    browser_frame(c, bx, by, bw, bh, "via-leite-sense.streamlit.app / Radar de Risco")
+    browser_frame(c, bx, by, bw, bh, "via-leite-sense.vercel.app / Radar de Risco")
 
     ix, iw = bx + 18, bw - 36
     top = by + bh - 58
@@ -524,7 +524,7 @@ def page_score(c):
     text(c, W - 40, H - 64, "Fornecedores 360", FT_REG, 9, MUTED, align="r")
 
     bx, by, bw, bh = 40, 62, W - 80, H - 176
-    browser_frame(c, bx, by, bw, bh, "via-leite-sense.streamlit.app / Fornecedores 360")
+    browser_frame(c, bx, by, bw, bh, "via-leite-sense.vercel.app / Fornecedores 360")
     ix, iw = bx + 18, bw - 36
     top = by + bh - 58
     logo(c, ix, top, size=30)

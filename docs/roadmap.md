@@ -42,7 +42,7 @@ o valor da plataforma antes da coleta de dados reais.
 - [x] Score Premium Visual — gauge Plotly + radar 4D por fornecedor
 - [x] Modo Demo Tour — pitch guiado de 5 minutos
 - [x] Exportação de relatório PDF A4 por fornecedor
-- [x] Deploy em produção (Streamlit Cloud)
+- [x] Deploy em produção (SPA na Vercel + API FastAPI na Railway)
 - [x] Via Leite Edge — arquitetura IoT simulada
 
 ### Critério de conclusão

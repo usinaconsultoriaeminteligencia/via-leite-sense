@@ -10,7 +10,7 @@
 | **Data** | 27 de junho de 2026 |
 | **Estágio** | MVP em produção · validação de mercado em curso |
 | **Contexto** | Desafio AgroStartup SENAR/SEBRAE Goiás 2026 |
-| **Demo** | https://via-leite-sense.streamlit.app (`demo` / `demo2025`) |
+| **Demo** | https://via-leite-sense.vercel.app (`demo` / `demo2025`) |
 
 ---
 
@@ -52,7 +52,7 @@ O VIA LEITE SENSE é um produto **funcional e demonstrável ao vivo** — não u
 | Frente | Entrega |
 |---|---|
 | Produto | Radar de Risco + Score VIA LEITE + Perfil do Produtor + 10 módulos operacionais |
-| Tecnologia | MVP em produção (Streamlit Cloud); motor de score; modelo de previsão com **R² de 99,4%** |
+| Tecnologia | MVP em produção (SPA na Vercel + API FastAPI na Railway); motor de score; modelo de previsão com **R² de 99,4%** |
 | Dados | Pipeline de importação, validação e execução de piloto com dados reais já implementado |
 | Arquitetura | Multi-tenant e **IoT-ready** (MQTT), preparada para a fase de sensores |
 | Comercial | Protótipo de 14 páginas, roteiro de pitch e identidade visual; demo pública no ar |
@@ -193,8 +193,10 @@ reprodução + nutrição + sanidade + finanças com profundidade ao mesmo tempo
 integração com todos os equipamentos de ordenha; **vender "IA" como produto antes de provar ROI**.
 
 ### 7.5 Stack
-Python 3.11 · Streamlit · Scikit-learn (regressão + scoring) · Pandas/NumPy · Plotly · FastAPI ·
-FPDF2 · ingestão INMET. Deploy em Streamlit Cloud. Arquitetura multi-tenant e **IoT-ready (MQTT)**.
+Python 3.11 · FastAPI · Scikit-learn/XGBoost (regressão + scoring) · Pandas/NumPy · DuckDB ·
+SPA em JavaScript · Plotly · FPDF2 · ingestão INMET. Deploy do frontend na **Vercel** e da API na
+**Railway** (DuckDB em volume persistente), com todas as rotas de dados autenticadas por chave.
+Arquitetura multi-tenant e **IoT-ready (MQTT)**.
 
 > **Base de dados:** os números de mercado são oficiais (IBGE/SIDRA, MilkPoint, Embrapa, MAPA). A
 > camada operacional roda hoje sobre dados simulados para validação de arquitetura e demonstração;
@@ -472,7 +474,7 @@ pagam porque economizam dinheiro ou protegem receita"*.
 > **Ask:** o primeiro **laticínio/cooperativa parceiro no Sul Goiano** para um **piloto pago de
 > 30–90 dias com dados reais** — com baseline, relatório de ROI e contrato de conversão
 > pré-acordado. O produto está **no ar e demonstrável ao vivo**:
-> https://via-leite-sense.streamlit.app
+> https://via-leite-sense.vercel.app
 
 ---
 

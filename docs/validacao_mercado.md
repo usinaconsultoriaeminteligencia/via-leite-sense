@@ -165,7 +165,7 @@ em piloto pago ou carta de intenção após demonstração ao vivo.
 
 ### Critério 4 — Usabilidade da entrada de dados
 **Meta:** Um produtor sem conhecimento técnico consegue inserir dados
-de produção e qualidade no formulário Streamlit em menos de 5 minutos,
+de produção e qualidade no formulário da plataforma em menos de 5 minutos,
 sem suporte.
 
 **Status:** ⬜ A validar com teste de usabilidade presencial

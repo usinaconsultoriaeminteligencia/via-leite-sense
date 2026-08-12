@@ -29,9 +29,9 @@ entrada estruturada de dados operacionais reais.
 │              └────────────┬──────────────┘             │
 │                           │                             │
 │              ┌────────────▼──────────────┐             │
-│              │   Dashboard Streamlit      │             │
-│              │   (Radar de Risco,         │             │
-│              │    Executivo, Operacional) │             │
+│              │   API FastAPI (Railway)    │             │
+│              │   -> SPA na Vercel         │             │
+│              │   (Radar, Executivo, Oper.)│             │
 │              └───────────────────────────┘             │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -88,7 +88,7 @@ Climático:
   - Saída processada: dados_inmet_processado/fact_clima_diario_inmet.csv
 
 Qualidade (CCS/CBT):
-  - Entrada manual via formulário Streamlit
+  - Entrada manual via formulário da SPA (Gestão e Dados)
   - Importação CSV com colunas padronizadas
   - Validação via validar_pacote_dados_reais.py
 ```
