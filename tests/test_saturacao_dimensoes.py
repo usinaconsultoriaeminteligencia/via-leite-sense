@@ -28,26 +28,19 @@ dados reais. Ele faz o defeito **falhar em voz alta** em vez de mentir em
 silêncio, e passa a apanhar sozinho qualquer dimensão futura que nasça morta ou
 saturada.
 
-Para instrumentar a ingestão (a opção 3 da decisão de C1), `taxa_de_disparo` é
-a função a reaproveitar: corre sobre qualquer DataFrame, sem depender do
-pytest.
+A opção 3 da decisão de C1 — instrumentar a ingestão — foi executada em
+12/08/2026 e vive em `guarda_ingestao.py`. Este ficheiro passou a importar de
+lá `taxa_de_disparo` e os dois limites: um registo do defeito e a guarda que
+corre em produção têm de medir a MESMA coisa, senão calibrar uma delas deixa
+a outra a mentir.
 """
 from __future__ import annotations
 
-import pandas as pd
 import pytest
 
+from guarda_ingestao import TAXA_MAXIMA, TAXA_MINIMA, taxa_de_disparo
 from gestor_store import carregar_base_treino_via_leite, init_db
 from score_risco import PESOS_SCORE, calcular_scores
-
-PREFIXO = "target_"
-
-# Uma dimensão que nunca dispara não separa ninguém; uma que dispara em mais de
-# 90% das linhas distribui o seu peso a quase toda a gente e também não separa.
-# São os dois extremos indefensáveis — o meio-termo é calibração, e essa fica
-# para quando houver dados reais.
-TAXA_MINIMA = 0.0   # exclusiva: tem de disparar ao menos uma vez
-TAXA_MAXIMA = 0.90  # inclusiva: acima disto deixa de discriminar
 
 # Estado conhecido em 07/08/2026, com a unidade de CCS/CBT ainda por corrigir.
 # Não é o estado desejado: é o retrato do defeito, para que qualquer mudança
@@ -59,20 +52,6 @@ DIMENSOES_MORTAS = {
     "risco_perda_bonus",
 }
 DIMENSOES_SATURADAS = {"risco_temp_tanque"}
-
-
-def taxa_de_disparo(df: pd.DataFrame) -> dict[str, float]:
-    """Fração de linhas em que cada dimensão do score dispara.
-
-    Devolve `{nome_da_dimensao: taxa}` para as dimensões de `PESOS_SCORE`,
-    usando as colunas `target_*` produzidas por `calcular_scores`.
-    """
-    taxas: dict[str, float] = {}
-    for dimensao in PESOS_SCORE:
-        coluna = f"{PREFIXO}{dimensao}"
-        if coluna in df.columns:
-            taxas[dimensao] = float(df[coluna].mean())
-    return taxas
 
 
 def _relatorio(taxas: dict[str, float]) -> str:
@@ -159,27 +138,5 @@ def test_a_unica_dimensao_que_discrimina_continua_viva(taxas_da_base):
     assert TAXA_MINIMA < taxa < TAXA_MAXIMA, _relatorio(taxas_da_base)
 
 
-# --------------------------------------------------------------------- #
-# A função, verificada sem depender de dados                             #
-# --------------------------------------------------------------------- #
-
-def test_taxa_de_disparo_conta_o_que_deve():
-    df = pd.DataFrame({
-        "target_risco_ccs": [0, 0, 0, 0],
-        "target_risco_cbt": [1, 1, 1, 1],
-        "target_risco_queda_producao": [1, 0, 0, 0],
-    })
-    taxas = taxa_de_disparo(df)
-    assert taxas["risco_ccs"] == 0.0
-    assert taxas["risco_cbt"] == 1.0
-    assert taxas["risco_queda_producao"] == 0.25
-
-
-def test_dimensao_ausente_nao_e_inventada():
-    """
-    Uma coluna em falta não pode virar taxa 0 — isso confundiria "dimensão que
-    não disparou" com "dimensão que nem foi calculada", que são problemas
-    diferentes e com correcções diferentes.
-    """
-    taxas = taxa_de_disparo(pd.DataFrame({"target_risco_ccs": [0, 1]}))
-    assert set(taxas) == {"risco_ccs"}
+# A função `taxa_de_disparo` é verificada sem depender de dados em
+# `tests/test_guarda_ingestao.py`, onde ela agora vive.

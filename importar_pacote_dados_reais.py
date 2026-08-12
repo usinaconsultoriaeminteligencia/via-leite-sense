@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 
 from ingestao_clima_inmet import enriquecer_clima
+from guarda_ingestao import formatar_relatorio as guarda_formatar
 from validar_pacote_dados_reais import validate_package
 
 DEFAULT_CLIMATE_SOURCE = Path("dados_inmet_processado") / "fact_clima_diario_inmet.csv"
@@ -446,10 +447,34 @@ def build_fact_clima_diario(fact_prod: pd.DataFrame, climate_path: Path | None) 
     return climate_target[keep_cols].sort_values(["polo_climatico", "data"]).reset_index(drop=True)
 
 
-def import_package(input_dir: Path, output_dir: Path, climate_path: Path | None = None) -> dict:
+def import_package(
+    input_dir: Path,
+    output_dir: Path,
+    climate_path: Path | None = None,
+    ignorar_guarda_score: bool = False,
+) -> dict:
     report = validate_package(input_dir)
     if report["status"] == "error":
         raise ValueError("Pacote de dados reais inválido. Rode o validador e corrija os erros antes da importação.")
+
+    # Guarda do achado C1 (ver `guarda_ingestao.py`). Um pacote pode passar em
+    # toda a validação estrutural e ainda assim gerar um score que não ordena
+    # produtor nenhum — foi assim que 70 dos 100 pontos ficaram sem informação
+    # sem ninguém dar por isso.
+    #
+    # Bloqueia por omissão. O `ignorar_guarda_score` existe porque importar e
+    # pontuar são coisas diferentes: dá para querer os dados em disco (treino,
+    # inspecção) sabendo que o score ainda não vale. É deliberado, tem de ser
+    # escrito na linha de comando, e fica gravado no manifesto.
+    guarda = report.get("guarda_score")
+    if guarda and guarda["status"] == "erro" and not ignorar_guarda_score:
+        raise ValueError(
+            "Guarda de score reprovou o pacote — o score gerado a partir destes "
+            "dados não seria interpretável:\n"
+            + guarda_formatar(guarda)
+            + "\n\nPara importar mesmo assim (os dados entram, o score não vale), "
+            "repita com --ignorar-guarda-score."
+        )
 
     ensure_dir(output_dir)
 
@@ -483,6 +508,7 @@ def import_package(input_dir: Path, output_dir: Path, climate_path: Path | None 
         "output_dir": str(output_dir.resolve()),
         "climate_source": str((climate_path or (DEFAULT_CLIMATE_SOURCE if DEFAULT_CLIMATE_SOURCE.exists() else FALLBACK_CLIMATE_SOURCE)).resolve()),
         "validation": report,
+        "guarda_score_ignorada": bool(ignorar_guarda_score),
         "outputs": {
             "dim_produtor": int(len(dim_prod)),
             "fact_producao_produtor_dia": int(len(fact_prod)),
@@ -502,9 +528,20 @@ def main() -> None:
     parser.add_argument("--input-dir", type=Path, required=True, help="Diretorio com os arquivos CSV entregues pelo cliente.")
     parser.add_argument("--output-dir", type=Path, required=True, help="Diretorio de saída no formato consumido pelo Via Leite.")
     parser.add_argument("--climate-path", type=Path, default=None, help="Arquivo de clima opcional para enriquecimento.")
+    parser.add_argument(
+        "--ignorar-guarda-score",
+        action="store_true",
+        help=(
+            "Importa mesmo que a guarda do achado C1 reprove. Os dados entram; "
+            "o score gerado a partir deles NAO e interpretavel. Fica registado "
+            "no manifesto."
+        ),
+    )
     args = parser.parse_args()
 
-    manifest = import_package(args.input_dir, args.output_dir, args.climate_path)
+    manifest = import_package(
+        args.input_dir, args.output_dir, args.climate_path, args.ignorar_guarda_score
+    )
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
 
 

@@ -1,4 +1,128 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 12/08/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
+**Branch:** `master` — não publicado (nenhum runtime de produção alterado)
+
+---
+
+### DECISÃO DE C1 — TOMADA
+
+**Opção 3 executada agora; opção 1 fica agendada para quando os dados da
+Piracanjuba chegarem.** Decisão do Fagner, 12/08/2026.
+
+> **Instrumentar a ingestão agora. Calibrar os limiares (unidade + pesos)
+> DEPOIS dos dados reais da Piracanjuba — e não antes.**
+
+| | Estado |
+|---|---|
+| Instrumentação da ingestão (opção 3) | **feita** — `guarda_ingestao.py` |
+| Calibração dos limiares (opção 1) | **agendada** — gatilho: chegada dos dados da Piracanjuba |
+| `LIMIAR` em `score_risco.py` | **inalterado, de propósito** |
+
+**O gatilho é a chegada dos dados, não uma data.** A negociação com a
+Piracanjuba não tem prazo definido; amarrar a calibração a um dia do
+calendário produziria outra vez uma escolha feita sem olhar a distribuição —
+que é exactamente a causa raiz de C1.
+
+**Porque não calibrar já:** a calibração sã medida em 07/08 (limiares da
+IN 77, temperatura a 5 °C) foi medida **contra dados sintéticos**. Vale como
+prova de que o espaço de solução existe, não como resposta. Calibrar contra o
+gerador seria calibrar duas vezes, e a primeira delas para deitar fora.
+
+---
+
+### `guarda_ingestao.py` — a instrumentação
+
+Corre sobre um lote antes de ele entrar e responde a uma pergunta só: *este
+lote pode ser pontuado, ou o score que sairia daqui seria mentira?*
+
+**Duas verificações, e a distinção entre elas é o ponto todo:**
+
+1. **Escala** — a mediana da coluna e o limiar que a julga estão na mesma
+   ordem de grandeza? Tolerância de duas ordens (`FATOR_ESCALA_MAX = 100`):
+   nenhum rebanho real tem a mediana de milhares de colheitas 100x afastada do
+   limiar de *atenção* da sua própria norma. É a única das duas que diz **de
+   quem é a culpa**.
+2. **Taxa de disparo** — cada dimensão medida separa alguém? `MORTA` (≤ 0%) e
+   `SATURADA` (≥ 90%) são igualmente inúteis.
+
+**A distinção que a guarda nunca pode perder:**
+
+```
+dimensão MORTA        -> o limiar não bate na distribuição   -> recalibrar (nós)
+dimensão NÃO MEDIDA   -> a coluna não veio no pacote          -> pedir ao cliente
+escala trocada        -> unidade divergente dado/limiar       -> corrigir C1 (nós)
+```
+
+Os três produzem `target_*` idênticos — tudo a zero. **Foi essa confusão que
+manteve C1 invisível.** `NAO MEDIDA` é aviso (importável, score mais pobre);
+`MORTA`/`SATURADA`/escala são erro.
+
+Uma divergência de escala **cala** o diagnóstico de taxa de disparo: com a
+unidade trocada as taxas descrevem o defeito, não os dados, e reportar as duas
+ao mesmo nível mandaria recalibrar limiares que estão certos.
+
+**Verificado contra a base que a aplicação carrega** (54.780 linhas):
+reproduz C1 exactamente — 70 de 100 pontos sem informação, `ccs` a −3,0 e
+`cbt` a −2,9 ordens de grandeza. Com a unidade corrigida à mão, a escala passa
+e sobra `risco_temp_tanque` saturada a 94,4% — que é o achado de 07/08, e que
+**não** é erro de unidade. A guarda separa os dois sozinha.
+
+### Onde o portão está
+
+| Ponto | Comportamento |
+|---|---|
+| `validar_pacote_dados_reais.py` | campo `guarda_score` **separado** de `status`; imprime a tabela legível; sai com código 1 |
+| `importar_pacote_dados_reais.py` | **bloqueia**; `--ignorar-guarda-score` para forçar |
+| `executar_piloto_real.py` | herda o bloqueio; mesma flag |
+| `manifesto_importacao.json` | grava o laudo **e** `guarda_score_ignorada` |
+
+**Validação estrutural e guarda de score ficam em campos separados de
+propósito.** Um pacote pode estar estruturalmente perfeito e ainda assim
+produzir um score que não significa nada; são defeitos com donos diferentes (o
+cliente corrige o primeiro, nós o segundo) e um só semáforo apagaria a
+distinção.
+
+**Porque existe o override.** Importar e pontuar são coisas diferentes: dá
+para querer os dados em disco — treino, inspecção — sabendo que o score ainda
+não vale. O treino do XGBoost não usa `score_risco`. Sem essa saída, a guarda
+seria removida na primeira vez que travasse trabalho real. Ela é deliberada,
+tem de ser escrita na linha de comando e fica gravada no manifesto.
+
+⚠️ **Hoje, um pacote CORRECTO reprova** — os limiares é que estão mil vezes
+acima da unidade dos dados. É o comportamento desejado: é o sinal de que
+chegou a hora de calibrar, não um defeito do pacote do cliente. A mensagem da
+guarda diz isso explicitamente, para não se acusar a Piracanjuba de um defeito
+nosso.
+
+### Testes
+
+`tests/test_guarda_ingestao.py` — 14 testes, com um lote sintético construído
+**por índice e não por sorteio** (uma guarda que decide importações não pode
+ter o próprio teste a oscilar com a semente). Cobre os três casos que se
+parecem e pedem correcções opostas, e o caso em que a escala cala a saturação.
+
+`tests/test_saturacao_dimensoes.py` passou a **importar** `taxa_de_disparo`,
+`TAXA_MINIMA` e `TAXA_MAXIMA` de `guarda_ingestao` em vez de os redefinir. O
+registo executável do defeito e a guarda que corre na ingestão têm de medir a
+mesma coisa — senão calibrar uma deixa a outra a mentir.
+
+**O `xfail(strict=True)` continua intacto.** Quando C1 for calibrado, a suíte
+fica VERMELHA por XPASS — é o sinal para remover o marcador, **não uma
+regressão**.
+
+**Suíte: 60 passed, 1 xfailed** (era 48 + 1).
+
+### Ficou por fazer
+
+Nada mudou quanto a C2/C4/C5/C6, G1/G2/G3, A1/A3 (que **permanecem abertos**
+por protocolo pré-registado), ALERTA-008 e a senha no histórico.
+**`score_risco.py` não foi tocado** — a calibração é o próximo assunto, e o
+gatilho dela são os dados da Piracanjuba.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 07/08/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
 **Branch:** `master` — **publicado em produção**

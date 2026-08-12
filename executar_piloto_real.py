@@ -51,8 +51,9 @@ def run_real_pilot(
     artefatos_dir: Path,
     climate_path: Path | None = None,
     skip_train: bool = False,
+    ignorar_guarda_score: bool = False,
 ) -> dict[str, object]:
-    manifest = import_package(input_dir, base_dir, climate_path)
+    manifest = import_package(input_dir, base_dir, climate_path, ignorar_guarda_score)
     readiness = training_readiness(base_dir)
 
     env = os.environ.copy()
@@ -101,6 +102,15 @@ def main() -> None:
     parser.add_argument("--artefatos-dir", type=Path, required=True, help="Diretorio de saida para os artefatos do modelo.")
     parser.add_argument("--climate-path", type=Path, default=None, help="Arquivo de clima opcional.")
     parser.add_argument("--skip-train", action="store_true", help="Importa a base mas nao roda treino.")
+    parser.add_argument(
+        "--ignorar-guarda-score",
+        action="store_true",
+        help=(
+            "Segue o piloto mesmo que a guarda do achado C1 reprove o pacote. "
+            "O treino nao usa o score e continua valido; o RADAR DE RISCO "
+            "gerado neste piloto e que nao e interpretavel."
+        ),
+    )
     args = parser.parse_args()
 
     summary = run_real_pilot(
@@ -109,6 +119,7 @@ def main() -> None:
         artefatos_dir=args.artefatos_dir,
         climate_path=args.climate_path,
         skip_train=args.skip_train,
+        ignorar_guarda_score=args.ignorar_guarda_score,
     )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 

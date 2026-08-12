@@ -6,6 +6,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from guarda_ingestao import avaliar_lote, formatar_relatorio
+
 
 REQUIRED_FILES = {
     "dim_produtor.csv": [
@@ -102,12 +104,40 @@ def validate_relationships(dim_prod: pd.DataFrame, fact_prod: pd.DataFrame, dim_
     return issues
 
 
+def guard_score(fact_prod: pd.DataFrame) -> dict:
+    """Roda a guarda de C1 sobre a fato de produção.
+
+    Fica num campo próprio, separado de `status`: um pacote pode estar
+    estruturalmente perfeito — colunas todas lá, relações íntegras — e mesmo
+    assim produzir um score que não significa nada. São defeitos de natureza
+    diferente e com donos diferentes (o cliente corrige o primeiro; nós
+    corrigimos o segundo), e juntá-los num só semáforo apagaria justamente a
+    distinção que a guarda existe para fazer.
+
+    Falha fechada: se a guarda não conseguir correr, o resultado é `erro` com
+    a excepção anexada — nunca um `ok` por omissão.
+    """
+    try:
+        return avaliar_lote(fact_prod)
+    except Exception as exc:  # noqa: BLE001 — qualquer falha aqui tem de bloquear
+        return {
+            "status": "erro",
+            "linhas": int(len(fact_prod)),
+            "divergencias_de_escala": [],
+            "taxas": {},
+            "estados": {},
+            "pontos": {},
+            "motivos": [f"a guarda de score não conseguiu correr: {exc!r}"],
+        }
+
+
 def validate_package(data_dir: Path) -> dict:
     report = {
         "status": "ok",
         "required_files": {},
         "optional_files": {},
         "relationship_issues": [],
+        "guarda_score": None,
         "summary": {},
     }
 
@@ -171,6 +201,9 @@ def validate_package(data_dir: Path) -> dict:
         if report["relationship_issues"]:
             report["status"] = "warning" if report["status"] == "ok" else report["status"]
 
+    if "fact_producao_produtor_dia.csv" in loaded:
+        report["guarda_score"] = guard_score(loaded["fact_producao_produtor_dia.csv"])
+
     report["summary"] = {
         "required_files_present": sum(1 for item in report["required_files"].values() if item["exists"]),
         "required_files_total": len(REQUIRED_FILES),
@@ -191,6 +224,16 @@ def main() -> None:
     print(output)
     if args.out:
         args.out.write_text(output, encoding="utf-8")
+
+    # O JSON acima é para máquina. A guarda de C1 tem de ser lida por uma
+    # pessoa antes de decidir se importa — um bloco de números dentro de um
+    # dump é exactamente onde o defeito passou despercebido da primeira vez.
+    guarda = report.get("guarda_score")
+    if guarda:
+        print(formatar_relatorio(guarda))
+
+    if report["status"] == "error" or (guarda and guarda["status"] == "erro"):
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

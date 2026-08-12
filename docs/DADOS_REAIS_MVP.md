@@ -244,11 +244,44 @@ O argumento comercial deve ser simples:
 python validar_pacote_dados_reais.py --data-dir CAMINHO_DO_PACOTE
 ```
 
+O validador faz duas leituras independentes e devolve as duas:
+
+- **estrutura** (campo `status`) — arquivos, colunas, datas, relacoes. Erro
+  aqui e do pacote: o cliente corrige e reenvia.
+- **guarda de score** (campo `guarda_score`) — se as 7 dimensoes de risco
+  conseguem separar produtores neste lote. Erro aqui **pode ser nosso**.
+
+Sai com codigo 1 se qualquer uma reprovar, e imprime a tabela da guarda em
+texto legivel depois do JSON.
+
+#### Como ler a guarda de score
+
+| Estado | Significado | Quem corrige |
+|---|---|---|
+| `escala` divergente | dado e limiar em ordens de grandeza diferentes | **nos** — e o achado C1, ainda em aberto |
+| `MORTA` | dimensao medida que nunca dispara | calibracao (decisao de produto) |
+| `SATURADA` | dispara em mais de 90% das linhas | calibracao (decisao de produto) |
+| `NAO MEDIDA` | a coluna nao veio no pacote | **cliente** — pedir a coluna |
+
+`MORTA` e `NAO MEDIDA` produzem exatamente o mesmo resultado no score — tudo
+a zero — e pedem correcoes opostas. Nao tratar como a mesma coisa.
+
+> **Hoje, um pacote correto reprova.** Enquanto C1 nao for calibrado, os
+> limiares de CCS/CBT estao mil vezes acima da unidade em que os dados vem, e
+> a guarda acusa `escala` em qualquer lote real. Isso e o esperado: e o sinal
+> de que chegou a hora de calibrar, nao um defeito do pacote do cliente.
+
 ### 2. Importar e normalizar para o formato do Via Leite
 
 ```powershell
 python importar_pacote_dados_reais.py --input-dir CAMINHO_DO_PACOTE --output-dir CAMINHO_SAIDA
 ```
+
+A importacao **bloqueia** se a guarda de score reprovar. Para importar mesmo
+assim — os dados entram em disco, o score gerado a partir deles nao vale —
+acrescentar `--ignorar-guarda-score`. A decisao fica gravada no
+`manifesto_importacao.json` (`guarda_score_ignorada`), junto do laudo
+completo da guarda.
 
 ### 2b. Executar o onboarding interno completo
 
