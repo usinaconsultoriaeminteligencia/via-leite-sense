@@ -1,7 +1,7 @@
 ## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 25/08/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
-**Branch:** `master` — commit `bc16e88`, não publicado
+**Branch:** `master` — commits `bc16e88`..`8d8c169`, **publicados e em produção**
 
 ---
 
@@ -39,6 +39,51 @@ Em cascata, se `pages/` sair: `auth.py`, `dashboard_common.py`, `relatorio_pdf.p
 3. [ ] Fase 2 — remover órfãos e `pages/`, portando `relatorio_pdf.py` para endpoint `/report/pdf` no FastAPI.
 4. [ ] Fase 3 — layout `src/via_leite/`, renomear `dados_teste`→`data/reference` e `artefatos_teste`→`data/artifacts` (mexe em Railway `startCommand`, `.railwayignore` e `MVP_*_DIR`; exige deploy manual verificado).
 5. [ ] Dívida barata sem gatilho externo: ALERTA-008 (auto-deploy), G1, G3.
+
+### Fase 2 — Streamlit removido, PDF portado (commit `8d8c169`, EM PRODUÇÃO)
+
+Portado **antes** de remover, para a capacidade não morrer em silêncio:
+- `relatorio_pdf.py` → `backend/relatorio_pdf.py`, exposto em `GET /suppliers/{id}/report.pdf`.
+  O gerador nunca dependeu de Streamlit (só pandas + fpdf) — foi troca de chamador.
+- `tests/test_relatorio_pdf.py` (3 testes). A proteção por chave é coberta automaticamente
+  por `test_api_auth.py`, que percorre as rotas registadas.
+- `fpdf2` adicionado a `requirements-api.txt`.
+
+Removido: `pages/` (15 telas), `via_leite_app_legacy.py`, `via_leite_sense.py`,
+`dashboard_mvp_avancado.py`, `dashboard_common.py`, `auth.py`, `gerar_senhas.py`,
+`config_auth.yaml`, `.streamlit/secrets.toml.template`; e `plotly`/`pyyaml`/`bcrypt`
+do `requirements.txt`. **Raiz: 20 → 13 módulos `.py`, todos com consumidor.**
+Testes: **60 → 63 passed**, 1 xfailed.
+
+`README.md` e `DEPLOY.md` ficaram sem nenhuma referência morta — ambos ainda ensinavam
+a configurar login e a rodar um ficheiro que deixou de existir.
+
+**Backup:** `config_auth.yaml` era gitignored (não recuperável do histórico) — cópia em
+`scratchpad/config_auth.yaml.backup`.
+
+### Deploy verificado em produção — 25/08/2026
+
+`git push` + `railway up --ci`. `fpdf2-2.8.8` instalado no build.
+
+| Verificação | Resultado |
+|---|---|
+| `/health` | 200 |
+| `/suppliers/19/report.pdf` **com** chave | 200 · `application/pdf` · 3.030 bytes · `%PDF-` |
+| mesma rota **sem** chave | 401 |
+| `/suppliers/nao-existe/report.pdf` | 404 |
+| `/portfolio`, `/quality-summary`, `/model/metrics` | 200 (sem regressão) |
+| SPA Vercel + proxy `/api/health` | 200 |
+| Redirect Streamlit Cloud (QR codes do pitch) | 303 — vivo |
+
+### ⚠️ CONFIRMADO na Railway — bloqueia a fase 3
+`MVP_DATA_DIR=dados_teste` e `MVP_ARTEFATOS_DIR=artefatos_teste` estão **fixadas como
+variáveis de ambiente na Railway**, não apenas como defaults no código. Renomear as
+pastas para `data/reference` e `data/artifacts` exige alterá-las lá **antes** do deploy,
+ou a API cai. Não é suposição: foi lido de `railway variables` em 25/08.
+
+### Aberto, fora do escopo aprovado
+`perfil/` (3 ficheiros) importa `fornecedor_inteligencia`, mas ninguém importa `perfil/` —
+mesmo padrão de órfão do Streamlit. Não investigado.
 
 ### Bloqueios ativos
 - Fases 2 e 3 dependem de decisão de produto (PDF) e de janela para verificar deploy manual — não de impedimento técnico.
