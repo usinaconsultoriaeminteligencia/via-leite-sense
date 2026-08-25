@@ -1,4 +1,52 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 25/08/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
+**Branch:** `master` — commit `bc16e88`, não publicado
+
+---
+
+### O que foi feito
+- **Varredura completa do diretório** (663M no total: 460M `.venv`, 83M `.git`, ~120M de conteúdo). Grafo de imports mapeado para todo o repositório.
+- **Fase 1 da limpeza executada — 53M removidos.** Conteúdo do repo: ~120M → **68M**.
+  - `artefatos_validacao/` (34M, 20 arquivos versionados): snapshot de 27/03 substituído por `artefatos_teste/` (07/08); referenciado só pelos arquivos de ignore.
+  - `dados_utilizador_teste_planos{,_2..6}` (19M): 6 pastas de uma única sessão de teste em 06/05, 21:43–21:53.
+  - `onboarding_clientes{,_ui}/`, `dados_sinteticos/`, caches.
+- Referências órfãs removidas de `.gitignore` e `.railwayignore`; `dados_inmet_raw/.gitkeep` finalmente versionado.
+- Fechado o intervalo 12/08→25/08, que estava sem entrada: nenhuma alteração de código nesse período; as escritas de 24/08 em `dados_utilizador/` e `tests/` eram a tarefa `USINA-HealthSensor-Daily` (pass, 12,3s), não trabalho humano.
+
+### Decisões técnicas tomadas
+| Decisão | Justificativa | Alternativa descartada |
+|---|---|---|
+| Limpeza em fases; só a fase 1 agora | Sistema em produção, sem auto-deploy (ALERTA-008), com 10 achados de auditoria abertos. Fase 1 não toca em runtime | Reestruturação `src/` em um único golpe |
+| `relatorio_pdf.py` preservado | É a única geração de PDF do produto; o SPA não a tem. Portar ao backend como endpoint, não descartar | Remover junto com `pages/` |
+| `via_leite_app.py` mantido | Não é código morto: é o redirect vivo no Streamlit Cloud que preserva QR codes e links do pitch (`c833962`) | Excluir como órfão |
+| Histórico do git NÃO reescrito | Os 57M de CSV versionados exigiriam `filter-repo` + force-push num repo **público** — risco próprio, operação separada | `git filter-repo` agora |
+
+### ⚠️ ARMADILHA DE NOMENCLATURA — ler antes de qualquer limpeza futura
+`dados_teste/` (11M) e `artefatos_teste/` (34M) **são a produção**, apesar do nome:
+`backend/app.py:45` → `MVP_DATA_DIR` default `"dados_teste"`;
+`backend/app.py:49` → `MVP_ARTEFATOS_DIR` default `"artefatos_teste"`.
+Apagá-las derruba a API na Railway. O rename para `data/reference/` e `data/artifacts/` é parte da fase 3.
+
+### Código morto identificado (fase 2, ainda NÃO removido)
+Órfãos por grafo de imports: `via_leite_app_legacy.py`, `via_leite_sense.py`, `dashboard_mvp_avancado.py`, `gerar_senhas.py`, `pages/` (15 telas Streamlit).
+Em cascata, se `pages/` sair: `auth.py`, `dashboard_common.py`, `relatorio_pdf.py` ficam sem consumidor.
+`gerador_leite_sintetico.py` é órfão mas deve ficar — a calibração C1 pode precisar dele.
+
+### Próximos passos
+1. [ ] Inalterado e prioritário: **aguardar dados da Piracanjuba** para calibrar C1.
+2. [ ] Commitar `docs/CADASTRO_DORES_AGROSTARTUP.md` + `.txt` (46K+47K, prontos desde 12/08, nunca versionados).
+3. [ ] Fase 2 — remover órfãos e `pages/`, portando `relatorio_pdf.py` para endpoint `/report/pdf` no FastAPI.
+4. [ ] Fase 3 — layout `src/via_leite/`, renomear `dados_teste`→`data/reference` e `artefatos_teste`→`data/artifacts` (mexe em Railway `startCommand`, `.railwayignore` e `MVP_*_DIR`; exige deploy manual verificado).
+5. [ ] Dívida barata sem gatilho externo: ALERTA-008 (auto-deploy), G1, G3.
+
+### Bloqueios ativos
+- Fases 2 e 3 dependem de decisão de produto (PDF) e de janela para verificar deploy manual — não de impedimento técnico.
+
+---
+*Registrado por Claude — USINA I.A.*
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 12/08/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
 **Branch:** `master` — não publicado (nenhum runtime de produção alterado)
