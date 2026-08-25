@@ -37,7 +37,6 @@ dados_inmet_raw/*.csv
 
 # Artefatos de modelo (regenerar localmente)
 artefatos_teste/modelo_mvp.joblib
-artefatos_validacao/modelo_mvp.joblib
 
 # DuckDB
 *.duckdb

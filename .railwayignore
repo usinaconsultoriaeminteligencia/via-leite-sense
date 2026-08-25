@@ -4,7 +4,6 @@ docs/*.pdf
 docs/*.docx
 dados_inmet_processado/
 dados_inmet_raw/
-artefatos_validacao/
 
 # Streamlit (roda em serviço separado, não faz parte da API)
 pages/
