@@ -15,7 +15,9 @@ Desenvolvido por **USINA I.A.** para o **Desafio AgroStartup SENAR/SEBRAE Goiás
 > **Arquitetura de produção:** frontend SPA na **Vercel** consumindo a **API FastAPI
 > na Railway** (DuckDB em volume persistente). O app **Streamlit** foi descomissionado —
 > `via-leite-sense.streamlit.app` agora redireciona para a Vercel. O código Streamlit
-> segue disponível em `via_leite_app_legacy.py` para desenvolvimento local.
+> Streamlit foi removido em 25/08/2026 — `via_leite_app.py` é apenas a página de
+> redirect, que existe para não quebrar os QR codes e links já impressos do pitch.
+> O app completo permanece no histórico do Git (até `0c945aa`).
 
 ---
 
@@ -150,9 +152,9 @@ python executar_piloto_real.py \
 | Laticínio | `laticinio` | `leite2025` | Inclui gestão e plano de ação |
 | Admin | `admin` | _privada_ | Acesso completo |
 
-> As credenciais `demo` e `laticinio` são públicas apenas para avaliação do protótipo.
-> O acesso **admin** é provisionado fora do repositório, via `st.secrets` (produção)
-> ou `config_auth.yaml` (local, no `.gitignore`) — nunca versionado.
+> A autenticação por utilizador saiu com o app Streamlit em 25/08/2026. A API em
+> produção autentica por `X-API-Key` em todas as rotas exceto `/health`
+> (`backend/security.py`) — ver ALERTA-005, fechado em 06/08.
 
 ---
 

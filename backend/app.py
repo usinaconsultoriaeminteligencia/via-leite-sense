@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 from backend.security import docs_are_public, require_api_key
 
 from fornecedor_inteligencia import calcular_scores_fornecedores
+from backend.relatorio_pdf import gerar_relatorio_produtor
 from score_risco import calcular_scores, gerar_ranking_risco
 from gestor_store import (
     carregar_planos_acao,
@@ -768,6 +769,57 @@ def get_supplier(supplier_id: str) -> dict[str, Any]:
         if supplier["id"] == supplier_id:
             return supplier
     raise HTTPException(status_code=404, detail="Fornecedor não encontrado.")
+
+
+@app.get(
+    "/suppliers/{supplier_id}/report.pdf",
+    response_class=Response,
+    responses={200: {"content": {"application/pdf": {}}}},
+)
+def get_supplier_report(supplier_id: str) -> Response:
+    """Relatorio executivo em PDF de um produtor.
+
+    Portado da pagina Streamlit `pages/7_Fornecedores_360.py`, descomissionada
+    junto com o resto do app Streamlit. O gerador (`backend/relatorio_pdf.py`)
+    nunca dependeu de Streamlit -- so de pandas e fpdf -- entao a migracao e
+    uma troca de chamador, nao uma reimplementacao.
+    """
+    scores = _scores_base()
+    linha = scores[scores["id_produtor"] == str(supplier_id)]
+    if linha.empty:
+        raise HTTPException(status_code=404, detail="Fornecedor nao encontrado.")
+    det = linha.iloc[0]
+
+    # Historico dos ultimos 30 dias; se faltar, o gerador omite o grafico.
+    prod, _dim_prod, _pred = _ler_csvs()
+    hist = prod[prod["id_produtor"].astype(str) == str(supplier_id)]
+    hist_serie = None
+    if not hist.empty:
+        hist_serie = (
+            hist.sort_values("data")
+            .tail(30)
+            .loc[:, ["data", "litros_coletados", "litros_previstos"]]
+            .reset_index(drop=True)
+        )
+
+    nome_laticinio = ""
+    dim_lat_path = data_dir() / "dim_laticinio.csv"
+    if dim_lat_path.exists():
+        dim_lat = pd.read_csv(dim_lat_path)
+        match = dim_lat[dim_lat["id_laticinio"].astype(str) == str(det.get("id_laticinio", ""))]
+        if not match.empty:
+            nome_laticinio = str(match.iloc[0].get("municipio_base", ""))
+
+    pdf_bytes = gerar_relatorio_produtor(det, hist_serie, nome_laticinio)
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": (
+                f'attachment; filename="relatorio_produtor_{supplier_id}.pdf"'
+            )
+        },
+    )
 
 
 @app.post("/suppliers", status_code=201)

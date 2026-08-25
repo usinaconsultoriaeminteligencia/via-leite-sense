@@ -5,8 +5,7 @@ docs/*.docx
 dados_inmet_processado/
 dados_inmet_raw/
 
-# Streamlit (roda em serviço separado, não faz parte da API)
-pages/
+# Streamlit (só o redirect via_leite_app.py; não faz parte da API)
 .streamlit/
 
 # Frontend (deploy separado na Vercel)

@@ -1,13 +1,13 @@
+# Dev/ML + o redirect Streamlit. A API em producao instala requirements-api.txt.
+# streamlit e necessario para via_leite_app.py (redirect que preserva os QR
+# codes do pitch), nao para o app descomissionado.
 pandas>=2.0,<3.0
 numpy>=1.26,<2.0
 scikit-learn>=1.4,<2.0
 xgboost>=2.0,<3.0
 joblib>=1.3,<2.0
-plotly>=5.20,<6.0
 streamlit>=1.35,<2.0
 duckdb>=0.10,<2.0
 fastapi>=0.111,<1.0
 uvicorn[standard]>=0.29,<1.0
-pyyaml>=6.0,<7.0
-bcrypt>=4.1,<5.0
 fpdf2>=2.7,<3.0

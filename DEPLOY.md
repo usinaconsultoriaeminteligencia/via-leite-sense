@@ -108,38 +108,12 @@ git push -u origin master
 - Acesse share.streamlit.io → "New app"
 - Repositório: `SEU_USUARIO/via-leite-sense`
 - Branch: `master`
-- Main file path: `via_leite_app.py`  ← **IMPORTANTE: não usar dashboard_mvp_avancado.py**
+- Main file path: `via_leite_app.py` (página de redirect — é a única que resta)
 
-**3. Configurar Secrets**
+**3. Secrets — não há**
 
-No painel do app: Settings → Secrets. Cole o conteúdo abaixo (substitua os hashes):
-
-```toml
-[auth.credentials.usernames.demo]
-name        = "Avaliador Demo"
-email       = "demo@vialeite.com.br"
-role        = "demo"
-password    = "$2b$12$..."   # gerar com: python gerar_senhas.py demo2025
-
-[auth.credentials.usernames.laticinio]
-name        = "Laticínio Piloto"
-email       = "operacao@vialeite.com.br"
-role        = "laticinio"
-password    = "$2b$12$..."   # gerar com: python gerar_senhas.py leite2025
-
-[auth.credentials.usernames.admin]
-name        = "Admin USINA I.A."
-email       = "fagnerpro80@gmail.com"
-role        = "admin"
-password    = "$2b$12$..."   # gerar com: python gerar_senhas.py "SUA_SENHA_ADMIN"
-
-[auth.cookie]
-name        = "via_leite_session"
-key         = "GERE_UMA_STRING_ALEATORIA_32_CHARS_AQUI"
-expiry_days = 1
-```
-
-> Para gerar os hashes bcrypt: `python gerar_senhas.py`
+O app Streamlit foi reduzido a um redirect em 25/08/2026: sem login, sem dados,
+sem `secrets.toml`. A autenticação vive na API (`X-API-Key`, `backend/security.py`).
 
 **4. Aguardar o build**
 - O Streamlit Cloud instala as dependências de `requirements.txt` automaticamente
@@ -165,11 +139,11 @@ python gerador_leite_sintetico.py --output-dir dados_teste
 # Treinar modelo
 python treino_mvp_avancado.py
 
-# Iniciar com landing + login
-streamlit run via_leite_app.py
+# Subir a API localmente (é a aplicação de facto)
+uvicorn backend.app:app --reload
 
-# Ou iniciar direto no dashboard (sem autenticação obrigatória localmente)
-streamlit run dashboard_mvp_avancado.py
+# Servir o frontend SPA contra a API local
+cd frontend && python -m http.server 3000
 ```
 
 ---
@@ -188,8 +162,7 @@ streamlit run dashboard_mvp_avancado.py
 ## Checklist pré-apresentação
 
 - [ ] Deploy funcionando em URL pública
-- [ ] Login com usuário `demo` funcionando
-- [ ] Dashboard carregando dados de demonstração
-- [ ] Mapa de fazendas visível (página 9 — Painel Executivo)
+- [ ] Redirect do Streamlit Cloud levando à Vercel (QR codes do pitch)
 - [ ] VIA LEITE EDGE com alertas ativos
-- [ ] `.streamlit/secrets.toml` **NÃO** está no repositório
+- [ ] Nenhuma rota da API responde sem `X-API-Key` (exceto `/health`)
+- [ ] Relatório em PDF: `GET /suppliers/{id}/report.pdf` devolvendo `%PDF-`
