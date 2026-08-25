@@ -9,7 +9,7 @@ Esta interface comunica uma plataforma moderna de monitoramento inteligente da c
 Suba a API:
 
 ```powershell
-python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000
+python -m uvicorn via_leite.api.app:app --host 127.0.0.1 --port 8000
 ```
 
 Suba o frontend:
@@ -49,10 +49,10 @@ servir a pasta `frontend/` como site estatico.
 
 1. **Publicar o backend primeiro.** A Vercel nao roda o FastAPI (usa pandas,
    duckdb, scikit-learn e mantem estado em `dados_utilizador/*.duckdb`, que nao
-   e serverless-friendly). Hospede `backend/app.py` em algo com processo
+   e serverless-friendly). Hospede `via_leite/api/app.py` em algo com processo
    persistente — Railway, Render ou Fly.io — via:
    ```
-   uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+   uvicorn via_leite.api.app:app --host 0.0.0.0 --port $PORT
    ```
    Configure `MVP_DATA_DIR`, `MVP_ARTEFATOS_DIR` e `MVP_USER_DATA_DIR` la.
 

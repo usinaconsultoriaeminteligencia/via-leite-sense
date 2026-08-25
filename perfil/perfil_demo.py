@@ -31,7 +31,7 @@ import pandas as pd
 # raiz do projeto no path (para importar módulos do app sem tocá-los)
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fornecedor_inteligencia import calcular_scores_fornecedores  # noqa: E402
+from via_leite.core.fornecedor_inteligencia import calcular_scores_fornecedores  # noqa: E402
 from perfil.classificador_perfil import (  # noqa: E402
     Perfil,
     classificar_perfil,

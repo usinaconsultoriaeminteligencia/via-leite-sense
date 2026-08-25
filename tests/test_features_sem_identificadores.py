@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from treino_mvp_avancado import (
+from via_leite.models.treino_mvp_avancado import (
     IDENTIFICADORES_PROIBIDOS,
     e_identificador,
     selecionar_colunas,
@@ -105,7 +105,7 @@ def test_pos_condicao_recusa_identificador_na_lista_de_features():
     hoje ela não dispara — a exclusão apanha tudo antes —, por isso testa-se
     directamente, e não através de `selecionar_colunas`.
     """
-    from treino_mvp_avancado import garantir_sem_identificadores
+    from via_leite.models.treino_mvp_avancado import garantir_sem_identificadores
 
     # Lista saudável passa em silêncio.
     garantir_sem_identificadores(["polo_climatico", "temperatura_media"])

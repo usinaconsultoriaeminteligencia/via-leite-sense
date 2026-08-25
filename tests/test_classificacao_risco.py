@@ -13,7 +13,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from score_risco import CLASSE_INDETERMINADA, _classificar_risco
+from via_leite.core.score_risco import CLASSE_INDETERMINADA, _classificar_risco
 
 
 def test_faixas_normais_continuam_corretas():
@@ -56,8 +56,8 @@ def test_score_ausente_fica_visivel_como_indeterminado():
 
 def test_nenhuma_linha_da_base_fica_sem_classe():
     """Guarda de ponta a ponta sobre a base que a aplicação realmente usa."""
-    from gestor_store import carregar_base_treino_via_leite, init_db
-    from score_risco import calcular_scores
+    from via_leite.store.gestor_store import carregar_base_treino_via_leite, init_db
+    from via_leite.core.score_risco import calcular_scores
 
     init_db("dados_teste")
     resultado = calcular_scores(carregar_base_treino_via_leite())

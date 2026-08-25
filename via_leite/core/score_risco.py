@@ -15,7 +15,7 @@ executar_piloto_real.py. Aliases de coluna garantem que os nomes do
 schema real (temp_tanque_c, litros_descartados) sejam reconhecidos.
 
 Uso:
-    from score_risco import calcular_scores
+    from via_leite.core.score_risco import calcular_scores
     df_com_scores = calcular_scores(df)
     df_com_scores.to_csv("artefatos_teste/ranking_risco.csv", index=False)
 """

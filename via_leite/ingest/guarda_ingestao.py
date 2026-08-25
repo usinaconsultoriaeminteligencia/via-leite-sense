@@ -33,7 +33,7 @@ correcções opostas (pedir a coluna ao cliente × recalibrar o limiar). Tratar
 os dois como o mesmo caso foi o que deixou C1 invisível durante meses.
 
 Uso:
-    from guarda_ingestao import avaliar_lote, formatar_relatorio
+    from via_leite.ingest.guarda_ingestao import avaliar_lote, formatar_relatorio
     laudo = avaliar_lote(df)
     print(formatar_relatorio(laudo))
     if laudo["status"] == "erro":
@@ -45,7 +45,7 @@ from math import log10
 
 import pandas as pd
 
-from score_risco import LIMIAR, PESOS_SCORE, calcular_scores
+from via_leite.core.score_risco import LIMIAR, PESOS_SCORE, calcular_scores
 
 PREFIXO_TARGET = "target_"
 

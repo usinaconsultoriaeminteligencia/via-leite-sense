@@ -7,9 +7,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from ingestao_clima_inmet import enriquecer_clima
-from guarda_ingestao import formatar_relatorio as guarda_formatar
-from validar_pacote_dados_reais import validate_package
+from via_leite.ingest.ingestao_clima_inmet import enriquecer_clima
+from via_leite.ingest.guarda_ingestao import formatar_relatorio as guarda_formatar
+from via_leite.ingest.validar_pacote_dados_reais import validate_package
 
 DEFAULT_CLIMATE_SOURCE = Path("dados_inmet_processado") / "fact_clima_diario_inmet.csv"
 FALLBACK_CLIMATE_SOURCE = Path("dados_teste") / "fact_clima_diario.csv"

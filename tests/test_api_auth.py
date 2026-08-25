@@ -1,5 +1,5 @@
 """
-Testes da autenticação da API (backend/security.py).
+Testes da autenticação da API (via_leite/api/security.py).
 
 O teste central é `test_toda_rota_nao_publica_exige_chave`: ele percorre as
 rotas registadas na aplicação em vez de uma lista escrita à mão. Um endpoint
@@ -34,17 +34,17 @@ def _app(monkeypatch, chaves: str | None = CHAVE, **env: str):
     for nome, valor in env.items():
         monkeypatch.setenv(nome, valor)
 
-    import backend.security
-    import backend.app
+    import via_leite.api.security
+    import via_leite.api.app
 
-    importlib.reload(backend.security)
-    modulo = importlib.reload(backend.app)
+    importlib.reload(via_leite.api.security)
+    modulo = importlib.reload(via_leite.api.app)
     return modulo.app
 
 
 def _rotas_nao_publicas(app) -> list[tuple[str, str]]:
     """(método, caminho) de cada rota que deve exigir chave."""
-    from backend.security import is_public_path
+    from via_leite.api.security import is_public_path
 
     fora = []
     for rota in app.routes:
@@ -153,9 +153,9 @@ def test_cors_nao_traz_localhost_em_producao(monkeypatch):
 
     monkeypatch.setenv("VIA_LEITE_ENV", "production")
     monkeypatch.setenv("VIA_LEITE_API_KEYS", CHAVE)
-    import backend.app
+    import via_leite.api.app
 
-    modulo = importlib.reload(backend.app)
+    modulo = importlib.reload(via_leite.api.app)
     assert modulo._cors_origins() == []
 
 
@@ -170,10 +170,10 @@ def _ambiente_limpo(monkeypatch):
     yield
     import importlib
 
-    import backend.security
-    import backend.app
+    import via_leite.api.security
+    import via_leite.api.app
 
     for nome in ("VIA_LEITE_API_KEYS", "VIA_LEITE_PUBLIC_DOCS", "VIA_LEITE_ENV"):
         os.environ.pop(nome, None)
-    importlib.reload(backend.security)
-    importlib.reload(backend.app)
+    importlib.reload(via_leite.api.security)
+    importlib.reload(via_leite.api.app)

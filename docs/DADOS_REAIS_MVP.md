@@ -241,7 +241,7 @@ O argumento comercial deve ser simples:
 ### 1. Validar o pacote recebido
 
 ```powershell
-python validar_pacote_dados_reais.py --data-dir CAMINHO_DO_PACOTE
+python -m via_leite.ingest.validar_pacote_dados_reais --data-dir CAMINHO_DO_PACOTE
 ```
 
 O validador faz duas leituras independentes e devolve as duas:
@@ -274,7 +274,7 @@ a zero — e pedem correcoes opostas. Nao tratar como a mesma coisa.
 ### 2. Importar e normalizar para o formato do Via Leite
 
 ```powershell
-python importar_pacote_dados_reais.py --input-dir CAMINHO_DO_PACOTE --output-dir CAMINHO_SAIDA
+python -m via_leite.ingest.importar_pacote_dados_reais --input-dir CAMINHO_DO_PACOTE --output-dir CAMINHO_SAIDA
 ```
 
 A importacao **bloqueia** se a guarda de score reprovar. Para importar mesmo
@@ -286,7 +286,7 @@ completo da guarda.
 ### 2b. Executar o onboarding interno completo
 
 ```powershell
-python onboarding_cliente.py --cliente "Nome do Cliente" --input-dir CAMINHO_DO_PACOTE
+python -m via_leite.store.onboarding_cliente --cliente "Nome do Cliente" --input-dir CAMINHO_DO_PACOTE
 ```
 
 Esse comando gera:

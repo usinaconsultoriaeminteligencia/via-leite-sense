@@ -106,8 +106,8 @@ pip install -r requirements.txt
 ### Fluxo 1 — Clima sintético (demonstração imediata)
 
 ```bash
-python gerador_leite_sintetico.py --output-dir dados_teste
-python treino_mvp_avancado.py
+python -m via_leite.models.gerador_leite_sintetico --output-dir dados_teste
+python -m via_leite.models.treino_mvp_avancado
 streamlit run via_leite_app.py
 ```
 
@@ -115,18 +115,18 @@ streamlit run via_leite_app.py
 
 ```bash
 # 1. Colocar CSVs do INMET em dados_inmet_raw/
-python ingestao_clima_inmet.py --raw-dir dados_inmet_raw --out-dir dados_inmet_processado
-python gerador_leite_sintetico.py --use-real-climate \
+python -m via_leite.ingest.ingestao_clima_inmet --raw-dir dados_inmet_raw --out-dir dados_inmet_processado
+python -m via_leite.models.gerador_leite_sintetico --use-real-climate \
   --real-climate-path dados_inmet_processado/fact_clima_diario_inmet.csv \
   --output-dir dados_teste
-python treino_mvp_avancado.py
+python -m via_leite.models.treino_mvp_avancado
 streamlit run via_leite_app.py
 ```
 
 ### Fluxo 3 — Gerar artefatos de ranking de risco
 
 ```bash
-python score_risco.py
+python -m via_leite.core.score_risco
 # Saída: artefatos_teste/ranking_risco_produtor.csv
 #         artefatos_teste/ranking_risco_rota.csv
 #         artefatos_teste/ranking_risco_laticinio.csv
@@ -135,8 +135,8 @@ python score_risco.py
 ### Fluxo 4 — Piloto com dados reais importados
 
 ```bash
-python validar_pacote_dados_reais.py --data-dir CAMINHO_DO_PACOTE
-python executar_piloto_real.py \
+python -m via_leite.ingest.validar_pacote_dados_reais --data-dir CAMINHO_DO_PACOTE
+python -m via_leite.ingest.executar_piloto_real \
   --input-dir CAMINHO_DO_PACOTE \
   --base-dir dados_piloto_cliente \
   --artefatos-dir artefatos_piloto_cliente
@@ -154,7 +154,7 @@ python executar_piloto_real.py \
 
 > A autenticação por utilizador saiu com o app Streamlit em 25/08/2026. A API em
 > produção autentica por `X-API-Key` em todas as rotas exceto `/health`
-> (`backend/security.py`) — ver ALERTA-005, fechado em 06/08.
+> (`via_leite/api/security.py`) — ver ALERTA-005, fechado em 06/08.
 
 ---
 

@@ -38,9 +38,9 @@ from __future__ import annotations
 
 import pytest
 
-from guarda_ingestao import TAXA_MAXIMA, TAXA_MINIMA, taxa_de_disparo
-from gestor_store import carregar_base_treino_via_leite, init_db
-from score_risco import PESOS_SCORE, calcular_scores
+from via_leite.ingest.guarda_ingestao import TAXA_MAXIMA, TAXA_MINIMA, taxa_de_disparo
+from via_leite.store.gestor_store import carregar_base_treino_via_leite, init_db
+from via_leite.core.score_risco import PESOS_SCORE, calcular_scores
 
 # Estado conhecido em 07/08/2026, com a unidade de CCS/CBT ainda por corrigir.
 # Não é o estado desejado: é o retrato do defeito, para que qualquer mudança

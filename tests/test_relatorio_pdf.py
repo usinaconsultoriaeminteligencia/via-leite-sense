@@ -1,5 +1,5 @@
 """
-Testes do relatório em PDF (`backend/relatorio_pdf.py` + endpoint da API).
+Testes do relatório em PDF (`via_leite/api/relatorio_pdf.py` + endpoint da API).
 
 Contexto: o gerador nasceu na página Streamlit `7_Fornecedores_360.py`. Quando
 o app Streamlit foi descomissionado, a página morreu — mas o gerador nunca
@@ -18,8 +18,8 @@ from fastapi.testclient import TestClient
 
 @pytest.fixture()
 def cliente():
-    import backend.app as app_mod
-    from backend.security import require_api_key
+    import via_leite.api.app as app_mod
+    from via_leite.api.security import require_api_key
 
     app_mod.app.dependency_overrides[require_api_key] = lambda: None
     yield TestClient(app_mod.app)
@@ -27,7 +27,7 @@ def cliente():
 
 
 def _algum_id(cliente: TestClient) -> str:
-    from backend.app import _scores_base
+    from via_leite.api.app import _scores_base
 
     return str(_scores_base().iloc[0]["id_produtor"])
 

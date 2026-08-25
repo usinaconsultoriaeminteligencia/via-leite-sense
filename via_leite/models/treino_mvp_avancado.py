@@ -14,7 +14,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-from gestor_store import carregar_base_treino_via_leite, init_db
+from via_leite.store.gestor_store import carregar_base_treino_via_leite, init_db
 
 try:
     from xgboost import XGBRegressor

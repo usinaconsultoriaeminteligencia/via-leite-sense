@@ -12,12 +12,12 @@ from fastapi import Depends, FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from backend.security import docs_are_public, require_api_key
+from via_leite.api.security import docs_are_public, require_api_key
 
-from fornecedor_inteligencia import calcular_scores_fornecedores
-from backend.relatorio_pdf import gerar_relatorio_produtor
-from score_risco import calcular_scores, gerar_ranking_risco
-from gestor_store import (
+from via_leite.core.fornecedor_inteligencia import calcular_scores_fornecedores
+from via_leite.api.relatorio_pdf import gerar_relatorio_produtor
+from via_leite.core.score_risco import calcular_scores, gerar_ranking_risco
+from via_leite.store.gestor_store import (
     carregar_planos_acao,
     conectar,
     carregar_fornecedores_dim,
@@ -30,7 +30,7 @@ from gestor_store import (
     salvar_lancamento_gerencial,
     salvar_plano_acao,
 )
-from onboarding_cliente import run_client_onboarding
+from via_leite.store.onboarding_cliente import run_client_onboarding
 from via_leite_edge import (
     EDGE_DISCLAIMER,
     EDGE_MODULE_NAME,

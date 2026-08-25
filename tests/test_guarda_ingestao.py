@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from guarda_ingestao import (
+from via_leite.ingest.guarda_ingestao import (
     MORTA,
     NAO_MEDIDA,
     OK,
@@ -30,7 +30,7 @@ from guarda_ingestao import (
     formatar_relatorio,
     taxa_de_disparo,
 )
-from score_risco import PESOS_SCORE, calcular_scores
+from via_leite.core.score_risco import PESOS_SCORE, calcular_scores
 
 
 def lote_saudavel(n: int = 100) -> pd.DataFrame:

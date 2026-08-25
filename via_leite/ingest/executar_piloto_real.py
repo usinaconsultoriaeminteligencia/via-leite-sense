@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from importar_pacote_dados_reais import import_package
+from via_leite.ingest.importar_pacote_dados_reais import import_package
 
 
 def run_command(command: list[str], env: dict[str, str]) -> None:
@@ -88,7 +88,7 @@ def run_real_pilot(
             "MVP_ARTEFATOS_DIR": env["MVP_ARTEFATOS_DIR"],
         },
         "proximos_comandos": {
-            "api": f"$env:MVP_DATA_DIR='{env['MVP_DATA_DIR']}'; $env:MVP_ARTEFATOS_DIR='{env['MVP_ARTEFATOS_DIR']}'; python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000",
+            "api": f"$env:MVP_DATA_DIR='{env['MVP_DATA_DIR']}'; $env:MVP_ARTEFATOS_DIR='{env['MVP_ARTEFATOS_DIR']}'; python -m uvicorn via_leite.api.app:app --host 127.0.0.1 --port 8000",
             "frontend": "python -m http.server 8600 -d frontend",
             "dashboard": f"$env:MVP_DATA_DIR='{env['MVP_DATA_DIR']}'; $env:MVP_ARTEFATOS_DIR='{env['MVP_ARTEFATOS_DIR']}'; streamlit run dashboard_mvp_avancado.py",
         },

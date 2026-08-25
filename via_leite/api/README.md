@@ -14,7 +14,7 @@ Expor a inteligencia da cadeia leiteira para:
 ## Executar
 
 ```powershell
-python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000
+python -m uvicorn via_leite.api.app:app --host 127.0.0.1 --port 8000
 ```
 
 ## Endpoints EDGE
@@ -44,13 +44,13 @@ por cliente), entao precisa de um processo persistente com disco — nao roda
 como funcao serverless. `railway.json` na raiz do repo ja define o build
 (Nixpacks) e o start command.
 
-A cadeia de imports de `backend/app.py` só usa pandas, numpy, duckdb, fastapi
+A cadeia de imports de `via_leite/api/app.py` só usa pandas, numpy, duckdb, fastapi
 e uvicorn — nada de scikit-learn/xgboost/streamlit/plotly/fpdf2/bcrypt, que só
 o app Streamlit e os scripts de treino/scoring precisam. Por isso o Railway
 instala a partir de `requirements-api.txt` (via `nixpacks.toml`), não do
 `requirements.txt` da raiz — evita puxar ~300MB de `nvidia-nccl-cu12` (dependência
 transitiva do xgboost, sem uso em CPU) e o restante das libs pesadas do
-Streamlit. Se `backend/app.py` passar a importar algo novo, adicione a
+Streamlit. Se `via_leite/api/app.py` passar a importar algo novo, adicione a
 dependência em `requirements-api.txt` também.
 
 1. **Criar o projeto:** importar o repositorio no dashboard da Railway
@@ -73,7 +73,7 @@ dependência em `requirements-api.txt` também.
 
 4. **Start command** (já em `railway.json`, não precisa repetir manualmente):
    ```
-   uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+   uvicorn via_leite.api.app:app --host 0.0.0.0 --port $PORT
    ```
 
 5. **Testar o endpoint publicado** (`https://<projeto>.up.railway.app/docs`)

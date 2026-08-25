@@ -5,7 +5,7 @@ import json
 import re
 from pathlib import Path
 
-from executar_piloto_real import run_real_pilot
+from via_leite.ingest.executar_piloto_real import run_real_pilot
 
 
 def slugify(value: str) -> str:

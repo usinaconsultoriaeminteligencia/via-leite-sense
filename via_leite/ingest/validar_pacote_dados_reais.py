@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from guarda_ingestao import avaliar_lote, formatar_relatorio
+from via_leite.ingest.guarda_ingestao import avaliar_lote, formatar_relatorio
 
 
 REQUIRED_FILES = {

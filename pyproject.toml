@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "via-leite-sense"
 version = "0.1.0"
-description = "VIA LEITE SENSE — pacote edge (via_leite_edge) para monitoramento leiteiro"
+description = "VIA LEITE SENSE — plataforma de monitoramento leiteiro (API, motor de score, ingestão e modelo)"
 requires-python = ">=3.10"
 # via_leite_edge só depende de pandas (demais imports são stdlib).
 dependencies = [
@@ -21,7 +21,17 @@ test = [
   "httpx>=0.27",
 ]
 
-# Layout plano: empacotar SOMENTE o pacote via_leite_edge, ignorando os
-# muitos módulos soltos na raiz (dashboards, scripts, etc.).
+# Os módulos que viviam soltos na raiz passaram a `via_leite/` em 25/08/2026.
+# Pacote de raiz e não `src/` layout de propósito: o nixpacks da Railway instala
+# as dependências ANTES de copiar o código, então `pip install -e .` não teria o
+# que instalar e um `src/` exigiria fixar PYTHONPATH.
 [tool.setuptools]
-packages = ["via_leite_edge"]
+packages = [
+  "via_leite",
+  "via_leite.core",
+  "via_leite.ingest",
+  "via_leite.models",
+  "via_leite.store",
+  "via_leite_edge",
+  "via_leite.api",
+]

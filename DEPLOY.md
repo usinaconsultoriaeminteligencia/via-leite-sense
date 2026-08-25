@@ -74,7 +74,7 @@ desenvolvimento" é exactamente o que acaba em produção.
 
 ```bash
 # terminal 1 — API
-VIA_LEITE_API_KEYS=chave-local uvicorn backend.app:app --reload
+VIA_LEITE_API_KEYS=chave-local uvicorn via_leite.api.app:app --reload
 
 # terminal 2 — frontend
 # em frontend/index.html, trocar a meta para http://127.0.0.1:8000
@@ -113,7 +113,7 @@ git push -u origin master
 **3. Secrets — não há**
 
 O app Streamlit foi reduzido a um redirect em 25/08/2026: sem login, sem dados,
-sem `secrets.toml`. A autenticação vive na API (`X-API-Key`, `backend/security.py`).
+sem `secrets.toml`. A autenticação vive na API (`X-API-Key`, `via_leite/api/security.py`).
 
 **4. Aguardar o build**
 - O Streamlit Cloud instala as dependências de `requirements.txt` automaticamente
@@ -134,13 +134,13 @@ Você pode configurar um nome customizado nas configurações do app.
 pip install -r requirements.txt
 
 # Gerar dados sintéticos (se ainda não existirem)
-python gerador_leite_sintetico.py --output-dir dados_teste
+python -m via_leite.models.gerador_leite_sintetico --output-dir dados_teste
 
 # Treinar modelo
-python treino_mvp_avancado.py
+python -m via_leite.models.treino_mvp_avancado
 
 # Subir a API localmente (é a aplicação de facto)
-uvicorn backend.app:app --reload
+uvicorn via_leite.api.app:app --reload
 
 # Servir o frontend SPA contra a API local
 cd frontend && python -m http.server 3000
