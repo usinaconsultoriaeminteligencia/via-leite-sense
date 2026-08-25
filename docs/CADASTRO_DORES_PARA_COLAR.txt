@@ -1,0 +1,457 @@
+====================================================================
+VIA LEITE SENSE - CADASTRO DE DORES - PECUARIA LEITEIRA
+USINA I.A. - 12 de agosto de 2026
+Numeros verificados na API de producao em 12/08/2026.
+====================================================================
+
+COMO USAR ESTE ARQUIVO
+Cada dor abaixo esta separada por uma linha de sinais de igual.
+Dentro de cada dor, os campos aparecem na ordem do formulario:
+Nome / Score / Aderencia / Justificativa / Evidencia / Impacto esperado.
+Basta selecionar o texto abaixo de cada campo e colar no formulario.
+Nao ha formatacao: e texto puro.
+
+
+====================================================================
+BLOCO COMUM - EVIDENCIA VERIFICADA EM PRODUCAO (12/08/2026)
+====================================================================
+
+Confira se o bloco comum que voces ja usam nos cadastros anteriores
+ja contem estes itens. Se contiver, nao repita.
+
+Ambiente: https://via-leite-sense.vercel.app - API FastAPI na Railway,
+rotas autenticadas por chave X-API-Key, exceto o endpoint de saude.
+
+Base de treino (endpoint /training-base/summary): 54.780 registros,
+56 colunas, periodo de 01/01/2021 a 31/12/2025, 30 fornecedores,
+4 laticinios.
+
+Modelo (endpoint /model/metrics): XGBRegressor, alvo de media coletada
+em 7 dias, horizonte de 7 dias. Teste: R2 de 0,99437, MAPE de 3,58%,
+MAE de 24,17 litros. Validacao: R2 de 0,99483, MAPE de 3,36%.
+Particao de 32.010 linhas de treino, 10.980 de validacao e 10.920 de teste.
+
+Carteira (endpoint /portfolio): 30 fornecedores, 21.687,82 litros por dia
+monitorados, 6.361,51 litros por dia classificados em risco, score medio
+de 44,6, 1 fornecedor critico, 8 em atencao, 2,00% de descarte.
+
+Qualidade (endpoint /quality-summary): CCS media de 384,08 mil cel/mL,
+CBT media de 141,93 mil UFC/mL, 6 fornecedores em qualidade critica,
+139,01 litros de descarte atacavel.
+
+Impacto (endpoint /impact): R$ 429.401,90 de valor mensal monitorado.
+
+Distribuicao de risco (endpoint /risk-distribution): 1 fornecedor em
+risco alto (3,3%), 8 em risco medio (26,7%), 21 em risco baixo (70,0%).
+
+Motor de score (score_risco.py): Score VIA LEITE de 0 a 100, com 7
+dimensoes ponderadas nos pesos 25, 20, 15, 15, 10, 10 e 5, classes de
+0 a 25, 26 a 50, 51 a 75 e 76 a 100, ancorado na IN 77/2018.
+
+Perfil do produtor (perfil/classificador_perfil.py): classificacao
+estrutural em Consistente, Oscilante e Desafiador.
+
+Pipeline de dados reais: validar_pacote_dados_reais.py,
+importar_pacote_dados_reais.py, guarda_ingestao.py e
+executar_piloto_real.py.
+
+Arquitetura: multi-tenant, IoT-ready via MQTT, ingestao climatica INMET.
+
+DELIMITACAO OBRIGATORIA, VALIDA PARA TODOS OS CADASTROS.
+A base de 54.780 registros e sintetica, gerada para validar arquitetura,
+treinar o modelo e demonstrar o produto: 30 fornecedores e 4 laticinios
+simulados sobre series climaticas reais do INMET. A calibracao com dados
+de fazenda reais ocorre na Fase 2, o piloto. Toda meta quantificada
+marcada como "a validar em piloto" segue essa regra. Nao apresentar dado
+simulado como real e norma interna do projeto, nao concessao.
+
+
+====================================================================
+DOR 01
+====================================================================
+
+NOME
+Eficiencia operacional na producao leiteira
+
+SCORE
+56.96
+
+ADERENCIA
+Alta
+
+JUSTIFICATIVA
+Esta e a dor sobre a qual a plataforma foi construida, e e onde a aderencia e mais direta. A ineficiencia operacional na pecuaria leiteira nao decorre principalmente de falta de esforco, e sim de falta de foco: o produtor e o tecnico do laticinio distribuem atencao de forma homogenea por uma carteira heterogenea, porque nao tem como saber onde o problema esta se formando. O Via Leite Sense ataca exatamente esse ponto em quatro frentes. 1. Priorizacao substituindo varredura. O Score VIA LEITE ordena a carteira por risco e prioridade de acao. Numa carteira de 30 fornecedores, a plataforma aponta hoje 1 critico e 8 em atencao, ou seja, 70% da base pode seguir em monitoramento padrao enquanto o esforco tecnico se concentra em 30%. Eficiencia operacional, aqui, e deixar de gastar hora tecnica onde nao ha problema. 2. Antecipacao substituindo reacao. A previsao de captacao em horizonte de 7 dias transforma a rotina de conferir o passado em planejar o proximo ciclo: rota, coleta, capacidade de tanque e escala de trabalho passam a ser dimensionadas sobre volume esperado, e nao sobre volume historico. 3. Perda evitavel mensurada, e nao estimada. O descarte deixa de ser um numero de fim de mes e passa a ter causa, fornecedor e valor associados. 4. Ciclo fechado de acao. A plataforma registra plano de acao, responsavel, meta e resultado, e mede efetividade. A eficiencia vira serie historica auditavel, e nao percepcao.
+
+EVIDENCIA
+Alem do bloco comum: endpoint /risk-radar com ranking por produtor, rota ou laticinio, score medio, distribuicao por classe e horizontes de 7, 15 e 30 dias; endpoint /portfolio com 21.687,82 litros por dia monitorados e 6.361,51 litros por dia classificados em risco; endpoint /risk-distribution com a carteira segmentada em 1 fornecedor de risco alto, 8 de risco medio e 21 de risco baixo; endpoints /action-plans e /action-plans/effectiveness, com meta e resultado em litros e em reais por plano, tipo, responsavel e fornecedor, instrumentacao implementada e ainda sem execucao registrada por depender do piloto; endpoint /management-events para lancamentos gerenciais; endpoint /model/feature-importance mostrando que a previsao se apoia majoritariamente em medias moveis de coleta, sendo 55,1% para a media de 7 dias, 20,0% para a de 30 dias e 14,9% para a de 3 dias, o que torna o resultado explicavel para quem opera.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: concentrar a assistencia tecnica nos aproximadamente 30% da carteira que respondem pela maior parte do risco, mantendo os 70% restantes em monitoramento automatico; prever a captacao com erro medio inferior a 4%, com MAPE de 3,58% em teste, permitindo dimensionar rota e coleta sobre volume esperado; reduzir em 50% a 60% o descarte evitavel, conforme benchmark Embrapa, sobre uma base atual de 2,00% de descarte e 139,01 litros classificados como atacaveis; registrar 100% dos planos de acao com meta e resultado mensuraveis, criando serie historica de efetividade por tipo de intervencao. Limite reconhecido: a plataforma nao opera equipamento, nao substitui rotina de ordenha e nao integra automaticamente com todos os sistemas de sala de ordenha do mercado. Ela indica onde agir e mede o resultado da acao; a execucao permanece humana.
+
+
+====================================================================
+DOR 02
+====================================================================
+
+NOME
+Qualidade do leite e acesso a mercados
+
+SCORE
+33.28
+
+ADERENCIA
+Alta
+
+JUSTIFICATIVA
+O modelo brasileiro de controle de qualidade do leite e estruturalmente retrospectivo: a analise de CCS e CBT e laboratorial e periodica, e o resultado chega quando o leite ja foi coletado, processado e pago. O produtor descobre que perdeu a bonificacao depois de te-la perdido, e o laticinio descobre a nao-conformidade depois de te-la recebido no tanque. A consequencia nao e apenas financeira, e de acesso a mercado: cadeias premium, exportacao e linhas de maior valor agregado exigem consistencia comprovada, e consistencia nao se demonstra com laudo isolado, demonstra-se com serie historica. A plataforma atua sobre tres camadas dessa dor. 1. Acompanhamento continuo dos indicadores que definem a classificacao. CCS e CBT sao monitorados de forma corrida e ancorados nos limites da IN 77/2018, e nao apenas conferidos quando o laudo chega. Na carteira monitorada, a media atual e de 384,08 mil cel/mL de CCS e 141,93 mil UFC/mL de CBT, com 6 fornecedores identificados em qualidade critica. 2. Cadeia fria como variavel de qualidade, e nao de logistica. A temperatura do tanque entra no score como dimensao propria, porque falha de resfriamento degrada CBT antes de qualquer outra coisa aparecer: e o ponto de perda mais rapido e mais evitavel da cadeia. 3. Historico auditavel como credencial comercial. Cinco anos de serie estruturada por fornecedor e o insumo que permite a um laticinio comprovar consistencia de fornecimento para o comprador final. E esse documento que abre linha premium, e nao o laudo do mes.
+
+EVIDENCIA
+Alem do bloco comum: endpoint /quality-summary com CCS, CBT, percentual de descarte, descarte atacavel em litros e contagem de fornecedores em qualidade critica; dimensoes dedicadas de CCS com peso 15, CBT com peso 15, qualidade com peso 20 e temperatura de tanque com peso 10 no score_risco.py, com limiares ancorados na IN 77/2018; classificador de perfil com limiar de severidade de CCS em 600 mil cel/mL para separar o perfil Desafiador; endpoint /supplier-events para rastreabilidade de ocorrencias por fornecedor; modulo relatorio_pdf.py para emissao de relatorio por fornecedor; modulo Via Leite Edge com indice de conservacao medio de 84,0 e score de qualidade premium por tanque, este ultimo sobre telemetria simulada, com disclaimer explicito na propria resposta da API.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: melhora de 25% a 35% em CCS e de 35% a 45% em CBT, conforme benchmarks Embrapa e MAPA, sobre a linha de base levantada no inicio do piloto; antecipar em 7 ou mais dias ao menos 70% dos eventos de nao-conformidade, criterio-ancora tecnico do projeto, a ser medido em backtest com dados reais; preservar integralmente a bonificacao por qualidade dos fornecedores monitorados, faixa de R$ 0,08 a R$ 0,15 por litro conforme contrato; entregar a cada fornecedor serie historica auditavel de qualidade, utilizavel como credencial comercial em negociacao de contrato e em acesso a linhas premium. Limite reconhecido: a plataforma nao realiza analise laboratorial nem substitui o laudo oficial. Ela consome o resultado do laboratorio, cruza com clima e operacao e antecipa tendencia. A classificacao oficial do leite permanece com o laboratorio credenciado.
+
+
+====================================================================
+DOR 03
+====================================================================
+
+NOME
+Cansaco por gestao, seguranca e comercializacao
+
+SCORE
+56.96
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+A dor descreve tres fontes distintas de desgaste, e a honestidade exige separa-las: a plataforma atua sobre uma, tangencia a segunda e nao alcanca a terceira. 1. Gestao, atuacao direta. O desgaste de gestao na pecuaria leiteira vem menos do volume de decisoes e mais da qualidade da informacao disponivel para decidir. O produtor administra caderno, planilha, laudo em papel e memoria, e sustenta cognitivamente um estado que deveria estar registrado. A plataforma transfere essa carga para o sistema: consolida producao, qualidade, clima e ocorrencias em um painel unico, entrega a decisao pronta e ordenada por prioridade, e converte o indicador tecnico em valor financeiro. Decidir com uma lista de prioridade custa menos que decidir com uma pilha de dados brutos. 2. Comercializacao, atuacao parcial. A plataforma nao vende leite nem negocia contrato, mas remove uma das causas do desgaste comercial, que e negociar sem dado. Cinco anos de serie auditavel de volume e qualidade por fornecedor mudam a posicao do produtor na conversa com o laticinio. 3. Seguranca, sem atuacao. Seguranca do trabalho na fazenda nao e enderecada pelo produto.
+
+EVIDENCIA
+Alem do bloco comum: painel unico consolidando producao, qualidade, clima e ocorrencias, servido pelos endpoints /portfolio, /quality-summary, /risk-radar e /management-events; ranking de prioridade que substitui a decisao aberta por decisao ordenada; conversao do risco tecnico em valor financeiro no endpoint /impact, com R$ 429.401,90 por mes monitorados; endpoint /action-plans com responsavel e meta definidos, o que distribui a carga em vez de concentra-la no produtor; relatorio em PDF por fornecedor via relatorio_pdf.py; entrega prevista por WhatsApp, canal ja usado pelo produtor, no backlog prioritario.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: substituir o acompanhamento manual de 30 fornecedores por uma lista diaria de prioridade com 1 a 9 nomes, o que reduz diretamente o numero de decisoes que exigem atencao do gestor; consolidar em uma unica fonte os registros hoje dispersos entre caderno, planilha e laudo; reduzir o tempo entre o evento e o conhecimento do evento, que e o que gera retrabalho e decisao sob pressao; entregar historico auditavel para negociacao comercial, reduzindo a assimetria de informacao na relacao produtor e laticinio. Limite reconhecido: aderencia classificada como Media por precisao. A plataforma reduz a carga de gestao e apoia a comercializacao; nao atua sobre seguranca do trabalho e nao realiza intermediacao comercial. O cansaco fisico do trabalho de campo nao e enderecado por software.
+
+
+====================================================================
+DOR 04
+====================================================================
+
+NOME
+Escassez de mao de obra qualificada
+
+SCORE
+96
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+E a dor de maior score do setor e exige a delimitacao mais rigorosa do cadastro: o Via Leite Sense nao forma nem repoe mao de obra. Qualquer alegacao nesse sentido seria falsa. O que a plataforma faz e atuar sobre o mecanismo pelo qual a escassez causa dano. A escassez de mao de obra qualificada machuca a pecuaria leiteira por uma razao especifica: o conhecimento que detecta o problema cedo, o olho treinado que percebe a queda de producao antes dela aparecer no tanque, ou a mudanca de comportamento que antecede a mastite, e justamente o conhecimento escasso. Onde falta gente qualificada, o problema so e percebido quando ja e grande. A plataforma opera como camada de conhecimento embarcado. 1. Codifica o julgamento tecnico em regra explicita. As sete dimensoes do score formalizam o que um tecnico experiente avaliaria, e a avaliacao passa a rodar todos os dias, sobre todos os fornecedores, independentemente de haver alguem disponivel para faze-la. 2. Torna a equipe existente mais produtiva. O ranking de prioridade permite que o mesmo tecnico cubra uma carteira maior sem perda de qualidade, porque ele deixa de visitar as cegas. 3. Reduz a exigencia de qualificacao na ponta. O alerta explica o porque e indica o que fazer. Executar uma instrucao clara exige menos qualificacao do que diagnosticar do zero. 4. Retem conhecimento na saida do funcionario. Historico, plano de acao e efetividade ficam no sistema. A rotatividade deixa de zerar a memoria operacional da propriedade.
+
+EVIDENCIA
+Alem do bloco comum: sete dimensoes de risco formalizadas e ponderadas em score_risco.py, com limiares ancorados na IN 77/2018, ou seja, julgamento tecnico convertido em regra auditavel; endpoint /risk-radar com ranking de prioridade de acao por produtor, rota e laticinio; classificador de perfil enquadrando o produtor em Consistente, Oscilante ou Desafiador, que e a traducao do "que tipo de caso e este" em recomendacao de manejo; explicabilidade verificavel no endpoint /model/feature-importance, com as tres medias moveis de coleta respondendo por 90% da decisao do modelo, de modo que o sistema mostra o porque e nao apenas o resultado; endpoint /action-plans retendo responsavel, meta e resultado; monitoramento automatico de 30 fornecedores e 21.687,82 litros por dia sem intervencao humana continua.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: ampliar a carteira coberta por tecnico sem ampliar a equipe, pela substituicao de visita programada por visita dirigida por risco; garantir avaliacao diaria de 100% dos fornecedores monitorados, patamar inalcancavel por inspecao humana em carteira dispersa; entregar todo alerta com causa e acao recomendada, reduzindo o nivel de qualificacao exigido de quem executa; preservar o historico operacional independentemente da rotatividade de pessoal. Limite reconhecido: a plataforma nao forma, nao contrata e nao substitui mao de obra. Atua sobre o efeito da escassez, que e a perda por deteccao tardia, e nao sobre a escassez em si. A aderencia foi classificada como Media por essa razao, apesar do score do setor.
+
+
+====================================================================
+DOR 05
+====================================================================
+
+NOME
+Estresse por ritmo intenso e falta de mao de obra
+
+SCORE
+80
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+Vale a mesma delimitacao da dor anterior: a plataforma nao reduz jornada nem repoe pessoal. Atua sobre um componente especifico e documentado do estresse na atividade leiteira, que e a carga de vigilancia permanente. Boa parte do desgaste psicologico do produtor de leite nao vem do trabalho executado, e sim do trabalho de vigiar: a preocupacao continua com o que pode estar acontecendo e ainda nao foi percebido. Tanque que pode ter falhado, vaca que pode estar iniciando mastite, producao que pode estar caindo sem causa aparente. E uma carga que nao termina no fim do expediente, e o produtor a carrega justamente porque nao existe sistema vigiando em seu lugar. A atuacao se da em tres pontos. 1. Transferencia da vigilancia para o sistema. O monitoramento continuo remove a necessidade de conferencia preventiva constante: o produtor e chamado quando ha motivo. 2. Reducao da operacao em modo emergencia. O trabalho sob pressao e mais desgastante que o trabalho planejado, e a antecipacao de 7 a 30 dias converte urgencia em rotina programavel. 3. Diluicao da responsabilidade solitaria. No modelo B2B2F, o mesmo alerta chega ao produtor e ao laticinio, o que ativa a assistencia tecnica sem depender de o produtor pedir ajuda.
+
+EVIDENCIA
+Alem do bloco comum: monitoramento automatico e continuo de 30 fornecedores e 21.687,82 litros por dia; horizontes de antecipacao de 7, 15 e 30 dias no endpoint /risk-radar; classificacao da carteira que dispensa atencao ativa sobre 70% dos fornecedores em situacao de baixo risco; endpoints /api/iot/alerts e /api/iot/executive-summary com alerta de risco termico e falha de cadeia fria por tanque, sendo a telemetria simulada na fase atual, com sensor fisico previsto para a Fase 4 em 2027; arquitetura B2B2F em que o alerta e compartilhado com o laticinio, e nao apenas emitido ao produtor.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: substituir conferencia preventiva de rotina por notificacao dirigida, mantendo 70% da carteira fora do ciclo de atencao ativa; converter eventos hoje tratados em urgencia em acoes programadas com 7 a 30 dias de antecedencia; reduzir o intervalo entre a falha de resfriamento e o conhecimento da falha, que e a principal fonte de perda subita e de sobressalto na rotina; acionar automaticamente a assistencia tecnica do laticinio nos casos de risco alto, sem depender de iniciativa do produtor. Limite reconhecido: a plataforma nao reduz jornada de trabalho, nao repoe mao de obra e nao constitui intervencao de saude ocupacional. Atua sobre a carga de vigilancia e sobre a operacao em modo emergencia. O alerta automatizado de falha de tanque, que e o componente mais forte desta alegacao, depende de sensor fisico previsto para a Fase 4; na fase atual, a telemetria e simulada.
+
+
+====================================================================
+DOR 06
+====================================================================
+
+NOME
+Gestao e qualificacao da mao de obra
+
+SCORE
+56.96
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+A qualificacao de mao de obra na pecuaria leiteira esbarra em dois obstaculos praticos: nao se sabe o que treinar, e nao se sabe se o treinamento funcionou. O treinamento e ofertado por catalogo, aplicado de forma homogenea e avaliado por presenca. A plataforma atua sobre os dois obstaculos, ainda que nao ministre capacitacao. 1. Diagnostico da necessidade de treinamento. A dimensao de risco predominante em uma propriedade indica a lacuna de competencia. Falha recorrente de temperatura de tanque aponta manejo de cadeia fria; CCS persistentemente elevado aponta higiene de ordenha. O treinamento deixa de ser generico e passa a ser dirigido por evidencia. 2. Instrucao operacional no lugar de diagnostico. O plano de acao entregue com o alerta funciona como protocolo executavel: o funcionario recebe o que fazer, e nao a tarefa de descobrir o que esta errado. Isso reduz a qualificacao exigida na execucao enquanto a qualificacao estrutural nao chega. 3. Medicao do efeito da capacitacao. Meta e resultado registrados por plano de acao permitem verificar se o indicador melhorou depois da intervencao, o que e avaliacao por resultado e nao por presenca. 4. Priorizacao do esforco de capacitacao. O ranking indica quais propriedades justificam investimento de treinamento primeiro.
+
+EVIDENCIA
+Alem do bloco comum: sete dimensoes de risco que isolam a natureza do problema, sendo queda de producao, qualidade, CCS, CBT, temperatura de tanque, bonus e descarte, o que permite mapear lacuna de competencia por propriedade; classificador de perfil com enquadramento estrutural em Consistente, Oscilante e Desafiador, que orienta o tipo de acompanhamento adequado a cada produtor; endpoint /action-plans com tipo, responsavel, meta em litros e em reais; endpoint /action-plans/effectiveness com apuracao de efetividade por tipo, responsavel e fornecedor, instrumentacao implementada e sem execucao registrada ate o piloto; endpoint /supplier-events para historico de ocorrencias por fornecedor.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: substituir o treinamento por catalogo por treinamento dirigido pela dimensao de risco predominante em cada propriedade; avaliar 100% dos planos de acao por resultado medido em litros e em reais, e nao por presenca; reduzir a qualificacao exigida na execucao, entregando protocolo em vez de diagnostico; construir base de efetividade por tipo de intervencao, permitindo identificar quais capacitacoes produzem retorno mensuravel. Limite reconhecido: a plataforma nao ministra treinamento, nao certifica competencia e nao substitui programas de capacitacao do SENAR ou de assistencia tecnica. Ela diagnostica a lacuna, entrega o protocolo e mede o resultado.
+
+
+====================================================================
+DOR 07
+====================================================================
+
+NOME
+Sanidade do rebanho e produtividade leiteira
+
+SCORE
+29.28
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+Esta e a dor de maior sensibilidade regulatoria do cadastro, e a delimitacao precede o argumento: o Via Leite Sense nao realiza diagnostico veterinario e nao o substitui. Esse e um limite de projeto, declarado no plano de negocio e sustentado por decisao tecnica com respaldo da veterinaria da equipe, e nao uma ressalva de estilo. Dentro desse limite, a atuacao e real e relevante. A CCS e um indicador consagrado de saude da glandula mamaria, e sua elevacao sustentada precede clinicamente a manifestacao evidente da mastite. O que a plataforma faz e tratar a CCS como sinal de tendencia e nao como resultado mensal: acompanhamento continuo, comparacao com o historico do proprio produtor e alerta quando a trajetoria se deteriora, antes do laudo seguinte. O papel e o de triagem que qualifica a agenda do veterinario, ampliando o alcance de um profissional escasso e caro. Some-se a isso o componente de estresse termico: o THI e as variaveis derivadas entram no modelo e permitem antecipar quedas de producao de origem ambiental, que sao um determinante direto de produtividade e frequentemente confundidas com problema sanitario.
+
+EVIDENCIA
+Alem do bloco comum: dimensoes dedicadas de CCS com peso 15 e de qualidade com peso 20 no score_risco.py, com limiares ancorados na IN 77/2018; CCS media de 384,08 mil cel/mL e 6 fornecedores em qualidade critica identificados no endpoint /quality-summary; limiar de severidade de CCS em 600 mil cel/mL no classificador de perfil; variaveis climaticas de estresse termico no conjunto de treino, entre elas THI, media de THI em 3 dias, ondas de calor de 3 e 5 dias, anomalia de temperatura e intensidade de estresse termico, a partir de series reais do INMET; endpoint /supplier-events com historico de ocorrencias por fornecedor, insumo para a consulta veterinaria; participacao de medica veterinaria na equipe desde 27/06/2026, responsavel pela validacao sanitaria e pela calibracao dos alertas.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: antecipar tendencia de elevacao de CCS antes do laudo seguinte, encurtando a janela entre o inicio do problema e a intervencao; aumentar o numero de propriedades cobertas por veterinario, pela substituicao de visita de rotina por visita priorizada por risco; separar queda de producao de origem termica de queda de origem sanitaria, evitando intervencao desnecessaria; entregar ao veterinario historico estruturado de qualidade e ocorrencias no momento da consulta. Limite reconhecido: a plataforma emite indicadores de risco e recomendacoes operacionais. Nao realiza diagnostico, nao prescreve tratamento, nao substitui o medico veterinario e nao constitui dispositivo de finalidade diagnostica. A aderencia foi classificada como Media por essa razao.
+
+
+====================================================================
+DOR 08
+====================================================================
+
+NOME
+Sustentabilidade ambiental na pecuaria leiteira
+
+SCORE
+(preencher conforme a plataforma)
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+A pegada ambiental da pecuaria leiteira tem um componente frequentemente ignorado porque nao aparece como emissao: o leite descartado carrega toda a emissao da sua producao e nao entrega nenhum valor. Agua, alimentacao, energia de resfriamento e emissao enterica ja foram integralmente gastos quando o litro e descartado por falha de resfriamento ou reprovacao de qualidade. Evitar descarte e, em termos ambientais, a intervencao de melhor relacao custo-beneficio da cadeia, porque nao exige mudanca de sistema produtivo: exige apenas que a perda nao ocorra. A plataforma atua nesse ponto por tres caminhos. 1. Reducao de perda como reducao de emissao. Cada litro preservado elimina a emissao embarcada correspondente, estimada pela FAO em cerca de 2,5 kg de CO2 equivalente por litro na America Latina. 2. Eficiencia logistica. A priorizacao de coleta por risco e por volume evita deslocamento desnecessario na captacao, componente relevante da pegada da cadeia. 3. Mensuracao auditavel, e nao declaracao. O produto entrega indicador ambiental calculado sobre operacao registrada, que e o que programas de sustentabilidade de laticinio e exigencias de comprador final efetivamente demandam.
+
+EVIDENCIA
+Alem do bloco comum: modulo Antes e Depois, de ESG, no produto; endpoint /api/iot/executive-summary com score ESG de 72,1, indice de conservacao medio de 84,0 e oportunidade de reducao de perda de 616,3 litros, sobre telemetria simulada, com disclaimer explicito na resposta da API; endpoint /quality-summary com 2,00% de descarte e 139,01 litros de descarte atacavel identificados na carteira; variaveis de captacao e custo logistico no modelo, entre elas custo logistico rateado, distancia em quilometros ate o laticinio e percentual de estrada nao pavimentada; memoria de calculo documentada no plano de negocio, com fator FAO 2010 aplicado sobre litros preservados.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: evitar cerca de 180 toneladas de CO2 equivalente por ano em uma cooperativa de 50 produtores, pela via do desperdicio nao ocorrido, conforme calculo de 50 produtores por aproximadamente 4 litros por dia por 365 dias por 2,5 kg de CO2 equivalente por litro; reduzir em 50% a 60% o descarte evitavel, com efeito ambiental proporcional e imediato; entregar indicador ambiental auditavel por fornecedor e por carteira, utilizavel em programa de sustentabilidade do laticinio e em exigencia de comprador final; reduzir deslocamento improdutivo na captacao pela priorizacao de rota por risco e volume. Limite reconhecido: a plataforma nao realiza inventario de emissoes certificado, nao emite credito de carbono e nao atua sobre as fontes principais de emissao do sistema, que sao fermentacao enterica, manejo de dejetos e uso do solo. Atua sobre a parcela evitavel por eficiencia.
+
+
+====================================================================
+DOR 09
+====================================================================
+
+NOME
+Organizacao coletiva dos produtores leiteiros
+
+SCORE
+29.28
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+A dificuldade de organizacao coletiva na pecuaria leiteira tem uma causa que antecede a disposicao associativa: falta de linguagem comum. Produtores de uma mesma cooperativa medem de formas diferentes, registram em suportes diferentes e nao conseguem se comparar, e sem comparacao nao ha diagnostico coletivo, nao ha prioridade compartilhada e nao ha base para acao conjunta. A plataforma foi desenhada em torno da relacao coletiva, e nao da propriedade isolada. 1. O modelo de negocio e o coletivo. A arquitetura B2B2F tem o laticinio ou a cooperativa como contratante e a carteira de produtores como unidade de gestao. O produto so faz sentido pleno em grupo. 2. Padronizacao de medida. Todos os fornecedores da carteira passam a ser avaliados pelos mesmos indicadores, com os mesmos limiares e no mesmo horizonte, condicao para benchmarking interno legitimo. 3. Diagnostico agregado. O radar agrupa por rota e por laticinio, o que revela problemas coletivos: uma rota inteira com falha de cadeia fria e problema de infraestrutura compartilhada, e nao de produtor individual, e a solucao e necessariamente coletiva. 4. Simetria de informacao. Produtor e cooperativa passam a olhar o mesmo dado, o que muda a qualidade da relacao.
+
+EVIDENCIA
+Alem do bloco comum: arquitetura multi-tenant com 30 fornecedores e 4 laticinios na base; endpoint /risk-radar com agrupamento por produtor, rota ou laticinio e mapa de calor por rota, permitindo diagnostico de problema compartilhado; endpoint /risk-distribution com a carteira segmentada por classe de risco; endpoint /portfolio com visao consolidada da carteira; modelo comercial B2B2F com licenca de cooperativa e assinatura por produtor monitorado; canal de comunicacao entre produtor e cooperativa e benchmarking anonimo entre fornecedores no backlog prioritario do produto.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: estabelecer indicador padronizado e comparavel para 100% dos fornecedores de uma mesma carteira; identificar problemas de natureza coletiva pelo agrupamento por rota, distinguindo-os de falha individual; fornecer a cooperativa base objetiva para priorizar investimento coletivo, como resfriador comunitario, melhoria de estrada ou programa de qualidade dirigido; reduzir a assimetria de informacao entre produtor e cooperativa, disponibilizando o mesmo indicador a ambos. Limite reconhecido: a plataforma nao organiza, nao constitui e nao administra cooperativa. Ela fornece a infraestrutura de informacao sobre a qual a organizacao coletiva pode se apoiar. O benchmarking anonimo entre produtores esta no backlog e nao e entrega da fase atual.
+
+
+====================================================================
+DOR 10
+====================================================================
+
+NOME
+Escala e estrutura produtiva competitiva
+
+SCORE
+39.04
+
+ADERENCIA
+Media
+
+JUSTIFICATIVA
+A competitividade por escala na pecuaria leiteira costuma ser lida como questao de tamanho de rebanho, mas o determinante pratico e outro: capacidade de operar de forma consistente no tamanho que se tem. Um produtor que oscila entrega menos valor que um produtor menor e regular, porque a industria precifica previsibilidade. E crescer sem informacao estruturada amplia a exposicao em vez da margem. A plataforma atua em tres frentes. 1. Consistencia como ativo competitivo. O eixo de variabilidade do classificador de perfil separa o produtor Consistente do Oscilante, e e essa distincao que a industria remunera. 2. Diagnostico de subutilizacao estrutural. O modelo carrega capacidade instalada, producao esperada e rebanho em lactacao, o que permite comparar o realizado com o potencial da estrutura existente. Muito ganho de escala esta disponivel sem investimento: esta na diferenca entre o que a estrutura comporta e o que ela entrega. 3. Decisao de investimento com base em dado. Cinco anos de serie por fornecedor permitem avaliar se a limitacao e de estrutura, de manejo ou de sanidade antes de decidir onde aplicar capital.
+
+EVIDENCIA
+Alem do bloco comum: variaveis estruturais no modelo, entre elas capacidade maxima em litros por dia, producao media esperada em litros por dia, vacas em lactacao, capacidade do tanque em litros, nivel de tecnificacao, porte do produtor e tipo de sistema; classificador de perfil com eixo de variabilidade separando Consistente de Oscilante; estrutura Supplier com indicadores financeiros e capacidade instalada por fornecedor; endpoint /portfolio com 21.687,82 litros por dia distribuidos entre 30 fornecedores, permitindo comparacao de eficiencia por porte; base de 54.780 registros com cinco anos por fornecedor como insumo de decisao de investimento.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: quantificar a diferenca entre capacidade instalada e producao realizada por fornecedor, identificando ganho de escala disponivel sem novo investimento; classificar a carteira por consistencia de entrega, atributo diretamente remunerado pela industria; subsidiar decisao de investimento com cinco anos de serie propria, distinguindo limitacao estrutural de limitacao de manejo; sustentar contratos de fornecimento mais longos com base em previsibilidade demonstrada. Limite reconhecido: a plataforma nao financia, nao dimensiona projeto de engenharia e nao substitui consultoria de estruturacao produtiva. Ela mede a distancia entre o potencial da estrutura existente e o resultado obtido.
+
+
+====================================================================
+DOR 11
+====================================================================
+
+NOME
+Instabilidade economica e endividamento familiar
+
+SCORE
+67.2
+
+ADERENCIA
+Baixa
+
+JUSTIFICATIVA
+A aderencia e declaradamente baixa e o limite e amplo: a plataforma nao concede credito, nao renegocia divida e nao presta assessoria financeira. As causas do endividamento na pecuaria leiteira sao majoritariamente macroeconomicas e estruturais, como custo de insumo, taxa de juros, ciclo de preco e ausencia de reserva. Ha, porem, dois pontos legitimos de atuacao, e ambos sao de natureza informacional. 1. Perda evitavel como componente da fragilidade financeira. Parte do endividamento familiar se forma pela erosao continua da margem por perdas que poderiam nao ter ocorrido, como descarte, penalidade de qualidade e bonus perdido. Nao e a causa principal, mas e a unica parcela sob governanca direta do produtor, e e sobre ela que a plataforma atua, com efeito relativo maior justamente nos ciclos de preco deprimido. 2. Historico auditavel como ativo de acesso a credito. O produtor de leite normalmente negocia credito sem comprovacao estruturada de receita e de qualidade, e paga por essa opacidade. Cinco anos de serie documentada de volume e de qualidade constituem um ativo negocial. Este e o caminho de maior potencial da dor, e esta no horizonte de evolucao do produto, e nao na entrega atual.
+
+EVIDENCIA
+Alem do bloco comum: endpoint /impact com R$ 429.401,90 de valor mensal monitorado e conversao do risco tecnico em valor financeiro; calculo de impacto economico por fornecedor no score_risco.py, combinando queda de producao, perda de bonus e penalidade de qualidade; endpoint /quality-summary com descarte atacavel quantificado em litros; base de 54.780 registros com cinco anos de serie por fornecedor; estrutura Supplier com indicadores financeiros e margem estimada por fornecedor.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: tornar visivel e mensuravel a perda evitavel mensal, hoje diluida no resultado e raramente atribuida a causa; proteger a bonificacao por qualidade, faixa de R$ 0,08 a R$ 0,15 por litro, cujo peso relativo na margem cresce nos ciclos de preco baixo; constituir historico auditavel de volume e qualidade utilizavel na negociacao de credito rural. Evolucao prevista: camada de indicadores financeiros por propriedade e integracao com produtos de credito e seguro, ambos fora da entrega atual. Limite reconhecido: a plataforma nao concede credito, nao renegocia divida, nao presta assessoria financeira e nao atua sobre os determinantes macroeconomicos do endividamento. Aderencia Baixa, cadastrada apenas pela parcela de perda evitavel e pelo valor informacional do historico.
+
+
+====================================================================
+DOR 12
+====================================================================
+
+NOME
+Sucessao familiar e atratividade da atividade
+
+SCORE
+56.96
+
+ADERENCIA
+Baixa
+
+JUSTIFICATIVA
+A aderencia e baixa e a razao e honesta: sucessao familiar e fenomeno cultural, geracional e patrimonial, e nenhum software o resolve. Cadastramos a dor por um vinculo especifico e verificavel, e nao por afinidade tematica. O vinculo e o seguinte. Dois fatores frequentemente citados na baixa atratividade da atividade leiteira para a geracao seguinte sao o regime de vigilancia permanente e a informalidade da gestao: a atividade e percebida como um trabalho que nao desliga e que se administra por memoria e caderno. A digitalizacao da rotina atua sobre a percepcao nos dois pontos, ja que a gestao passa a se parecer com a de qualquer outro negocio, com indicador, meta e historico, e a vigilancia continua e transferida para o sistema. Ha ainda um terceiro elemento, mais concreto: a transicao sucessoria e o momento em que o conhecimento tacito do titular se perde, e o historico estruturado e o que permite ao sucessor assumir sem recomecar a curva de aprendizado.
+
+EVIDENCIA
+Alem do bloco comum: base de 54.780 registros com cinco anos de serie continua por fornecedor, ou seja, memoria operacional que sobrevive a transicao; endpoints /supplier-events e /management-events com historico de ocorrencias e decisoes gerenciais registradas; endpoint /action-plans com efetividade apurada por tipo de intervencao, o que documenta o que funcionou na propriedade; interface web acessivel por navegador e entrega prevista por WhatsApp, no backlog prioritario; monitoramento automatico que reduz a necessidade de conferencia presencial constante.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: preservar cinco anos de memoria operacional estruturada, transferivel ao sucessor sem depender do conhecimento tacito do titular; documentar quais intervencoes produziram resultado na propriedade, encurtando a curva de aprendizado da sucessao; reduzir o regime de vigilancia presencial continua, um dos fatores citados na baixa atratividade da atividade; aproximar a gestao da propriedade leiteira do padrao de gestao por indicador praticado em outros setores. Limite reconhecido: a plataforma nao atua sobre renda, sobre estrutura patrimonial, sobre partilha, sobre projeto de vida familiar ou sobre qualquer determinante central da decisao sucessoria. Aderencia Baixa, cadastrada exclusivamente pela preservacao de memoria operacional e pela reducao do regime de vigilancia.
+
+
+====================================================================
+DOR 13
+====================================================================
+
+NOME
+Manejo nutricional e producao de volumosos
+
+SCORE
+42.72
+
+ADERENCIA
+Baixa
+
+JUSTIFICATIVA
+A delimitacao e definida por decisao de escopo do produto: o Via Leite Sense nao formula dieta, nao calcula exigencia nutricional e nao substitui zootecnista ou nutricionista. Nao resolver nutricao com profundidade e opcao declarada de arquitetura, para nao diluir o foco em risco e qualidade. A atuacao existente e indireta e de natureza climatica, e e real. A producao de volumoso depende diretamente de regime hidrico e de temperatura, e o modelo incorpora series reais do INMET com variaveis derivadas construidas justamente para capturar esse efeito: precipitacao acumulada em 3, 7 e 15 dias, contagem de dias sem chuva, veranico de 10 dias, anomalia de temperatura e um indice de favorabilidade de pastagem. O resultado pratico e a capacidade de antecipar janela de restricao de forragem e de distinguir queda de producao de origem ambiental de queda de origem sanitaria ou de manejo, que e exatamente a duvida diagnostica que faz o produtor intervir na dieta sem necessidade.
+
+EVIDENCIA
+Alem do bloco comum: variaveis climaticas e agronomicas no conjunto de treino, entre elas indice de favorabilidade de pastagem, veranico de 10 dias, dias sem chuva, precipitacao acumulada em 3, 7 e 15 dias, anomalia de temperatura, interacao entre seca e calor e sensibilidade a seca; ingestao climatica do INMET implementada em ingestao_clima_inmet.py, sobre series reais; horizonte de previsao de 7 dias para media coletada, com MAPE de 3,58% em teste; dimensao de queda de producao com peso 25 no score_risco.py; variaveis de sistema produtivo e tecnificacao na base.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: antecipar janelas de restricao de forragem por veranico e por anomalia termica, permitindo planejamento de suplementacao antes da queda de producao; distinguir queda de producao de origem climatica de queda de origem sanitaria ou de manejo, evitando intervencao nutricional desnecessaria; fornecer ao nutricionista serie historica de producao correlacionada com clima, insumo hoje indisponivel na maior parte das propriedades. Evolucao prevista: sensores climaticos locais na Fase 4, substituindo a estacao INMET de referencia por medicao na propriedade. Limite reconhecido: a plataforma nao formula dieta, nao calcula exigencia nutricional, nao dimensiona area de volumoso e nao substitui profissional de nutricao animal. Aderencia Baixa, cadastrada pela camada climatica que condiciona a producao de volumoso.
+
+
+====================================================================
+DOR 14
+====================================================================
+
+NOME
+Eficiencia produtiva e genetica na pecuaria leiteira
+
+SCORE
+46.72
+
+ADERENCIA
+Baixa
+
+JUSTIFICATIVA
+A dor combina dois temas de natureza distinta, e a plataforma alcanca apenas um. Sobre genetica nao ha atuacao alguma: o produto nao avalia merito genetico, nao orienta acasalamento, nao trabalha com indice de selecao e nao substitui programa de melhoramento. Sobre eficiencia produtiva a atuacao e parcial e verificavel. O modelo carrega rebanho em lactacao e producao esperada por propriedade, o que permite acompanhar produtividade realizada contra potencial declarado e detectar desvio antes que ele se consolide. Mais relevante: a plataforma isola o efeito do estresse termico sobre a producao, que e um dos determinantes mais subestimados de produtividade no Centro-Oeste e frequentemente atribuido a limitacao genetica do rebanho quando e, na verdade, ambiental. Distinguir uma coisa da outra evita decisao cara e equivocada de substituicao de animais.
+
+EVIDENCIA
+Alem do bloco comum: variaveis de rebanho e potencial no modelo, entre elas vacas em lactacao, producao media esperada em litros por dia, capacidade maxima em litros por dia, raca predominante e porte do produtor; variaveis de estresse termico, entre elas THI, media de THI em 3 dias, ondas de calor de 3 e 5 dias, intensidade de estresse termico e sensibilidade ao calor, sobre series reais do INMET; dimensao de queda de producao com peso 25 no score_risco.py; previsao de media coletada em 7 dias com R2 de 0,99437 e MAPE de 3,58% em teste; endpoint /risk-radar com 23,6% da base sinalizada em risco de queda de producao.
+
+IMPACTO ESPERADO
+Metas quantificadas, a validar em piloto: acompanhar produtividade realizada contra potencial declarado por propriedade, detectando desvio antes da consolidacao; quantificar a parcela da queda de producao atribuivel a estresse termico, separando-a de limitacao genetica ou de manejo; antecipar queda de producao com 7 dias e erro medio inferior a 4%, permitindo intervencao antes da perda; evitar decisoes de descarte ou substituicao de animais fundamentadas em diagnostico incorreto de causa. Limite reconhecido: a plataforma nao avalia merito genetico, nao orienta acasalamento, nao calcula indice de selecao e nao substitui programa de melhoramento ou controle leiteiro oficial. Aderencia Baixa, cadastrada exclusivamente pela perna de eficiencia produtiva.
+
+
+====================================================================
+DORES DELIBERADAMENTE NAO CADASTRADAS
+====================================================================
+
+Nao colar no formulario. Serve para responder a tutoria caso pergunte
+por que estas dores ficaram de fora.
+
+Uso de alcool para estresse no trabalho (67.2)
+Saude do trabalhador e dependencia quimica. Nenhuma funcionalidade do
+produto atua sobre a dor. Cadastrar seria oportunismo tematico.
+
+Importancia da qualidade do sono (52.96)
+O unico vinculo plausivel, que seria o alarme automatico de tanque
+dispensar a conferencia noturna, depende de sensor fisico previsto
+apenas para a Fase 4 e nao e entrega atual. Alegar melhora de sono a
+partir de telemetria simulada nao se sustenta.
+
+Uso de EPI para protecao contra agrotoxicos (46.72)
+Seguranca do trabalho e uso de defensivos. Fora do escopo do produto em
+qualquer horizonte do roadmap.
+
+Eficiencia reprodutiva na pecuaria leiteira (33.28)
+O produto nao trabalha com intervalo entre partos, taxa de concepcao,
+deteccao de cio ou protocolo reprodutivo. Nao resolver reproducao e
+decisao explicita de escopo.
+
+Seguranca no trabalho na fazenda (33.28)
+Seguranca ocupacional, acidentes e norma regulamentadora. Sem
+intersecao com as funcionalidades existentes.
+
+
+====================================================================
+ORDEM DE PRIORIDADE RECOMENDADA NA APRESENTACAO
+====================================================================
+
+1. Carro-chefe, com prova dura disponivel: Eficiencia operacional,
+   Qualidade do leite e acesso a mercados, e Gestao produtiva e
+   financeira (esta ultima ja cadastrada).
+
+2. Diferenciacao, dores de alto score do setor com delimitacao
+   rigorosa: Escassez de mao de obra qualificada, Estresse por ritmo
+   intenso, e Cansaco por gestao.
+
+3. Contexto e amplitude: as demais.
+
+A forca do conjunto nao esta no numero de dores cadastradas. Esta em
+cada cadastro declarar o proprio limite. Um cadastro com limite
+explicito resiste a arguicao; um cadastro sem limite cai na primeira
+pergunta.
+
+
+====================================================================
+PENDENCIAS DE CORRECAO NOS CADASTROS JA ENVIADOS
+====================================================================
+
+1. No cadastro de "Volatilidade dos precos do leite", o MAPE consta
+   como 3,63%. A API de producao responde 3,58% em teste e 3,36% em
+   validacao. Corrigir para 3,58%.
+
+2. Os tres cadastros ja enviados descrevem os 54.780 registros como
+   "base historica" sem informar que a base e sintetica. Acrescentar a
+   delimitacao do bloco comum: base sintetica de 30 fornecedores e 4
+   laticinios sobre series climaticas reais do INMET, com calibracao em
+   dados reais prevista para a Fase 2.
+
+
+VIA LEITE SENSE - Cadastro de Dores - USINA I.A. 2026
