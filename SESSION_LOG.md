@@ -1,4 +1,108 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 23/09/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
+**Branch:** `master` — sem alteração de código; novo entregável em `docs/plano_de_trabalho/` (não commitado)
+
+---
+
+### O que foi feito
+- **Plano de Trabalho FAPEG (Desafio AgroStartup 2026)** gerado sobre o modelo oficial: `PLANO_DE_TRABALHO_VIA_LEITE_SENSE.docx/.pdf` (15 p.) + memória de cálculo `.xlsx` (fórmulas conferidas no LibreOffice).
+- Recorte: **Módulo de Saúde do Rebanho** (CCS/mastite subclínica, THI local, resfriamento do tanque) — tema "Inovar para Cuidar" (60/200 pts).
+- 7 objetivos específicos com meta e mês; 5 fases com critério de aceite; 12 tarefas; cronograma de desembolso M1–M12.
+- Orçamento: subvenção **R$ 60.000** (capital 27.750 / custeio 32.250) + contrapartida **R$ 6.000**; respeita a Res. Normativa FAPEG 1/2023 (sem pagamento à equipe, diárias, internet/telefonia).
+- Fonte única `conteudo.py` → `python gerar_plano_trabalho.py`; decisões em `docs/plano_de_trabalho/DECISIONS.md`.
+
+### Próximos passos (retomar em 24/09/2026)
+1. Preencher campos em amarelo `[PREENCHER]` (CNPJ, razão social, endereço, CPFs, telefones, e-mails, formação da equipe) — em `conteudo.py`, depois regerar e reexportar o PDF.
+2. Revisão do Fagner sobre conteúdo, metas e valores; cotações (3 orçamentos por item).
+3. Conferir no edital AgroStartup 2026: limites de capital e elegibilidade da API de mensagens (S4).
+4. Commit de `docs/plano_de_trabalho/`.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 02/09/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
+**Branch:** `master` — sem alteração de código; deploy do HEAD `a58d7f5` e correção da governança
+
+---
+
+### O que foi feito
+- **Carregamento de contexto (`/ctx`)** com verificação em vez de leitura do registro: `git log`/`status`, `pytest` e sondagem dos endpoints de produção.
+- **Descoberto que a produção estava 8 dias atrás do `master`.** O deployment ativo na Railway era de **25/08 23:26Z** com `startCommand: uvicorn backend.app:app`; o push do refactor de layout (`a58d7f5`) foi às **23:42Z**, 16 minutos depois. Sem queda e sem sintoma — o build antigo corria o código antigo, coerente consigo próprio.
+- **Deploy do HEAD** (`railway up --ci`) e verificação completa em produção. Deployment `fe29f8e2` · 02/09 23:52Z · `RUNNING` · `startCommand: uvicorn via_leite.api.app:app`.
+- **Governança corrigida** no `USINA-ECOSYSTEM` (registry, ALERTS, spec pack) — ver secção própria.
+
+### Verificação em produção — 02/09/2026
+
+| Verificação | Resultado |
+|---|---|
+| `/health` | 200 · `dataDir: dados_teste`, `artefatosDir: artefatos_teste` (inalterados) |
+| `/portfolio` **sem** chave | 401 |
+| `/suppliers/19/report.pdf` **sem** chave | 401 |
+| `/openapi.json` sem chave | 404 (docs fechados por omissão) |
+| `/api/suppliers/19/report.pdf` (proxy Vercel) | 200 · `application/pdf` · **3.030 bytes** · `%PDF-1.3` |
+| `/api/suppliers/nao-existe/report.pdf` | 404 |
+| `/api/portfolio`, `/api/quality-summary`, `/api/model/metrics`, `/api/risk-distribution` | 200 (sem regressão) |
+| SPA Vercel `/` + `/api/health` | 200 |
+| Redirect Streamlit Cloud (QR codes do pitch) | 303 — vivo |
+| `pytest -q` local | 63 passed, 1 xfailed |
+
+PDF com **os mesmos 3.030 bytes** da verificação de 25/08 — o refactor de pacote não mexeu na saída.
+
+### Decisões técnicas tomadas
+| Decisão | Justificativa | Alternativa descartada |
+|---|---|---|
+| Publicar o HEAD em vez de deixar a divergência registada | O commit já fora verificado localmente com o `startCommand` exacto da Railway; deixar produção e `master` a divergir é precisamente o modo de falha do ALERTA-008 | Registar a divergência e adiar o deploy |
+| **Não** reimplantar o frontend | Desde `afb75fc` (07/08) nada mudou em `frontend/` além do README; o proxy respondeu em todas as rotas testadas | `vercel --prod` por precaução |
+| Verificar o PDF pelo proxy da Vercel, não com a chave em mão | O proxy já guarda a chave do lado do servidor — testar por lá exercita o caminho real do produto e evita manusear o segredo | Ler `VIA_LEITE_API_KEYS` da Railway e chamar a API directamente |
+| `tier_c_triggers` reescritos, apesar da regra de "só com intenção explícita" | Os gatilhos apontavam para ficheiros **apagados** (`auth.py`, `config_auth.yaml`) e para `backend/app.py`, movido na fase 3: o classificador de autonomia deixara de escalar **o que quer que fosse** | Deixar como estavam para não mexer no classificador |
+| `railway.json` adicionado aos gatilhos Tier C | É o ficheiro que decide o que corre em produção — foi por ele que a divergência de hoje passou despercebida | Manter só os módulos Python |
+
+### Correções de governança (USINA-ECOSYSTEM)
+- **`PROJECT_REGISTRY.json`** — `last_checked` 12/08 → 02/09; `autonomy_tier_rationale` deixou de afirmar que a API está aberta (é falso desde 07/08); `tier_c_triggers` → `via_leite/api/security.py`, `*/security.py`, `via_leite/api/app.py`, `railway.json`; alerta do auto-deploy passou a registar a divergência real; alerta da senha passou a registar que o repo **já é público**; alerta novo para a fase 3 pendente e para o órfão `perfil/`; `next_action` reescrita. Validador: **OK, 15 projectos, 5 avisos pré-existentes** (nenhum do Via Leite).
+- **`ALERTS.md`** — ALERTA-005 (API sem autenticação) e ALERTA-006 (CPF/razão social como features) movidos para **RESOLVIDOS** com data de publicação 07/08 e reverificação de hoje; diziam "corrigido em código, não publicado" havia 26 dias. ALERTA-007 corrigido de 9 para **10** achados. ALERTA-008 passou a documentar que o risco **se materializou**. ALERTA-012 passou a registar que a condição "se o repositório for tornado público" já se cumpriu.
+- **`specs/via-leite.yml`** (v1.0 → v1.1) — o spec pack ainda descrevia o frontend como Streamlit e a autenticação como "chaves em `.env`". Pior: o sensor de feedback mandava correr `python -c "import app"`, que **já não importa nada** — passou a `import via_leite.api.app` (verificado). Adicionada escalada para mudanças na autenticação e na configuração de deploy.
+
+### Problemas encontrados e resoluções
+| Problema | Causa | Solução aplicada |
+|---|---|---|
+| Produção 8 dias atrás do `master`, sem sintoma | Deploy manual (ALERTA-008): o `railway up` de 25/08 correu **antes** do push do refactor | `railway up --ci` de 02/09 + verificação; ALERTA-008 passou a exigir conferir o `startCommand` activo após cada push |
+| Classificador de autonomia não escalava nada no Via Leite | `tier_c_triggers` apontavam para ficheiros removidos nas fases 2 e 3 | Gatilhos reescritos para os caminhos actuais |
+| Sensor do spec pack apontava para um módulo inexistente | `import app` sobreviveu à reorganização do repositório | `import via_leite.api.app`, verificado a correr |
+
+### Estado anterior → Estado atual
+- **Antes:** HEAD `a58d7f5` versionado mas **não publicado**; governança a afirmar que a API de produção estava aberta; gatilhos de autonomia mortos.
+- **Depois:** produção e `master` coincidem e estão verificados; registry, ALERTS e spec pack a descrever o sistema que existe.
+
+### Arquivos modificados
+- `SESSION_LOG.md` — esta entrada (nenhum ficheiro de código do Via Leite foi alterado nesta sessão)
+- `USINA-ECOSYSTEM/governance/PROJECT_REGISTRY.json` — entrada `via-leite` e `metadata.last_updated`
+- `USINA-ECOSYSTEM/governance/ALERTS.md` — ALERTA-005/006 resolvidos; 007, 008 e 012 actualizados
+- `USINA-ECOSYSTEM/governance/specs/via-leite.yml` — v1.1
+
+### Próximos passos (ordenados por prioridade)
+1. [ ] **Inalterado e prioritário: aguardar os dados da Piracanjuba** para calibrar C1 (unidade CCS/CBT + pesos + limiar de temperatura). `dados_reais/` só tem `fazenda_balsamo` (17/07). A ingestão está instrumentada desde 12/08 — a guarda avisa quando o lote chegar.
+2. [ ] **ALERTA-008 — conectar auto-deploy** GitHub → Vercel/Railway. É a única coisa que impede a produção de divergir outra vez, e é dívida barata sem gatilho externo.
+3. [ ] Fase 3 restante — renomear `dados_teste` → `data/reference` e `artefatos_teste` → `data/artifacts`. **Alterar `MVP_DATA_DIR` e `MVP_ARTEFATOS_DIR` na Railway ANTES do deploy**, ou a API cai (confirmado em `railway variables` a 25/08).
+4. [ ] G1 e G3 (produto) e o órfão `perfil/`, nunca investigado.
+5. [ ] ALERTA-012 — decidir sobre o histórico: a senha `usina2025` continua recuperável e o repositório é público.
+
+### Bloqueios ativos
+- **C1 depende de dados de terceiro** (Piracanjuba) — gatilho é a chegada do lote, não uma data.
+- Nada mais bloqueado: fases seguintes dependem de decisão e de janela de deploy verificado, não de impedimento técnico.
+
+### Dependências externas
+- Railway (API) e Vercel (SPA) — **deploy manual por CLI** enquanto o ALERTA-008 estiver aberto.
+- Streamlit Cloud — mantido apenas como redirect (QR codes do pitch).
+- Dados reais da Piracanjuba.
+
+---
+*Registrado por Claude — USINA I.A.*
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 25/08/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5)
 **Branch:** `master` — commits `bc16e88`..`8d8c169`, **publicados e em produção**

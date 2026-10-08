@@ -49,13 +49,16 @@
 > **cirúrgica**." *(slide 5)*
 
 ### [1:25–1:55] Mercado e Modelo — slides 8 e 9 (cite 10-11 de relance)
-> "O mercado existe e está quente: software leiteiro é **US$ 1,5 bilhão**, crescendo 10% ao ano —
-> mas ninguém faz esse radar **preditivo da cadeia brasileira**. *(aponta slide 10/11 rápido)*
+> "O mercado é grande: o Brasil produz **35,7 bilhões de litros** de leite por ano, **R$ 87,5 bilhões**
+> em valor, segundo o IBGE — e Goiás é o 5º maior produtor. Mas ninguém faz esse radar
+> **preditivo da cadeia brasileira**. *(aponta slide 10/11 rápido)*
 > Começando por Goiás, nosso alvo realista de 3 anos é **R$ 3,2 milhões por ano**.
 > O modelo é **B2B**: o laticínio assina por produtor — e protege a qualidade da carteira."
 
 ### [1:55–2:25] Impacto e Adoção — slides 7 e 6
-> "O retorno é direto: **mais de R$ 1.200 por produtor por mês** e menos emissão de CO₂. *(slide 7)*
+> "Para um fornecedor de 400 litros por dia, **cerca de R$ 1.250 por mês estão em jogo** entre bônus
+> de qualidade e descarte — é uma simulação, e a conta está no slide. **O piloto transforma isso em
+> número medido: em 60 a 90 dias, o laticínio recebe o relatório de ROI da própria carteira.** *(slide 7)*
 > E a adoção é simples: o produtor recebe tudo **traduzido no WhatsApp** que ele já usa —
 > sem instalar nada, sem termo técnico." *(slide 6)*
 
@@ -111,6 +114,17 @@
 **9. "Como escala?"**
 > "Somos **software-first** — sem hardware caro na adoção. A arquitetura já é multi-laticínio,
 > com API e está **IoT-ready** para a fase de sensores."
+
+**10. "De onde vêm os R$ 1.200? Foi medido em qual fazenda?"**
+> "É uma simulação, e a conta está no slide. Para um fornecedor de 400 litros por dia, R$ 0,08 de
+> bônus por litro são R$ 960 por mês; quatro litros de descarte evitados por dia, ao preço médio do
+> IBGE, somam mais R$ 294. **Ainda não medimos isso numa fazenda — é exatamente o que o piloto
+> entrega:** em 60 a 90 dias, o laticínio recebe o relatório de ROI com os números da própria carteira."
+
+**11. "Leite de vaca em tratamento com antibiótico é descartado de qualquer jeito. Isso vocês não evitam, certo?"**
+> "Certo — o descarte na carência é obrigatório e não entra na nossa conta. O que o radar antecipa
+> é o risco que **leva** ao tratamento e à perda de qualidade: CCS subindo, estresse térmico, falha de
+> resfriamento. Separar o descarte evitável do obrigatório é uma das métricas do piloto."
 
 ---
 
