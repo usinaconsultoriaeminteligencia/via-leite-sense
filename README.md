@@ -19,6 +19,9 @@ Desenvolvido por **USINA I.A.** para o **Desafio AgroStartup SENAR/SEBRAE Goiás
 > redirect, que existe para não quebrar os QR codes e links já impressos do pitch.
 > O app completo permanece no histórico do Git (até `0c945aa`).
 
+> **Perdido no projeto?** Comece por [`docs/ESTADO_REAL.md`](docs/ESTADO_REAL.md): o que
+> existe e roda, o que existe só em documento (ex.: assistente no WhatsApp) e o que vem a seguir.
+
 ---
 
 ## O que o VIA LEITE SENSE resolve
