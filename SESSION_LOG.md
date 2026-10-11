@@ -1,4 +1,23 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 11/10/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Fable 5.1)
+**Branch:** `fix/rolling-por-produtor` (a partir de `master` em `e9bbcce`) — correção no modelo, artefatos regenerados, PR aberto
+
+---
+
+### O que foi feito
+- **Vazamento entre produtores nas janelas móveis do modelo** (`via_leite/models/treino_mvp_avancado.py`): `group[col].shift(1).rolling(...)` perdia o agrupamento e a janela do início de cada produtor era preenchida com o fim do produtor anterior. Bloco extraído para `adicionar_janelas_moveis` e recalculado com `transform` por produtor, mantendo o `shift(1)`.
+- **Teste de regressão** `tests/test_janelas_moveis_por_produtor.py` (6 testes): dois produtores com 100 e 1.000 L/dia; no código antigo `mm_3` do 1.º registro do produtor 2 valia 100. Confirma também que o alvo `media_futura` e o `split_temporal` já eram corretos.
+- **Treino reexecutado** em `dados_teste`; `artefatos_teste/` regenerados. Só 29 linhas da base de modelagem mudaram (janela 30, todas no treino). MAE de teste 24,32 (código antigo hoje: 24,22; commit de agosto: 24,17); baseline idêntico, 31,54. Tabela completa e leitura em `docs/DECISIONS.md` (criado nesta sessão, previsto na fase E do `ESTADO_REAL.md`).
+- Suíte: 69 passed, 1 xfailed.
+
+### Próximos passos
+1. Rever e fazer merge do PR; `ESTADO_REAL.md` já aponta MAE 24,3.
+2. Fase A do `ESTADO_REAL.md` continua: `score_sanidade`/`score_manejo` como possível vazamento do gerador.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 23/09/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
 **Branch:** `master` — sem alteração de código; novo entregável em `docs/plano_de_trabalho/` (não commitado)
