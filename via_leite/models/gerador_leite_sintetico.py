@@ -435,15 +435,30 @@ def gerar_fato_producao(dim_tempo: pd.DataFrame, clima: pd.DataFrame, dim_produt
         litros_coletados = litros_produzidos * coleta_base
         litros_descartados = np.maximum(litros_produzidos - litros_coletados, 0)
 
+        # Calibração de 20/10/2026 (achado C1) contra a referência pública da RBQL
+        # (via_leite/ingest/referencia_qualidade_rbql.py). Só mudam coeficientes:
+        # o número e a ordem dos sorteios ficam iguais, para que litros, flags e
+        # tudo o que vem antes continuem idênticos com a mesma semente.
+        #
+        # CCS: mediana da base = 392 mil, a de GO em 2019-23 também — inalterado.
+        # CBT: a base tinha mediana 134 contra 60 em GO. O termo 1,2 x temp_max
+        # somava ~34 mil UFC/mL em TODO dia (temp_max média de 28 °C); passa a
+        # contar só o calor acima de 28 °C, e as bases por tecnificação descem
+        # para a faixa real.
         base_ccs = {"BAIXO": rng.uniform(350, 650), "MEDIO": rng.uniform(220, 420), "ALTO": rng.uniform(140, 280)}[p.nivel_tecnificacao]
-        base_cbt = {"BAIXO": rng.uniform(80, 220), "MEDIO": rng.uniform(35, 120), "ALTO": rng.uniform(10, 60)}[p.nivel_tecnificacao]
+        base_cbt = {"BAIXO": rng.uniform(60, 180), "MEDIO": rng.uniform(25, 85), "ALTO": rng.uniform(8, 40)}[p.nivel_tecnificacao]
 
         ccs = base_ccs + 4.5 * np.maximum(df["thi"].values - 72, 0) + 90 * flag_antibiotico + 65 * flag_qualidade_reprovada + rng.normal(0, 25, len(df))
-        cbt = base_cbt + 1.2 * df["temp_max_c"].values + 45 * flag_qualidade_reprovada + rng.normal(0, 10, len(df))
+        cbt = base_cbt + 4.0 * np.maximum(df["temp_max_c"].values - 28, 0) + 45 * flag_qualidade_reprovada + rng.normal(0, 10, len(df))
         ccs = np.clip(ccs, 80, 2000)
         cbt = np.clip(cbt, 5, 800)
 
-        temp_tanque = np.clip(3.5 + 0.03 * df["temp_max_c"].values + 0.008 * p.distancia_km_laticinio + rng.normal(0, 0.5, len(df)), 2.0, 12.0)
+        # Tanque: a IN 77 exige 4 °C. A fórmula antiga partia de 3,5 °C e somava
+        # ~0,8 do calor e até 1,4 da distância ao laticínio — que não refrigera
+        # o tanque da fazenda —, deixando 94% dos dias acima do limite. O que
+        # separa um tanque do outro é o equipamento e o manejo (tecnificação).
+        base_tanque = {"BAIXO": 3.75, "MEDIO": 3.35, "ALTO": 3.05}[p.nivel_tecnificacao]
+        temp_tanque = np.clip(base_tanque + 0.03 * (df["temp_max_c"].values - 28) + 0.002 * p.distancia_km_laticinio + rng.normal(0, 0.5, len(df)), 2.0, 12.0)
         custo_logistico_rateado = np.clip(0.10 + 0.0045 * p.distancia_km_laticinio + 0.0020 * rota["km_planejado"] + 0.0035 * df["precip_mm"].values * rota["percentual_estrada_nao_pavimentada"], 0.12, 5.00)
         margem_estimada_fornecedor = np.clip(0.62 + 0.0035 * score_manejo * 100 - 0.0016 * custo_logistico_rateado - 0.00035 * ccs - 0.0008 * cbt, -2.00, 2.50)
 
@@ -552,5 +567,10 @@ if __name__ == "__main__":
     parser.add_argument("--output-dir", default=OUTPUT_DIR, help="Pasta de saída dos CSVs")
     parser.add_argument("--use-real-climate", action="store_true", help="Usa clima já processado (ex.: INMET)")
     parser.add_argument("--real-climate-path", default=None, help="Caminho para fact_clima_diario_inmet.csv")
+    parser.add_argument(
+        "--n-produtores", type=int, default=N_PRODUTORES,
+        help="Quantidade de produtores. A base versionada em dados_teste/ usa 30, com clima sintético",
+    )
     ns = parser.parse_args()
+    N_PRODUTORES = ns.n_produtores
     main(ns.output_dir, ns.use_real_climate, ns.real_climate_path)

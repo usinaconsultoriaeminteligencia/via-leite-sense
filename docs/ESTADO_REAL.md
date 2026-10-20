@@ -37,7 +37,7 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
   `via_leite/models/gerador_leite_sintetico.py`). Não há dado real de cliente. A Piracanjuba
   não enviará dados (informado em 07/10/2026).
 - **Métricas:** o R² de 0,994 não informa, pois o baseline (média móvel de 7 dias) tem 0,990.
-  O número honesto é o ganho sobre o baseline: MAE 24,2 contra 31,5 (cerca de 23% menor).
+  O número honesto é o ganho sobre o baseline: MAE 24,4 contra 31,5 (cerca de 23% menor; era 24,2 antes da calibração de C1 em 20/10/2026).
 - **Possível vazamento a confirmar:** `score_sanidade` e `score_manejo` são variáveis que o
   gerador usa para criar a produção e aparecem entre as features.
 - **Score (C1):** 4 das 7 dimensões estão mortas (erro de unidade CCS/CBT) e
