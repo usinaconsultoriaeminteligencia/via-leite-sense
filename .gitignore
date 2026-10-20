@@ -51,3 +51,6 @@ desktop.ini
 
 # Claude Code (config local, nao versionar)
 .claude/
+
+# Plano de Trabalho FAPEG: tem CPF e telefone da equipe. Só local (repositório é público).
+docs/plano_de_trabalho/
