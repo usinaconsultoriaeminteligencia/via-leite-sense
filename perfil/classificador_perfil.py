@@ -25,8 +25,9 @@ IN77_CCS_LIMITE = 500.0   # mil células/mL
 IN77_CBT_LIMITE = 300.0   # mil UFC/mL
 
 # Níveis SEVEROS (alto risco) — um indicador sozinho neste patamar já caracteriza
-# perfil Desafiador, mesmo com o outro dentro do padrão. CCS_SEVERO = 600 alinha-se
-# ao 'ccs_alto' do score_risco.py (faixa de alto risco). CBT_SEVERO = 1,5x o IN 77.
+# perfil Desafiador, mesmo com o outro dentro do padrão. CCS_SEVERO = 1,2x o limite
+# legal; desde 20/10/2026 o 'ccs_alto' do score_risco.py é o próprio limite (500),
+# e os dois deixaram de coincidir. CBT_SEVERO = 1,5x o IN 77.
 CCS_SEVERO = 600.0        # mil células/mL
 CBT_SEVERO = 450.0        # mil UFC/mL
 

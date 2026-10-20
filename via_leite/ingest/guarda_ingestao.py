@@ -7,8 +7,9 @@ cel/mL. Quatro dimensões do score morreram em silêncio e nunca ninguém foi
 avisado — o radar continuou a desenhar classes de risco, só que sem 70 dos
 seus 100 pontos.
 
-A calibração dos limiares é decisão de produto e espera pelos dados reais.
-O que **não** espera é a possibilidade de o mesmo erro voltar a entrar sem
+A unidade de CCS/CBT foi corrigida em 20/10/2026 (limiares em MIL por mL,
+ancorados na IN 76 e na referência pública da RBQL). O que esta guarda
+continua a impedir é a possibilidade de o mesmo erro voltar a entrar sem
 ninguém dar por isso. Este módulo corre sobre um lote antes de ele ser
 importado e responde a uma pergunta só:
 
@@ -63,8 +64,8 @@ FATOR_ESCALA_MAX = 100.0
 # Coluna canónica (já depois dos aliases de `score_risco`) -> o limiar contra
 # o qual ela é comparada, e a unidade que esse limiar pressupõe.
 ESCALA_ESPERADA = {
-    "ccs":                ("ccs_atencao",     "cel/mL"),
-    "cbt":                ("cbt_atencao",     "UFC/mL"),
+    "ccs":                ("ccs_atencao",     "mil cel/mL"),
+    "cbt":                ("cbt_atencao",     "mil UFC/mL"),
     "temperatura_tanque": ("temp_tanque_max", "°C"),
     "gordura_pct":        ("gordura_min",     "%"),
 }

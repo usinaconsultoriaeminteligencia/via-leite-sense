@@ -44,9 +44,9 @@ def lote_saudavel(n: int = 100) -> pd.DataFrame:
     return pd.DataFrame({
         "id_produtor":        [f"P{i % 5:03d}" for i in idx],
         "litros_coletados":   litros,
-        # Ordem de grandeza coerente com LIMIAR (cel/mL e UFC/mL).
-        "ccs":                np.where(idx % 2 == 0, 700_000.0, 250_000.0),
-        "cbt":                np.where(idx % 2 == 0, 150_000.0, 60_000.0),
+        # Ordem de grandeza coerente com LIMIAR (mil cel/mL e mil UFC/mL).
+        "ccs":                np.where(idx % 2 == 0, 700.0, 250.0),
+        "cbt":                np.where(idx % 2 == 0, 150.0, 60.0),
         "temp_tanque_c":      np.where(idx % 3 == 0, 5.0, 3.5),
         "litros_descartados": np.where(idx % 5 == 0, litros * 0.10, 0.0),
     })
@@ -87,20 +87,23 @@ def test_escala_coerente_nao_gera_divergencia():
 
 
 def test_escala_apanha_o_fator_1000_de_c1():
-    """O defeito original: coluna em MIL cel/mL julgada por um limiar em cel/mL."""
+    """
+    O defeito de C1 no sentido em que pode voltar depois da correção de
+    20/10/2026: laudo em cel/mL (6 dígitos) julgado por limiar em MIL cel/mL.
+    """
     df = lote_saudavel()
-    df["ccs"] /= 1000
-    df["cbt"] /= 1000
+    df["ccs"] *= 1000
+    df["cbt"] *= 1000
 
     divergencias = {d["coluna"]: d for d in conferir_escala(calcular_scores(df))}
 
     assert set(divergencias) == {"ccs", "cbt"}
-    # Perto de três ordens de grandeza abaixo — não exactamente 1/1000, porque a
+    # Perto de três ordens de grandeza acima — não exactamente 1000x, porque a
     # mediana do lote não assenta em cima do limiar. O que tem de valer é a
     # magnitude, não o número redondo.
-    assert divergencias["ccs"]["ordens_de_grandeza"] == pytest.approx(-3.0, abs=0.3)
-    assert divergencias["ccs"]["fator"] < 1 / 100
-    assert divergencias["ccs"]["unidade_do_limiar"] == "cel/mL"
+    assert divergencias["ccs"]["ordens_de_grandeza"] == pytest.approx(3.0, abs=0.3)
+    assert divergencias["ccs"]["fator"] > 100
+    assert divergencias["ccs"]["unidade_do_limiar"] == "mil cel/mL"
 
 
 def test_escala_nao_confunde_rebanho_limpo_com_unidade_trocada():
@@ -110,7 +113,7 @@ def test_escala_nao_confunde_rebanho_limpo_com_unidade_trocada():
     não transformar "cliente com leite bom" em "pacote inválido".
     """
     df = lote_saudavel()
-    df["ccs"] = 120_000.0  # ~3x abaixo do limiar de atenção: plausível
+    df["ccs"] = 120.0  # ~3x abaixo do limiar de atenção: plausível
     assert conferir_escala(calcular_scores(df)) == []
 
 
@@ -193,8 +196,8 @@ def test_escala_trocada_cala_o_diagnostico_de_saturacao():
     estão certos — que é o oposto da correcção devida.
     """
     df = lote_saudavel()
-    df["ccs"] /= 1000
-    df["cbt"] /= 1000
+    df["ccs"] *= 1000
+    df["cbt"] *= 1000
 
     laudo = avaliar_lote(df)
 

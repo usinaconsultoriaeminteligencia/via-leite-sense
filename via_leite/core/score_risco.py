@@ -30,12 +30,18 @@ import pandas as pd
 # IN 77/2018 MAPA e referências da cadeia leiteira goiana             #
 # ------------------------------------------------------------------ #
 
+# Achado C1 (corrigido em 20/10/2026): CCS e CBT estavam em cel/mL e UFC/mL
+# contra colunas em MIL por mL — quatro dimensões nunca disparavam. A unidade
+# agora é a dos laudos e da RBQL. Os valores vêm da IN 76/2018 e da referência
+# pública da RBQL (via_leite/ingest/referencia_qualidade_rbql.py), não da
+# distribuição da base sintética: ajustar limiar ao gerador seria calibrar o
+# gerador contra si mesmo.
 LIMIAR = {
-    # Qualidade
-    "ccs_atencao": 400_000,    # cel/mL — limiar de atenção (IN 77)
-    "ccs_alto": 600_000,       # cel/mL — alto risco de penalização
-    "cbt_atencao": 100_000,    # UFC/mL — limiar de atenção
-    "cbt_alto": 300_000,       # UFC/mL — alto risco
+    # Qualidade — em MIL por mL
+    "ccs_atencao": 400,        # mil cel/mL — 80% do limite legal; mediana de GO 2019-23 = 392
+    "ccs_alto": 500,           # mil cel/mL — limite da IN 76: acima, leite fora do padrão
+    "cbt_atencao": 100,        # mil UFC/mL — topo da faixa real de GO 2019-23 (40–131)
+    "cbt_alto": 300,           # mil UFC/mL — limite da IN 76 para CPP
     "gordura_min": 3.0,        # % — abaixo indica problemas nutricionais
     "proteina_min": 2.9,       # %
     # Estresse térmico
