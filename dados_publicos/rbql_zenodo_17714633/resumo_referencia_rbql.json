@@ -1,0 +1,105 @@
+{
+  "fonte": "https://doi.org/10.5281/zenodo.17714633",
+  "sha256_bruto": "b683d62de83ee14575ac7abdc21fb9157a86dc5ebdb7909f6f6bcef20f2a4d17",
+  "recorte_anos": "2019+",
+  "invalidos": [
+    {
+      "localidade_fonte": "Rio Grande do Sul",
+      "ano": 2023,
+      "metrica": "esd",
+      "minimo": 8.88,
+      "maximo": 12.59,
+      "motivo_invalido": "fora da faixa plausível 7–10 pct"
+    }
+  ],
+  "limite_in76": {
+    "ccs": {
+      "valor": 500,
+      "unidade": "mil_cel_ml"
+    },
+    "cbt": {
+      "valor": 300,
+      "unidade": "mil_ufc_ml"
+    }
+  },
+  "faixas": {
+    "GO": {
+      "ccs": {
+        "metrica": "ccs",
+        "unidade": "mil_cel_ml",
+        "anos": [
+          2019,
+          2023
+        ],
+        "n_pontos": 5,
+        "minimo": 333.0,
+        "mediana_ponto_medio": 392.5,
+        "maximo": 455.0
+      },
+      "cbt": {
+        "metrica": "cbt",
+        "unidade": "mil_ufc_ml",
+        "anos": [
+          2019,
+          2023
+        ],
+        "n_pontos": 5,
+        "minimo": 40.0,
+        "mediana_ponto_medio": 60.5,
+        "maximo": 131.0
+      }
+    },
+    "Centro-Oeste": {
+      "ccs": {
+        "metrica": "ccs",
+        "unidade": "mil_cel_ml",
+        "anos": [
+          2019,
+          2023
+        ],
+        "n_pontos": 15,
+        "minimo": 228.0,
+        "mediana_ponto_medio": 366.5,
+        "maximo": 455.0
+      },
+      "cbt": {
+        "metrica": "cbt",
+        "unidade": "mil_ufc_ml",
+        "anos": [
+          2019,
+          2023
+        ],
+        "n_pontos": 15,
+        "minimo": 40.0,
+        "mediana_ponto_medio": 115.0,
+        "maximo": 276.0
+      }
+    },
+    "Brasil (12 localidades)": {
+      "ccs": {
+        "metrica": "ccs",
+        "unidade": "mil_cel_ml",
+        "anos": [
+          2019,
+          2023
+        ],
+        "n_pontos": 60,
+        "minimo": 218.0,
+        "mediana_ponto_medio": 429.75,
+        "maximo": 664.0
+      },
+      "cbt": {
+        "metrica": "cbt",
+        "unidade": "mil_ufc_ml",
+        "anos": [
+          2019,
+          2023
+        ],
+        "n_pontos": 60,
+        "minimo": 36.0,
+        "mediana_ponto_medio": 87.0,
+        "maximo": 346.0
+      }
+    }
+  }
+}
