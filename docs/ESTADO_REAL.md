@@ -101,14 +101,19 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 
 | Commit | O quê |
 |---|---|
-| `b3ea169` | Referência RBQL versionada com proveniência; achou um erro na fonte (ESD do RS em 2023) |
-| `c0c2424` | Limiares em **mil por mL**: CCS 400/500, CBT 100/300 (500 e 300 = IN 76) |
-| `a3ae356` | Gerador: CBT de mediana 134 para 79 (GO real = 60); tanque acima de 4 °C de 94% para 29% |
+| `111bf80` | Referência RBQL versionada com proveniência; achou um erro na fonte (ESD do RS em 2023) |
+| `beb0760` | Limiares em **mil por mL**: CCS 400/500, CBT 100/300 (500 e 300 = IN 76) |
+| `aa7e753` | Gerador: CBT de mediana 134 para 79 (GO real = 60); tanque acima de 4 °C de 94% para 29% |
 
 - **Resultado:** nenhuma dimensão morta ou saturada; "Alto risco" + "Crítico" em 42% das
   linhas (era 0% em 05/08 e 71% só com a unidade corrigida). MAE de teste 24,36 contra
   31,54 do baseline (ganho de 22,8%).
-- **Não publicado:** o deploy em produção espera autorização explícita.
+- **Código no GitHub (push de 20/10, `aad85c3`); produção ainda não.** O deploy foi autorizado em
+  20/10, mas a Railway CLI está sem login (token expirado). Falta: `railway login` (Fagner) e
+  `railway up --ci`. Até lá, produção mostra o score antigo.
+- **Limpeza antes do push:** os commits locais versionavam `docs/plano_de_trabalho/` com CPF e
+  telefone da equipe. Foram refeitos sem a pasta (hashes mudaram), que agora está no
+  `.gitignore`. Backup local com os dados: branch `backup/pre-limpeza-cpf-20261020` — nunca publicar.
 - **Achado de reprodutibilidade:** a base versionada usa 30 produtores e clima sintético
   (o padrão do gerador é 2.400). Agora está em `--n-produtores`.
 
@@ -118,5 +123,5 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 |---|---|---|---|
 | até 06/08/2026 | 24,45 | 22,5% | Com CPF e razão social como features (A2) |
 | 06/08/2026 | 24,17 | 23,4% | A2 fechado (`fa4ef0d`) |
-| 20/10/2026 | **24,36** | **22,8%** | C1 fechado (`a3ae356`) — **número vigente** |
+| 20/10/2026 | **24,36** | **22,8%** | C1 fechado (`aa7e753`) — **número vigente** |
 

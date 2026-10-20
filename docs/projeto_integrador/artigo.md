@@ -141,7 +141,7 @@ o artigo inteiro** e que a banca vai cobrar.
 
 | Medida | Valor | Fonte |
 |---|---|---|
-| MAE teste (XGBoost) | **24,36 L** | `artefatos_teste/metricas_modelo.json` (`a3ae356`) |
+| MAE teste (XGBoost) | **24,36 L** | `artefatos_teste/metricas_modelo.json` (`aa7e753`) |
 | MAE teste (baseline) | **31,54 L** | idem |
 | **Ganho** | **22,8 %** | idem |
 | RMSE | 36,86 vs 48,57 | idem |
