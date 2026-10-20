@@ -1,4 +1,33 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 20/10/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
+**Branch:** `master` — commits locais, **sem push e sem deploy**
+
+---
+
+### O que foi feito
+- **Hipótese Piracanjuba encerrada** (sem acordo, 07/10). As entradas anteriores deste log que tratam os dados dela como gatilho do C1 são histórico, não estado.
+- **Artigo analisado:** Cravo et al., *Construindo e Explorando Datasets Curados Sobre a Produção Leiteira do Brasil* (WCAMA/CSBC 2026). Os datasets estão no Zenodo 17714633 (CC-BY 4.0).
+- `b3ea169` — referência pública de qualidade da RBQL versionada com proveniência; achou um erro na fonte (ESD do RS em 2023).
+- `c0c2424` — **C1, unidade:** limiares de CCS/CBT em mil por mL (CCS 400/500, CBT 100/300).
+- `a3ae356` — **C1, gerador:** CBT de mediana 134 para 79 (GO real = 60); tanque acima de 4 °C de 94% para 29%. O xfail estrito virou guarda ativa. **C1 fechado.**
+- Documentos alinhados: `docs/ESTADO_REAL.md` (§8, decisão e série do MAE), `docs/projeto_integrador/` (REGISTRO, artigo, ia, rna) e `PROJECT_REGISTRY.json`.
+
+### Descompassos encontrados e corrigidos
+- `PROJECT_REGISTRY.json` ainda tratava a Piracanjuba como gatilho do C1, 13 dias depois do aviso.
+- `REGISTRO.md` do PI marcava A2 e C3 como abertos, fechados desde 06/08.
+- Documentos do PI citavam MAE 24,45 / 22,5% (número com CPF como feature). Vigente: **24,36 / 22,8%**.
+- A base versionada usa 30 produtores e clima sintético; o padrão do gerador é 2.400 e isso não estava escrito. Agora: `--n-produtores 30`.
+
+### Próximos passos
+1. [ ] **Deploy do C1** — só com autorização explícita (muda o score visto pelo usuário).
+2. [ ] C2 e C4: sobreposição de dimensões e proveniência dos pesos, com análise de sensibilidade.
+3. [ ] Documentos externos já entregues que citem "MAE 24,2": o vigente é 24,4 (o "~23%" segue válido).
+4. [ ] Commit do pacote FAPEG 2026 pendente em `docs/plano_de_trabalho/`.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 23/09/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
 **Branch:** `master` — sem alteração de código; novo entregável em `docs/plano_de_trabalho/` (não commitado)

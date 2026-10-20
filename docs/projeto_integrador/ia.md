@@ -84,7 +84,7 @@ Ao somatório ponderado somam-se ainda dois componentes contínuos (`:186-197`):
 Obtidos ao executar o motor sobre `dados_teste/fact_producao_produtor_dia.csv`
 (**54.780 linhas** — a base que alimenta o produto).
 
-### C1 — 🔴 **A metade superior da escala está morta**
+### C1 — ✅ **A metade superior da escala estava morta** (fechado em 20/10/2026)
 
 Distribuição real de `score_via_leite` sobre as 54.780 linhas:
 
@@ -123,15 +123,25 @@ temperatura desejada.
 (13 coletas, com picos de CCS bem acima da média) são a evidência independente para
 esse teste — é ali que se vê se produtor real gera score na faixa alta.
 
+> **Fechamento — 20/10/2026.** Nenhuma das duas hipóteses era a causa primária. A causa
+> era **de unidade**: os limiares de CCS/CBT estavam em cél/mL e UFC/mL e as colunas vêm
+> em **mil** por mL, o que matava 4 das 7 dimensões. Corrigida a unidade, apareceu um
+> segundo defeito, oposto à hipótese 2: o gerador era **pouco** saudável em CBT (mediana
+> 134 mil contra 60 em GO) e no tanque (acima de 4 °C em 94% dos dias). A calibração usou
+> a IN 76/77 e o dataset de qualidade da RBQL (Zenodo 17714633), sem dado de cliente.
+> Resultado: máximo 100, "Alto risco" + "Crítico" em 42% das linhas. Commits `b3ea169`,
+> `c0c2424` e `a3ae356`; registro em `docs/ESTADO_REAL.md` §8.
+
 ### C2 — As 7 dimensões **não são independentes**
 
-Um único CCS ≥ 600.000 dispara **três** dimensões simultaneamente:
+Um único CCS ≥ 500 mil/mL dispara **três** dimensões simultaneamente (o corte era 600 mil
+até 20/10/2026, quando passou ao limite da IN 76):
 
 | Dimensão | Peso | Por quê |
 |---|---|---|
-| `risco_qualidade` | 20 | OR inclui CCS ≥ 400k |
-| `risco_ccs` | 15 | CCS ≥ 400k |
-| `risco_perda_bonus` | 10 | CCS ≥ 600k |
+| `risco_qualidade` | 20 | OR inclui CCS ≥ 400 mil |
+| `risco_ccs` | 15 | CCS ≥ 400 mil |
+| `risco_perda_bonus` | 10 | CCS ≥ 500 mil |
 | **Total de uma só medição** | **45** | de 100 |
 
 O mesmo vale para CBT (20 + 15 + 10 = 45). **Apresentar isso como "7 dimensões

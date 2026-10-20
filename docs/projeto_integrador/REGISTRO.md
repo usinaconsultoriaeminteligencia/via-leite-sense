@@ -60,23 +60,24 @@ coautores de nenhum entregável acadêmico (§2 do mestre).
 | 05/08/2026 | Experimento de SP3 usa **4 braços**, não 2: B0 (regras em produção), B1 (regras + `RECEITAS`), B2 (LLM sem âncora), B3 (RAG) | B1 isola quanto do ganho vem só de ligar código que já existe (G2). Sem ele, um ganho de B3 seria creditado ao RAG indevidamente |
 | 05/08/2026 | **Nenhum dado pessoal de produtor vai para API de terceiro** no experimento de IA Generativa — só indicadores e score, com identificador pseudonimizado | Restrição dura de admissão (§8.3 de `ia_generativa.md`), ligada a **A2**: o projeto não repete em outra camada o erro de usar CPF como insumo de modelo |
 | 05/08/2026 | **Apresentação do PI é 12/12/2026** — distinta do encerramento do semestre (15/12/2026) | Prazo real de banca, artigo e apresentação antecipa em 3 dias. Datas de 15/12 nos documentos passam a valer só como **janela de aula** das matérias do Bloco 2, nunca como prazo de entrega |
+| 20/10/2026 | **C1 calibrado com norma + fonte pública, sem dado de cliente** (a Piracanjuba não cederá dados, 07/10). Limiares em mil/mL ancorados na IN 76/77 e no dataset de qualidade da RBQL de Cravo et al. (WCAMA/CSBC 2026, Zenodo 17714633) | Fecha C1. **Números canônicos mudam:** MAE de teste 24,36 contra 31,54 (ganho de 22,8%), e não 24,45 / 22,5%. Reforça C-1: a camada calibrada por fonte real é a que ganhou garantia |
 
 ---
 
-## Achados de auditoria (abertos)
+## Achados de auditoria
 
 **A1–A3** levantados em `rna.md` §4 (pipeline de treino); **C1–C6** em `ia.md` §4
 (motor de risco); **G1–G3** em `ia_generativa.md` §3.2 e §4 (geração de plano de ação).
-**Todos aguardam decisão** — nenhum foi corrigido no produto.
+**Fechados:** A2 (`fa4ef0d`, 06/08), C3 (`88c35ac`, 06/08) e C1 (20/10, sem a Piracanjuba). Os demais (A1, A3, C2, C4, C5, C6, G1, G2, G3) aguardam decisão. A2 e C3 estavam marcados como abertos nesta tabela até 20/10/2026, embora fechados desde 06/08.
 
 | # | Achado | Matéria de origem | Estado | Decisão pendente de |
 |---|---|---|---|---|
 | **A1** | `litros_ajustados_gerencial` e `impacto_gerencial_pct` quebram a convenção temporal do pipeline (expõem o dia *t*, que todas as demais features evitam via `shift(1)`) | rna | 🔴 aberto | Ablação da sprint 4 mede a magnitude |
-| **A2** | **`fornecedor_cpf_cnpj` e `fornecedor_nome_razao_social` usados como features one-hot** — memorização por indivíduo, degradação silenciosa para produtor novo (cold start) e uso de CPF como variável preditiva | rna | 🔴 aberto | Ablação da sprint 4; alimenta a seção de ética/LGPD da matéria de IA |
+| **A2** | **`fornecedor_cpf_cnpj` e `fornecedor_nome_razao_social` usados como features one-hot** — memorização por indivíduo, degradação silenciosa para produtor novo (cold start) e uso de CPF como variável preditiva | rna | ✅ fechado 06/08/2026 | `fa4ef0d` — identificadores fora das features; MAE de teste 24,45 → 24,17 |
 | **A3** | Hiperparâmetros nunca sintonizados; conjunto de validação nunca usado para seleção; execução única sem estimativa de variância | rna | 🔴 aberto | Protocolo simétrico definido em `rna.md` §5 |
-| **C1** | 🔴 **A metade superior da escala de risco está morta.** Sobre as 54.780 linhas da base de produção, `score_via_leite` tem máximo **49,40** — abaixo do limite de 50 que abriria "Alto risco". **Zero** ocorrências de Alto risco e Crítico | ia | 🔴 aberto | Diagnóstico F2: calibração dos pesos ou gerador sintético saudável demais? |
-| **C2** | As "7 dimensões ponderadas" não são independentes — um CCS ≥ 600k dispara 3 delas (20+15+10 = 45 de 100). O mesmo para CBT | ia | 🔴 aberto | Declarar a sobreposição; decidir se é ênfase deliberada |
-| **C3** | Score pode chegar a 120, mas as faixas terminam em 101 → `_classificar_risco` devolve **`NaN`** silencioso. **Latente** (hoje inalcançável), mas **corrigir C1 o ativa** | ia | 🔴 aberto | Corrigir **antes** de mexer em C1 |
+| **C1** | **A metade superior da escala de risco está morta.** Sobre as 54.780 linhas da base de produção, `score_via_leite` tem máximo **49,40** — abaixo do limite de 50 que abriria "Alto risco". **Zero** ocorrências de Alto risco e Crítico | ia | ✅ fechado 20/10/2026 | Causa: unidade (limiar em cél/mL contra coluna em mil/mL) + gerador irrealista em CBT e tanque. Corrigido com IN 76/77 e a referência pública da RBQL (Zenodo 17714633): `b3ea169`, `c0c2424`, `a3ae356`. Máx. agora 100; Alto + Crítico em 42% |
+| **C2** | As "7 dimensões ponderadas" não são independentes — um CCS ≥ 500 mil (≥ 600 mil até 20/10/2026) dispara 3 delas (20+15+10 = 45 de 100). O mesmo para CBT | ia | 🔴 aberto | Declarar a sobreposição; decidir se é ênfase deliberada |
+| **C3** | Score pode chegar a 120, mas as faixas terminam em 101 → `_classificar_risco` devolve **`NaN`** silencioso. **Latente** (hoje inalcançável), mas **corrigir C1 o ativa** | ia | ✅ fechado 06/08/2026 | `88c35ac` — corte superior em infinito; score ausente vira "Indeterminado" |
 | **C4** | Proveniência dos pesos (25/20/15/15/10/10/5) não documentada. A IN 77 dá limiares, **não pesos** | ia | 🔴 aberto | Elicitação + análise de sensibilidade (F2/F3) |
 | **C5** | Constantes de mercado (preço R$ 2,80, bônus R$ 0,15, penalidade R$ 0,10) embutidas no código junto dos limiares sanitários — o impacto econômico mostrado ao cliente envelhece em silêncio | ia | 🔴 aberto | Separar base de conhecimento de motor de inferência |
 | **C6** | Limiares rotulados como "IN 77" são mais estritos que a norma — design de alerta antecipado atribuído a fonte normativa | ia | 🔴 aberto | Marcar cada limiar como [normativo] ou [escolha de projeto], conferindo no texto oficial |
@@ -84,7 +85,7 @@ coautores de nenhum entregável acadêmico (§2 do mestre).
 | **G2** | **A camada de "COMO agir" existe e não está ligada.** `perfil/classificador_perfil.py` (`RECEITAS`, `recomendacao_combinada`) declara-se "a entrega de valor: recomendação cirúrgica em vez de genérica", mas **o backend não importa o módulo** — o único consumidor é `perfil/perfil_demo.py`. O que chega ao usuário é o `"; ".join()` de 5 regras | iagen | 🔴 aberto | Ligar ao produto (é o braço B1 do experimento de SP3) — parte do ganho atribuível ao RAG pode vir só disso |
 | **G3** | **Dois motores de risco coexistem, com escalas e cortes diferentes.** `score_risco.py` (`score_via_leite`, 7 dims, o formalizado em `ia.md`) alimenta **só `/risk-radar`**; `fornecedor_inteligencia.py` (`score_risco_fornecedor`, 4 dims 0,35/0,30/0,20/0,15) alimenta **`/suppliers` → `/action-plans`**. Ambos importados em `backend/app.py:15-16` | iagen | 🔴 aberto | Decidir se unifica; enquanto não, documentar qual score responde por qual tela |
 
-> **G3 evita uma conclusão errada na banca.** O máximo de 49,40 do **C1** é do
+> **G3 evita uma conclusão errada na banca.** O máximo de 49,40 do **C1** (situação até 20/10/2026) era do
 > `score_via_leite`; o motor que alimenta os planos de ação alcança **76,2** e classifica
 > "Alto". Os dois achados são verdadeiros e **não se contradizem** — são motores
 > diferentes. C1 **não** invalida a matéria de IA Generativa.
@@ -112,8 +113,8 @@ coautores de nenhum entregável acadêmico (§2 do mestre).
 | Bloco acadêmico no `README.md` | ✅ esta entrega |
 
 **Os 8 entregáveis de documento estão completos.** O que resta na trilha não é
-documentação — é **execução** (corpus, experimentos, campo) e **decisão sobre os 12
-achados em aberto**, que seguem sem prazo atribuído exceto C6 (19/10, resolvido de
+documentação — é **execução** (corpus, experimentos, campo) e **decisão sobre os 9
+achados em aberto** (de 12; A2, C3 e C1 fechados), que seguem sem prazo atribuído exceto C6 (19/10, resolvido de
 passagem pela montagem do corpus normativo).
 
 ---

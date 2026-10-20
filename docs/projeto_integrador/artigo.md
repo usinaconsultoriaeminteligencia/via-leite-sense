@@ -73,7 +73,10 @@ O trabalho auditou o próprio produto e produziu **12 achados verificados**
 consulta à API de produção, leitura de código com arquivo e linha. Três exemplos do que
 o protocolo encontra e uma leitura superficial não encontraria:
 
-- **C1** — a metade superior da escala de risco nunca é atingida (máx. 49,40 de 100);
+- **C1** — a metade superior da escala de risco nunca era atingida (máx. 49,40 de 100). O
+  protocolo achou a causa (limiar em cél/mL contra dado em mil/mL, mais um gerador
+  irrealista em CBT e tanque) e o corrigiu com norma e fonte pública real, sem dado de
+  cliente (20/10/2026). É o exemplo completo do ciclo achado → causa → correção;
 - **G2** — a camada de recomendação específica existe, é testada em demo e **não está
   ligada** ao produto;
 - **G3** — **dois** motores de risco coexistem com escalas diferentes, e o que gera os
@@ -129,7 +132,7 @@ o artigo inteiro** e que a banca vai cobrar.
 4. **Orçamento de sintonia simétrico** entre modelos comparados (30 configurações).
 5. **Baseline descrito com precisão:** MM7 **com fallback em cascata** para MM30 e para
    `producao_media_esperada_litros_dia` — **não** é naïve nem persistência. A cascata o
-   torna mais forte, e o ganho de 22,5 % mais conservador. **Omiti-la subvende o próprio
+   torna mais forte, e o ganho de 22,8 % mais conservador. **Omiti-la subvende o próprio
    resultado.**
 6. **Métrica principal é o ganho sobre o baseline**, nunca o R² absoluto — R² 0,994 com
    baseline em 0,990 não é conquista, e citá-lo como tal é o erro mais fácil de cometer.
@@ -138,12 +141,17 @@ o artigo inteiro** e que a banca vai cobrar.
 
 | Medida | Valor | Fonte |
 |---|---|---|
-| MAE teste (XGBoost) | **24,45 L** | `artefatos_teste/metricas_modelo.json` |
+| MAE teste (XGBoost) | **24,36 L** | `artefatos_teste/metricas_modelo.json` (`a3ae356`) |
 | MAE teste (baseline) | **31,54 L** | idem |
-| **Ganho** | **22,5 %** | idem |
+| **Ganho** | **22,8 %** | idem |
 | RMSE | 36,86 vs 48,57 | idem |
 | Linhas treino/validação/teste | 32.010 / 10.980 / 10.920 | idem |
-| Features | 133 | idem |
+| Features | 131 | idem |
+
+> **Série histórica — citar só o número vigente.** 24,45 / 22,5 % (133 features, com CPF e
+> razão social: A2) → 24,17 / 23,4 % (A2 fechado, 06/08) → **24,36 / 22,8 %** (C1 fechado,
+> 20/10/2026: CBT e tanque deixaram de carregar um sinal artificial). A série completa está
+> em `docs/ESTADO_REAL.md` §8.
 | Baseline de geração de plano | **3 textos distintos / 30 produtores; 42 % sem ação** | API de produção, 05/08/2026 |
 
 `artefatos_teste` é o artefato **canônico** — confirmado por padrão do script, padrão do
@@ -194,14 +202,14 @@ como **método**, não como confissão.
 | Hiperparâmetros nunca sintonizados; validação nunca usada para seleção | **A3** | Protocolo §4.1 corrige: orçamento simétrico, validação para seleção, teste aberto 1×  |
 | Ganho do RAG confundido com ganho de código já existente | **G2** | Braço **B1** isola |
 | Pesos do score sem proveniência documentada | **C4** | Declarar como escolha de projeto; análise de sensibilidade |
-| Dimensões do score não são independentes (CCS ≥ 600k dispara 3 delas, 45/100) | **C2** | Declarar a sobreposição; não apresentar como 7 evidências independentes |
+| Dimensões do score não são independentes (CCS ≥ 500 mil dispara 3 delas, 45/100) | **C2** | Declarar a sobreposição; não apresentar como 7 evidências independentes |
 
 ### 6.2 Validade externa
 
 | Ameaça | Tratamento |
 |---|---|
 | **Base majoritariamente sintética** — o modelo aprende, em parte, o gerador | É a **condição da pergunta central**, não um defeito escondido. Reportar ganho sobre baseline; discutir o teto |
-| **Escala da metade morta do score** (máx. 49,40; zero Alto risco) | **C1** — declarar que o diagnóstico (calibração × gerador saudável demais) está **em aberto**, com as duas hipóteses e suas correções opostas |
+| **Calibração do score sem dado de cliente** (C1, fechado em 20/10/2026) | Os limiares vêm da IN 76/77 e de distribuição pública **agregada** (estado × ano, RBQL), não de distribuição por produtor. Declarar; a validação por produtor vem da Extensão (SENAR) |
 | Piloto de campo pode não se materializar | Contingência do mestre §11: SP1–SP3 permanecem intactas; perde-se validade externa, reportada como limitação |
 | Um único produto, uma cadeia, uma região | Declarar o escopo; C-1 é proposta como **hipótese transferível**, não como lei |
 | Dados reais disponíveis são de **qualidade**, sem volume | Não permitem validar o modelo preditivo (que exige produção diária). Declarar |
@@ -233,7 +241,7 @@ Alvo: **8–12 páginas** em formato de conferência (a ajustar ao veículo, §8
 | § | Seção | Depende de resultado? | Escrever em |
 |---|---|---|---|
 | 1 | Introdução — problema, contexto da cadeia leiteira, pergunta central | ❌ | **ago/set** |
-| 2 | Trabalhos relacionados — predição em pecuária leiteira, SBC em agro, RAG em domínio normativo, dados sintéticos | ❌ | **ago/set** |
+| 2 | Trabalhos relacionados — predição em pecuária leiteira, SBC em agro, RAG em domínio normativo, dados sintéticos. **Âncora pt-BR:** Cravo et al. (WCAMA/CSBC 2026) sobre datasets curados da cadeia leiteira, que afirma a escassez de literatura nacional e dá referências de partida (Cesarini 2024, Rajini & Sravani 2025, Telles 2020, Nääs 2008) | ❌ | **ago/set** |
 | 3 | O sistema — arquitetura em 4 camadas, o que já existia | ❌ | **ago/set** |
 | 4 | Método — invariantes, protocolo por subpergunta, avaliação humana | ❌ | **ago/set** |
 | 5 | SP1 — aprendizado supervisionado e seu teto | ✅ | out |
@@ -256,6 +264,7 @@ assumidos**; confirmar nos sites oficiais antes de fixar calendário.
 | Prioridade | Veículo | Aderência |
 |---|---|---|
 | **P1** | **SBIAgro** — Congresso Brasileiro de Agroinformática | Melhor encaixe: agro + computação, comunidade brasileira, aceita relato aplicado com limitações declaradas |
+| P1-b | **WCAMA** (Workshop de Computação Aplicada à Gestão do Meio Ambiente e Recursos Naturais, no CSBC) | Publicou em 2026 trabalho sobre dados da cadeia leiteira (Cravo et al.); prazos de 2027 a confirmar |
 | P2 | **ENIAC** (Encontro Nacional de Inteligência Artificial e Computacional, SBC) | IA aplicada; aceita trabalho de graduação com método sólido |
 | P3 | Revista Brasileira de Computação Aplicada (RBCA) | Periódico, sem prazo de evento — **rede de segurança** se nenhum congresso encaixar no calendário |
 | P4 | Anais do próprio SENAI FATESG / evento interno | Garantia mínima de veículo |
@@ -273,10 +282,10 @@ Restrição 2 do mestre §8, e a mais fácil de violar por descuido:
 | Vai para o artigo | **Não** vai para PITCH / PLANO_DE_NEGÓCIO / SENAR / investidor |
 |---|---|
 | Base majoritariamente sintética | — |
-| C1: metade da escala de risco nunca acende | — |
+| C1: a escala de risco ficou meses com metade apagada (já corrigido) | — |
 | A2: CPF como *feature* em produção | — |
 | Resultados negativos (ex.: NN não superar XGBoost) | — |
-| Ganho de 22,5 %, com a cascata do baseline descrita | O PITCH pode citar o ganho; **sem** inverter o sinal das limitações |
+| Ganho de 22,8 %, com a cascata do baseline descrita | O PITCH pode citar o ganho; **sem** inverter o sinal das limitações |
 
 **O vazamento perigoso é o inverso:** linguagem de *pitch* entrando no artigo
 ("solução inovadora", "revolucionar a cadeia leiteira"). A banca pune isso mais do que

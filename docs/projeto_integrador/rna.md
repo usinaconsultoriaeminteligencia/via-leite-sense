@@ -69,6 +69,10 @@ Tudo abaixo foi lido em `treino_mvp_avancado.py` e em
 | MAPE (%) | 3,63 | 4,55 | — |
 | R² | 0,9943 | 0,9901 | — |
 
+> **Números de partida, de antes de A2 (06/08) e de C1 (20/10/2026).** O vigente é MAE
+> **24,36** contra 31,54 (ganho de **22,8 %**), com 131 features. A série completa está em
+> `docs/ESTADO_REAL.md` §8. Esta tabela fica como registro do ponto de partida.
+
 > **Regra de reporte (§8.1 do mestre):** a métrica principal é **MAE e o ganho sobre o
 > baseline**. O R² de 0,994 **não** é resultado — é sintoma de que o baseline já explica
 > 0,990 da variância, isto é, de que a série é fortemente autocorrelacionada e a base é
