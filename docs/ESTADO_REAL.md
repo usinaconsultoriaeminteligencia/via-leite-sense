@@ -1,7 +1,7 @@
 # Estado real do VIA LEITE SENSE
 
 > Ponto de retomada do projeto. Separa **o que existe e roda** do que existe **só em
-> documento**. Verificado em **20/10/2026** (código, `git log` e testes; produção conferida pela última vez em 07/10). Se algo aqui
+> documento**. Verificado em **06/11/2026** (`git log`, branches e `/health` de produção; testes rodados pela última vez em 20/10). Se algo aqui
 > divergir do código, o código vence. Atualizar este arquivo a cada marco.
 
 ## 1. Existe e roda (verificado)
@@ -38,7 +38,11 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
   `via_leite/models/gerador_leite_sintetico.py`). Não há dado real de cliente. A Piracanjuba
   não enviará dados (informado em 07/10/2026).
 - **Métricas:** o R² de 0,994 não informa, pois o baseline (média móvel de 7 dias) tem 0,990.
-  O número honesto é o ganho sobre o baseline: MAE 24,4 contra 31,5 (cerca de 23% menor; era 24,2 antes da calibração de C1 em 20/10/2026).
+  O número honesto é o ganho sobre o baseline: MAE 24,5 contra 31,5 (cerca de 22% menor). Era 24,2 até 20/10 e 24,4 até 06/11; material externo anterior a 06/11 cita "24,4 / cerca de 23%".
+- **Vazamento entre produtores (corrigido em 06/11/2026):** as médias e desvios móveis
+  (`mm_*`, `std_*`) eram calculados sobre o DataFrame inteiro, e os primeiros dias de cada
+  produtor herdavam os últimos do anterior. Correção de 11/10 trazida para o branch
+  `fix/janelas-moveis` e retreinada sobre a base do C1. Ver `docs/DECISIONS.md`.
 - **Possível vazamento a confirmar:** `score_sanidade` e `score_manejo` são variáveis que o
   gerador usa para criar a produção e aparecem entre as features.
 - **Score (C1 fechado em 20/10/2026, ainda não publicado em produção):** as 7 dimensões
@@ -48,6 +52,10 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
   mortas e o tanque saturado.
 - **Deploy:** sem auto-deploy (ALERTA-008); a produção já divergiu do `master` por 8 dias.
 - **Segurança:** a senha antiga ainda é recuperável do histórico Git e o repositório é público.
+- **Dados pessoais no GitHub (06/11/2026):** o branch `fix/rolling-por-produtor`, publicado antes
+  da limpeza de 20/10, versionava `docs/plano_de_trabalho/conteudo.py` com CPF e telefone da
+  equipe. O branch foi apagado em 06/11, mas o **PR #2** (fechado) mantém `refs/pull/2/head` e o
+  commit `73c4c54` continua abrindo pelo hash. Só o suporte do GitHub remove. Ver §8.
 
 ## 4. Datas e condicionantes
 
@@ -56,6 +64,9 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 - **Entrou entre os 36:** o SENAR dá contato direto com produtores; pedir planilhas reais
   (2 a 3 produtores, com NDA) como **validação externa**. Não é pré-condição de nada:
   o C1 foi calibrado sem elas. Ver fase D abaixo.
+- **29/10/2026:** Demo Day (300 pontos pelo resultado preliminar de 22/10; 3 min + 2 min, dupla
+  Maria Vitória → Fagner, 13 telas). Roteiro em `docs/ROTEIRO_DEMODAY_VIA_LEITE_SENSE.md`.
+  **Resultado ainda não registrado aqui.**
 - VAE/GAN (dados sintéticos mais realistas) está guardado e só retoma a pedido do Fagner.
 
 ## 5. Próximos passos (depois de 09/10)
@@ -79,7 +90,7 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 - **O que significa "clinicamente seguro"?** Os critérios de risco são definidos com a
   veterinária da equipe a partir de limiares normativos; a validação em campo vem no piloto.
 - **O modelo foi treinado com dados reais?** Não. Foi validado em base sintética, com ganho
-  de cerca de 23% no erro absoluto sobre o baseline.
+  de cerca de 22% no erro absoluto sobre o baseline.
 
 ## 7. Onde olhar
 
@@ -89,6 +100,25 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 - Plano de Trabalho FAPEG: `docs/plano_de_trabalho/`
 
 ## 8. Decisões registradas
+
+### 06/11/2026 — Branch público com CPF e correção de modelo fora do `master`
+
+- **Achado:** `origin/fix/rolling-por-produtor` (`73c4c54`, 11/10) parte do histórico **anterior**
+  à limpeza de 20/10. Seus commits `74c1710`..`73c4c54` versionam `docs/plano_de_trabalho/`
+  (7 arquivos), com CPF e telefone de 4 pessoas em `conteudo.py`. A limpeza reescreveu só o `master`.
+- **Decisão:** integrar **só** `73c4c54` por cherry-pick num branch novo sobre o `master`; os outros
+  cinco commits já estão no `master` com hashes novos (`c5902b4`, `2eae637`, `276fd87`, `e0c4fee`,
+  `9e40cb2`). Merge descartado: traria a pasta de volta. Depois, apagar o branch remoto
+  (precisa do OK do Fagner: é ação pública e irreversível) e pedir ao suporte do GitHub a remoção
+  dos commits órfãos, que continuam acessíveis pelo hash.
+- **Execução (06/11, com OK do Fagner):** código, teste e `docs/DECISIONS.md` de `73c4c54` trazidos
+  para `fix/janelas-moveis`; os artefatos de 11/10 (base anterior ao C1) foram descartados e
+  regenerados. `git push origin --delete fix/rolling-por-produtor` feito; worktree e branches locais
+  removidos. **Pendente:** o PR #2 segue expondo o commit; pedido ao suporte do GitHub é do Fagner.
+- **Efeito no número canônico:** MAE de teste **24,47** contra 31,54 (ganho de **22,4%**). O código
+  antigo, no mesmo ambiente, dá 24,34, então os +0,13 L são efeito da correção e não do ambiente.
+- **Prevenção:** `entrega 12_10_26/` e `entrega 12_10_26.zip` (Plano de Trabalho assinado) entraram
+  no `.gitignore`.
 
 ### 20/10/2026 — C1 calibrado sem a Piracanjuba
 
@@ -123,5 +153,6 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 |---|---|---|---|
 | até 06/08/2026 | 24,45 | 22,5% | Com CPF e razão social como features (A2) |
 | 06/08/2026 | 24,17 | 23,4% | A2 fechado (`fa4ef0d`) |
-| 20/10/2026 | **24,36** | **22,8%** | C1 fechado (`aa7e753`) — **número vigente** |
+| 20/10/2026 | 24,36 | 22,8% | C1 fechado (`aa7e753`) |
+| 06/11/2026 | **24,47** | **22,4%** | Janelas móveis por produtor (`fix/janelas-moveis`) — **número vigente** |
 

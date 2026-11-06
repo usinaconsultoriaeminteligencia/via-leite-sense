@@ -54,3 +54,7 @@ desktop.ini
 
 # Plano de Trabalho FAPEG: tem CPF e telefone da equipe. Só local (repositório é público).
 docs/plano_de_trabalho/
+
+# Pacote FAPEG entregue em 12/10 (Plano de Trabalho assinado, com CPF da equipe). Só local.
+entrega 12_10_26/
+entrega 12_10_26.zip

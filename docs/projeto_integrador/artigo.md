@@ -132,7 +132,7 @@ o artigo inteiro** e que a banca vai cobrar.
 4. **Orçamento de sintonia simétrico** entre modelos comparados (30 configurações).
 5. **Baseline descrito com precisão:** MM7 **com fallback em cascata** para MM30 e para
    `producao_media_esperada_litros_dia` — **não** é naïve nem persistência. A cascata o
-   torna mais forte, e o ganho de 22,8 % mais conservador. **Omiti-la subvende o próprio
+   torna mais forte, e o ganho de 22,4 % mais conservador. **Omiti-la subvende o próprio
    resultado.**
 6. **Métrica principal é o ganho sobre o baseline**, nunca o R² absoluto — R² 0,994 com
    baseline em 0,990 não é conquista, e citá-lo como tal é o erro mais fácil de cometer.
@@ -141,16 +141,17 @@ o artigo inteiro** e que a banca vai cobrar.
 
 | Medida | Valor | Fonte |
 |---|---|---|
-| MAE teste (XGBoost) | **24,36 L** | `artefatos_teste/metricas_modelo.json` (`aa7e753`) |
+| MAE teste (XGBoost) | **24,47 L** | `artefatos_teste/metricas_modelo.json` (`fix/janelas-moveis`, 06/11/2026) |
 | MAE teste (baseline) | **31,54 L** | idem |
-| **Ganho** | **22,8 %** | idem |
-| RMSE | 36,86 vs 48,57 | idem |
+| **Ganho** | **22,4 %** | idem |
+| RMSE | 37,01 vs 48,57 | idem |
 | Linhas treino/validação/teste | 32.010 / 10.980 / 10.920 | idem |
 | Features | 131 | idem |
 
 > **Série histórica — citar só o número vigente.** 24,45 / 22,5 % (133 features, com CPF e
-> razão social: A2) → 24,17 / 23,4 % (A2 fechado, 06/08) → **24,36 / 22,8 %** (C1 fechado,
-> 20/10/2026: CBT e tanque deixaram de carregar um sinal artificial). A série completa está
+> razão social: A2) → 24,17 / 23,4 % (A2 fechado, 06/08) → 24,36 / 22,8 % (C1 fechado,
+> 20/10/2026: CBT e tanque deixaram de carregar um sinal artificial) → **24,47 / 22,4 %** (06/11/2026:
+> janelas móveis deixaram de atravessar a fronteira entre produtores). A série completa está
 > em `docs/ESTADO_REAL.md` §8.
 | Baseline de geração de plano | **3 textos distintos / 30 produtores; 42 % sem ação** | API de produção, 05/08/2026 |
 
@@ -285,7 +286,7 @@ Restrição 2 do mestre §8, e a mais fácil de violar por descuido:
 | C1: a escala de risco ficou meses com metade apagada (já corrigido) | — |
 | A2: CPF como *feature* em produção | — |
 | Resultados negativos (ex.: NN não superar XGBoost) | — |
-| Ganho de 22,8 %, com a cascata do baseline descrita | O PITCH pode citar o ganho; **sem** inverter o sinal das limitações |
+| Ganho de 22,4 %, com a cascata do baseline descrita | O PITCH pode citar o ganho; **sem** inverter o sinal das limitações |
 
 **O vazamento perigoso é o inverso:** linguagem de *pitch* entrando no artigo
 ("solução inovadora", "revolucionar a cadeia leiteira"). A banca pune isso mais do que

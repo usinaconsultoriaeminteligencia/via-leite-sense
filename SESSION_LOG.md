@@ -1,4 +1,83 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 06/11/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
+**Branch:** `fix/janelas-moveis` (local, sem push) sobre `master` = `3f7e983` — correção do modelo integrada; P0 parcialmente resolvido
+
+---
+
+### Execução com OK do Fagner (segunda metade da sessão)
+- **Correção das janelas móveis** trazida de `73c4c54` para `fix/janelas-moveis` só com `treino_mvp_avancado.py`, `tests/test_janelas_moveis_por_produtor.py` e `docs/DECISIONS.md`. Os artefatos daquele commit (base anterior ao C1) foram descartados.
+- **Retreino** sobre a base do C1: MAE de teste **24,47** contra 31,54 (ganho de **22,4%**). O código antigo, no mesmo ambiente, dá 24,34 (artefato de 20/10: 24,36), então os +0,13 L vêm da correção. Número atualizado em `ESTADO_REAL.md`, `projeto_integrador/artigo.md`, `rna.md`, `DECISIONS.md`, `CONTEXT.md` e no registry. `pytest`: **77 passed**.
+- **`git push origin --delete fix/rolling-por-produtor`** feito; worktree `vigilant-bouman-bf16e0` e branches locais `fix/rolling-por-produtor` e `claude/vigilant-bouman-bf16e0` removidos.
+- **Resta exposto:** o PR #2 (fechado) mantém `refs/pull/2/head` → `73c4c54`, e a página do commit ainda abre (HTTP 200). Usuário não apaga `refs/pull`; só o suporte do GitHub. O PR #1 não tem os dados.
+- Material do Demo Day (roteiro, briefing, prompts) mantido com "24,4 / cerca de 23%": é registro datado do que foi dito em 29/10.
+
+
+### O que foi feito
+- **Consolidação do que ficou sem registro entre 20/10 e 06/11** (material do Demo Day, ainda não commitado):
+  - `docs/BRIEFING_DEMODAY_2026-10-20.md`: briefing interno da reunião de estratégia (frases prontas e lista "Não dizer").
+  - `docs/ROTEIRO_DEMODAY_VIA_LEITE_SENSE.md/.pdf` (23/10): roteiro alinhado às 13 telas do deck, dupla Maria Vitória (telas 1 a 5) → Fagner (6 a 13).
+  - `docs/PITCH_DEMODAY_VIA_LEITE_SENSE.pdf`, `docs/PREVIA_SLIDES_DEMODAY.png`, `docs/PROMPTS_IMAGENS_PITCH.md` (23/10).
+  - Demo Day em **29/10**, valendo **300 pontos** (preliminar SENAR de 22/10, não 200). O resultado não está registrado.
+- **Varredura de branches:** `fix/rolling-por-produtor` (worktree `.claude/worktrees/vigilant-bouman-bf16e0`, publicado no GitHub) nunca foi integrado.
+- **Produção:** `/health` 200. A Railway CLI continua sem login, então o deploy do C1 não saiu desta máquina.
+- **Criados** `CONTEXT.md` e `TASKS.md` na raiz; `docs/ESTADO_REAL.md` atualizado (§3, §4 e decisão nova em §8); `PROJECT_REGISTRY.json` alinhado.
+- **`.gitignore`:** passa a excluir `entrega 12_10_26/` e `entrega 12_10_26.zip` (Plano de Trabalho assinado, com CPF).
+
+### Problemas encontrados
+| Problema | Causa | Solução |
+|---|---|---|
+| **CPF e telefone de 4 pessoas no GitHub público**, em `origin/fix/rolling-por-produtor` (`docs/plano_de_trabalho/conteudo.py`) | O branch saiu em 11/10 do histórico antigo; a limpeza de 20/10 reescreveu só o `master` | **Aberto (P0).** Cherry-pick de `73c4c54` sobre o `master`, depois apagar o branch remoto (precisa do OK do Fagner) e pedir ao GitHub a remoção dos commits órfãos |
+| Correção de vazamento do modelo parada fora do `master` desde 11/10 | `73c4c54`: `group[col].shift(1).rolling()` rodava sobre o DataFrame inteiro; o produtor N herdava a média do N-1 | Integrar por cherry-pick, retreinar e registrar o novo MAE |
+| Score novo provavelmente ausente da demo ao vivo do Demo Day | Token da Railway expirado desde 20/10 | `railway login` + `railway up --ci` |
+
+### Decisões técnicas tomadas
+| Decisão | Justificativa | Alternativa descartada |
+|---|---|---|
+| Cherry-pick de `73c4c54`, não merge do branch | Os outros 5 commits já estão no `master` com hashes novos; o merge reintroduziria `docs/plano_de_trabalho/` | `git merge fix/rolling-por-produtor` |
+| Não apagar o branch remoto nesta sessão | Ação pública e irreversível: pede o OK explícito do Fagner | Apagar direto |
+| O MAE 24,36 continua canônico até o retreino | Ainda é o número do artefato publicado; a mudança tem de vir com a medição nova | Estimar o novo número sem rodar |
+
+### Próximos passos
+1. [ ] **P0 — Fagner:** pedir ao suporte do GitHub a remoção do PR #2 e dos commits `74c1710`, `363b6ff`, `dfa8e5d`, `e9bbcce`, `73c4c54` (`docs/plano_de_trabalho/conteudo.py`).
+2. [ ] Merge de `fix/janelas-moveis` no `master` e push.
+3. [ ] **Deploy:** `railway login` (Fagner) e `railway up --ci`; conferir as 7 dimensões e `/model/metrics` = 24,47 em produção.
+4. [ ] Registrar o resultado do Demo Day; commitar o material do pitch (decidir se o briefing interno entra no repositório público).
+5. [ ] C2 e C4; fase D (planilhas SENAR); fase F (assistente).
+
+### Bloqueios ativos
+- Deploy: depende do `railway login` do Fagner.
+- Apagar o branch público: depende de autorização.
+
+---
+
+# HANDOFF — VIA LEITE SENSE (06/11/2026)
+
+**Estado:** produto em produção (Vercel + Railway) com o score **antigo**; `master` tem o C1 calibrado (20/10) e está publicado no GitHub. Base de treino sintética, calibrada por IN 76/77 e RBQL.
+
+**Onde paramos:** correção das janelas móveis commitada em `fix/janelas-moveis` (local, sem push). O material do Demo Day (20 a 23/10) segue sem commit.
+
+**Próxima ação imediata:**
+```powershell
+cd "C:\Users\Novou\Desktop\USINA\Via Leite"
+git switch master
+git merge --ff-only fix/janelas-moveis
+git push origin master
+railway login
+railway up --ci
+```
+Depois: conferir `/api/model/metrics` (MAE 24,47) e as 7 dimensões pelo proxy da Vercel. Em paralelo, o Fagner abre o pedido de remoção ao suporte do GitHub (PR #2).
+
+**Não fazer:** push de `backup/pre-limpeza-cpf-20261020`; versionar `docs/plano_de_trabalho/` ou `entrega 12_10_26*`; citar "MAE 24,2" ou a Piracanjuba em material externo.
+
+**Leitura de entrada:** `CONTEXT.md` → `TASKS.md` → `docs/ESTADO_REAL.md`.
+
+---
+*Registrado por Claude — USINA I.A.*
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 20/10/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
 **Branch:** `master` — **push feito** (`a58d7f5..aad85c3`); **deploy pendente** (Railway sem login)
