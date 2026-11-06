@@ -11,6 +11,7 @@
 - **`git push origin --delete fix/rolling-por-produtor`** feito; worktree `vigilant-bouman-bf16e0` e branches locais `fix/rolling-por-produtor` e `claude/vigilant-bouman-bf16e0` removidos.
 - **Resta exposto:** o PR #2 (fechado) mantém `refs/pull/2/head` → `73c4c54`, e a página do commit ainda abre (HTTP 200). Usuário não apaga `refs/pull`; só o suporte do GitHub. O PR #1 não tem os dados.
 - **Streamlit removido.** Um Streamlit local foi aberto sem querer na porta 8521 (escutando em `0.0.0.0`), porque o `.claude/launch.json` tinha o Streamlit como primeira configuração. Foi parado e a configuração saiu. O `via-leite-sense.streamlit.app` não redirecionava mais: mandava para o login do Streamlit. Saíram `via_leite_app.py`, `.streamlit/`, `.devcontainer/` e `streamlit` do `requirements.txt`; README e DEPLOY reescritos; o onboarding parou de gerar `subir_dashboard.ps1` (apontava para `dashboard_mvp_avancado.py`, que não existe). **Falta:** o Fagner apagar o app em share.streamlit.io.
+- **Rede da faculdade bloqueia a Railway:** `railway.com` resolve para 69.46.46.46 e não conecta; `backboard.railway.com`, `railway.app` e a API em produção passam, e a Vercel também. Login e deploy só fora dessa rede. Proposta: ligar o auto-deploy pelo GitHub numa janela fora dela.
 - Material do Demo Day (roteiro, briefing, prompts) mantido com "24,4 / cerca de 23%": é registro datado do que foi dito em 29/10.
 
 

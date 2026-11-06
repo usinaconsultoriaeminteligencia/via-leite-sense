@@ -9,6 +9,10 @@
       Citar o repositório `usinaconsultoriaeminteligencia/via-leite-sense`, o `refs/pull/2/head`
       e os commits `74c1710`, `363b6ff`, `dfa8e5d`, `e9bbcce`, `73c4c54` (arquivo
       `docs/plano_de_trabalho/conteudo.py`). Em 06/11 o commit `73c4c54` ainda abria pelo hash.
+- [ ] **Fora da rede da faculdade** (casa ou hotspot do celular): a rede "WiFi-Alunos" bloqueia
+      `railway.com` por DNS (resolve para 69.46.46.46); `backboard.railway.com` e `up.railway.app` passam.
+      Aproveitar a janela para ligar o auto-deploy GitHub → Railway (painel: Service › Settings ›
+      Source › Connect Repo, branch `master`). Depois disso, push no GitHub já publica, inclusive da faculdade.
 - [ ] **`railway login` (Fagner) e depois `railway up --ci`.** Conferir `/health`, as 7 dimensões e
       `/api/model/metrics` (MAE 24,47) em produção. Autorizado em 20/10.
 
