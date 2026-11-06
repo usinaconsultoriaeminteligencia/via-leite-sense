@@ -1,0 +1,156 @@
+{
+  "data_execucao": "2026-11-06T20:41:09",
+  "linhas": 54780,
+  "produtores": 30,
+  "C2": {
+    "taxa_disparo_por_dimensao": {
+      "risco_queda_producao": 0.2364,
+      "risco_qualidade": 0.5532,
+      "risco_ccs": 0.4801,
+      "risco_cbt": 0.3057,
+      "risco_temp_tanque": 0.2902,
+      "risco_perda_bonus": 0.2021,
+      "risco_descarte": 0.0035
+    },
+    "pares_mais_correlacionados_phi": [
+      [
+        "risco_qualidade",
+        "risco_ccs",
+        0.86353575727005
+      ],
+      [
+        "risco_qualidade",
+        "risco_cbt",
+        0.5963635618888982
+      ],
+      [
+        "risco_ccs",
+        "risco_perda_bonus",
+        0.5237298023555069
+      ],
+      [
+        "risco_qualidade",
+        "risco_perda_bonus",
+        0.4522594114819545
+      ],
+      [
+        "risco_ccs",
+        "risco_cbt",
+        0.37281778911673813
+      ],
+      [
+        "risco_qualidade",
+        "risco_temp_tanque",
+        0.2996510988123757
+      ]
+    ],
+    "linhas_com_ccs_ge_500": 11070,
+    "pontos_medios_das_dimensoes_quando_ccs_ge_500": 64.63279132791328,
+    "dimensoes_de_qualidade_que_disparam_juntas_pct": 0.5532128514056225
+  },
+  "C4": {
+    "referencia_alto_mais_critico": 0.418236582694414,
+    "perturbacao_20pct": [
+      {
+        "cenario": "risco_queda_producao x0.8",
+        "spearman_ranking_produtores": 0.9991101223581758,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.4155896312522819
+      },
+      {
+        "cenario": "risco_queda_producao x1.2",
+        "spearman_ranking_produtores": 0.9986651835372636,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.42210660825118657
+      },
+      {
+        "cenario": "risco_qualidade x0.8",
+        "spearman_ranking_produtores": 0.9995550611790878,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.3819277108433735
+      },
+      {
+        "cenario": "risco_qualidade x1.2",
+        "spearman_ranking_produtores": 0.9995550611790878,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.46436655713764147
+      },
+      {
+        "cenario": "risco_ccs x0.8",
+        "spearman_ranking_produtores": 0.9986651835372636,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.39549105512960936
+      },
+      {
+        "cenario": "risco_ccs x1.2",
+        "spearman_ranking_produtores": 0.9995550611790878,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.44216867469879517
+      },
+      {
+        "cenario": "risco_cbt x0.8",
+        "spearman_ranking_produtores": 0.9986651835372636,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.4053304125593282
+      },
+      {
+        "cenario": "risco_cbt x1.2",
+        "spearman_ranking_produtores": 0.9973303670745272,
+        "sobreposicao_top10": 0.9,
+        "alto_mais_critico": 0.4285688207374954
+      },
+      {
+        "cenario": "risco_temp_tanque x0.8",
+        "spearman_ranking_produtores": 0.9995550611790878,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.4094194961664841
+      },
+      {
+        "cenario": "risco_temp_tanque x1.2",
+        "spearman_ranking_produtores": 1.0,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.42659729828404525
+      },
+      {
+        "cenario": "risco_perda_bonus x0.8",
+        "spearman_ranking_produtores": 0.9995550611790878,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.41420226359985396
+      },
+      {
+        "cenario": "risco_perda_bonus x1.2",
+        "spearman_ranking_produtores": 0.9995550611790878,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.4220518437385907
+      },
+      {
+        "cenario": "risco_descarte x0.8",
+        "spearman_ranking_produtores": 1.0,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.4181635633442862
+      },
+      {
+        "cenario": "risco_descarte x1.2",
+        "spearman_ranking_produtores": 1.0,
+        "sobreposicao_top10": 1.0,
+        "alto_mais_critico": 0.418254837531946
+      }
+    ],
+    "pesos_iguais": {
+      "cenario": "pesos iguais",
+      "spearman_ranking_produtores": 0.9942157953281423,
+      "sobreposicao_top10": 1.0,
+      "alto_mais_critico": 0.35774005111354507
+    },
+    "dirichlet_50": {
+      "spearman_min": 0.950166852057842,
+      "spearman_mediana": 0.9928809788654058,
+      "top10_min": 0.7,
+      "top10_mediana": 0.9,
+      "alto_mais_critico_faixa": [
+        0.30142387732749176,
+        0.5269441401971523
+      ]
+    }
+  }
+}

@@ -1,0 +1,301 @@
+texto,intencoes,entidades,variacoes,familia,volume_litros
+deu 80mil de CCS no ultimo exame,registro_qualidade,"[{""ini"": 4, ""fim"": 9, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""80mil""}, {""ini"": 13, ""fim"": 16, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}]",,A,
+hoje saiu trezentos e quarenta e cincoL na ordenha mas a vaca 7 ta com diarreia,registro_producao|ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 4, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}, {""ini"": 10, ""fim"": 39, ""rotulo"": ""VOLUME"", ""texto"": ""trezentos e quarenta e cincoL""}, {""ini"": 57, ""fim"": 63, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 71, ""fim"": 79, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",numero_por_extenso|abreviacao|multi_intencao|transcricao_audio,A,345
+choveu demais essa semana e as vacas sofreram.,relato_ambiental,"[{""ini"": 14, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,
+resultado do laticinio CCS 180mil 👍,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 27, ""fim"": 33, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180mil""}]",,A,
+deu 320mil de CBT no ultimo exame,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""320mil""}, {""ini"": 14, ""fim"": 17, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}]",sem_acento,A,
+ontem saiu quatrocentos e setenta e cincoL na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 42, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e setenta e cincoL""}]",numero_por_extenso|abreviacao|sem_acento,A,475
+NINGUEM PASSOU PRA PEGAR O LEITE,ocorrencia_logistica,[],caixa,A,
+entreguei 435L agora cedo pro caminhao 👍,registro_producao,"[{""ini"": 10, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""435L""}, {""ini"": 15, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao|sem_acento,A,435
+"ontem saiu 355L na ordenha, novilha 3 amanheceu com febre do leite!",registro_producao|ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""355L""}, {""ini"": 28, ""fim"": 37, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 52, ""fim"": 66, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",abreviacao|multi_intencao,A,355
+a coleta atrasou ontem.,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento,A,
+mandei 225 l agora cedo,registro_producao,"[{""ini"": 7, ""fim"": 12, ""rotulo"": ""VOLUME"", ""texto"": ""225 l""}, {""ini"": 13, ""fim"": 23, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao|transcricao_audio,A,225
+pode mandar o evterinario.,solicitacao,[],erro_digitacao,A,
+A A MOCHA TA COM DIARREIA,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento|caixa|transcricao_audio,A,
+pode mandar o veterinario,solicitacao,[],,A,
+Choveu demais essa semana e as vacas sofreram.,relato_ambiental,"[{""ini"": 14, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento|caixa,A,
+A novilha 3 ta com febre do leite!,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 11, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",caixa,A,
+a a mocha ta com mamite.,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 17, ""fim"": 23, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,A,
+choveu demais ontem e as vacas sofreram 👍,relato_ambiental,"[{""ini"": 14, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,
+entreguei 810L agora cedo pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""810L""}, {""ini"": 15, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao|sem_acento,A,810
+Suspeita de febre do leite na vaca 21.,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 30, ""fim"": 37, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}]",caixa,A,
+suspeita de febre do leite na vaca 12.,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 30, ""fim"": 37, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}]",,A,
+mandei setenta e cincoL ontem,registro_producao,"[{""ini"": 7, ""fim"": 23, ""rotulo"": ""VOLUME"", ""texto"": ""setenta e cincoL""}, {""ini"": 24, ""fim"": 29, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",numero_por_extenso|abreviacao,A,75
+ENTREGUEI OITOCENTOS E SETENTA LT ESSA SEMANA PRO CAMINHAO!,registro_producao,"[{""ini"": 10, ""fim"": 33, ""rotulo"": ""VOLUME"", ""texto"": ""oitocentos e setenta lt""}, {""ini"": 34, ""fim"": 45, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",numero_por_extenso|abreviacao|caixa,A,870
+ontem saiu 115 l na ordenha.,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""115 l""}]",abreviacao,A,115
+suspeita de diarreia na vaca 12,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}, {""ini"": 24, ""fim"": 31, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}]",transcricao_audio,A,
+entreguei 190 l essa semana pro caminhao 👍,registro_producao,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""190 l""}, {""ini"": 16, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",abreviacao,A,190
+a a malhada ta com febre do leite 👍,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 11, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,A,
+a a pintada ta com diarreia 👍,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 11, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 19, ""fim"": 27, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",,A,
+Mandei 540 litros ontem!,registro_producao,"[{""ini"": 7, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""540 litros""}, {""ini"": 18, ""fim"": 23, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento|caixa,A,540
+mandei seiscentos e trinta e cinco litros essa semana 👍,registro_producao,"[{""ini"": 7, ""fim"": 41, ""rotulo"": ""VOLUME"", ""texto"": ""seiscentos e trinta e cinco litros""}, {""ini"": 42, ""fim"": 53, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",numero_por_extenso,A,635
+deu 650 mil de CCS no ultimo exame,registro_qualidade,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650 mil""}, {""ini"": 15, ""fim"": 18, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}]",sem_acento|transcricao_audio,A,
+resultado do laticinio gordura 300,registro_qualidade,"[{""ini"": 23, ""fim"": 30, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 31, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""300""}]",transcricao_audio,A,
+mandei 385L agora cedo.,registro_producao,"[{""ini"": 7, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""385L""}, {""ini"": 12, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao,A,385
+A a mocha ta com mastite 👍,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 17, ""fim"": 24, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",caixa,A,
+entreguei 570 l ontem pro caminhao mas a vaca 12 ta com mamite.,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""570 l""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 41, ""fim"": 48, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 56, ""fim"": 62, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",abreviacao|multi_intencao|sem_acento,A,570
+320 👍,outro,[],ambigua,A,
+entreguei 590 litro essa semana pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""590 litro""}, {""ini"": 20, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,590
+o CCS veio 320,registro_qualidade,"[{""ini"": 2, ""fim"": 5, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 11, ""fim"": 14, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""320""}]",transcricao_audio,A,
+o calor ta judiando do gado.,relato_ambiental,[],sem_acento,A,
+mandei 375 l agora cedo 👍,registro_producao,"[{""ini"": 7, ""fim"": 12, ""rotulo"": ""VOLUME"", ""texto"": ""375 l""}, {""ini"": 13, ""fim"": 23, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao|sem_acento,A,375
+ENTREGUEI DUZENTOS E NOVENTA E CINCO LITROS HOJE PRO CAMINHAO.,registro_producao,"[{""ini"": 10, ""fim"": 43, ""rotulo"": ""VOLUME"", ""texto"": ""duzentos e noventa e cinco litros""}, {""ini"": 44, ""fim"": 48, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",numero_por_extenso|caixa,A,295
+estragou o gerador.,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}]",,A,
+entreguei 695 litro ontem pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""695 litro""}, {""ini"": 20, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,695
+mandei 210 litros essa semana,registro_producao,"[{""ini"": 7, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""210 litros""}, {""ini"": 18, ""fim"": 29, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",,A,210
+a a pintada ta com diarreia,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 11, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 19, ""fim"": 27, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento,A,
+com esse calor caiu a producao 👍,relato_ambiental,[],sem_acento,A,
+entreguei 405 litro ontem pro caminhao e a mocha amanheceu com febre do leite,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""405 litro""}, {""ini"": 20, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 41, ""fim"": 48, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 63, ""fim"": 77, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",multi_intencao|sem_acento,A,405
+ninguem passou pra pegar o leite.,ocorrencia_logistica,[],,A,
+deu 120 de gordura no ultimo exame.,registro_qualidade,"[{""ini"": 4, ""fim"": 7, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120""}, {""ini"": 11, ""fim"": 18, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}]",,A,
+queria que o tecnico passasse aqui!,solicitacao,[],sem_acento,A,
+pode mandar o veterinario 👍,solicitacao,[],,A,
+a coleta atrasou agora cedo!,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",,A,
+A coleta atrasou hoje,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",sem_acento|caixa|transcricao_audio,A,
+resultado do laticinio CCS 650 mil.,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650 mil""}]",,A,
+essa semana saiu 690 l na ordenha.,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 22, ""rotulo"": ""VOLUME"", ""texto"": ""690 l""}]",abreviacao|sem_acento,A,690
+o caminhao nao veio buscar essa semana,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",transcricao_audio,A,
+queria que o tecnico passasse aqui!,solicitacao,[],,A,
+Deu 520 mil de proteina no ultimo exame 👍,registro_qualidade,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""520 mil""}, {""ini"": 15, ""fim"": 23, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}]",caixa,A,
+preciso de ajuda com o exame!,solicitacao,[],,A,
+ontem saiu 65L na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""65L""}]",abreviacao|sem_acento,A,65
+entreguei 715 lt hoje pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""715 lt""}, {""ini"": 17, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao,A,715
+essa semana saiu 790 litros na ordenha,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 27, ""rotulo"": ""VOLUME"", ""texto"": ""790 litros""}]",,A,790
+mandei 705 litros essa semana e a vaca 21 ta com mamite,registro_producao|ocorrencia_sanitaria,"[{""ini"": 7, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""705 litros""}, {""ini"": 18, ""fim"": 29, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 34, ""fim"": 41, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 49, ""fim"": 55, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",multi_intencao|transcricao_audio,A,705
+Entreguei 595 litros hoje pro caminhao mas suspeita de mamite na a malhada!,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""595 litros""}, {""ini"": 21, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}, {""ini"": 55, ""fim"": 61, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}, {""ini"": 65, ""fim"": 74, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}]",multi_intencao|caixa,A,595
+o gerador parou ontem,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento|transcricao_audio,A,
+Entreguei 865 l ontem pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""865 l""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",abreviacao|sem_acento|caixa,A,865
+hoje saiu 300 lt na ordenha 👍,registro_producao,"[{""ini"": 0, ""fim"": 4, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}, {""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""300 lt""}]",abreviacao|sem_acento,A,300
+o gerador parou essa semana,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento|transcricao_audio,A,
+entreguei 220 litros ontem pro caminhao!,registro_producao,"[{""ini"": 10, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""220 litros""}, {""ini"": 21, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,220
+entreguei 710 litros agora cedo pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""710 litros""}, {""ini"": 21, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",transcricao_audio,A,710
+essa semana saiu 195 lt na ordenha.,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 23, ""rotulo"": ""VOLUME"", ""texto"": ""195 lt""}]",abreviacao|sem_acento,A,195
+o CBT veio 650 mil 👍,registro_qualidade,"[{""ini"": 2, ""fim"": 5, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 11, ""fim"": 18, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650 mil""}]",,A,
+mandei seiscentos e trinta litros agora cedo,registro_producao,"[{""ini"": 7, ""fim"": 33, ""rotulo"": ""VOLUME"", ""texto"": ""seiscentos e trinta litros""}, {""ini"": 34, ""fim"": 44, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",numero_por_extenso,A,630
+entreguei 1200 l agora cedo pro caminhao mas suspeita de mastite na vaca 12!,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""1200 l""}, {""ini"": 17, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 57, ""fim"": 64, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 68, ""fim"": 75, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}]",abreviacao|multi_intencao|sem_acento,A,1200
+Preciso de ajuda com o exame.,solicitacao,[],caixa,A,
+ORDENHADEIRA DEU DEFEITO ESSA SEMANA,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 25, ""fim"": 36, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",caixa,A,
+ordenhadeira deu defeito ontem,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 25, ""fim"": 30, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",transcricao_audio,A,
+essa semana saiu duzentos e sessentaL na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 37, ""rotulo"": ""VOLUME"", ""texto"": ""duzentos e sessentaL""}]",numero_por_extenso|abreviacao|sem_acento,A,260
+entreguei 380 l ontem pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""380 l""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",abreviacao|sem_acento,A,380
+deu 300mil de CBT no ultimo exame,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""300mil""}, {""ini"": 14, ""fim"": 17, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}]",sem_acento|transcricao_audio,A,
+QUERAI QUE O TECNICO PASSASSE AQUI.,solicitacao,[],caixa|erro_digitacao,A,
+obrigado pelo aviso,outro,[],sem_acento,A,
+entreguei 1450 lt hoje pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""1450 lt""}, {""ini"": 18, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|sem_acento,A,1450
+choveu demais essa semana e as vacas sofreram 👍,relato_ambiental,"[{""ini"": 14, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,
+mandei 545 lt hoje,registro_producao,"[{""ini"": 7, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""545 lt""}, {""ini"": 14, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|sem_acento,A,545
+aquilo de ontem 👍,outro,[],ambigua,A,
+preciso de ajuda com o exame.,solicitacao,[],sem_acento,A,
+Entreguei 220l hoje pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""220L""}, {""ini"": 15, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|caixa,A,220
+ontem saiu quatrocentos e vinte e cinco litros na ordenha.,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 46, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e vinte e cinco litros""}]",numero_por_extenso|sem_acento,A,425
+o gerador parou ontem 👍,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento,A,
+deu 410mil de CBT no ultimo exame,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""410mil""}, {""ini"": 14, ""fim"": 17, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}]",,A,
+o gordura veio 80 mil,registro_qualidade,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 15, ""fim"": 21, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""80 mil""}]",,A,
+essa semana saiu 340 litro na ordenha,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 26, ""rotulo"": ""VOLUME"", ""texto"": ""340 litro""}]",sem_acento|transcricao_audio,A,340
+A VACA 21 TA COM CARRAPATO,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 17, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",caixa,A,
+entreguei 520 lt hoje pro caminhao 👍,registro_producao,"[{""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""520 lt""}, {""ini"": 17, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao,A,520
+mandei 1150 lt hoje 👍,registro_producao,"[{""ini"": 7, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""1150 lt""}, {""ini"": 15, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|sem_acento,A,1150
+deu ruim 👍,outro,[],ambigua,A,
+hoje saiu setecentos e quinze l na ordenha 👍,registro_producao,"[{""ini"": 0, ""fim"": 4, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}, {""ini"": 10, ""fim"": 31, ""rotulo"": ""VOLUME"", ""texto"": ""setecentos e quinze l""}]",numero_por_extenso|abreviacao,A,715
+A coleta atrasou agora cedo,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",caixa,A,
+entreguei 360 litro agora cedo pro caminhao!,registro_producao,"[{""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""360 litro""}, {""ini"": 20, ""fim"": 30, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",sem_acento,A,360
+QUERIA QUE O TECNICO PASSASSE AQUI!,solicitacao,[],caixa,A,
+novilha 3 amanheceu com febre do leite,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 24, ""fim"": 38, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",sem_acento|transcricao_audio,A,
+BOM DIA!,outro,[],caixa,A,
+bom dia 👍,outro,[],,A,
+Mandei noventa e cinco litros essa semana 👍,registro_producao,"[{""ini"": 7, ""fim"": 29, ""rotulo"": ""VOLUME"", ""texto"": ""noventa e cinco litros""}, {""ini"": 30, ""fim"": 41, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",numero_por_extenso|caixa,A,95
+entreguei 860L ontem pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""860L""}, {""ini"": 15, ""fim"": 20, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",abreviacao,A,860
+o proteina veio 250mil,registro_qualidade,"[{""ini"": 2, ""fim"": 10, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 16, ""fim"": 22, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""250mil""}]",sem_acento,A,
+resultado do laticinio gordura 180 mil!,registro_qualidade,"[{""ini"": 23, ""fim"": 30, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 31, ""fim"": 38, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180 mil""}]",,A,
+o resfriador parou hoje!,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}, {""ini"": 19, ""fim"": 23, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",,A,
+agora cedo saiu oitocentos e cinco litro na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 16, ""fim"": 40, ""rotulo"": ""VOLUME"", ""texto"": ""oitocentos e cinco litro""}]",numero_por_extenso,A,805
+CHOVEU DEMAIS HOJE E AS VACAS SOFRERAM.,relato_ambiental,"[{""ini"": 14, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",sem_acento|caixa,A,
+O CAMINHAO NAO VEIO BUSCAR HOJE!,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",caixa,A,
+entreguei oitocentos e noventaL hoje pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 31, ""rotulo"": ""VOLUME"", ""texto"": ""oitocentos e noventaL""}, {""ini"": 32, ""fim"": 36, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",numero_por_extenso|abreviacao|sem_acento,A,890
+O calor ta judiando do gado!,relato_ambiental,[],caixa,A,
+a a mocha ta com febre do leite 👍,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 17, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",sem_acento,A,
+O calor ta judiadno do gado,relato_ambiental,[],caixa|erro_digitacao|transcricao_audio,A,
+SUSPEITA DE MASTITE NA NOVILHA 3,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 19, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 23, ""fim"": 32, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}]",sem_acento|caixa,A,
+deu 120mil de CBT no ultimo exame.,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120mil""}, {""ini"": 14, ""fim"": 17, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}]",,A,
+mandei mil e trezentos e cinquenta lt hoje,registro_producao,"[{""ini"": 7, ""fim"": 37, ""rotulo"": ""VOLUME"", ""texto"": ""mil e trezentos e cinquenta lt""}, {""ini"": 38, ""fim"": 42, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",numero_por_extenso|abreviacao|transcricao_audio,A,1350
+deu 80 mil de CCS no ultimo exame.,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""80 mil""}, {""ini"": 14, ""fim"": 17, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}]",,A,
+resultado do laticinio CBT 120!,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 27, ""fim"": 30, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120""}]",,A,
+a pintada amanheceu com diarreia.,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 24, ""fim"": 32, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento,A,
+resultado do laticinio CBT 300.,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 27, ""fim"": 30, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""300""}]",,A,
+ninguem passou pra pegar o leite,ocorrencia_logistica,[],sem_acento,A,
+Entreguei cento e setenta lt ontem pro caminhao 👍,registro_producao,"[{""ini"": 10, ""fim"": 28, ""rotulo"": ""VOLUME"", ""texto"": ""cento e setenta lt""}, {""ini"": 29, ""fim"": 34, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",numero_por_extenso|abreviacao|caixa,A,170
+a a malhada ta com carrapato,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 11, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 19, ""fim"": 28, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",transcricao_audio,A,
+resfriador deu defeito ontem.,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}, {""ini"": 23, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,
+estragou o tanque,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 17, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}]",,A,
+queria que o tecnico passasse aqui 👍,solicitacao,[],,A,
+Ontem saiu 875 litros na ordenha.,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 21, ""rotulo"": ""VOLUME"", ""texto"": ""875 litros""}]",caixa,A,875
+a vaca 21 ta com diarreia!,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento,A,
+a pintada amanheceu com carrapato,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 24, ""fim"": 33, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",transcricao_audio,A,
+obrgiado pelo aviso!,outro,[],sem_acento|erro_digitacao,A,
+o tanque parou agora cedo 👍,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}, {""ini"": 15, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",,A,
+a vaca 7 ta com mastite.,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 16, ""fim"": 23, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",,A,
+resultado do laticinio proteina 120 mil.,registro_qualidade,"[{""ini"": 23, ""fim"": 31, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 32, ""fim"": 39, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120 mil""}]",,A,
+agora cedo saiu 585L na ordenha mas a mocha amanheceu com mamite,registro_producao|ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 16, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""585L""}, {""ini"": 36, ""fim"": 43, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 58, ""fim"": 64, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",abreviacao|multi_intencao|sem_acento|transcricao_audio,A,585
+Queria que o tecnico passasse aqui.,solicitacao,[],caixa,A,
+320.,outro,[],ambigua|sem_acento|caixa,A,
+agora cedo saiu duzentos e trinta e cincoL na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 16, ""fim"": 42, ""rotulo"": ""VOLUME"", ""texto"": ""duzentos e trinta e cincoL""}]",numero_por_extenso|abreviacao,A,235
+Entreguei 310l hoje pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""310L""}, {""ini"": 15, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|sem_acento|caixa,A,310
+o caminhao nao veio buscar essa semana 👍,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",,A,
+Ordenhadeira deu defeito essa semana,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 25, ""fim"": 36, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",caixa|transcricao_audio,A,
+estragou o ordenhadeira,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 23, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",sem_acento|transcricao_audio,A,
+ontem saiu quatrocentos e setenta l na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 35, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e setenta l""}]",numero_por_extenso|abreviacao,A,470
+a mocha amanheceu com febre do leite.,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 22, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,A,
+o ordenhadeira parou ontem,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 14, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 21, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento,A,
+RESULTADO DO LATICINIO PROTEINA 300MIL,registro_qualidade,"[{""ini"": 23, ""fim"": 31, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 32, ""fim"": 38, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""300mil""}]",sem_acento|caixa,A,
+o calor ta judiando do gado,relato_ambiental,[],,A,
+Entreguei 850 lt hoje pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""850 lt""}, {""ini"": 17, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|caixa,A,850
+O CALRO TA JUDIANDO DO GADO,relato_ambiental,[],caixa|erro_digitacao,A,
+choveu demais essa semana e as vacas sofreram.,relato_ambiental,"[{""ini"": 14, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,
+novilha 3 amanheceu com mastite,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 24, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",,A,
+o caminhao nao veio buscar hoje 👍,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",sem_acento,A,
+o caminhao nao veio buscar hoje!,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",,A,
+estragou o gerador,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}]",,A,
+entreguei 1150 litros essa semana pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 21, ""rotulo"": ""VOLUME"", ""texto"": ""1150 litros""}, {""ini"": 22, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento|transcricao_audio,A,1150
+Resultado do laticinio proteina 120mil 👍,registro_qualidade,"[{""ini"": 23, ""fim"": 31, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 32, ""fim"": 38, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120mil""}]",caixa,A,
+o gordura veio 650 mil,registro_qualidade,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 15, ""fim"": 22, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650 mil""}]",,A,
+o calor ta judiando do gado 👍,relato_ambiental,[],,A,
+o gerador parou agora cedo,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",sem_acento,A,
+mandei setecentos e setenta litro essa semana.,registro_producao,"[{""ini"": 7, ""fim"": 33, ""rotulo"": ""VOLUME"", ""texto"": ""setecentos e setenta litro""}, {""ini"": 34, ""fim"": 45, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",numero_por_extenso,A,770
+Deu 80 mil de cbt no ultimo exame!,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""80 mil""}, {""ini"": 14, ""fim"": 17, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}]",caixa,A,
+com esse calor caiu a producao.,relato_ambiental,[],,A,
+mandei cento e cinquenta e cinco l agora cedo 👍,registro_producao,"[{""ini"": 7, ""fim"": 34, ""rotulo"": ""VOLUME"", ""texto"": ""cento e cinquenta e cinco l""}, {""ini"": 35, ""fim"": 45, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",numero_por_extenso|abreviacao,A,155
+deu 650mil de proteina no ultimo exame,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650mil""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}]",sem_acento,A,
+mandei 760 litro ontem.,registro_producao,"[{""ini"": 7, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""760 litro""}, {""ini"": 17, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,760
+mandei quatrocentos e setenta lt essa semana e a novilha 3 ta com febre do leite,registro_producao|ocorrencia_sanitaria,"[{""ini"": 7, ""fim"": 32, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e setenta lt""}, {""ini"": 33, ""fim"": 44, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 49, ""fim"": 58, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 66, ""fim"": 80, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",numero_por_extenso|abreviacao|multi_intencao|transcricao_audio,A,470
+resfriador deu defeito hoje 👍,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}, {""ini"": 23, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",,A,
+"Mandei 510 lt ontem, vaca 12 amanheceu com diarreia 👍",registro_producao|ocorrencia_sanitaria,"[{""ini"": 7, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""510 lt""}, {""ini"": 14, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 21, ""fim"": 28, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 43, ""fim"": 51, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",abreviacao|multi_intencao|caixa,A,510
+mandei 445 lt agora cedo!,registro_producao,"[{""ini"": 7, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""445 lt""}, {""ini"": 14, ""fim"": 24, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao,A,445
+a a malhada ta com mamite,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 11, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 19, ""fim"": 25, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,A,
+mandei 135 l ontem,registro_producao,"[{""ini"": 7, ""fim"": 12, ""rotulo"": ""VOLUME"", ""texto"": ""135 l""}, {""ini"": 13, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",abreviacao|transcricao_audio,A,135
+obrigdao pelo aviso,outro,[],erro_digitacao|transcricao_audio,A,
+Ninguem passou pra pegar o leite,ocorrencia_logistica,[],caixa|transcricao_audio,A,
+a mocha amanheceu com mamite,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 22, ""fim"": 28, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",sem_acento,A,
+Estragou o tanque!,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 17, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}]",caixa,A,
+bom dia!,outro,[],sem_acento|erro_digitacao,A,
+entreguei 60 litro agora cedo pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""60 litro""}, {""ini"": 19, ""fim"": 29, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",,A,60
+queria que o tecnico passasse aqui.,solicitacao,[],sem_acento,A,
+mandei 150L agora cedo,registro_producao,"[{""ini"": 7, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""150L""}, {""ini"": 12, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao,A,150
+entreguei 705 litros agora cedo pro caminhao 👍,registro_producao,"[{""ini"": 10, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""705 litros""}, {""ini"": 21, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",,A,705
+entreguei trezentos e oitenta litro agora cedo pro caminhao mas novilha 3 amanheceu com diarreia,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 35, ""rotulo"": ""VOLUME"", ""texto"": ""trezentos e oitenta litro""}, {""ini"": 36, ""fim"": 46, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 64, ""fim"": 73, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 88, ""fim"": 96, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",numero_por_extenso|multi_intencao|transcricao_audio,A,380
+deu 650mil de proteina no ultimo exame 👍,registro_qualidade,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650mil""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}]",,A,
+320,outro,[],ambigua|sem_acento|caixa,A,
+entreguei 285 litro essa semana pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""285 litro""}, {""ini"": 20, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento|transcricao_audio,A,285
+agora cedo saiu cento e oitentaL na ordenha 👍,registro_producao,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 16, ""fim"": 32, ""rotulo"": ""VOLUME"", ""texto"": ""cento e oitentaL""}]",numero_por_extenso|abreviacao|sem_acento,A,180
+mandei 850L hoje 👍,registro_producao,"[{""ini"": 7, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""850L""}, {""ini"": 12, ""fim"": 16, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao,A,850
+o calor ta judiando do gado,relato_ambiental,[],transcricao_audio,A,
+SUSPEITA DE FEBRE DO LEITE NA VACA 7.,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 30, ""fim"": 36, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}]",caixa,A,
+a vaca 7 ta com mamite,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 16, ""fim"": 22, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",transcricao_audio,A,
+aquilo de ontem,outro,[],ambigua,A,
+resfriador deu defeito hoje,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}, {""ini"": 23, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",,A,
+entreguei trezentos e oitenta litro ontem pro caminhao,registro_producao,"[{""ini"": 10, ""fim"": 35, ""rotulo"": ""VOLUME"", ""texto"": ""trezentos e oitenta litro""}, {""ini"": 36, ""fim"": 41, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",numero_por_extenso,A,380
+a coleta atrasou essa semana 👍,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",,A,
+preciso de ajuda com o exame 👍,solicitacao,[],,A,
+aquilo de ontem!,outro,[],ambigua|sem_acento,A,
+mandei quatrocentos e quinze litros ontem!,registro_producao,"[{""ini"": 7, ""fim"": 35, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e quinze litros""}, {""ini"": 36, ""fim"": 41, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",numero_por_extenso|sem_acento,A,415
+o caminhao nao veio buscar ontem.,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,
+estragou o ordenhadeira 👍,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 23, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",,A,
+320!,outro,[],ambigua,A,
+pode mandar o veterinario!,solicitacao,[],,A,
+resultado do laticinio proteina 650!,registro_qualidade,"[{""ini"": 23, ""fim"": 31, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 32, ""fim"": 35, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650""}]",,A,
+choveu demais essa semana e as vacas sofreram.,relato_ambiental,"[{""ini"": 14, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,
+bom dia 👍,outro,[],erro_digitacao,A,
+entreguei 435L essa semana pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""435L""}, {""ini"": 15, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",abreviacao,A,435
+essa semana saiu 870 litro na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 26, ""rotulo"": ""VOLUME"", ""texto"": ""870 litro""}]",,A,870
+ninguem passou pra pegar o leite.,ocorrencia_logistica,[],sem_acento,A,
+agora cedo saiu 690L na ordenha,registro_producao,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 16, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""690L""}]",abreviacao,A,690
+estragou o resfriador,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 21, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",,A,
+resultado do laticinio CCS 520 mil!,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""520 mil""}]",,A,
+Pode amndar o veterinario,solicitacao,[],sem_acento|caixa|erro_digitacao|transcricao_audio,A,
+entreguei 665 litro essa semana pro caminhao!,registro_producao,"[{""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""665 litro""}, {""ini"": 20, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,665
+Mandei 380 litro hoje 👍,registro_producao,"[{""ini"": 7, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""380 litro""}, {""ini"": 17, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",caixa,A,380
+mandei trezentos e cinquenta e cinco lt ontem 👍,registro_producao,"[{""ini"": 7, ""fim"": 39, ""rotulo"": ""VOLUME"", ""texto"": ""trezentos e cinquenta e cinco lt""}, {""ini"": 40, ""fim"": 45, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",numero_por_extenso|abreviacao,A,355
+bom dia 👍,outro,[],,A,
+mandei cento e cinquenta l essa semana 👍,registro_producao,"[{""ini"": 7, ""fim"": 26, ""rotulo"": ""VOLUME"", ""texto"": ""cento e cinquenta l""}, {""ini"": 27, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",numero_por_extenso|abreviacao|sem_acento,A,150
+resultado do laticinio CCS 250 mil.,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""250 mil""}]",,A,
+a pintada amanheceu com mastite.,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 24, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",sem_acento,A,
+vaca 21 amanheceu com mamite.,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 22, ""fim"": 28, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,A,
+ontem saiu 330 lt na ordenha 👍,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""330 lt""}]",abreviacao,A,330
+o tanque parou hoje,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}, {""ini"": 15, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",sem_acento,A,
+ESTRAGOU O TANQUE,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 17, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}]",caixa,A,
+"agora cedo saiu duzentos e oitenta e cinco l na ordenha, a vaca 21 ta com carrapato.",registro_producao|ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 16, ""fim"": 44, ""rotulo"": ""VOLUME"", ""texto"": ""duzentos e oitenta e cinco l""}, {""ini"": 59, ""fim"": 66, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 74, ""fim"": 83, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",numero_por_extenso|abreviacao|multi_intencao,A,285
+Aquilo de ontem 👍,outro,[],ambigua|caixa,A,
+resultado do laticinio CCS 320 mil,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""320 mil""}]",transcricao_audio,A,
+aquilo de ontem 👍,outro,[],ambigua,A,
+a coleta atrasou essa semana!,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",,A,
+pode mandar o vetreinario!,solicitacao,[],sem_acento|erro_digitacao,A,
+o caminhao nao veio buscar essa semana,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",,A,
+o proteina veio 650mil.,registro_qualidade,"[{""ini"": 2, ""fim"": 10, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 16, ""fim"": 22, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650mil""}]",,A,
+suspeita de mamite na a malhada.,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 18, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}, {""ini"": 22, ""fim"": 31, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}]",sem_acento,A,
+tudo certo por aqui,outro,[],sem_acento,A,
+ontem saiu 210L na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""210L""}]",abreviacao|sem_acento,A,210
+o caminhao nao veio buscar ontem.,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento,A,
+o gerador parou essa semana,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,
+preciso de ajuad com o exame!,solicitacao,[],erro_digitacao,A,
+entreguei cento e trintaL essa semana pro caminhao mas a pintada amanheceu com diarreia!,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 25, ""rotulo"": ""VOLUME"", ""texto"": ""cento e trintaL""}, {""ini"": 26, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 55, ""fim"": 64, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 79, ""fim"": 87, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",numero_por_extenso|abreviacao|multi_intencao,A,130
+Mandei 860 litro agora cedo.,registro_producao,"[{""ini"": 7, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""860 litro""}, {""ini"": 17, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",caixa,A,860
+entreguei 435 l essa semana pro caminhao!,registro_producao,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""435 l""}, {""ini"": 16, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",abreviacao|sem_acento,A,435
+MANDEI 175L HOJE,registro_producao,"[{""ini"": 7, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""175L""}, {""ini"": 12, ""fim"": 16, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao|caixa|transcricao_audio,A,175
+O CAMINHAO NAO VEIO BUSCAR ONTEM!,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",caixa,A,
+entreguei 690 l hoje pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""690 l""}, {""ini"": 16, ""fim"": 20, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",abreviacao,A,690
+queria que o tecnico passasse aqui 👍,solicitacao,[],sem_acento,A,
+essa semana saiu 585 lt na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 11, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}, {""ini"": 17, ""fim"": 23, ""rotulo"": ""VOLUME"", ""texto"": ""585 lt""}]",abreviacao,A,585
+a mocha amanheceu com carrapato.,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 22, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",sem_acento,A,
+entreguei 610 lt agora cedo pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""610 lt""}, {""ini"": 17, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao,A,610
+mandei 740 lt agora cedo,registro_producao,"[{""ini"": 7, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""740 lt""}, {""ini"": 14, ""fim"": 24, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao,A,740
+ninguem passou pra pegar o leite,ocorrencia_logistica,[],transcricao_audio,A,
+Suspeita de mastite na a pintada.,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 19, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 23, ""fim"": 32, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}]",caixa,A,
+a vaca 7 ta com febre do leite,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 16, ""fim"": 30, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",sem_acento|transcricao_audio,A,
+o gerador parou agora cedo.,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",sem_acento,A,
+suspeita de febre do leite na vaca 7,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 30, ""fim"": 36, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}]",transcricao_audio,A,
+Mandei 515 litro agora cedo,registro_producao,"[{""ini"": 7, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""515 litro""}, {""ini"": 17, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",caixa|transcricao_audio,A,515
+pode mandar o vteerinario 👍,solicitacao,[],erro_digitacao,A,
+ontem saiu 230 l na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""230 l""}]",abreviacao,A,230
+deu ruim,outro,[],ambigua|erro_digitacao,A,
+entreguei 1050L ontem pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""1050L""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",abreviacao|sem_acento,A,1050
+deu 180 de CBT no ultimo exame!,registro_qualidade,"[{""ini"": 4, ""fim"": 7, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180""}, {""ini"": 11, ""fim"": 14, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}]",,A,
+Entreguei 655 litros ontem pro caminhao!,registro_producao,"[{""ini"": 10, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""655 litros""}, {""ini"": 21, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento|caixa,A,655
+Resultado do laticinio cbt 180mil,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 27, ""fim"": 33, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180mil""}]",sem_acento|caixa|transcricao_audio,A,
+com esse calor caiu a producao!,relato_ambiental,[],,A,
+suspeita de mamite na a mocha 👍,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 18, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}, {""ini"": 22, ""fim"": 29, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}]",,A,
+a vaca 21 ta com mamite 👍,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 17, ""fim"": 23, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",sem_acento,A,
+suspeita de febre do leite na vaca 7!,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 30, ""fim"": 36, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}]",sem_acento,A,
+mandei 785 litro ontem,registro_producao,"[{""ini"": 7, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""785 litro""}, {""ini"": 17, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",,A,785
+CHOVEU DEMAIS ONTEM E AS VACAS SOFRERAM.,relato_ambiental,"[{""ini"": 14, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento|caixa,A,
+ontem saiu 810 litro na ordenha,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 20, ""rotulo"": ""VOLUME"", ""texto"": ""810 litro""}]",transcricao_audio,A,810
+O calor ta judiando do gado,relato_ambiental,[],sem_acento|caixa,A,
+hoje saiu 870 litro na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 4, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}, {""ini"": 10, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""870 litro""}]",sem_acento,A,870
+o calor ta judinado do gado!,relato_ambiental,[],erro_digitacao,A,
+entreguei 1450 l ontem pro caminhao e a vaca 7 ta com diarreia.,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""1450 l""}, {""ini"": 17, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 40, ""fim"": 46, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 54, ""fim"": 62, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",abreviacao|multi_intencao|sem_acento,A,1450
+estragou o ordenhadeira,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 23, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",transcricao_audio,A,
+estragou o gerador 👍,ocorrencia_operacional,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}]",,A,
+ontem saiu oitocentos e quarenta litros na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 39, ""rotulo"": ""VOLUME"", ""texto"": ""oitocentos e quarenta litros""}]",numero_por_extenso|sem_acento,A,840
+obrigado pelo aviso,outro,[],,A,
+resultado do laticinio CBT 120 mil,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120 mil""}]",,A,
+entreguei cinquenta e cincoL agora cedo pro caminhao mas a malhada amanheceu com carrapato 👍,registro_producao|ocorrencia_sanitaria,"[{""ini"": 10, ""fim"": 28, ""rotulo"": ""VOLUME"", ""texto"": ""cinquenta e cincoL""}, {""ini"": 29, ""fim"": 39, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}, {""ini"": 57, ""fim"": 66, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 81, ""fim"": 90, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",numero_por_extenso|abreviacao|multi_intencao,A,55
+ontem saiu 455 l na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 5, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}, {""ini"": 11, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""455 l""}]",abreviacao|sem_acento,A,455
+bom dia.,outro,[],sem_acento,A,
+resultado do laticinio proteina 410mil,registro_qualidade,"[{""ini"": 23, ""fim"": 31, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 32, ""fim"": 38, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""410mil""}]",transcricao_audio,A,
+choveu demais ontem e as vacas sofreram.,relato_ambiental,"[{""ini"": 14, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",sem_acento,A,
+bom dia 👍,outro,[],sem_acento,A,
+o caminhao nao veio buscar essa semana,ocorrencia_logistica,"[{""ini"": 27, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",,A,
+o resfriador parou hoje,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}, {""ini"": 19, ""fim"": 23, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",,A,
+obrigado pelo aviso,outro,[],sem_acento,A,
+Entreguei setecentos e trinta litro hoje pro caminhao.,registro_producao,"[{""ini"": 10, ""fim"": 35, ""rotulo"": ""VOLUME"", ""texto"": ""setecentos e trinta litro""}, {""ini"": 36, ""fim"": 40, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]",numero_por_extenso|caixa,A,730
+Aquilo de ontem!,outro,[],ambigua|sem_acento|caixa,A,
+hoje saiu 875 l na ordenha!,registro_producao,"[{""ini"": 0, ""fim"": 4, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}, {""ini"": 10, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""875 l""}]",abreviacao,A,875
+vaca 7 amanheceu com carrapato.,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 21, ""fim"": 30, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",,A,
+Gerador deu defeito ontem 👍,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 20, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",caixa,A,
+a coleta atrasou essa semana 👍,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""essa semana""}]",sem_acento,A,
+suspeita de diarreia na a malhada 👍,ocorrencia_sanitaria,"[{""ini"": 12, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}, {""ini"": 24, ""fim"": 33, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}]",,A,
+obrigado pelo aviso.,outro,[],,A,
+preciso de ajuda com o exame.,solicitacao,[],,A,
+bom dia.,outro,[],,A,
+o gerador parou ontem,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 16, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""ontem""}]",transcricao_audio,A,
+o CCS veio 80!,registro_qualidade,"[{""ini"": 2, ""fim"": 5, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 11, ""fim"": 13, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""80""}]",,A,
+A a mocha ta com carrapato.,ocorrencia_sanitaria,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 17, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",caixa,A,
+mandei 505 lt agora cedo.,registro_producao,"[{""ini"": 7, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""505 lt""}, {""ini"": 14, ""fim"": 24, ""rotulo"": ""TEMPO"", ""texto"": ""agora cedo""}]",abreviacao|sem_acento,A,505

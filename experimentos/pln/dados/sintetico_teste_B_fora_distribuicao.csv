@@ -1,0 +1,301 @@
+texto,intencoes,entidades,variacoes,familia,volume_litros
+chegou o laudo CBT ta 410,registro_qualidade,"[{""ini"": 15, ""fim"": 18, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 22, ""fim"": 25, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""410""}]",sem_acento,B,
+valeu kkk,outro,[],,B,
+da pra alguem vir ver as vaca,solicitacao,[],,B,
+vaca 12 com febre do leite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",transcricao_audio,B,
+acho que a novilha 3 pegou carrapato kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 27, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",,B,
+tanque pifou hj,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}, {""ini"": 13, ""fim"": 15, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",sem_acento,B,
+deu 45 lts no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""VOLUME"", ""texto"": ""45 lts""}, {""ini"": 21, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",abreviacao|sem_acento,B,45
+o papel do leite falou proteina 180,registro_qualidade,"[{""ini"": 23, ""fim"": 31, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 32, ""fim"": 35, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180""}]",,B,
+Foram quatrocentos e quinze lts semana passada e tem febre do leite na vaca 21 semana passada,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 31, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e quinze lts""}, {""ini"": 32, ""fim"": 46, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}, {""ini"": 53, ""fim"": 67, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 71, ""fim"": 78, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 79, ""fim"": 93, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso|abreviacao|multi_intencao|caixa|transcricao_audio,B,415
+deu 100 de leite no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""100 de leite""}, {""ini"": 27, ""fim"": 41, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,100
+preciso falar com o tecnico urgente..,solicitacao,[],,B,
+deu quatrocentos e quarenta lts no tanque semana passada..,registro_producao,"[{""ini"": 4, ""fim"": 31, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e quarenta lts""}, {""ini"": 42, ""fim"": 56, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso|abreviacao|sem_acento,B,440
+manda o moço da cooperativa aqui kkk,solicitacao,[],,B,
+ok entendi kkk,outro,[],,B,
+Tirei 290 de manha sô,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""290""}, {""ini"": 10, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",caixa,B,290
+proteina deu 180 esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 8, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 13, ""fim"": 16, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180""}]",sem_acento,B,
+vaca 7 com febre do leite de novo..,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 11, ""fim"": 25, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,B,
+foram 170 litros hj..,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""170 litros""}, {""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,170
+foram 545 lts de manha kkk,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""545 lts""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",abreviacao|sem_acento,B,545
+tem mamite na a mocha de manha kkk,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}, {""ini"": 14, ""fim"": 21, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 22, ""fim"": 30, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,
+tem carrapato na a pintada ontem a noite,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 13, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}, {""ini"": 17, ""fim"": 26, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 27, ""fim"": 40, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",transcricao_audio,B,
+sol de rachar a vaca nem come..,relato_ambiental,[],,B,
+aquilo de ontem,outro,[],ambigua,B,
+a estrada ta ruim o carro nao subiu,ocorrencia_logistica,[],sem_acento,B,
+acho que a vaca 21 pegou diarreia,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 25, ""fim"": 33, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",,B,
+o leiteiro furou ontem a noite,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 30, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento,B,
+o tanque ta fazendo barulho,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}]",sem_acento,B,
+o leiteiro furou semana passada,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,
+sol de rachar a vaca nem come,relato_ambiental,[],,B,
+da pra laguem vir ver as vaca,solicitacao,[],erro_digitacao,B,
+"foram 405 de manha, acho que a vaca 12 pegou febre do leite",registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""405""}, {""ini"": 10, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}, {""ini"": 31, ""fim"": 38, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 45, ""fim"": 59, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",multi_intencao,B,405
+CBT deu 300 esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 3, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 8, ""fim"": 11, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""300""}]",sem_acento,B,
+tirei cento e cinco ontem a noite so,registro_producao,"[{""ini"": 6, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""cento e cinco""}, {""ini"": 20, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",numero_por_extenso|sem_acento|transcricao_audio,B,105
+ok entendi,outro,[],,B,
+blz..,outro,[],erro_digitacao,B,
+novilha 3 com mastite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 14, ""fim"": 21, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",sem_acento,B,
+acho que a vaca 21 pegou mamite,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 25, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,B,
+deu 330 de leite no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""330 de leite""}, {""ini"": 27, ""fim"": 41, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento,B,330
+VALEU..,outro,[],sem_acento|caixa,B,
+deu quatrocentos e quinze no tanque hj,registro_producao,"[{""ini"": 4, ""fim"": 25, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e quinze""}, {""ini"": 36, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",numero_por_extenso|transcricao_audio,B,415
+valeu..,outro,[],,B,
+DA PRA ALGUEM VIR VER AS VACA,solicitacao,[],caixa,B,
+faltou luz e o resfriador desligou kkk,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 25, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",sem_acento,B,
+cade o caminhao do leite,ocorrencia_logistica,[],,B,
+tirei oitocentos e trinta ontem a noite sô,registro_producao,"[{""ini"": 6, ""fim"": 25, ""rotulo"": ""VOLUME"", ""texto"": ""oitocentos e trinta""}, {""ini"": 26, ""fim"": 39, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",numero_por_extenso,B,830
+a estrada ta ruim o carro nao subiu..,ocorrencia_logistica,[],,B,
+acho que a novilha 3 pegou diarreia..,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 27, ""fim"": 35, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",,B,
+a mocha com diarreia de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 12, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento,B,
+aquilo de ontem,outro,[],ambigua|sem_acento|transcricao_audio,B,
+vaca 7 com mamite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 11, ""fim"": 17, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",transcricao_audio,B,
+seca braba o pasto acabou,relato_ambiental,[],sem_acento,B,
+cade o caminhao do leite..,ocorrencia_logistica,[],,B,
+ORDENHADEIRA PIFOU SEMANA PASSADA,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento|caixa,B,
+O RESFRIADOR TA FAZENDO BARULHO,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",caixa,B,
+foram 580 litros hj..,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""580 litros""}, {""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,580
+deu 1050 litros no tanque hj..,registro_producao,"[{""ini"": 4, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""1050 litros""}, {""ini"": 26, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",sem_acento,B,1050
+tem febre do leite na vaca 7 de manha,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 18, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 22, ""fim"": 28, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 29, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,
+muita chuva o curral virou lama,relato_ambiental,[],,B,
+cade o caminhao do leite,ocorrencia_logistica,[],sem_acento,B,
+tem diarreia na a mocha de manha..,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 12, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}, {""ini"": 16, ""fim"": 23, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 24, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento,B,
+tirei quinhentos e oitenta lts hj sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 30, ""rotulo"": ""VOLUME"", ""texto"": ""quinhentos e oitenta lts""}, {""ini"": 31, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",numero_por_extenso|abreviacao,B,580
+foram quatrocentos e noventa hj..,registro_producao,"[{""ini"": 6, ""fim"": 28, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e noventa""}, {""ini"": 29, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",numero_por_extenso|sem_acento,B,490
+valeu,outro,[],sem_acento|transcricao_audio,B,
+Ok entendi,outro,[],caixa,B,
+tirei quinhentos e trinta hj sô,registro_producao,"[{""ini"": 6, ""fim"": 25, ""rotulo"": ""VOLUME"", ""texto"": ""quinhentos e trinta""}, {""ini"": 26, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",numero_por_extenso,B,530
+FORAM 490 LTS DE MANHA,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""490 lts""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",abreviacao|sem_acento|caixa|transcricao_audio,B,490
+deu 625 litros no tanque ontem a noite,registro_producao,"[{""ini"": 4, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""625 litros""}, {""ini"": 25, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento|transcricao_audio,B,625
+Preciso falar com o tecnico urgente,solicitacao,[],caixa,B,
+cade o caminhao do leite..,ocorrencia_logistica,[],,B,
+o leiteiro furou hj..,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,
+tirei 650 de leite semana passada sô,registro_producao,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""650 de leite""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,650
+o leiteiro furou ontem a noite,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 30, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",,B,
+tirei 540 lts de manha so..,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""540 lts""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",abreviacao|sem_acento,B,540
+O leiteiro furou de manha kkk,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",caixa,B,
+FORAM 1200 SEMANA PASSADA kkk,registro_producao,"[{""ini"": 6, ""fim"": 10, ""rotulo"": ""VOLUME"", ""texto"": ""1200""}, {""ini"": 11, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento|caixa,B,1200
+foram 1500 lts de manha e tem mastite na vaca 12 semana passada,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""1500 lts""}, {""ini"": 15, ""fim"": 23, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}, {""ini"": 30, ""fim"": 37, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 41, ""fim"": 48, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 49, ""fim"": 63, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",abreviacao|multi_intencao|transcricao_audio,B,1500
+Deu 855 de leite no tanque de manha,registro_producao,"[{""ini"": 4, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""855 de leite""}, {""ini"": 27, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",caixa|transcricao_audio,B,855
+a malhada com mamite de novo kkk,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 14, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,B,
+e agroa?,outro,[],ambigua|sem_acento|erro_digitacao,B,
+foram 740 litros hj mas acho que a vaca 7 pegou mamite,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""740 litros""}, {""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}, {""ini"": 35, ""fim"": 41, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 48, ""fim"": 54, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",multi_intencao|sem_acento,B,740
+foram 810 lts hj..,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""810 lts""}, {""ini"": 14, ""fim"": 16, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",abreviacao,B,810
+tirei cento e setenta litros ontem a noite sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 28, ""rotulo"": ""VOLUME"", ""texto"": ""cento e setenta litros""}, {""ini"": 29, ""fim"": 42, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",numero_por_extenso,B,170
+proteina deu 120 esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 8, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 13, ""fim"": 16, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120""}]",sem_acento,B,
+ok entendi..,outro,[],,B,
+gordura deu 650mil esse mes..,registro_qualidade,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 12, ""fim"": 18, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650mil""}]",,B,
+MUITA CHUVA O CURRAL VIROU LAMA..,relato_ambiental,[],caixa,B,
+blz,outro,[],sem_acento,B,
+manda o moco da cooperativa aqui,solicitacao,[],sem_acento,B,
+RESFRIADOR PIFOU DE MANHA..,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 10, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",caixa,B,
+Da pra alguem vir ver as vaca,solicitacao,[],caixa,B,
+gordura deu 320mil esse mes kkk,registro_qualidade,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 12, ""fim"": 18, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""320mil""}]",,B,
+foram 610 hj,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""610""}, {""ini"": 10, ""fim"": 12, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,610
+Foram 385 de leite hj e acho que a vaca 7 pegou mastite..,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""385 de leite""}, {""ini"": 19, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}, {""ini"": 35, ""fim"": 41, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 48, ""fim"": 55, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",multi_intencao|sem_acento|caixa,B,385
+sol de rachar a vaca nem come..,relato_ambiental,[],,B,
+manda o moco da cooperativa aqui,solicitacao,[],sem_acento,B,
+deu 440 lts no tanque semana passada mas a pintada com mamite de novo,registro_producao|ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""440 lts""}, {""ini"": 22, ""fim"": 36, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}, {""ini"": 41, ""fim"": 50, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 55, ""fim"": 61, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",abreviacao|multi_intencao|sem_acento,B,440
+tirei 135 hj sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""135""}, {""ini"": 10, ""fim"": 12, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,135
+o ordenhadeira ta fazendo barulho kkk,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 14, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",sem_acento,B,
+Cade o caminhao do leite,ocorrencia_logistica,[],sem_acento|caixa,B,
+preciso falar com o tecnico urgente,solicitacao,[],transcricao_audio,B,
+o papel do leite falou gordura 180 kkk,registro_qualidade,"[{""ini"": 23, ""fim"": 30, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 31, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180""}]",,B,
+CBT deu 650 mil esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 3, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 8, ""fim"": 15, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""650 mil""}]",sem_acento,B,
+a estrada ta ruim o carro nao subiu,ocorrencia_logistica,[],sem_acento,B,
+"deu 425 de leite no tanque de manha, acho que a vaca 21 pegou carrapato",registro_producao|ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""425 de leite""}, {""ini"": 27, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}, {""ini"": 48, ""fim"": 55, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 62, ""fim"": 71, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",multi_intencao,B,425
+Acho que a vaca 7 pegou mastite kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 17, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 24, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",sem_acento|caixa,B,
+muita chuva o curral virou lama..,relato_ambiental,[],,B,
+tirei 170 litros hj sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""170 litros""}, {""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,170
+seca braba o pasto acabou,relato_ambiental,[],,B,
+deu cento e cinquenta lts no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 25, ""rotulo"": ""VOLUME"", ""texto"": ""cento e cinquenta lts""}, {""ini"": 36, ""fim"": 50, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso|abreviacao|transcricao_audio,B,150
+tirei seiscentos e sessenta litros hj sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 34, ""rotulo"": ""VOLUME"", ""texto"": ""seiscentos e sessenta litros""}, {""ini"": 35, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",numero_por_extenso,B,660
+PRECISO FALAR COM O TECNICO URGENTE..,solicitacao,[],sem_acento|caixa,B,
+a estrada ta ruim o carro nao subiu kkk,ocorrencia_logistica,[],,B,
+faltou luz e o resfriador desligou,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 25, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",,B,
+foram 355 de leite ontem a noite e a malhada com febre do leite de novo kkk,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""355 de leite""}, {""ini"": 19, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}, {""ini"": 35, ""fim"": 44, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 49, ""fim"": 63, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",multi_intencao,B,355
+tem mamite na vaca 12 de manha..,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}, {""ini"": 14, ""fim"": 21, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 22, ""fim"": 30, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento,B,
+faltou luz e o tanque desligou..,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 21, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}]",sem_acento,B,
+a malhada com mastite de novo kkk,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 14, ""fim"": 21, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",,B,
+Chegou o laudo gordura ta 120mil,registro_qualidade,"[{""ini"": 15, ""fim"": 22, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 26, ""fim"": 32, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120mil""}]",caixa,B,
+tirei quatrocentos e sessenta litros semana passada sô,registro_producao,"[{""ini"": 6, ""fim"": 36, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e sessenta litros""}, {""ini"": 37, ""fim"": 51, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso,B,460
+chegou o laudo gordura ta 320mil..,registro_qualidade,"[{""ini"": 15, ""fim"": 22, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 26, ""fim"": 32, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""320mil""}]",sem_acento,B,
+Tirei 855 litros de manha so,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""855 litros""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|caixa|transcricao_audio,B,855
+A pintada com febre do leite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 14, ""fim"": 28, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",caixa,B,
+muita chuva o curral virou lama,relato_ambiental,[],sem_acento,B,
+foram quatrocentos e cinco litros semana passada..,registro_producao,"[{""ini"": 6, ""fim"": 33, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e cinco litros""}, {""ini"": 34, ""fim"": 48, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso|sem_acento,B,405
+a estrada ta ruim o carro nao subui..,ocorrencia_logistica,[],sem_acento|erro_digitacao,B,
+o ordenhadeira ta fazendo barulho,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 14, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",transcricao_audio,B,
+tanque pifou de manha kkk,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}, {""ini"": 13, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,
+tirei 810 de leite hj so mas acho que a a mocha pegou carrapato,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""810 de leite""}, {""ini"": 19, ""fim"": 21, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}, {""ini"": 40, ""fim"": 47, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 54, ""fim"": 63, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",multi_intencao|sem_acento|transcricao_audio,B,810
+TIREI 770 LTS ONTEM A NOITE SO kkk,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""770 lts""}, {""ini"": 14, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",abreviacao|sem_acento|caixa,B,770
+tem febre do leite na vaca 7 ontem a noite,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 18, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 22, ""fim"": 28, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 29, ""fim"": 42, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento,B,
+chegou o laudo CCS ta 250,registro_qualidade,"[{""ini"": 15, ""fim"": 18, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 22, ""fim"": 25, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""250""}]",,B,
+muita chuva o curral virou lama,relato_ambiental,[],sem_acento,B,
+a malhada com febre do leite de novo kkk,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 14, ""fim"": 28, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,B,
+cade o caminhao do leite..,ocorrencia_logistica,[],sem_acento,B,
+a mocha com febre do leite de novo kkk,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",sem_acento,B,
+gerador pifou hj,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 14, ""fim"": 16, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,
+320..,outro,[],ambigua|sem_acento,B,
+A estrada ta ruim o carro nao subiu,ocorrencia_logistica,[],caixa,B,
+tanque pifou ontem a noite,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}, {""ini"": 13, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento,B,
+CCS deu 250 esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 3, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 8, ""fim"": 11, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""250""}]",,B,
+gordura deu 300 esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 12, ""fim"": 15, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""300""}]",,B,
+sol de racahr a vaca nem come..,relato_ambiental,[],erro_digitacao,B,
+Vaca 7 com diarreia de novo..,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 11, ""fim"": 19, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento|caixa,B,
+tirei 725 litros de manha so e tem mastite na vaca 12 semana passada,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""725 litros""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}, {""ini"": 35, ""fim"": 42, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 46, ""fim"": 53, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 54, ""fim"": 68, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",multi_intencao|sem_acento,B,725
+Acho que a a malhada pegou carrapato,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 27, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",sem_acento|caixa|transcricao_audio,B,
+tirei duzentos e sessenta litros de manha sô,registro_producao,"[{""ini"": 6, ""fim"": 32, ""rotulo"": ""VOLUME"", ""texto"": ""duzentos e sessenta litros""}, {""ini"": 33, ""fim"": 41, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",numero_por_extenso,B,260
+tem mastite na vaca 12 de manha,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 15, ""fim"": 22, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 23, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|transcricao_audio,B,
+tem diarreia na vaca 7 semana passada,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 12, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}, {""ini"": 16, ""fim"": 22, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 23, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento|transcricao_audio,B,
+seca braba o pasto acabou,relato_ambiental,[],,B,
+vaca 21 com mastite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 12, ""fim"": 19, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",transcricao_audio,B,
+A pintada com diarreia de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",caixa,B,
+deu 520 lts no tanque ontem a noite..,registro_producao,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""520 lts""}, {""ini"": 22, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",abreviacao,B,520
+o leiteiro furou semana passada,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,
+deu 565 litros no tanque ontem a noite kkk,registro_producao,"[{""ini"": 4, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""565 litros""}, {""ini"": 25, ""fim"": 38, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento,B,565
+qauilo de ontem,outro,[],ambigua|sem_acento|erro_digitacao,B,
+o papel do leite falou CBT 520 mil,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""520 mil""}]",sem_acento,B,
+acho que a a pintada pegou carrapato,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 27, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",,B,
+muita chuva o curral virou lama,relato_ambiental,[],,B,
+o resfriador ta fazendo barulho,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",,B,
+acho que a novilha 3 pegou carrapato,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 27, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",sem_acento,B,
+Sol de rachar a vaca nem come,relato_ambiental,[],caixa|transcricao_audio,B,
+vaca 7 com carrapato de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 11, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",,B,
+deu 895 no tanque de manha,registro_producao,"[{""ini"": 4, ""fim"": 7, ""rotulo"": ""VOLUME"", ""texto"": ""895""}, {""ini"": 18, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|transcricao_audio,B,895
+acho que a vaca 12 pegou mastite kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 25, ""fim"": 32, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",,B,
+da pra alguem vir ver as vaca,solicitacao,[],transcricao_audio,B,
+Tirei 610 hj sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""610""}, {""ini"": 10, ""fim"": 12, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",caixa,B,610
+aquilo de ontem,outro,[],ambigua|transcricao_audio,B,
+deu seiscentos e cinquenta e cinco de leite no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 43, ""rotulo"": ""VOLUME"", ""texto"": ""seiscentos e cinquenta e cinco de leite""}, {""ini"": 54, ""fim"": 68, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso|sem_acento|transcricao_audio,B,655
+preciso falar com o tecnico urgente,solicitacao,[],,B,
+chegou o laudo CCS ta 520..,registro_qualidade,"[{""ini"": 15, ""fim"": 18, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 22, ""fim"": 25, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""520""}]",sem_acento,B,
+DEU 50 LITROS NO TANQUE DE MANHA,registro_producao,"[{""ini"": 4, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""50 litros""}, {""ini"": 24, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|caixa,B,50
+Tirei 440 lts ontem a noite sô,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""440 lts""}, {""ini"": 14, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",abreviacao|caixa,B,440
+Sol de rachar a vaca nem come,relato_ambiental,[],caixa,B,
+320 kkk,outro,[],ambigua|sem_acento,B,
+Ok entendi,outro,[],sem_acento|caixa,B,
+ok entendi,outro,[],,B,
+novilha 3 com mamite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 14, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,B,
+deu quinhentos e dez lts no tanque de manha,registro_producao,"[{""ini"": 4, ""fim"": 24, ""rotulo"": ""VOLUME"", ""texto"": ""quinhentos e dez lts""}, {""ini"": 35, ""fim"": 43, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",numero_por_extenso|abreviacao|sem_acento|transcricao_audio,B,510
+deu 285 no tanque ontem a noite..,registro_producao,"[{""ini"": 4, ""fim"": 7, ""rotulo"": ""VOLUME"", ""texto"": ""285""}, {""ini"": 18, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",,B,285
+a mocha com carrapato de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 12, ""fim"": 21, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",,B,
+da pra alguem vir ver as vaca kkk,solicitacao,[],,B,
+foram seiscentos e quarenta lts semana passada..,registro_producao,"[{""ini"": 6, ""fim"": 31, ""rotulo"": ""VOLUME"", ""texto"": ""seiscentos e quarenta lts""}, {""ini"": 32, ""fim"": 46, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso|abreviacao,B,640
+blz kkk,outro,[],,B,
+O tanque ta fazendo barulho,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 8, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}]",sem_acento|caixa|transcricao_audio,B,
+faltou luz e o gerador desligou,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 22, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}]",,B,
+ordenhadeira pifou de manha kkk,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 19, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento,B,
+deu 480 de leite no tanque ontem a noite,registro_producao,"[{""ini"": 4, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""480 de leite""}, {""ini"": 27, ""fim"": 40, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",transcricao_audio,B,480
+Acho que a vaca 12 pegou febre do leite kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 25, ""fim"": 39, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",sem_acento|caixa,B,
+muita chuva o curral virou lama kkk,relato_ambiental,[],,B,
+Tirei 705 semana passada so,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""705""}, {""ini"": 10, ""fim"": 24, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento|caixa|transcricao_audio,B,705
+acho que a a mocha pegou febre do leite kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 25, ""fim"": 39, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,B,
+Vaca 12 com febre do leite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 12, ""fim"": 26, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",caixa,B,
+valeu,outro,[],,B,
+acho que a vaca 7 pegou mastite..,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 17, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 7""}, {""ini"": 24, ""fim"": 31, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",sem_acento,B,
+deu 380 lts no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""380 lts""}, {""ini"": 22, ""fim"": 36, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",abreviacao|sem_acento,B,380
+manda o moço da cooperativa aqui..,solicitacao,[],,B,
+acho que a novilha 3 pegou carrapato,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 27, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",,B,
+sol de rachar a vaca nem come,relato_ambiental,[],sem_acento,B,
+foram 605 de manha kkk,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""605""}, {""ini"": 10, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,605
+acho que a vaca 12 pegou mastite,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 25, ""fim"": 32, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",sem_acento|transcricao_audio,B,
+tem diarreia na novilha 3 ontem a noite,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 12, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}, {""ini"": 16, ""fim"": 25, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 26, ""fim"": 39, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento,B,
+cade o caminhao do leite,ocorrencia_logistica,[],transcricao_audio,B,
+tanque pifou hj..,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 6, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""tanque""}, {""ini"": 13, ""fim"": 15, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",sem_acento,B,
+o papel do leite falou CBT 120mil,registro_qualidade,"[{""ini"": 23, ""fim"": 26, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 27, ""fim"": 33, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120mil""}]",,B,
+Sol de rachar a vaca nem come,relato_ambiental,[],sem_acento|caixa,B,
+o resfriador ta fazendo barulho..,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",,B,
+sol de rachar a vaca nem come..,relato_ambiental,[],,B,
+A estrada ta ruim o carro nao subiu,ocorrencia_logistica,[],caixa,B,
+cade o caminhao do letie..,ocorrencia_logistica,[],sem_acento|erro_digitacao,B,
+da pra alguem vir ver as vaca,solicitacao,[],transcricao_audio,B,
+preciso falar com o tecncio urgente,solicitacao,[],sem_acento|erro_digitacao|transcricao_audio,B,
+Chegou o laudo proteina ta 320 mil,registro_qualidade,"[{""ini"": 15, ""fim"": 23, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 27, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""320 mil""}]",sem_acento|caixa|transcricao_audio,B,
+valeu kkk,outro,[],,B,
+tirei 1300 litros hj sô,registro_producao,"[{""ini"": 6, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""1300 litros""}, {""ini"": 18, ""fim"": 20, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",transcricao_audio,B,1300
+Tem mamite na a pintada de manha kkk,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 10, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}, {""ini"": 14, ""fim"": 23, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 24, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|caixa,B,
+sol de rachar a vaca nem come kkk,relato_ambiental,[],sem_acento,B,
+muita chuva o curral virou lama,relato_ambiental,[],transcricao_audio,B,
+o gerador ta fazendo barulho..,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 9, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}]",sem_acento,B,
+deu 105 no tanque semana passada,registro_producao,"[{""ini"": 4, ""fim"": 7, ""rotulo"": ""VOLUME"", ""texto"": ""105""}, {""ini"": 18, ""fim"": 32, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento|transcricao_audio,B,105
+acho que a vaca 21 pegou febre do leite,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 25, ""fim"": 39, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,B,
+Deu 505 lts no tanque ontem a noite,registro_producao,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""505 lts""}, {""ini"": 22, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",abreviacao|sem_acento|caixa,B,505
+TIREI 685 LITROS HJ SO,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""685 litros""}, {""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",sem_acento|caixa|transcricao_audio,B,685
+Manda o moço da cooperativa aqui..,solicitacao,[],caixa,B,
+muita chuva o curral virou lama,relato_ambiental,[],transcricao_audio,B,
+blz,outro,[],,B,
+aquilo de ontem kkk,outro,[],ambigua|sem_acento,B,
+da pra alguem vir ver as vaca..,solicitacao,[],sem_acento,B,
+blz..,outro,[],,B,
+foram 375 lts semana passada kkk,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""375 lts""}, {""ini"": 14, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",abreviacao,B,375
+novilha 3 com mastite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 14, ""fim"": 21, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]",,B,
+TIREI 1550 DE LEITE DE MANHA SÔ MAS ACHO QUE A VACA 21 PEGOU FEBRE DO LEITE kkk,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 19, ""rotulo"": ""VOLUME"", ""texto"": ""1550 de leite""}, {""ini"": 20, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}, {""ini"": 47, ""fim"": 54, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 61, ""fim"": 75, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",multi_intencao|caixa,B,1550
+tem febre do leite na a mocha ontem a noite,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 18, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 22, ""fim"": 29, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 30, ""fim"": 43, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",transcricao_audio,B,
+valeu kkk,outro,[],,B,
+tirei 90 de leite de manha sô,registro_producao,"[{""ini"": 6, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""90 de leite""}, {""ini"": 18, ""fim"": 26, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,90
+foram 320 de leite semana passada kkk,registro_producao,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""320 de leite""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,320
+deu 40 de leite no tanque ontem a noite..,registro_producao,"[{""ini"": 4, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""40 de leite""}, {""ini"": 26, ""fim"": 39, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",,B,40
+faltou luz e o resfriador desligou,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 25, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",,B,
+muita chuva o curral virou lama,relato_ambiental,[],,B,
+preciso falar com o tecnico urgente,solicitacao,[],,B,
+faltou luz e o ordenhadeira desligou,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 27, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",transcricao_audio,B,
+Muita chuva o curral virou lama kkk,relato_ambiental,[],caixa,B,
+tem carrapato na novilha 3 hj..,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 13, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}, {""ini"": 17, ""fim"": 26, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 27, ""fim"": 29, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,
+acho que a a malhada pegou carrapato,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 27, ""fim"": 36, ""rotulo"": ""DOENCA"", ""texto"": ""carrapato""}]",sem_acento|transcricao_audio,B,
+novilha 3 com mamite de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 14, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""mamite""}]",,B,
+foram cento e setenta litros de manha..,registro_producao,"[{""ini"": 6, ""fim"": 28, ""rotulo"": ""VOLUME"", ""texto"": ""cento e setenta litros""}, {""ini"": 29, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",numero_por_extenso|sem_acento,B,170
+ok entendi kkk,outro,[],,B,
+faltou luz e o resfriador desligou..,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 25, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""resfriador""}]",,B,
+Foram 690 litros de manha,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""690 litros""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",caixa,B,690
+muita chuva o curral virou lama..,relato_ambiental,[],,B,
+tirei quatrocentos e quarenta e cinco lts hj sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 41, ""rotulo"": ""VOLUME"", ""texto"": ""quatrocentos e quarenta e cinco lts""}, {""ini"": 42, ""fim"": 44, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",numero_por_extenso|abreviacao,B,445
+acho que a novilha 3 pegou diarreia kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 20, ""rotulo"": ""ANIMAL"", ""texto"": ""novilha 3""}, {""ini"": 27, ""fim"": 35, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",,B,
+tem febre do leite na a malhada ontem a noite,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 18, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}, {""ini"": 22, ""fim"": 31, ""rotulo"": ""ANIMAL"", ""texto"": ""a malhada""}, {""ini"": 32, ""fim"": 45, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",sem_acento,B,
+deu seiscentos e noventa e cinco litros no tanque de manha,registro_producao,"[{""ini"": 4, ""fim"": 39, ""rotulo"": ""VOLUME"", ""texto"": ""seiscentos e noventa e cinco litros""}, {""ini"": 50, ""fim"": 58, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",numero_por_extenso,B,695
+proteina deu 120mil esse mes,registro_qualidade,"[{""ini"": 0, ""fim"": 8, ""rotulo"": ""INDICADOR"", ""texto"": ""proteina""}, {""ini"": 13, ""fim"": 19, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120mil""}]",sem_acento,B,
+gerador pifou semana passada,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 14, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",transcricao_audio,B,
+o leiteiro furou hj..,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",,B,
+acho que a a mocha pegou diarreia kkk,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 25, ""fim"": 33, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",sem_acento,B,
+tirei cento e sessenta de leite semana passada sô kkk,registro_producao,"[{""ini"": 6, ""fim"": 31, ""rotulo"": ""VOLUME"", ""texto"": ""cento e sessenta de leite""}, {""ini"": 32, ""fim"": 46, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",numero_por_extenso,B,160
+320 kkk,outro,[],ambigua|sem_acento,B,
+a pintada com febre do leite de novo kkk,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 9, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 14, ""fim"": 28, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",,B,
+foram 710 litros de manha..,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""710 litros""}, {""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento,B,710
+sol de rahcar a vaca nem come,relato_ambiental,[],erro_digitacao,B,
+FORAM 580 LITROS HJ E ACHO QUE A A PINTADA PEGOU FEBRE DO LEITE,registro_producao|ocorrencia_sanitaria,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""580 litros""}, {""ini"": 17, ""fim"": 19, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}, {""ini"": 33, ""fim"": 42, ""rotulo"": ""ANIMAL"", ""texto"": ""a pintada""}, {""ini"": 49, ""fim"": 63, ""rotulo"": ""DOENCA"", ""texto"": ""febre do leite""}]",multi_intencao|sem_acento|caixa,B,580
+foram 390 lts de manha..,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""390 lts""}, {""ini"": 14, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",abreviacao,B,390
+chegou o laudo gordura ta 180 mil,registro_qualidade,"[{""ini"": 15, ""fim"": 22, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 26, ""fim"": 33, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180 mil""}]",,B,
+o ordenhadeira ta fazendo barulho,ocorrencia_operacional,"[{""ini"": 2, ""fim"": 14, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}]",sem_acento,B,
+a estrada ta ruim o carro nao subiu,ocorrencia_logistica,[],,B,
+tem mastite na a mocha semana passada kkk,ocorrencia_sanitaria,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}, {""ini"": 15, ""fim"": 22, ""rotulo"": ""ANIMAL"", ""texto"": ""a mocha""}, {""ini"": 23, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,
+cade o caminhao do leite,ocorrencia_logistica,[],,B,
+Foram 800 lts semana passada,registro_producao,"[{""ini"": 6, ""fim"": 13, ""rotulo"": ""VOLUME"", ""texto"": ""800 lts""}, {""ini"": 14, ""fim"": 28, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",abreviacao|caixa,B,800
+ordenhadeira pifou semana passada,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 12, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""ordenhadeira""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,
+o papel do leite falou gordura 520,registro_qualidade,"[{""ini"": 23, ""fim"": 30, ""rotulo"": ""INDICADOR"", ""texto"": ""gordura""}, {""ini"": 31, ""fim"": 34, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""520""}]",,B,
+CCS deu 180 esse mes..,registro_qualidade,"[{""ini"": 0, ""fim"": 3, ""rotulo"": ""INDICADOR"", ""texto"": ""CCS""}, {""ini"": 8, ""fim"": 11, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180""}]",,B,
+MANDA O MOCO DA COOPERATIVA AQUI..,solicitacao,[],sem_acento|caixa,B,
+manda o moco da cooperativa aqui..,solicitacao,[],sem_acento,B,
+faltou luz e o gerador desligou..,ocorrencia_operacional,"[{""ini"": 15, ""fim"": 22, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}]",,B,
+TIREI 320 DE LEITE DE MANHA SO,registro_producao,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""320 de leite""}, {""ini"": 19, ""fim"": 27, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|caixa,B,320
+vaca 12 com diarreia de novo,ocorrencia_sanitaria,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 12""}, {""ini"": 12, ""fim"": 20, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",,B,
+tirei 250 litros semana passada so kkk,registro_producao,"[{""ini"": 6, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""250 litros""}, {""ini"": 17, ""fim"": 31, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento,B,250
+CBT DEU 120MIL ESSE MES kkk,registro_qualidade,"[{""ini"": 0, ""fim"": 3, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 8, ""fim"": 14, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""120mil""}]",caixa,B,
+GERADOR PIFOU HJ kkk,ocorrencia_operacional,"[{""ini"": 0, ""fim"": 7, ""rotulo"": ""EQUIPAMENTO"", ""texto"": ""gerador""}, {""ini"": 14, ""fim"": 16, ""rotulo"": ""TEMPO"", ""texto"": ""hj""}]",caixa,B,
+deu 760 litros no tanque semana passada..,registro_producao,"[{""ini"": 4, ""fim"": 14, ""rotulo"": ""VOLUME"", ""texto"": ""760 litros""}, {""ini"": 25, ""fim"": 39, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",,B,760
+manda o moco da cooperativa aqui,solicitacao,[],sem_acento,B,
+deu 735 de leite no tanque de manha,registro_producao,"[{""ini"": 4, ""fim"": 16, ""rotulo"": ""VOLUME"", ""texto"": ""735 de leite""}, {""ini"": 27, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,735
+deu 885 lts no tanque ontem a noite kkk,registro_producao,"[{""ini"": 4, ""fim"": 11, ""rotulo"": ""VOLUME"", ""texto"": ""885 lts""}, {""ini"": 22, ""fim"": 35, ""rotulo"": ""TEMPO"", ""texto"": ""ontem a noite""}]",abreviacao,B,885
+o leiteiro furou de manha..,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,
+tirei 685 de leite semana passada so,registro_producao,"[{""ini"": 6, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""685 de leite""}, {""ini"": 19, ""fim"": 33, ""rotulo"": ""TEMPO"", ""texto"": ""semana passada""}]",sem_acento,B,685
+a estrada ta ruim o craro nao subiu kkk,ocorrencia_logistica,[],erro_digitacao,B,
+deu 65 de leite no tanque de manha,registro_producao,"[{""ini"": 4, ""fim"": 15, ""rotulo"": ""VOLUME"", ""texto"": ""65 de leite""}, {""ini"": 26, ""fim"": 34, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",,B,65
+blz,outro,[],,B,
+CBT deu 180mil esse mes..,registro_qualidade,"[{""ini"": 0, ""fim"": 3, ""rotulo"": ""INDICADOR"", ""texto"": ""CBT""}, {""ini"": 8, ""fim"": 14, ""rotulo"": ""VALOR_INDICADOR"", ""texto"": ""180mil""}]",,B,
+acho que a vaca 21 pegou diarreia,ocorrencia_sanitaria,"[{""ini"": 11, ""fim"": 18, ""rotulo"": ""ANIMAL"", ""texto"": ""vaca 21""}, {""ini"": 25, ""fim"": 33, ""rotulo"": ""DOENCA"", ""texto"": ""diarreia""}]",transcricao_audio,B,
+aquilo de ontem kkk,outro,[],ambigua,B,
+foram 405 de manha,registro_producao,"[{""ini"": 6, ""fim"": 9, ""rotulo"": ""VOLUME"", ""texto"": ""405""}, {""ini"": 10, ""fim"": 18, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|transcricao_audio,B,405
+O leiteiro furou de manha,ocorrencia_logistica,"[{""ini"": 17, ""fim"": 25, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",sem_acento|caixa,B,
+deu cento e trinta no tanque de manha kkk,registro_producao,"[{""ini"": 4, ""fim"": 18, ""rotulo"": ""VOLUME"", ""texto"": ""cento e trinta""}, {""ini"": 29, ""fim"": 37, ""rotulo"": ""TEMPO"", ""texto"": ""de manha""}]",numero_por_extenso|sem_acento,B,130
+Deu ruim,outro,[],ambigua|caixa,B,
+Manda o moço da cooperativa aqui,solicitacao,[],caixa,B,
+Valeu,outro,[],caixa,B,
+AQUILO DE ONTEM kkk,outro,[],ambigua|caixa,B,

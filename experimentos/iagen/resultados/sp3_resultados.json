@@ -1,0 +1,41 @@
+{
+  "data_execucao": "2026-11-06T20:40:04",
+  "n_produtores": 30,
+  "llm": "não executado (sem ANTHROPIC_API_KEY)",
+  "corpus_trechos": 0,
+  "metricas": [
+    {
+      "braco": "B0",
+      "executado": true,
+      "n": 30,
+      "M3_citacao_norma": 0.0,
+      "M4_especificidade": 0.1,
+      "M4_especificidade_sem_numeros": 0.1,
+      "M5_fidelidade_indicador": 0.4117647058823529,
+      "M6_acionabilidade_heuristica": 0.23333333333333334,
+      "alarme_guardrail_M7": 0
+    },
+    {
+      "braco": "B1",
+      "executado": true,
+      "n": 30,
+      "M3_citacao_norma": 0.0,
+      "M4_especificidade": 0.8333333333333334,
+      "M4_especificidade_sem_numeros": 0.23333333333333334,
+      "M5_fidelidade_indicador": 0.4117647058823529,
+      "M6_acionabilidade_heuristica": 0.23333333333333334,
+      "alarme_guardrail_M7": 0
+    },
+    {
+      "braco": "B2",
+      "executado": false
+    },
+    {
+      "braco": "B3",
+      "executado": false
+    }
+  ],
+  "B3_recusas": 0,
+  "latencia_media_s": {},
+  "B3_trechos_recuperados": {}
+}

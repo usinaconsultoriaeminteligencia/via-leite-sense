@@ -1,0 +1,3 @@
+texto,intencoes,entidades,variacoes,familia,volume_litros
+"mandei 320 litros hoje","registro_producao","[{""ini"": 7, ""fim"": 17, ""rotulo"": ""VOLUME"", ""texto"": ""320 litros""}, {""ini"": 18, ""fim"": 22, ""rotulo"": ""TEMPO"", ""texto"": ""hoje""}]","",REAL,320
+"a [ANIMAL_1] ta com mastite","ocorrencia_sanitaria","[{""ini"": 2, ""fim"": 12, ""rotulo"": ""ANIMAL"", ""texto"": ""[ANIMAL_1]""}, {""ini"": 20, ""fim"": 27, ""rotulo"": ""DOENCA"", ""texto"": ""mastite""}]","",REAL,

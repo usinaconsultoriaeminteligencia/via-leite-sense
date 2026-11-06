@@ -1,0 +1,388 @@
+{
+  "data_execucao": "2026-11-06T20:37:43",
+  "n_treino": 900,
+  "resultados": [
+    {
+      "modelo": "E0 regras",
+      "conjunto": "sintetico_A (mesma distribuição)",
+      "n": 300,
+      "f1_macro_intencao": 0.8348862536133529,
+      "acuracia_intencao": 0.7933333333333333,
+      "f1_entidades": {
+        "ANIMAL": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 53
+        },
+        "DOENCA": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 53
+        },
+        "EQUIPAMENTO": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 29
+        },
+        "INDICADOR": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 36
+        },
+        "TEMPO": {
+          "f1": 0.9803921568627451,
+          "precisao": 0.9615384615384616,
+          "revocacao": 1.0,
+          "suporte": 150
+        },
+        "VALOR_INDICADOR": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 36
+        },
+        "VOLUME": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 105
+        },
+        "_todas": {
+          "f1": 0.9935483870967742,
+          "precisao": 0.9871794871794872,
+          "revocacao": 1.0,
+          "suporte": 462
+        }
+      },
+      "lancamento_correto": 0.7933333333333333,
+      "erro_campo_critico_volume": 0.0,
+      "volume_lido_errado_sem_aviso": 0,
+      "confusoes_mais_comuns": [
+        [
+          "registro_producao → ocorrencia_logistica",
+          34
+        ],
+        [
+          "registro_producao → ocorrencia_sanitaria",
+          15
+        ],
+        [
+          "solicitacao → registro_qualidade",
+          6
+        ],
+        [
+          "outro → registro_producao",
+          4
+        ],
+        [
+          "ocorrencia_operacional → registro_producao",
+          2
+        ]
+      ]
+    },
+    {
+      "modelo": "E1 TF-IDF + LR",
+      "conjunto": "sintetico_A (mesma distribuição)",
+      "n": 300,
+      "f1_macro_intencao": 0.9977785372522214,
+      "acuracia_intencao": 0.9966666666666667,
+      "f1_entidades": {
+        "ANIMAL": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 53
+        },
+        "DOENCA": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 53
+        },
+        "EQUIPAMENTO": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 29
+        },
+        "INDICADOR": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 36
+        },
+        "TEMPO": {
+          "f1": 0.9803921568627451,
+          "precisao": 0.9615384615384616,
+          "revocacao": 1.0,
+          "suporte": 150
+        },
+        "VALOR_INDICADOR": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 36
+        },
+        "VOLUME": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 105
+        },
+        "_todas": {
+          "f1": 0.9935483870967742,
+          "precisao": 0.9871794871794872,
+          "revocacao": 1.0,
+          "suporte": 462
+        }
+      },
+      "lancamento_correto": 0.9966666666666667,
+      "erro_campo_critico_volume": 0.0,
+      "volume_lido_errado_sem_aviso": 0,
+      "recusa": [
+        {
+          "limiar": 0.0,
+          "cobertura": 1.0,
+          "lancamento_correto_entre_aceitas": 0.9966666666666667
+        },
+        {
+          "limiar": 0.4,
+          "cobertura": 1.0,
+          "lancamento_correto_entre_aceitas": 0.9966666666666667
+        },
+        {
+          "limiar": 0.5,
+          "cobertura": 0.9966666666666667,
+          "lancamento_correto_entre_aceitas": 1.0
+        },
+        {
+          "limiar": 0.6,
+          "cobertura": 0.9966666666666667,
+          "lancamento_correto_entre_aceitas": 1.0
+        },
+        {
+          "limiar": 0.7,
+          "cobertura": 0.9933333333333333,
+          "lancamento_correto_entre_aceitas": 1.0
+        },
+        {
+          "limiar": 0.8,
+          "cobertura": 0.9933333333333333,
+          "lancamento_correto_entre_aceitas": 1.0
+        },
+        {
+          "limiar": 0.9,
+          "cobertura": 0.9433333333333334,
+          "lancamento_correto_entre_aceitas": 1.0
+        }
+      ],
+      "confusoes_mais_comuns": [
+        [
+          "registro_producao → ocorrencia_sanitaria",
+          1
+        ]
+      ]
+    },
+    {
+      "modelo": "E0 regras",
+      "conjunto": "sintetico_B (fora da distribuição)",
+      "n": 300,
+      "f1_macro_intencao": 0.9625668130684291,
+      "acuracia_intencao": 0.9433333333333334,
+      "f1_entidades": {
+        "ANIMAL": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 66
+        },
+        "DOENCA": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 66
+        },
+        "EQUIPAMENTO": {
+          "f1": 0.6588235294117647,
+          "precisao": 0.49122807017543857,
+          "revocacao": 1.0,
+          "suporte": 28
+        },
+        "INDICADOR": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 24
+        },
+        "TEMPO": {
+          "f1": 0.9718875502008032,
+          "precisao": 0.9453125,
+          "revocacao": 1.0,
+          "suporte": 121
+        },
+        "VALOR_INDICADOR": {
+          "f1": 0.6666666666666666,
+          "precisao": 1.0,
+          "revocacao": 0.5,
+          "suporte": 24
+        },
+        "VOLUME": {
+          "f1": 0.9655172413793104,
+          "precisao": 0.9333333333333333,
+          "revocacao": 1.0,
+          "suporte": 84
+        },
+        "_todas": {
+          "f1": 0.9369158878504673,
+          "precisao": 0.9051918735891648,
+          "revocacao": 0.9709443099273608,
+          "suporte": 413
+        }
+      },
+      "lancamento_correto": 0.9233333333333333,
+      "erro_campo_critico_volume": 0.0,
+      "volume_lido_errado_sem_aviso": 0,
+      "confusoes_mais_comuns": [
+        [
+          "registro_producao → ocorrencia_sanitaria",
+          12
+        ],
+        [
+          "outro → registro_producao",
+          3
+        ],
+        [
+          "registro_producao → outro",
+          1
+        ],
+        [
+          "solicitacao → outro",
+          1
+        ]
+      ]
+    },
+    {
+      "modelo": "E1 TF-IDF + LR",
+      "conjunto": "sintetico_B (fora da distribuição)",
+      "n": 300,
+      "f1_macro_intencao": 0.6296065456476349,
+      "acuracia_intencao": 0.6833333333333333,
+      "f1_entidades": {
+        "ANIMAL": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 66
+        },
+        "DOENCA": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 66
+        },
+        "EQUIPAMENTO": {
+          "f1": 0.6588235294117647,
+          "precisao": 0.49122807017543857,
+          "revocacao": 1.0,
+          "suporte": 28
+        },
+        "INDICADOR": {
+          "f1": 1.0,
+          "precisao": 1.0,
+          "revocacao": 1.0,
+          "suporte": 24
+        },
+        "TEMPO": {
+          "f1": 0.9718875502008032,
+          "precisao": 0.9453125,
+          "revocacao": 1.0,
+          "suporte": 121
+        },
+        "VALOR_INDICADOR": {
+          "f1": 0.6666666666666666,
+          "precisao": 1.0,
+          "revocacao": 0.5,
+          "suporte": 24
+        },
+        "VOLUME": {
+          "f1": 0.9655172413793104,
+          "precisao": 0.9333333333333333,
+          "revocacao": 1.0,
+          "suporte": 84
+        },
+        "_todas": {
+          "f1": 0.9369158878504673,
+          "precisao": 0.9051918735891648,
+          "revocacao": 0.9709443099273608,
+          "suporte": 413
+        }
+      },
+      "lancamento_correto": 0.6633333333333333,
+      "erro_campo_critico_volume": 0.0,
+      "volume_lido_errado_sem_aviso": 0,
+      "recusa": [
+        {
+          "limiar": 0.0,
+          "cobertura": 1.0,
+          "lancamento_correto_entre_aceitas": 0.6633333333333333
+        },
+        {
+          "limiar": 0.4,
+          "cobertura": 0.73,
+          "lancamento_correto_entre_aceitas": 0.8036529680365296
+        },
+        {
+          "limiar": 0.5,
+          "cobertura": 0.6166666666666667,
+          "lancamento_correto_entre_aceitas": 0.8216216216216217
+        },
+        {
+          "limiar": 0.6,
+          "cobertura": 0.5033333333333333,
+          "lancamento_correto_entre_aceitas": 0.847682119205298
+        },
+        {
+          "limiar": 0.7,
+          "cobertura": 0.3433333333333333,
+          "lancamento_correto_entre_aceitas": 0.970873786407767
+        },
+        {
+          "limiar": 0.8,
+          "cobertura": 0.18666666666666668,
+          "lancamento_correto_entre_aceitas": 1.0
+        },
+        {
+          "limiar": 0.9,
+          "cobertura": 0.07666666666666666,
+          "lancamento_correto_entre_aceitas": 1.0
+        }
+      ],
+      "confusoes_mais_comuns": [
+        [
+          "relato_ambiental → ocorrencia_sanitaria",
+          23
+        ],
+        [
+          "registro_producao → ocorrencia_operacional",
+          18
+        ],
+        [
+          "ocorrencia_logistica → outro",
+          9
+        ],
+        [
+          "outro → ocorrencia_sanitaria",
+          8
+        ],
+        [
+          "registro_producao → ocorrencia_sanitaria",
+          8
+        ]
+      ]
+    }
+  ]
+}
