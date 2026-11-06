@@ -12,6 +12,7 @@
 - **Resta exposto:** o PR #2 (fechado) mantém `refs/pull/2/head` → `73c4c54`, e a página do commit ainda abre (HTTP 200). Usuário não apaga `refs/pull`; só o suporte do GitHub. O PR #1 não tem os dados.
 - **Streamlit removido.** Um Streamlit local foi aberto sem querer na porta 8521 (escutando em `0.0.0.0`), porque o `.claude/launch.json` tinha o Streamlit como primeira configuração. Foi parado e a configuração saiu. O `via-leite-sense.streamlit.app` não redirecionava mais: mandava para o login do Streamlit. Saíram `via_leite_app.py`, `.streamlit/`, `.devcontainer/` e `streamlit` do `requirements.txt`; README e DEPLOY reescritos; o onboarding parou de gerar `subir_dashboard.ps1` (apontava para `dashboard_mvp_avancado.py`, que não existe). **Falta:** o Fagner apagar o app em share.streamlit.io.
 - **Rede da faculdade bloqueia a Railway:** `railway.com` resolve para 69.46.46.46 e não conecta; `backboard.railway.com`, `railway.app` e a API em produção passam, e a Vercel também. Login e deploy só fora dessa rede. Proposta: ligar o auto-deploy pelo GitHub numa janela fora dela.
+- **Trilha acadêmica:** criado `docs/projeto_integrador/ATUALIZACOES_ARTIGO_2026-11-06.md`, com o que mudou e onde entra no artigo, organizado pelas **5 matérias do 5º período** (IA, RNA, PLN, IA Generativa, Extensão). Inclui números a substituir no dossiê e no escopo, o achado novo **A4**, o texto sobre C1/RBQL, a arquitetura sem Streamlit, os itens de reprodutibilidade, o calendário verificado e o checklist por autor. `REGISTRO.md` ganhou o A4 (13 achados) e os caminhos atuais de G1/G3.
 - Material do Demo Day (roteiro, briefing, prompts) mantido com "24,4 / cerca de 23%": é registro datado do que foi dito em 29/10.
 
 
@@ -52,23 +53,39 @@
 
 ---
 
-# HANDOFF — VIA LEITE SENSE (06/11/2026)
+# HANDOFF — VIA LEITE SENSE (06/11/2026) — para o próximo chat
 
-**Estado:** produto em produção (Vercel + Railway) com o score **antigo**; `master` tem o C1 calibrado (20/10) e está publicado no GitHub. Base de treino sintética, calibrada por IN 76/77 e RBQL.
+**Leitura de entrada (nesta ordem):** `CONTEXT.md` → `TASKS.md` → `docs/ESTADO_REAL.md`. Para a
+trilha acadêmica: `docs/projeto_integrador/ATUALIZACOES_ARTIGO_2026-11-06.md`.
 
-**Onde paramos:** correção das janelas móveis no `master` e no GitHub (`da1d6d9`); produção ainda sem deploy. O material do Demo Day (20 a 23/10) segue sem commit.
+**Estado:** `master` = `origin/master`, com C1 (20/10), correção das janelas móveis (`da1d6d9`) e
+Streamlit removido (`471a5f0`). 77 testes passam. MAE vigente **24,47 / 22,4%**. A produção (Vercel +
+Railway) continua com o score e o modelo **anteriores**: falta deploy.
 
-**Próxima ação imediata:**
-```powershell
-cd "C:\Users\Novou\Desktop\USINA\Via Leite"
-railway login
-railway up --ci
-```
-Depois: conferir `/api/model/metrics` (MAE 24,47) e as 7 dimensões pelo proxy da Vercel. Em paralelo, o Fagner abre o pedido de remoção ao suporte do GitHub (PR #2).
+**Recomendações, em ordem:**
 
-**Não fazer:** push de `backup/pre-limpeza-cpf-20261020`; versionar `docs/plano_de_trabalho/` ou `entrega 12_10_26*`; citar "MAE 24,2" ou a Piracanjuba em material externo.
+1. **Deploy fora da rede da faculdade.** A "WiFi-Alunos" bloqueia `railway.com` por DNS. Em casa ou
+   no hotspot: `railway login` → `railway up --ci` → conferir `/api/model/metrics` (MAE 24,47) e as
+   7 dimensões pelo proxy da Vercel. Na mesma janela, ligar o auto-deploy GitHub → Railway
+   (Service › Settings › Source › Connect Repo, `master`). Isso fecha o ALERTA-008 e permite
+   publicar da faculdade.
+2. **Pendências do Fagner fora do código:** pedido ao suporte do GitHub para remover o PR #2 e os
+   commits com CPF (lista em `TASKS.md`); apagar o app `via-leite-sense` em share.streamlit.io;
+   conferir o destino do QR da tela 13 do pitch.
+3. **Artigo do PI (36 dias até a banca de 12/12):** seguir o §9 e o §10 de
+   `ATUALIZACOES_ARTIGO_2026-11-06.md`. Primeiro escrever §1–§4 e §9 do artigo; depois, por
+   matéria: RNA (protocolo mínimo de 5 sementes), PLN (corpus ou contingência PLN-1 até 15/11),
+   IA Generativa (corpus normativo IN 76/77 já; SP3 até 30/11), Extensão (registrar o piloto SENAR
+   se ocorrer). Atualizar à mão o dossiê e o escopo `.docx` com 24,47 / 22,4%: os testes não os cobrem.
+4. **Higiene técnica:** alinhar `xgboost` no `requirements.txt` (declara `<3.0`, o ambiente roda
+   3.4.0); decidir se o briefing interno do Demo Day entra no repositório público; commitar
+   roteiro e PDF do pitch; registrar o resultado do Demo Day (29/10).
+5. **Produto (depois):** C2/C4 com análise de sensibilidade; fase D (planilhas SENAR); fase F
+   (assistente, sem WhatsApp primeiro).
 
-**Leitura de entrada:** `CONTEXT.md` → `TASKS.md` → `docs/ESTADO_REAL.md`.
+**Não fazer:** push de `backup/pre-limpeza-cpf-20261020`; versionar `docs/plano_de_trabalho/` ou
+`entrega 12_10_26*`; citar 24,17 / 24,36 / "cerca de 23%" ou o nome do laticínio em material novo;
+tentar contornar o filtro de rede da faculdade.
 
 ---
 *Registrado por Claude — USINA I.A.*

@@ -31,6 +31,10 @@
 - [ ] Decidir o destino de `docs/apresentacao_pi/PACOTE_VIA_LEITE_SENSE_PI.zip` (17 MB):
       não versionar zip; conferir se tem dado pessoal.
 
+- [ ] **Artigo do PI:** executar `docs/projeto_integrador/ATUALIZACOES_ARTIGO_2026-11-06.md`
+      (por matéria; banca 12/12). Atualizar à mão o dossiê e o escopo `.docx` para 24,47 / 22,4%.
+- [ ] Alinhar `xgboost` no `requirements.txt` (declara `<3.0`; ambiente roda 3.4.0).
+
 ## P2
 
 - [ ] C2 e C4: sobreposição de dimensões (CCS ≥ 500 mil soma 45 pontos) e proveniência dos pesos,
