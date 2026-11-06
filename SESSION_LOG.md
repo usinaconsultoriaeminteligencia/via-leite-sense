@@ -1,7 +1,7 @@
 ## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 06/11/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
-**Branch:** `fix/janelas-moveis` (local, sem push) sobre `master` = `3f7e983` — correção do modelo integrada; P0 parcialmente resolvido
+**Branch:** `master` — push `3f7e983..16bdec5` (via `fix/janelas-moveis`, já apagado) — correção do modelo integrada; P0 parcialmente resolvido
 
 ---
 
@@ -40,7 +40,6 @@
 
 ### Próximos passos
 1. [ ] **P0 — Fagner:** pedir ao suporte do GitHub a remoção do PR #2 e dos commits `74c1710`, `363b6ff`, `dfa8e5d`, `e9bbcce`, `73c4c54` (`docs/plano_de_trabalho/conteudo.py`).
-2. [ ] Merge de `fix/janelas-moveis` no `master` e push.
 3. [ ] **Deploy:** `railway login` (Fagner) e `railway up --ci`; conferir as 7 dimensões e `/model/metrics` = 24,47 em produção.
 4. [ ] Registrar o resultado do Demo Day; commitar o material do pitch (decidir se o briefing interno entra no repositório público).
 5. [ ] C2 e C4; fase D (planilhas SENAR); fase F (assistente).
@@ -55,14 +54,11 @@
 
 **Estado:** produto em produção (Vercel + Railway) com o score **antigo**; `master` tem o C1 calibrado (20/10) e está publicado no GitHub. Base de treino sintética, calibrada por IN 76/77 e RBQL.
 
-**Onde paramos:** correção das janelas móveis commitada em `fix/janelas-moveis` (local, sem push). O material do Demo Day (20 a 23/10) segue sem commit.
+**Onde paramos:** correção das janelas móveis no `master` e no GitHub (`da1d6d9`); produção ainda sem deploy. O material do Demo Day (20 a 23/10) segue sem commit.
 
 **Próxima ação imediata:**
 ```powershell
 cd "C:\Users\Novou\Desktop\USINA\Via Leite"
-git switch master
-git merge --ff-only fix/janelas-moveis
-git push origin master
 railway login
 railway up --ci
 ```

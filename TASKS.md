@@ -9,9 +9,8 @@
       Citar o repositório `usinaconsultoriaeminteligencia/via-leite-sense`, o `refs/pull/2/head`
       e os commits `74c1710`, `363b6ff`, `dfa8e5d`, `e9bbcce`, `73c4c54` (arquivo
       `docs/plano_de_trabalho/conteudo.py`). Em 06/11 o commit `73c4c54` ainda abria pelo hash.
-- [ ] **Merge de `fix/janelas-moveis` no `master` e push** (correção das janelas + estado de 06/11).
-- [ ] **`railway login` (Fagner) e depois `railway up --ci`.** Conferir `/health` e as 7 dimensões
-      em produção. Autorizado em 20/10.
+- [ ] **`railway login` (Fagner) e depois `railway up --ci`.** Conferir `/health`, as 7 dimensões e
+      `/api/model/metrics` (MAE 24,47) em produção. Autorizado em 20/10.
 
 ## P1
 
@@ -44,7 +43,7 @@
 
 ## Feito recentemente
 
-- [x] 06/11 — Correção das janelas móveis integrada em `fix/janelas-moveis` e retreinada: MAE 24,47 / 22,4%.
+- [x] 06/11 — Correção das janelas móveis integrada (`da1d6d9`), retreinada e com push no `master`: MAE 24,47 / 22,4%.
 - [x] 06/11 — Branch público `fix/rolling-por-produtor` (com CPF) apagado; worktree e branches locais removidos.
 - [x] 06/11 — `.gitignore` passa a excluir `entrega 12_10_26/` e o `.zip` (Plano assinado com CPF).
 - [x] 23/10 — Roteiro do pitch alinhado às 13 telas; pitch em PDF; prompts de imagem.

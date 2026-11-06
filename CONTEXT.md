@@ -33,8 +33,8 @@ real de cliente; a Piracanjuba não cede dados (07/10). C1 foi calibrado pela IN
 
 ## Situação em 06/11/2026
 
-- **Código:** `master` = `3f7e983` = `origin/master` (C1 fechado em 20/10). O branch local
-  `fix/janelas-moveis` tem a correção das janelas móveis e o estado de 06/11, **sem push e sem merge**.
+- **Código:** `master` = `origin/master`, com o C1 (20/10) e a correção das janelas móveis
+  (`da1d6d9`, 06/11). Push feito em 06/11.
 - **Produção:** API viva (`/health` 200 em 06/11). **O score novo provavelmente não está no ar:**
   a Railway CLI continua sem login (token expirado desde 20/10), então nenhum deploy saiu desta máquina.
 - **Demo Day:** foi em 29/10 (300 pontos, dupla Maria Vitória → Fagner, 13 telas). O resultado
@@ -42,7 +42,7 @@ real de cliente; a Piracanjuba não cede dados (07/10). C1 foi calibrado pela IN
 - **Alerta P0 (parcialmente resolvido):** o branch público `fix/rolling-por-produtor`, com CPF e
   telefone de 4 pessoas, foi apagado em 06/11. O **PR #2** fechado ainda aponta para o commit
   `73c4c54`, que abre pelo hash: falta o pedido de remoção ao suporte do GitHub (Fagner).
-- **Vazamento do modelo corrigido** em `fix/janelas-moveis`: as médias móveis de cada produtor
+- **Vazamento do modelo corrigido** (`da1d6d9`, no `master`): as médias móveis de cada produtor
   herdavam os últimos dias do anterior.
 
 ## Decisões vigentes (não reverter sem motivo)

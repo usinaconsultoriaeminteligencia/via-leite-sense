@@ -42,7 +42,7 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 - **Vazamento entre produtores (corrigido em 06/11/2026):** as médias e desvios móveis
   (`mm_*`, `std_*`) eram calculados sobre o DataFrame inteiro, e os primeiros dias de cada
   produtor herdavam os últimos do anterior. Correção de 11/10 trazida para o branch
-  `fix/janelas-moveis` e retreinada sobre a base do C1. Ver `docs/DECISIONS.md`.
+  `fix/janelas-moveis` e retreinada sobre a base do C1 (`da1d6d9`, no `master`; produção ainda não). Ver `docs/DECISIONS.md`.
 - **Possível vazamento a confirmar:** `score_sanidade` e `score_manejo` são variáveis que o
   gerador usa para criar a produção e aparecem entre as features.
 - **Score (C1 fechado em 20/10/2026, ainda não publicado em produção):** as 7 dimensões
@@ -112,7 +112,7 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
   (precisa do OK do Fagner: é ação pública e irreversível) e pedir ao suporte do GitHub a remoção
   dos commits órfãos, que continuam acessíveis pelo hash.
 - **Execução (06/11, com OK do Fagner):** código, teste e `docs/DECISIONS.md` de `73c4c54` trazidos
-  para `fix/janelas-moveis`; os artefatos de 11/10 (base anterior ao C1) foram descartados e
+  para o `master` (`da1d6d9`, push em 06/11); os artefatos de 11/10 (base anterior ao C1) foram descartados e
   regenerados. `git push origin --delete fix/rolling-por-produtor` feito; worktree e branches locais
   removidos. **Pendente:** o PR #2 segue expondo o commit; pedido ao suporte do GitHub é do Fagner.
 - **Efeito no número canônico:** MAE de teste **24,47** contra 31,54 (ganho de **22,4%**). O código
@@ -154,5 +154,5 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 | até 06/08/2026 | 24,45 | 22,5% | Com CPF e razão social como features (A2) |
 | 06/08/2026 | 24,17 | 23,4% | A2 fechado (`fa4ef0d`) |
 | 20/10/2026 | 24,36 | 22,8% | C1 fechado (`aa7e753`) |
-| 06/11/2026 | **24,47** | **22,4%** | Janelas móveis por produtor (`fix/janelas-moveis`) — **número vigente** |
+| 06/11/2026 | **24,47** | **22,4%** | Janelas móveis por produtor (`da1d6d9`) — **número vigente** |
 
