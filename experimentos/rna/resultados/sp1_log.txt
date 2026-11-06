@@ -1,0 +1,82 @@
+Linhas: treino 32010 | validação 10980 | teste 10920 | features 131
+Baseline MM7 com cascata — MAE teste 31.543
+Sintonia xgb (30 configurações, validação 2024)
+  [xgb] config 1/30: MAE val 23.216 (12.8s)
+  [xgb] config 2/30: MAE val 24.526 (7.7s)
+  [xgb] config 3/30: MAE val 23.863 (36.9s)
+  [xgb] config 4/30: MAE val 22.895 (10.2s)
+  [xgb] config 5/30: MAE val 23.167 (23.3s)
+  [xgb] config 6/30: MAE val 24.280 (3.7s)
+  [xgb] config 7/30: MAE val 23.053 (36.9s)
+  [xgb] config 8/30: MAE val 23.007 (8.8s)
+  [xgb] config 9/30: MAE val 23.922 (32.9s)
+  [xgb] config 10/30: MAE val 23.456 (3.6s)
+  [xgb] config 11/30: MAE val 23.258 (28.5s)
+  [xgb] config 12/30: MAE val 23.042 (15.4s)
+  [xgb] config 13/30: MAE val 23.462 (3.3s)
+  [xgb] config 14/30: MAE val 23.490 (12.2s)
+  [xgb] config 15/30: MAE val 22.950 (17.3s)
+  [xgb] config 16/30: MAE val 23.714 (27.6s)
+  [xgb] config 17/30: MAE val 23.167 (9.3s)
+  [xgb] config 18/30: MAE val 23.455 (6.5s)
+  [xgb] config 19/30: MAE val 23.176 (13.4s)
+  [xgb] config 20/30: MAE val 22.844 (16.8s)
+  [xgb] config 21/30: MAE val 23.093 (11.9s)
+  [xgb] config 22/30: MAE val 23.429 (17.4s)
+  [xgb] config 23/30: MAE val 23.411 (9.6s)
+  [xgb] config 24/30: MAE val 23.213 (5.4s)
+  [xgb] config 25/30: MAE val 23.416 (71.4s)
+  [xgb] config 26/30: MAE val 23.489 (15.0s)
+  [xgb] config 27/30: MAE val 23.315 (9.6s)
+  [xgb] config 28/30: MAE val 22.893 (5.2s)
+  [xgb] config 29/30: MAE val 24.315 (4.2s)
+  [xgb] config 30/30: MAE val 23.651 (9.8s)
+Melhor xgb: {'n_estimators': 500, 'max_depth': 8, 'learning_rate': 0.02, 'subsample': 0.7, 'colsample_bytree': 0.6, 'min_child_weight': 1}
+  [xgb] semente 42: MAE teste 23.301
+  [xgb] semente 43: MAE teste 23.268
+  [xgb] semente 44: MAE teste 23.260
+  [xgb] semente 45: MAE teste 23.257
+  [xgb] semente 46: MAE teste 23.321
+Sintonia mlp (30 configurações, validação 2024)
+  [mlp] config 1/30: MAE val 25.997 (9.4s)
+  [mlp] config 2/30: MAE val 33.719 (23.7s)
+  [mlp] config 3/30: MAE val 28.448 (9.1s)
+  [mlp] config 4/30: MAE val 28.554 (13.7s)
+  [mlp] config 5/30: MAE val 27.988 (11.2s)
+  [mlp] config 6/30: MAE val 34.109 (24.4s)
+  [mlp] config 7/30: MAE val 31.541 (28.3s)
+  [mlp] config 8/30: MAE val 27.920 (26.1s)
+  [mlp] config 9/30: MAE val 25.111 (7.5s)
+  [mlp] config 10/30: MAE val 27.262 (33.3s)
+  [mlp] config 11/30: MAE val 25.997 (8.8s)
+  [mlp] config 12/30: MAE val 28.747 (9.0s)
+  [mlp] config 13/30: MAE val 25.780 (19.4s)
+  [mlp] config 14/30: MAE val 28.136 (19.7s)
+  [mlp] config 15/30: MAE val 29.381 (22.4s)
+  [mlp] config 16/30: MAE val 30.216 (42.0s)
+  [mlp] config 17/30: MAE val 27.907 (22.5s)
+  [mlp] config 18/30: MAE val 28.000 (10.5s)
+  [mlp] config 19/30: MAE val 28.658 (15.6s)
+  [mlp] config 20/30: MAE val 28.448 (9.5s)
+  [mlp] config 21/30: MAE val 30.491 (35.2s)
+  [mlp] config 22/30: MAE val 29.934 (54.0s)
+  [mlp] config 23/30: MAE val 30.107 (29.8s)
+  [mlp] config 24/30: MAE val 27.313 (61.1s)
+  [mlp] config 25/30: MAE val 26.516 (15.8s)
+  [mlp] config 26/30: MAE val 25.815 (26.8s)
+  [mlp] config 27/30: MAE val 24.984 (19.6s)
+  [mlp] config 28/30: MAE val 30.344 (20.6s)
+  [mlp] config 29/30: MAE val 29.003 (15.6s)
+  [mlp] config 30/30: MAE val 28.224 (17.6s)
+Melhor mlp: {'hidden_layer_sizes': (256, 128), 'alpha': 0.01, 'learning_rate_init': 0.003, 'batch_size': 256}
+  [mlp] semente 42: MAE teste 26.559
+  [mlp] semente 43: MAE teste 25.607
+  [mlp] semente 44: MAE teste 25.397
+  [mlp] semente 45: MAE teste 25.582
+  [mlp] semente 46: MAE teste 26.815
+Ablação A1 (XGBoost sem litros_ajustados_gerencial e impacto_gerencial_pct)
+  [xgb] semente 42: MAE teste 24.475
+  [xgb] semente 43: MAE teste 24.377
+  [xgb] semente 44: MAE teste 24.439
+  [xgb] semente 45: MAE teste 24.361
+  [xgb] semente 46: MAE teste 24.386

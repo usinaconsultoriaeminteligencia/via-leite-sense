@@ -107,3 +107,15 @@ fecha com sobra): 8 de 12 fazendas com erro detectadas a 5%.
 dele não autoriza mudanças nem bases). Os fatos são sintéticos (`nature="synthetic"`). Os
 verbos não reconhecidos da família C ("coloquei", "rendeu", "ficou") **não** foram corrigidos
 olhando o teste: a correção exige uma família de desenvolvimento nova, ou contaminaria a medida.
+
+## 06/11/2026 — SP1: resultado negativo para a rede neural; o modelo de produção não muda
+
+**Evidência** (`experimentos/rna/resultados/sp1_resultados.md`, 30 configurações por modelo,
+sementes 42–46, teste de 2025 aberto uma vez por semente): XGBoost sintonizado 23,28 ± 0,03;
+MLP sintonizada 25,99 ± 0,65; baseline 31,54. Intervalos de ±1 DP não se sobrepõem.
+
+**Decisão.** Pelo critério pré-registrado (`rna.md` §6.2), a MLP **fica fora do produto** e o
+resultado entra no artigo como achado negativo. O modelo de produção também **não** recebe a
+configuração sintonizada agora: antes é preciso decidir o A1, porque as duas features que expõem o
+dia *t* respondem por 1,13 L do ganho (24,41 sem elas). Trocar o modelo sem fechar o A1 levaria ao
+produto um ganho que pode ser em parte inconsistência temporal.
