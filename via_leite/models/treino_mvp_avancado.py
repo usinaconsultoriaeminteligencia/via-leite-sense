@@ -57,6 +57,53 @@ def adicionar_features_temporais(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+JANELAS_MOVEIS = [3, 7, 14, 30]
+
+#: (coluna de origem, sufixo do nome da feature mm_<janela>_<sufixo>)
+COLUNAS_JANELA_MOVEL = [
+    ("litros_coletados", "litros_coletados"),
+    ("ccs", "ccs"),
+    ("cbt", "cbt"),
+    ("thi", "thi"),
+    ("precip_mm", "precip"),
+]
+
+
+def adicionar_janelas_moveis(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Médias (e desvios) móveis dos dias ANTERIORES, por produtor.
+
+    `df` tem de estar ordenado por `id_produtor` e `data`. O `shift(1)` fica
+    dentro do `transform` para a janela nunca incluir o próprio dia (vazamento
+    do alvo); o `transform` garante que a janela nunca sai do produtor.
+
+    A versão anterior fazia `group[col].shift(1).rolling(...)`. O `shift(1)`
+    de um SeriesGroupBy devolve uma Series sem agrupamento, e o `rolling`
+    seguinte corria sobre o DataFrame inteiro: como ele está ordenado por
+    produtor e data, os primeiros dias de cada produtor recebiam a média dos
+    últimos dias do produtor anterior. Ver tests/test_janelas_moveis_por_produtor.py.
+    """
+    df = df.copy()
+    group = df.groupby("id_produtor", sort=False)
+
+    def media_anterior(janela: int):
+        return lambda s: s.shift(1).rolling(janela, min_periods=1).mean()
+
+    def desvio_anterior(janela: int):
+        return lambda s: s.shift(1).rolling(janela, min_periods=2).std()
+
+    # A ordem das colunas é a mesma de antes da correcção (mm e std de litros,
+    # depois ccs, cbt, thi, precip): o colsample do XGBoost depende dela, e
+    # mantê-la deixa a comparação de métricas antes/depois limpa.
+    for janela in JANELAS_MOVEIS:
+        for coluna, sufixo in COLUNAS_JANELA_MOVEL:
+            df[f"mm_{janela}_{sufixo}"] = group[coluna].transform(media_anterior(janela))
+            if coluna == "litros_coletados":
+                df[f"std_{janela}_litros_coletados"] = group[coluna].transform(desvio_anterior(janela))
+
+    return df
+
+
 def engenharia_de_atributos(base_treino: pd.DataFrame, dim_produtor: pd.DataFrame, rota: pd.DataFrame) -> pd.DataFrame:
     df = base_treino.copy()
     df["data"] = pd.to_datetime(df["data"], errors="coerce")
@@ -79,19 +126,8 @@ def engenharia_de_atributos(base_treino: pd.DataFrame, dim_produtor: pd.DataFram
         df[f"lag_precip_15d_{lag}"] = group["precip_15d"].shift(lag)
         df[f"lag_thi_{lag}"] = group["thi"].shift(lag)
 
-    for janela in [3, 7, 14, 30]:
-        df[f"mm_{janela}_litros_coletados"] = (
-            group["litros_coletados"].shift(1).rolling(janela, min_periods=1).mean().reset_index(level=0, drop=True)
-        )
-        df[f"std_{janela}_litros_coletados"] = (
-            group["litros_coletados"].shift(1).rolling(janela, min_periods=2).std().reset_index(level=0, drop=True)
-        )
-        df[f"mm_{janela}_ccs"] = group["ccs"].shift(1).rolling(janela, min_periods=1).mean().reset_index(level=0, drop=True)
-        df[f"mm_{janela}_cbt"] = group["cbt"].shift(1).rolling(janela, min_periods=1).mean().reset_index(level=0, drop=True)
-        df[f"mm_{janela}_thi"] = group["thi"].shift(1).rolling(janela, min_periods=1).mean().reset_index(level=0, drop=True)
-        df[f"mm_{janela}_precip"] = (
-            group["precip_mm"].shift(1).rolling(janela, min_periods=1).mean().reset_index(level=0, drop=True)
-        )
+    df = adicionar_janelas_moveis(df)
+    group = df.groupby("id_produtor", sort=False)
 
     df["tendencia_7_30_litros"] = df["mm_7_litros_coletados"] - df["mm_30_litros_coletados"]
     df["proporcao_coletado_produzido_lag1"] = df["lag_litros_coletados_1"] / df[
