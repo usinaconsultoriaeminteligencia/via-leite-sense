@@ -15,8 +15,8 @@ cd "C:\Users\Novou\Desktop\USINA\Via Leite"
 |---|---|---|---|---|
 | **Inteligência Artificial** (Alexandre Barbosa) | `ia/` | `c2_c4_sensibilidade` | O motor de regras tem dimensões sobrepostas (C2)? Quanto o resultado depende dos pesos sem proveniência (C4)? | Não |
 | **Redes Neurais Artificiais** (Cristiano) | `rna/` | `sp1_mlp_vs_xgb --orcamento 30` | SP1: a rede neural (MLP) supera o XGBoost e o baseline, pelo protocolo pré-registrado? Inclui a ablação do A1 | Não (cerca de 40 min) |
-| **Processamento de Linguagem Natural** (Raphael) | `pln/` | `corpus_sintetico`, depois `sp2_pipeline` | SP2: com que fidelidade a mensagem do produtor vira lançamento? Regras (E0) × TF-IDF + LR (E1), com recusa | **Corpus real** para o número que vale (`--teste-real`) |
-| **IA Generativa** (Raphael) | `iagen/` | `sp3_planos` | SP3: o plano ancorado em norma (RAG) é mais fiel e menos alucinado? 4 braços B0–B3 | **Chave de API** (`ANTHROPIC_API_KEY`) para B2/B3 e **texto oficial das INs** em `iagen/corpus/` para B3 |
+| **Processamento de Linguagem Natural** (Raphael) | `pln/` | `corpus_sintetico`, `sp2_pipeline`, `sp2_oraculo_domainsim` | SP2: com que fidelidade a mensagem do produtor vira lançamento? Regras (E0) × TF-IDF + LR (E1), com recusa; consistência do lançamento contra o **oráculo do DomainSim** | DomainSim em `D:\PROJETOS_CODEX\domainsim\src` (só leitura; `DOMAINSIM_SRC` muda o caminho). Corpus real opcional (`--teste-real`) |
+| **IA Generativa** (Raphael) | `iagen/` | `sp3_planos` | SP3: o plano ancorado em norma (RAG) é mais fiel e menos alucinado? 4 braços B0–B3 | **Chave de API** (`ANTHROPIC_API_KEY`) para B2/B3. O texto oficial das INs já está em `iagen/corpus/` |
 | **Extensão** (Willgnner) | `docs/projeto_integrador/extensao_kit_de_campo.md` | — | Validade externa: oficina, escuta, coleta de linguagem, beneficiários | Campo (SENAR ou cooperativa) |
 
 ## Regras que valem para todos

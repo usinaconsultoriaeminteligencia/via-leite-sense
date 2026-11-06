@@ -81,3 +81,29 @@ artefatos daquele commit vinham da base anterior ao C1 e foram regenerados.
 O artefato de 20/10 dizia 24,36; o mesmo código hoje dá 24,34 (variação de ambiente de
 0,02 L). Os +0,13 L vêm da correção. Número vigente: **24,47 / 22,4%** ("24,5 contra 31,5,
 cerca de 22% menor"). Série completa em `docs/ESTADO_REAL.md` §8.
+
+## 06/11/2026 — PLN sem corpus real: avaliação contra o oráculo do DomainSim
+
+**Contexto.** O corpus de fala real de produtor (`pln.md` §4.2) não será coletado antes da banca
+de 12/12. O Fagner decidiu não esperar e usar o DomainSim (`D:\PROJETOS_CODEX\domainsim`),
+minutado para enfrentar justamente a falta de dado real.
+
+**Decisão.** O SP2 passa a ter dois níveis de evidência, declarados separadamente no artigo:
+
+1. **Linguagem:** continua só sintética (famílias A, B e C). A pergunta "o pipeline entende o
+   produtor real?" fica **em aberto** e é declarada como limitação (contingência PLN-1).
+2. **Consistência do lançamento:** respondida contra fatos de domínio. O DomainSim guarda as
+   entradas e coletas verdadeiras de cada tanque; o tanque é reconstruído com os volumes que o
+   pipeline extraiu e o DomainSim reconcilia (`experimentos/pln/sp2_oraculo_domainsim.py`).
+
+**Evidência (06/11, 20 fazendas, 560 mensagens da família C, 25% sem unidade).** Volume lido
+corretamente em 72,1%; não lido em 27,9% (vai para confirmação humana); lido errado em **0%**.
+Sem confirmação humana, o DomainSim recusa as 20 reconciliações (faltam entradas); com as
+pendências confirmadas, aceita as 20 sem divergência. No controle com erros injetados, o
+DomainSim recusa as fazendas com leitura **a menos** e não pega a leitura **a mais** (o balanço
+fecha com sobra): 8 de 12 fazendas com erro detectadas a 5%.
+
+**Limites.** O DomainSim foi usado só como biblioteca, sem nenhuma alteração (o `AGENTS.md`
+dele não autoriza mudanças nem bases). Os fatos são sintéticos (`nature="synthetic"`). Os
+verbos não reconhecidos da família C ("coloquei", "rendeu", "ficou") **não** foram corrigidos
+olhando o teste: a correção exige uma família de desenvolvimento nova, ou contaminaria a medida.

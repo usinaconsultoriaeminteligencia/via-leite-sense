@@ -120,10 +120,16 @@ def carregar_corpus() -> list[dict]:
     return trechos
 
 
+# palavras vazias: sem elas, "preço do boi gordo na bolsa" casava com a norma pelo "do" e pelo "na"
+STOP_PT = sorted({norm(w) for w in """a o as os um uma de do da dos das no na nos nas em por para com sem ao aos
+e ou que se seu sua seus suas este esta estes estas esse essa isso ser deve devem pelo pela pelos pelas
+sao são é ter tem como mais menos quando onde qual quais leite""".split()})
+
+
 class Recuperador:
     def __init__(self, trechos: list[dict]):
         self.trechos = trechos
-        self.vec = TfidfVectorizer(preprocessor=norm, ngram_range=(1, 2), sublinear_tf=True)
+        self.vec = TfidfVectorizer(preprocessor=norm, ngram_range=(1, 2), sublinear_tf=True, stop_words=STOP_PT)
         self.M = self.vec.fit_transform([t["texto"] for t in trechos])
 
     def buscar(self, consulta: str, k: int = 4) -> list[tuple[float, dict]]:

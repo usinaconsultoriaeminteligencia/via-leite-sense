@@ -1,0 +1,492 @@
+{
+  "data_execucao": "2026-11-06T20:53:53",
+  "domainsim_src": "D:\\PROJETOS_CODEX\\domainsim\\src",
+  "fazendas": 20,
+  "mensagens": 560,
+  "volume_lido_correto_pct": 72.14285714285714,
+  "nao_lidas_pct": 27.857142857142858,
+  "lidas_erradas_pct": 0.0,
+  "sem_confirmacao": {
+    "recusadas": 20,
+    "aceitas_com_divergencia": 0
+  },
+  "com_confirmacao": {
+    "recusadas": 0,
+    "aceitas_com_divergencia": 0
+  },
+  "controle_sensibilidade": [
+    {
+      "taxa_injetada": 0.01,
+      "erros_injetados": 3,
+      "fazendas_com_erro": 3,
+      "recusadas_pelo_domainsim": 2,
+      "aceitas_com_divergencia": 1
+    },
+    {
+      "taxa_injetada": 0.03,
+      "erros_injetados": 14,
+      "fazendas_com_erro": 9,
+      "recusadas_pelo_domainsim": 7,
+      "aceitas_com_divergencia": 2
+    },
+    {
+      "taxa_injetada": 0.05,
+      "erros_injetados": 18,
+      "fazendas_com_erro": 12,
+      "recusadas_pelo_domainsim": 8,
+      "aceitas_com_divergencia": 4
+    }
+  ],
+  "exemplos_nao_lidas": [
+    "coloquei 152 agora no tanque",
+    "114 da manha ja ta no frio",
+    "nessa ordenha a ordenha rendeu 131",
+    "botei 130 no resfriador agora",
+    "ficou 110 no tanque da manha",
+    "hoje a ordenha rendeu cento e treze",
+    "nessa ordenha a ordenha rendeu cento e cinco",
+    "coloquei 106 agora no tanque"
+  ],
+  "por_fazenda": [
+    {
+      "fazenda": "F01",
+      "mensagens": 28,
+      "nao_lidas": 14,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "coloquei 152 agora no tanque",
+        "114 da manha ja ta no frio",
+        "nessa ordenha a ordenha rendeu 131"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F01-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F02",
+      "mensagens": 28,
+      "nao_lidas": 7,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "botei 130 no resfriador agora",
+        "ficou 110 no tanque da manha",
+        "hoje a ordenha rendeu cento e treze"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F02-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F03",
+      "mensagens": 28,
+      "nao_lidas": 6,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "nessa ordenha a ordenha rendeu cento e cinco",
+        "coloquei 106 agora no tanque",
+        "producao da tarde: 113"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F03-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F04",
+      "mensagens": 28,
+      "nao_lidas": 5,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "botei quatrocentos e setenta e cinco no resfriador nessa ordenha",
+        "agora a ordenha rendeu quatrocentos e setenta e oito",
+        "445 da tarde ja ta no frio"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F04-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F05",
+      "mensagens": 28,
+      "nao_lidas": 7,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "coloquei 414 hoje no tanque",
+        "producao da tarde: 507",
+        "producao da manha: quatrocentos e cinquenta e cinco"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F05-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F06",
+      "mensagens": 28,
+      "nao_lidas": 9,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "390 da manha ja ta no frio",
+        "produção da manhã: 460",
+        "coloquei 503 hoje no tanque"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F06-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F07",
+      "mensagens": 28,
+      "nao_lidas": 6,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "botei 341 no resfriador nessa ordenha",
+        "ficou 250 no tanque da manha",
+        "294 da tarde ja ta no frio"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F07-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F08",
+      "mensagens": 28,
+      "nao_lidas": 6,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "345 da tarde já ta no frio",
+        "produção da manhã: 310",
+        "botei quatrocentos e vinte e cinco no resfriador nessa ordenha"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F08-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F09",
+      "mensagens": 28,
+      "nao_lidas": 11,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "agora a ordenha rendeu 621",
+        "565 da tarde já ta no frio",
+        "nessa ordenha a ordenha rendeu 563"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F09-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F10",
+      "mensagens": 28,
+      "nao_lidas": 12,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "ficou 355 no tanque da manhã",
+        "botei quatrocentos e catorze no resfriador agora",
+        "ficou quatrocentos e dez no tanque da tarde"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F10-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F11",
+      "mensagens": 28,
+      "nao_lidas": 13,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "325 da manha ja ta no frio",
+        "botei 315 no resfriador agora",
+        "botei 331 no resfriador hoje"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F11-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F12",
+      "mensagens": 28,
+      "nao_lidas": 10,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "ficou 127 no tanque da manha",
+        "coloquei 117 hoje no tanque",
+        "107 da manhã já ta no frio"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F12-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F13",
+      "mensagens": 28,
+      "nao_lidas": 4,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "coloquei 130 hoje no tanque",
+        "producao da manha: 126",
+        "agora a ordenha rendeu 125"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F13-c3"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F14",
+      "mensagens": 28,
+      "nao_lidas": 8,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "ficou trezentos e dez no tanque da manhã",
+        "ficou 305 no tanque da tarde",
+        "botei 330 no resfriador agora"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F14-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F15",
+      "mensagens": 28,
+      "nao_lidas": 6,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "ficou 172 no tanque da manha",
+        "botei 185 no resfriador hoje",
+        "157 da manha ja ta no frio"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F15-c1"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F16",
+      "mensagens": 28,
+      "nao_lidas": 4,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "producao da manha: 209",
+        "244 da tarde já ta no frio",
+        "ficou 280 no tanque da manhã"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F16-c5"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F17",
+      "mensagens": 28,
+      "nao_lidas": 9,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "281 da manhã já ta no frio",
+        "hoje a ordenha rendeu 270",
+        "ficou 270 no tanque da tarde"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F17-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F18",
+      "mensagens": 28,
+      "nao_lidas": 8,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "ficou trezentos e sessenta no tanque da tarde",
+        "coloquei 310 nessa ordenha no tanque",
+        "coloquei 315 nessa ordenha no tanque"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F18-c1"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F19",
+      "mensagens": 28,
+      "nao_lidas": 5,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "botei trezentos e setenta no resfriador agora",
+        "botei 280 no resfriador hoje",
+        "ficou 263 no tanque da manha"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F19-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    },
+    {
+      "fazenda": "F20",
+      "mensagens": 28,
+      "nao_lidas": 6,
+      "lidas_erradas": 0,
+      "estoque_final_referencia_L": "0",
+      "exemplos_erro": [],
+      "exemplos_nao_lidas": [
+        "agora a ordenha rendeu 350",
+        "ficou 302 no tanque da tarde",
+        "botei 308 no resfriador nessa ordenha"
+      ],
+      "sem_confirmacao": {
+        "reconciliacao": "recusada",
+        "codigo": "negative_stock",
+        "evento": "F20-c0"
+      },
+      "com_confirmacao": {
+        "reconciliacao": "aceita",
+        "divergencia_final_L": "0"
+      }
+    }
+  ]
+}
