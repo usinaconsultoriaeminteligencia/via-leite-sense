@@ -42,6 +42,9 @@ real de cliente; a Piracanjuba não cede dados (07/10). C1 foi calibrado pela IN
 - **Alerta P0 (parcialmente resolvido):** o branch público `fix/rolling-por-produtor`, com CPF e
   telefone de 4 pessoas, foi apagado em 06/11. O **PR #2** fechado ainda aponta para o commit
   `73c4c54`, que abre pelo hash: falta o pedido de remoção ao suporte do GitHub (Fagner).
+- **Streamlit fora do projeto (06/11):** código, configuração e dependência removidos; a produção é
+  só Vercel + Railway. O app no Streamlit Cloud ainda existe e mostra uma tela de login: apagar em
+  share.streamlit.io (Fagner).
 - **Vazamento do modelo corrigido** (`da1d6d9`, no `master`): as médias móveis de cada produtor
   herdavam os últimos dias do anterior.
 

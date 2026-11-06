@@ -13,11 +13,9 @@ Desenvolvido por **USINA I.A.** para o **Desafio AgroStartup SENAR/SEBRAE Goiás
 🔗 **GitHub:** https://github.com/usinaconsultoriaeminteligencia/via-leite-sense
 
 > **Arquitetura de produção:** frontend SPA na **Vercel** consumindo a **API FastAPI
-> na Railway** (DuckDB em volume persistente). O app **Streamlit** foi descomissionado —
-> `via-leite-sense.streamlit.app` agora redireciona para a Vercel. O código Streamlit
-> Streamlit foi removido em 25/08/2026 — `via_leite_app.py` é apenas a página de
-> redirect, que existe para não quebrar os QR codes e links já impressos do pitch.
-> O app completo permanece no histórico do Git (até `0c945aa`).
+> na Railway** (DuckDB em volume persistente). Não há mais Streamlit no projeto: o app
+> foi descomissionado em 25/08/2026 e a página de redirect saiu em 06/11/2026. O app
+> completo permanece no histórico do Git (até `0c945aa`).
 
 > **Perdido no projeto?** Comece por [`docs/ESTADO_REAL.md`](docs/ESTADO_REAL.md): o que
 > existe e roda, o que existe só em documento (ex.: assistente no WhatsApp) e o que vem a seguir.
@@ -87,11 +85,10 @@ de THI (estresse térmico) e tendência de queda de produção.
 ## Stack tecnológica
 
 - **Python 3.11+** — linguagem principal
-- **Streamlit** — dashboard interativo
 - **Scikit-learn** — modelo preditivo de regressão + scoring de risco
 - **Pandas / NumPy** — processamento de dados
-- **Plotly** — visualizações interativas
-- **FastAPI** — API backend (opcional)
+- **FastAPI + DuckDB** — API de produção (Railway)
+- **SPA em JavaScript** — frontend de produção (Vercel, `frontend/`)
 - **FPDF2** — exportação de relatórios PDF
 
 ---
@@ -111,7 +108,8 @@ pip install -r requirements.txt
 ```bash
 python -m via_leite.models.gerador_leite_sintetico --output-dir dados_teste
 python -m via_leite.models.treino_mvp_avancado
-streamlit run via_leite_app.py
+python -m uvicorn via_leite.api.app:app --port 8000   # API
+python -m http.server 8600 -d frontend                # SPA
 ```
 
 ### Fluxo 2 — Clima real INMET
@@ -123,7 +121,8 @@ python -m via_leite.models.gerador_leite_sintetico --use-real-climate \
   --real-climate-path dados_inmet_processado/fact_clima_diario_inmet.csv \
   --output-dir dados_teste
 python -m via_leite.models.treino_mvp_avancado
-streamlit run via_leite_app.py
+python -m uvicorn via_leite.api.app:app --port 8000   # API
+python -m http.server 8600 -d frontend                # SPA
 ```
 
 ### Fluxo 3 — Gerar artefatos de ranking de risco

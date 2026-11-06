@@ -10,6 +10,7 @@
 - **Retreino** sobre a base do C1: MAE de teste **24,47** contra 31,54 (ganho de **22,4%**). O código antigo, no mesmo ambiente, dá 24,34 (artefato de 20/10: 24,36), então os +0,13 L vêm da correção. Número atualizado em `ESTADO_REAL.md`, `projeto_integrador/artigo.md`, `rna.md`, `DECISIONS.md`, `CONTEXT.md` e no registry. `pytest`: **77 passed**.
 - **`git push origin --delete fix/rolling-por-produtor`** feito; worktree `vigilant-bouman-bf16e0` e branches locais `fix/rolling-por-produtor` e `claude/vigilant-bouman-bf16e0` removidos.
 - **Resta exposto:** o PR #2 (fechado) mantém `refs/pull/2/head` → `73c4c54`, e a página do commit ainda abre (HTTP 200). Usuário não apaga `refs/pull`; só o suporte do GitHub. O PR #1 não tem os dados.
+- **Streamlit removido.** Um Streamlit local foi aberto sem querer na porta 8521 (escutando em `0.0.0.0`), porque o `.claude/launch.json` tinha o Streamlit como primeira configuração. Foi parado e a configuração saiu. O `via-leite-sense.streamlit.app` não redirecionava mais: mandava para o login do Streamlit. Saíram `via_leite_app.py`, `.streamlit/`, `.devcontainer/` e `streamlit` do `requirements.txt`; README e DEPLOY reescritos; o onboarding parou de gerar `subir_dashboard.ps1` (apontava para `dashboard_mvp_avancado.py`, que não existe). **Falta:** o Fagner apagar o app em share.streamlit.io.
 - Material do Demo Day (roteiro, briefing, prompts) mantido com "24,4 / cerca de 23%": é registro datado do que foi dito em 29/10.
 
 

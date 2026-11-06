@@ -50,6 +50,9 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
   ≥ 500 mil soma 45 pontos) e C4 (pesos sem proveniência). Ver §8.
 - **Produção roda o score antigo** até um deploy autorizado: lá ainda valem as 4 dimensões
   mortas e o tanque saturado.
+- **Streamlit removido (06/11/2026):** a página de redirect, o `.streamlit/`, o `.devcontainer/` e a
+  dependência saíram do repositório. O app `via-leite-sense.streamlit.app` já não redirecionava:
+  mandava o visitante para o login do Streamlit. Falta o Fagner apagá-lo em share.streamlit.io.
 - **Deploy:** sem auto-deploy (ALERTA-008); a produção já divergiu do `master` por 8 dias.
 - **Segurança:** a senha antiga ainda é recuperável do histórico Git e o repositório é público.
 - **Dados pessoais no GitHub (06/11/2026):** o branch `fix/rolling-por-produtor`, publicado antes

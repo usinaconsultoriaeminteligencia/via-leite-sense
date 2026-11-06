@@ -14,6 +14,11 @@
 
 ## P1
 
+- [ ] **Apagar o app `via-leite-sense` em share.streamlit.io** (Fagner). Desde 06/11 o repositório
+      não tem mais o `via_leite_app.py`, e o app mostrava login em vez de redirecionar.
+- [ ] Conferir para onde aponta o QR code da tela 13 do pitch; se for `streamlit.app`, trocar por
+      `https://via-leite-sense.vercel.app`.
+
 - [ ] Registrar o resultado do Demo Day (29/10) e o próximo marco do AgroStartup.
 - [ ] Commitar o material do Demo Day: `docs/ROTEIRO_DEMODAY_VIA_LEITE_SENSE.md/.pdf`,
       `docs/PITCH_DEMODAY_VIA_LEITE_SENSE.pdf`, `docs/PREVIA_SLIDES_DEMODAY.png`,
@@ -43,6 +48,8 @@
 
 ## Feito recentemente
 
+- [x] 06/11 — Streamlit removido do repositório (redirect, `.streamlit/`, `.devcontainer/`, dependência,
+      config do preview); o comando morto `subir_dashboard.ps1` saiu do onboarding.
 - [x] 06/11 — Correção das janelas móveis integrada (`da1d6d9`), retreinada e com push no `master`: MAE 24,47 / 22,4%.
 - [x] 06/11 — Branch público `fix/rolling-por-produtor` (com CPF) apagado; worktree e branches locais removidos.
 - [x] 06/11 — `.gitignore` passa a excluir `entrega 12_10_26/` e o `.zip` (Plano assinado com CPF).

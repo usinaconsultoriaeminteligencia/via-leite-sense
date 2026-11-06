@@ -90,7 +90,6 @@ def run_real_pilot(
         "proximos_comandos": {
             "api": f"$env:MVP_DATA_DIR='{env['MVP_DATA_DIR']}'; $env:MVP_ARTEFATOS_DIR='{env['MVP_ARTEFATOS_DIR']}'; python -m uvicorn via_leite.api.app:app --host 127.0.0.1 --port 8000",
             "frontend": "python -m http.server 8600 -d frontend",
-            "dashboard": f"$env:MVP_DATA_DIR='{env['MVP_DATA_DIR']}'; $env:MVP_ARTEFATOS_DIR='{env['MVP_ARTEFATOS_DIR']}'; streamlit run dashboard_mvp_avancado.py",
         },
     }
 

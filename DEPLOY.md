@@ -1,8 +1,8 @@
 # Deploy — VIA LEITE SENSE
 
-> ⚠️ **Produção atual: Vercel (frontend) + Railway (backend).** O deploy Streamlit
-> abaixo é **legado** — o app `via-leite-sense.streamlit.app` foi descomissionado e
-> hoje redireciona para a Vercel (ver `via_leite_app.py`).
+> ⚠️ **Produção: Vercel (frontend) + Railway (backend).** Não há Streamlit: a página de
+> redirect saiu do repositório em 06/11/2026. O app `via-leite-sense.streamlit.app` deve ser
+> apagado em share.streamlit.io (só o dono da conta consegue).
 >
 > **Publicar produção (via CLI, enquanto o auto-deploy GitHub não estiver conectado):**
 > - **Frontend (Vercel):** `vercel --cwd frontend --prod --yes`
@@ -87,47 +87,7 @@ localmente com as mesmas variáveis.
 
 ---
 
-## Opção 1 — Streamlit Community Cloud (LEGADO — não é mais a produção)
-
-### Pré-requisitos
-- Conta GitHub com o repositório `via-leite-sense` criado
-- Conta em [share.streamlit.io](https://share.streamlit.io) (login com GitHub)
-
-### Passo a passo
-
-**1. Commitar e subir o projeto**
-```bash
-git init
-git add .
-git commit -m "feat: via leite sense sprint1 - login + landing + deploy"
-git remote add origin https://github.com/SEU_USUARIO/via-leite-sense.git
-git push -u origin master
-```
-
-**2. Criar o app no Streamlit Cloud**
-- Acesse share.streamlit.io → "New app"
-- Repositório: `SEU_USUARIO/via-leite-sense`
-- Branch: `master`
-- Main file path: `via_leite_app.py` (página de redirect — é a única que resta)
-
-**3. Secrets — não há**
-
-O app Streamlit foi reduzido a um redirect em 25/08/2026: sem login, sem dados,
-sem `secrets.toml`. A autenticação vive na API (`X-API-Key`, `via_leite/api/security.py`).
-
-**4. Aguardar o build**
-- O Streamlit Cloud instala as dependências de `requirements.txt` automaticamente
-- Tempo típico: 2–5 minutos no primeiro deploy
-
-**5. URL gerada**
-```
-https://SEU_USUARIO-via-leite-sense-via-leite-app-HASH.streamlit.app
-```
-Você pode configurar um nome customizado nas configurações do app.
-
----
-
-## Opção 2 — Execução local (desenvolvimento)
+## Execução local (desenvolvimento)
 
 ```powershell
 # Instalar dependências
@@ -162,7 +122,7 @@ cd frontend && python -m http.server 3000
 ## Checklist pré-apresentação
 
 - [ ] Deploy funcionando em URL pública
-- [ ] Redirect do Streamlit Cloud levando à Vercel (QR codes do pitch)
+- [ ] QR codes do pitch apontando para `https://via-leite-sense.vercel.app`
 - [ ] VIA LEITE EDGE com alertas ativos
 - [ ] Nenhuma rota da API responde sem `X-API-Key` (exceto `/health`)
 - [ ] Relatório em PDF: `GET /suppliers/{id}/report.pdf` devolvendo `%PDF-`

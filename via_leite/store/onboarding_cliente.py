@@ -78,12 +78,6 @@ def build_markdown_report(cliente: str, summary: dict[str, object]) -> str:
             "```powershell",
             comandos["frontend"],
             "```",
-            "",
-            "### Dashboard",
-            "",
-            "```powershell",
-            comandos["dashboard"],
-            "```",
         ]
     )
     return "\n".join(linhas) + "\n"
@@ -92,7 +86,6 @@ def build_markdown_report(cliente: str, summary: dict[str, object]) -> str:
 def build_launcher_scripts(output_dir: Path, summary: dict[str, object]) -> None:
     comandos = summary["proximos_comandos"]
     write_text(output_dir / "subir_api.ps1", comandos["api"] + "\n")
-    write_text(output_dir / "subir_dashboard.ps1", comandos["dashboard"] + "\n")
     write_text(output_dir / "subir_frontend.ps1", comandos["frontend"] + "\n")
 
 
