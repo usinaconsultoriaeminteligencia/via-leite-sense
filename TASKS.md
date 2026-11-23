@@ -1,8 +1,21 @@
 # TASKS — Via Leite Sense
 
-> Atualizado em 06/11/2026. Ordem = prioridade. Contexto em `CONTEXT.md`.
+> Atualizado em 09/11/2026. Ordem = prioridade. Contexto em `CONTEXT.md`.
 
-## P0 — fazer primeiro
+## P0 — Registro de PI e aquisições (prioridade de 09/11 a ~30/11/2026)
+
+Painel: `docs/registro_pi/README.md`. O que não custa anda já; o que custa é pago **a partir de 20/11**
+(férias da Saneago). Pesquisa de anterioridade, logotipo, especificação, termo de cessão, ficha e script prontos em 09/11.
+
+- [x] **A6** Titular: USINA I.A. TECNOLOGIA E INOVACAO I.S. INOVA SIMPLES (I.S.), CNPJ 63.230.034/0001-92, ME (10/11).
+- [ ] **A6b** Emitir um comprovante CNPJ novo no dia do depósito, para a petição 3019 (o do Desktop é de 25/04).
+- [ ] **A7** Decidir a contrapartida do termo de cessão e colher as 5 assinaturas.
+- [ ] **A8** Definir os autores do software (quem escreveu código).
+- [ ] **A9** Cláusulas de PI do INOVA SENAI/FATESG e da FAPEG/SENAR.
+- [ ] **A10/A11** gov.br prata ou ouro; cadastro no e-INPI.
+- [ ] **20/11 →** domínios (B1) → marca nas classes 42 e 9 (B3) → e-CNPJ (B2) → registro do software (B4).
+
+## P0 — infraestrutura
 
 - [ ] **Pedir ao suporte do GitHub a remoção do PR #2 e dos commits órfãos** (Fagner, pela conta
       dona do repositório; formulário de remoção de dados sensíveis em support.github.com).

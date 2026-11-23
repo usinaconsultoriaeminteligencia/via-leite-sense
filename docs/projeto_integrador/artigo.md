@@ -4,7 +4,8 @@
 > e SP3 (IA Generativa) sob a pergunta central (§11 do mestre).
 > **Documento mestre:** [`../PROJETO_INTEGRADOR.md`](../PROJETO_INTEGRADOR.md)
 > **Prazo que vale: 12/12/2026** (apresentação de banca) — **não** 15/12.
-> **Data de referência:** 05/08/2026
+> **Data de referência:** 05/08/2026 · **atualizado em 23/11/2026** (números, achado A4 e
+> resultados medidos de SP1, SP2 e SP3 em 06/11; ver §13 e `ATUALIZACOES_ARTIGO_2026-11-06.md`)
 >
 > Este é o **plano do artigo**, não o artigo. Define contribuição, método,
 > reprodutibilidade, ameaças à validade, estrutura e calendário de escrita. O texto
@@ -57,7 +58,7 @@ não com a sofisticação do método.**
 |---|---|---|
 | Conhecimento normativo (SBC) | **Real** — IN 76/77, público, verificável | Auditável; funciona para produtor **novo** (dia 1) |
 | Geração ancorada (RAG) | **Real** — o mesmo corpus normativo | Verificável contra a fonte; é onde SP3 mede |
-| Entrada em linguagem natural (PLN) | **Misto** — treino sintético, **teste real** | A diferença entre os dois conjuntos **é** o resultado |
+| Entrada em linguagem natural (PLN) | **Sintético + oráculo de domínio** — sem corpus real a tempo (decisão de 06/11/2026); consistência do lançamento verificada contra o DomainSim | Mede-se a recusa: o volume lido errado é 0 %, e a linguagem real fica como limitação declarada |
 | Aprendizado supervisionado (RNA/XGB) | **Sintético** | Mede-se o ganho sobre baseline; o teto é o gerador |
 
 O resultado esperado — e a inversão que dá interesse ao trabalho — é que a camada
@@ -68,8 +69,8 @@ intuição de que mais aprendizado significa mais confiança.**
 
 ### C-2 — Protocolo de auditoria de sistema em produção
 
-O trabalho auditou o próprio produto e produziu **12 achados verificados**
-(A1–A3, C1–C6, G1–G3), cada um com evidência reproduzível: execução sobre 54.780 linhas,
+O trabalho auditou o próprio produto e produziu **13 achados verificados**
+(A1–A4, C1–C6, G1–G3), cada um com evidência reproduzível: execução sobre 54.780 linhas,
 consulta à API de produção, leitura de código com arquivo e linha. Três exemplos do que
 o protocolo encontra e uma leitura superficial não encontraria:
 
@@ -77,6 +78,10 @@ o protocolo encontra e uma leitura superficial não encontraria:
   protocolo achou a causa (limiar em cél/mL contra dado em mil/mL, mais um gerador
   irrealista em CBT e tanque) e o corrigiu com norma e fonte pública real, sem dado de
   cliente (20/10/2026). É o exemplo completo do ciclo achado → causa → correção;
+- **A4** — as médias e desvios móveis eram calculados sobre a base concatenada, e os
+  primeiros dias de cada produtor herdavam valores do produtor anterior. Pequeno na base
+  sintética (29 linhas de treino, MAE 24,34 → 24,47), grande em dado real, onde a
+  contaminação recairia sobre o produtor recém-chegado (corrigido em `da1d6d9`, 06/11/2026);
 - **G2** — a camada de recomendação específica existe, é testada em demo e **não está
   ligada** ao produto;
 - **G3** — **dois** motores de risco coexistem com escalas diferentes, e o que gera os
@@ -109,9 +114,9 @@ Reproduzidas do mestre §11, sem alteração — se mudarem lá, mudam aqui.
 
 | # | Subpergunta | Matéria | Métrica | Resultado em |
 |---|---|---|---|---|
-| SP1 | Ganho real do aprendizado supervisionado sobre o baseline, e o teto em base sintética | RNA | MAE: NN × XGBoost × baseline, 5 sementes | 29/09 |
-| SP2 | Fidelidade da conversão mensagem livre → lançamento estruturado | PLN | F1 intenção, F1 NER, taxa de lançamento correto | 29/09 |
-| SP3 | A ancoragem normativa via RAG reduz alucinação e aumenta aderência? | IA Gen | M1–M8, 4 braços | 30/11 |
+| SP1 | Ganho real do aprendizado supervisionado sobre o baseline, e o teto em base sintética | RNA | MAE: NN × XGBoost × baseline, 5 sementes | ✅ **medido 06/11** (§13) |
+| SP2 | Fidelidade da conversão mensagem livre → lançamento estruturado | PLN | F1 intenção, F1 NER, taxa de lançamento correto | ✅ **medido 06/11**, em sintético e contra o oráculo (§13) |
+| SP3 | A ancoragem normativa via RAG reduz alucinação e aumenta aderência? | IA Gen | M1–M8, 4 braços | ⚠️ **parcial**: B0 e B1 medidos; B2/B3 pendentes da chave de API (§13) |
 
 **SP3 é o núcleo experimental.** SP1 é a âncora de honestidade. SP2 sustenta a
 viabilidade da entrada de dados. A Extensão entra como **validade externa**, não como
@@ -141,7 +146,7 @@ o artigo inteiro** e que a banca vai cobrar.
 
 | Medida | Valor | Fonte |
 |---|---|---|
-| MAE teste (XGBoost) | **24,47 L** | `artefatos_teste/metricas_modelo.json` (`fix/janelas-moveis`, 06/11/2026) |
+| MAE teste (XGBoost) | **24,47 L** | `artefatos_teste/metricas_modelo.json` (commit `da1d6d9`, 06/11/2026) |
 | MAE teste (baseline) | **31,54 L** | idem |
 | **Ganho** | **22,4 %** | idem |
 | RMSE | 37,01 vs 48,57 | idem |
@@ -152,7 +157,11 @@ o artigo inteiro** e que a banca vai cobrar.
 > razão social: A2) → 24,17 / 23,4 % (A2 fechado, 06/08) → 24,36 / 22,8 % (C1 fechado,
 > 20/10/2026: CBT e tanque deixaram de carregar um sinal artificial) → **24,47 / 22,4 %** (06/11/2026:
 > janelas móveis deixaram de atravessar a fronteira entre produtores). A série completa está
-> em `docs/ESTADO_REAL.md` §8.
+> em `docs/ESTADO_REAL.md` §8. Cada correção de auditoria piorou um pouco o erro ou o deixou
+> estável, nunca o melhorou de forma artificial: é evidência para C-2.
+
+| Medida | Valor | Fonte |
+|---|---|---|
 | Baseline de geração de plano | **3 textos distintos / 30 produtores; 42 % sem ação** | API de produção, 05/08/2026 |
 
 `artefatos_teste` é o artefato **canônico** — confirmado por padrão do script, padrão do
@@ -191,7 +200,7 @@ Checklist que acompanha a submissão:
 
 ## 6. Ameaças à validade
 
-Seção obrigatória, e a que mais distingue o trabalho. É aqui que os 12 achados entram
+Seção obrigatória, e a que mais distingue o trabalho. É aqui que os 13 achados entram
 como **método**, não como confissão.
 
 ### 6.1 Validade interna
@@ -199,11 +208,12 @@ como **método**, não como confissão.
 | Ameaça | Origem | Tratamento no artigo |
 |---|---|---|
 | Identificadores como *features* (CPF, razão social) permitem memorização por indivíduo | **A2** | Protocolo de SP1 exclui identificadores; ablação quantifica. Declarar que o **modelo em produção** os usa |
-| Convenção temporal inconsistente em 2 *features* | **A1** | Ablação mede a magnitude; declarar que **não** é vazamento de futuro, é inconsistência |
+| Convenção temporal inconsistente em 2 *features* | **A1** | Ablação medida em 06/11: sem as 2 *features* do dia *t*, MAE 24,41 (+1,13 L sobre o XGBoost sintonizado). Declarar que **não** é vazamento de futuro, é inconsistência |
+| Atributos de janela móvel misturavam produtores consecutivos (vazamento entre séries) | **A4** | Corrigido (`da1d6d9`) com teste de regressão; reportar magnitude (+0,13 L) e o risco ampliado em dado real com entradas escalonadas |
 | Hiperparâmetros nunca sintonizados; validação nunca usada para seleção | **A3** | Protocolo §4.1 corrige: orçamento simétrico, validação para seleção, teste aberto 1×  |
 | Ganho do RAG confundido com ganho de código já existente | **G2** | Braço **B1** isola |
-| Pesos do score sem proveniência documentada | **C4** | Declarar como escolha de projeto; análise de sensibilidade |
-| Dimensões do score não são independentes (CCS ≥ 500 mil dispara 3 delas, 45/100) | **C2** | Declarar a sobreposição; não apresentar como 7 evidências independentes |
+| Pesos do score sem proveniência documentada | **C4** | Declarar como escolha de projeto. Sensibilidade medida em 06/11: o *ranking* é robusto (Spearman ≥ 0,95 em 50 sorteios), mas Alto + Crítico oscila de 30 % a 53 % |
+| Dimensões do score não são independentes (CCS ≥ 500 mil dispara 3 delas, 45/100) | **C2** | Declarar a sobreposição; não apresentar como 7 evidências independentes. Medido em 06/11: qualidade × CCS com phi 0,86; com CCS ≥ 500 mil as dimensões somam 64,6 pontos em média |
 
 ### 6.2 Validade externa
 
@@ -361,6 +371,82 @@ como contribuição externa creditada nominalmente — **nunca na autoria**.
 
 **Convenção de commit:** `acad(artigo): <resumo>  [autor: <iniciais>]` na branch
 `academico/2026-2`.
+
+---
+
+## 13. Situação em 23/11/2026 — o que já foi medido
+
+Código de cada matéria em `experimentos/` (fora do caminho de produção, §4 do mestre),
+executado em 06/11/2026 sobre `dados_teste/` (30 produtores, base sintética). Resultados
+completos em `experimentos/<matéria>/resultados/`. **Nenhum número abaixo é resultado em
+dado real**, e o texto do artigo deve dizer isso.
+
+### 13.1 SP1 — RNA (Cristiano)
+
+| Modelo | MAE teste (média ± DP, 5 sementes) | Ganho sobre baseline |
+|---|---|---|
+| Baseline MM7 com cascata | 31,54 | — |
+| XGBoost sintonizado | **23,28 ± 0,03** | 26,2 % |
+| MLP sintonizada | 25,99 ± 0,65 | 17,6 % |
+| XGBoost sem as 2 *features* do A1 | 24,41 ± 0,05 | **22,6 %** (número conservador) |
+
+**Resultado negativo** pelo critério pré-registrado (`rna.md` §6.2): o XGBoost vence com
+intervalos não sobrepostos. A sintonia (A3) tira 1,2 L do erro. O número canônico do
+produto segue **24,47 / 22,4 %** (execução única, sem sintonia) até a decisão sobre o A1.
+**Pendente:** LSTM/GRU da trilha de `rna.md` (entra ou é declarado fora por prazo).
+
+### 13.2 SP2 — PLN (Raphael)
+
+Regras (E0) × TF-IDF + regressão logística (E1), treino com 900 frases sintéticas:
+
+| Conjunto | Modelo | F1 intenção | F1 entidades | Lançamento correto | Volume errado |
+|---|---|---|---|---|---|
+| Mesma distribuição | E0 | 0,835 | 0,994 | 79,3 % | 0 % |
+| Mesma distribuição | E1 | 0,998 | 0,994 | 99,7 % | 0 % |
+| Fora da distribuição | E0 | 0,963 | 0,937 | 92,3 % | 0 % |
+| Fora da distribuição | E1 | 0,630 | 0,937 | 66,3 % | 0 % |
+
+Fora da distribuição, o modelo aprendido cai e as regras se sustentam: é o mesmo padrão de
+C-1. A recusa no limiar 0,7 leva o lançamento correto de 66 % a 97 %, com 34 % de cobertura.
+Contra o **oráculo do DomainSim** (560 mensagens): volume lido certo em 72,1 %, não lido em
+27,9 %, lido errado em **0 %**. **Sem corpus real** (decisão de 06/11): limitação declarada.
+
+### 13.3 SP3 — IA Generativa (Raphael)
+
+| Braço | O que é | Especificidade (M4) | M4 sem números | Situação |
+|---|---|---|---|---|
+| B0 | Plano atual do produto | 0,10 | 0,10 | medido |
+| B1 | `RECEITAS` ligadas (isola G2) | 0,83 | **0,23** | medido |
+| B2 | LLM sem recuperação | — | — | **pendente** (chave de API) |
+| B3 | LLM + recuperação na IN 76/77, com recusa | — | — | **pendente** (chave de API) |
+
+A maior parte do ganho de B1 vem de repetir os números do score: sem eles, 0,23. Corpus
+normativo pronto (texto oficial da IN 76 e da IN 77, DOU de 30/11/2018, 105 trechos, com
+hash); **C6 fechado** com ele (`C6_limiares_normativo_ou_projeto.md`). **Pendentes:** rodar
+B2/B3 e a avaliação humana de M1, M2 e M7 (dois avaliadores, Kappa).
+
+### 13.4 IA (Alexandre Barbosa)
+
+C1, C2, C3, C4 e C6 fechados ou medidos (§2 C-2 e §6.1). Falta **texto**: a comparação
+regras × aprendido com os números de 13.1 e a seção de ética/LGPD (`ia.md` §5 e §6).
+
+### 13.5 Extensão (Willgnner)
+
+Kit de campo pronto (`extensao_kit_de_campo.md`): termo LGPD, lista de presença, roteiro
+de escuta com coleta de linguagem para o PLN, folheto com QR (`via-leite-sense.vercel.app`),
+avaliação e consolidação. A classificação entre as 36 startups do Desafio AgroStartup
+(10/10) dá a rota de contato com produtores via SENAR. **A oficina ainda não aconteceu**;
+se não ocorrer até 12/12, vira limitação declarada (§10.2), sem reescrever nenhuma seção.
+
+### 13.6 Arquitetura atual (para §3 O sistema)
+
+Navegador → SPA estática (Vercel) → função serverless que injeta a chave → API FastAPI
+(Railway) → DuckDB. **O Streamlit foi removido** (06/11/2026) e não entra no texto.
+
+### 13.7 Seções do artigo
+
+Nenhuma seção está redigida no repositório até 23/11. As seções §1, §2, §3, §4 e §9 não
+dependem de resultado e devem ser escritas primeiro; §5 e §6 já têm os números acima.
 
 ---
 

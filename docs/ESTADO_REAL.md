@@ -104,6 +104,17 @@ Não há biblioteca de LLM, de WhatsApp nem pacote de mensagens em `requirements
 
 ## 8. Decisões registradas
 
+### 09/11/2026 — Registro de PI vira prioridade (pagamentos a partir de 20/11)
+- A pesquisa de anterioridade (`docs/PESQUISA_ANTERIORIDADE_PI_2026-11-09.md`) achou **"VIA LEITE" registrada e em
+  vigor** (processo 902326341, Montanhes Laticínio, classe 29, até 2032) e **"Via Láctea Labs"** na classe 42
+  (929092520). Não há impedimento absoluto para **"VIA LEITE SENSE" mista nas classes 42 e 9**. Nunca depositar só
+  "VIA LEITE", nem nas classes 29, 31 ou 35.
+- O programa de computador não tem impedimento: nenhum título igual no INPI.
+- Titular: a USINA I.A. é **Inova Simples** (Empresa Simples de Inovação). Tem 50% de desconto no INPI (Nota
+  PFE-INPI 9/2020) e trâmite prioritário gratuito da marca (petição 3019, depois do protocolo).
+- Execução em `docs/registro_pi/`: fase sem custo agora; domínios, marca, e-CNPJ e software pagos a partir de 20/11
+  (cerca de R$ 1.320–1.420).
+
 ### 06/11/2026 — Branch público com CPF e correção de modelo fora do `master`
 
 - **Achado:** `origin/fix/rolling-por-produtor` (`73c4c54`, 11/10) parte do histórico **anterior**

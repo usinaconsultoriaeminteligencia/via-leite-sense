@@ -2,6 +2,10 @@
 
 > **Nota de 10/10/2026 (trazido do branch `academico/2026-2`):** estes documentos foram escritos em 05/08/2026, antes da reorganização de 25/08. Os caminhos mudaram: `backend/app.py` agora é `via_leite/api/app.py`; `treino_mvp_avancado.py`, `score_risco.py` e `gerador_leite_sintetico.py` estão em `via_leite/models/` e `via_leite/core/`; a falha A2 (CPF/nome como atributos do modelo) já foi corrigida no `master`. O Streamlit foi removido.
 >
+> **Nota de 23/11/2026:** onde este documento cita **MAE 24,45 / 22,5 %**, o número vigente é
+> **24,47 contra 31,54 (22,4 %)**, desde a correção do A4 em 06/11 (`da1d6d9`). Resultados
+> medidos de SP1, SP2 e SP3 em `docs/projeto_integrador/artigo.md` §13.
+>
 > Documento **mestre** da trilha acadêmica. Consolida contexto, equipe/autoria,
 > mapa matéria→entrega, cronograma, critérios de conclusão e riscos. Os detalhes
 > técnicos de cada matéria vivem em `docs/projeto_integrador/` (um arquivo por

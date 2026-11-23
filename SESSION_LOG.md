@@ -1,4 +1,24 @@
 ## SESSION UPDATE — VIA LEITE SENSE
+**Data:** 09/11/2026
+**Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
+**Branch:** `master` — nada commitado
+
+### Registro de PI (nova prioridade P0 até ~30/11; pagamentos a partir de 20/11)
+- **Pesquisa de anterioridade** direto no pePI/INPI (marcas, programas, patentes) e na web → `docs/PESQUISA_ANTERIORIDADE_PI_2026-11-09.md`.
+  Achados: **"VIA LEITE" registrada** (902326341, Montanhes Laticínio, classe 29, mista, apostila sem exclusividade de "LEITE", vigência até 18/12/2032);
+  **"Via Láctea Labs"** (929092520, classe 42, inclui consultoria em hardware/software); laticínio "Via-Leite" em Abel Figueiredo/PA (CNPJ 26.243.794/0001-08, sem marca);
+  "VIA SENSE"/"VIASENSE" só nas classes 25/35/40. "LEITE SENSE", "MILK SENSE" e software "Via Leite": nada. Domínios `vialeite(sense).com(.br)` sem DNS.
+- **Roteiro** `docs/ROTEIRO_REGISTRO_PI.md` e **painel** `docs/registro_pi/README.md` (fase A sem custo / fase B a partir de 20/11, cerca de R$ 1.320–1.420).
+- **Prontos:** `marca_via_leite_sense_inpi.jpg` (945×945, extraído do manual de identidade, fundo liso #08161F);
+  `ESPECIFICACAO_MARCA.md` (itens da NCL 13 2026: classe 42 com SaaS 420220, AIaaS 420315, PaaS 420248 etc.; classe 9 com 090658, 090717, 090791, 090591);
+  `TERMO_CESSAO_DIREITOS_EQUIPE.md` (minuta, um por integrante); `FICHA_E_SOFTWARE.md`; `gerar_pacote_inpi.ps1` (testado no `0ef03f7`; os CPFs do `frontend/app.js` e do teste são fictícios e estão na lista de exceções).
+- Já existia a minuta de confidencialidade para pilotos (`Downloads\via leite\Minuta_Termo_Confidencialidade_Via-Leite-Sense.docx`, 03/09), com o SENAI/FATESG como interveniente: reutilizar.
+- **Pendências do Fagner:** CNPJ e porte da USINA I.A., contrapartida e assinaturas do termo, autores do software, cláusulas de PI do SENAI/FAPEG, gov.br prata ou ouro, cadastro no e-INPI.
+- `TASKS.md`, `docs/ESTADO_REAL.md` §8 e `PROJECT_REGISTRY.json` alinhados.
+
+---
+
+## SESSION UPDATE — VIA LEITE SENSE
 **Data:** 06/11/2026
 **Desenvolvedor:** Fagner Vieira — USINA I.A. (par: Claude Opus 5.5)
 **Branch:** `master` — push `3f7e983..16bdec5` (via `fix/janelas-moveis`, já apagado) — correção do modelo integrada; P0 parcialmente resolvido
